@@ -1,0 +1,70 @@
+img {
+	max-width: 100%;
+}
+
+a, a:hover {
+	text-decoration: none;
+}
+.mrg {
+	margin: 50px 0;
+}
+
+.color-777 {
+	color: #777;
+}
+
+.color-fff, .color-fff:hover {
+	color: #fff;
+}
+
+.img-profile-size {
+	width: 40px;
+	height: 40px;
+}
+
+.img-position {
+	margin-top: 3px;
+	margin-right: 5px;
+}
+
+.bropdown-position {
+	margin-top: 5px;
+	margin-left: 20px;
+}
+
+.menu-dropdown-position {
+	margin-right: 75px;
+}
+
+.menu-message-position {
+	margin-right: 35px;
+}
+
+.img-position-admin-logo {
+	margin-right: 10px;
+}
+
+.group .circle {
+  margin: 20px auto;
+  padding: 5px 10px;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #eee;
+}
+
+.group ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.group li {
+  background: #ec971f;
+  padding: 16px;
+  border-radius: 10px;
+  color: #fff;
+  margin-bottom: 15px;
+  list-style: none;
+}

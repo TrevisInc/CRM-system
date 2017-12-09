@@ -1,0 +1,23 @@
+<ng-include src="'app/views/partials/student.header.template.html'"></ng-include>
+<div class="row">
+	<div class="col-sm-3">
+		<ng-include src="'app/views/partials/student.menu.template.html'"></ng-include>
+	</div>
+	<div class="col-sm-6">
+		<section class="group">
+				<h1 class="text-center">{{data.students[0].group}}</h1>
+				<div class="circle">
+					<h1 class="text-center">{{data.teachers[0].firstname}}</h1>
+				</div>
+				<ul>
+					<li ng-repeat="student in data.students">
+						<h2>{{student.firstname}}</h2>
+						<h3>{{student.lastname}}</h3>
+					</li>
+				</ul>
+		</section>
+	</div>
+	<div class="col-sm-3">
+		<ng-include src="'app/views/partials/news.template.html'"></ng-include>
+	</div>
+</div>

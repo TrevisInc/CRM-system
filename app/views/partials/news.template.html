@@ -1,0 +1,17 @@
+<div ng-controller="NewsController">
+	<div class="panel panel-default" ng-controller="NewsController">
+		<div class="panel-heading">Последние новости:</div>
+		<div class="panel-body">
+			<div ng-repeat="item in someNews">
+				<div class="pull-left">
+					<img src="img/admin-logo.png" class="img-rounded img-profile-size img-position-admin-logo" alt="">
+				</div>
+				<small class="pull-right"><em>{{item.data}}</em></small>
+				<br>
+				<strong>{{item.description}}</strong>
+				<p>{{item.title}}</p>
+				<hr>
+			</div>
+		</div>
+	</div>	
+</div>

@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Fruit",
+    "val": ["orange","banana","mandarin","apple","grapes","strawberry"]
+  },
+  {
+    "name": "MyTeam",
+    "val": ["Vadim","Denis","Alexander","Artem","Natali ^_^"]
+  },
+  {
+    "name": "vegetables",
+    "val": ["cabbage","potato","tomato","cucumber","corn","pumpkin"]
+  },
+  {
+    "name": "books",
+    "val": ["lord of the ring","harry potter","number four","fight club","pet cementary","hunger games"]
+  },
+  {
+    "name": "frameworks",
+    "val": ["angularjs","vue","react"]
+  }
+]

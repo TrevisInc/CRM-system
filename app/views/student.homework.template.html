@@ -1,0 +1,81 @@
+<ng-include src="'app/views/partials/student.header.template.html'"></ng-include>
+<div class="row">
+	<div class="col-sm-3">
+		<ng-include src="'app/views/partials/student.menu.template.html'"></ng-include>
+	</div>
+	<div class="col-sm-6">	
+		<section class="homework">
+				<h1 class="text-center">Homeworks</h1>
+				
+				<ul class="nav nav-tabs">
+					<li  class="active"><a href="#todo" data-toggle="tab">Для выполнения</a></li>
+					<li><a href="#done" data-toggle="tab">Выполненные</a></li>
+				</ul>
+				
+				<!--To do homeworks-->
+				<div class="tab-content">
+					<div id="todo" class="tab-pane fade in active">
+						<ul class="list-group">
+							<li class="list-item" ng-repeat="item in homeworksToDo">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a href="">
+												<span>{{item.date}}</span>
+												<span>{{item.theme}}</span>
+											</a>
+										</h4>
+									</div>
+									<div class="panel-body">
+										<ol class="list-group">
+											<li class="list-item" ng-repeat="task in item.tasks">{{task.description}}</li>
+										</ol>
+									</div>
+									<div class="panel-footer">
+										<p>Ответ</p>
+										<form action="" name="formSendHomework">
+											<input type="text" placeholder="Ссылка на гит репозиторий..">
+											<button type="submit" class="btn btn-warning pull-right" ng-click="sendHomework()">Отправить</button>
+										</form>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					
+					<!--Done homeworks-->
+					<div id="done" class="tab-pane fade">
+						<ul class="list-group">
+							<li class="list-item" ng-repeat="item in homeworksDone">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a href="">
+												<span>{{item.date}}</span>
+												<span>{{item.theme}}</span>
+											</a>
+										</h4>
+									</div>
+									<div class="panel-body">
+										<ol class="list-group">
+											<li class="list-item" ng-repeat="task in item.tasks">{{task.description}}</li>
+										</ol>
+									</div>
+									<div class="panel-footer">
+										<p>{{item.comment}}</p>
+										<form action="" name="formSendHomework">
+											<input type="text" placeholder="Ссылка на гит репозиторий..">
+											<button type="submit" class="btn btn-warning pull-right" ng-click="sendHomework()">Проверить</button>
+										</form>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+		</section>
+	</div>
+	<div class="col-sm-3">
+		<ng-include src="'app/views/partials/news.template.html'"></ng-include>
+	</div>
+</div>

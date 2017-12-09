@@ -1,0 +1,17 @@
+{
+  "name": "angularjs_project",
+  "version": "1.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TreVadim/AngularJS_project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-csso": "^3.0.0",
+    "gulp-uglify": "^1.2.0"
+  }
+}

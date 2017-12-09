@@ -1,0 +1,7 @@
+
+  {
+    "name": "Entony",
+    "password": "1234567890",
+    "status": "student",
+    "group": ["Front-end", "Back-end", "English"]
+  }

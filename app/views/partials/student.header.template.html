@@ -1,0 +1,24 @@
+<header ng-controller="StudentHeaderController">
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand logo" href="#/"><i class="fa fa-cogs" aria-hidden="true"></i></a>
+			</div>
+			<ul class="nav navbar-nav pull-right">
+				<li class="menu-message-position">
+					<a href="">Сообщения <span class="badge">4</span></a>
+				</li>
+				<li class="img-position">
+					<img class="img-circle img-profile-size" src="img/919.jpg" alt="">
+				</li>
+				<li class="dropdown menu-dropdown-position">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="">{{userName.name}}<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="">Настройки профиля</a></li>
+						<li><a href="#/">Выход</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</nav>
+</header>
