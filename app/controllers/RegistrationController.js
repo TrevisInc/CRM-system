@@ -9,13 +9,16 @@
 			email: '',
 			login: '',
 			password: '',
-			group: ''
+			group: null
 		};
+
 
 		$scope.newUser = angular.extend({}, registrationModel);
 
 		DataRepository.getGroupList().then(function (response) {
+			
 			$scope.someGroup = response.data;
+			console.log($scope.someGroup)
 		}, function (error) {
 			console.log(error);
 		});

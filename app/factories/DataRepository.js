@@ -10,7 +10,7 @@
 		};
 	
 		function _getGroupList() {
-			return $http.get(webApi.DOMAIN + '/data/ListGroup.json');
+			return $http.get(webApi.DOMAIN + '/api/v1/groups');
 		}
 
 		function _getUser() {
