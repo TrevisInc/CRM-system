@@ -25,7 +25,7 @@
 						<input type="password" class="form-control" required name="password" placeholder="Пароль" ng-model="newUser.password">
 					</div>
 					<div class="form-group">
-						<select class="form-control" required ng-model="newUser.group" ng-options="item.id as item.title for item in someGroup">
+						<select class="form-control" required ng-model="newUser.group_id" ng-options="item.id as item.title for item in someGroup">
 							<option value="" disabled>-- Выбери группу --</option> 
 						</select>
 					</div>
@@ -36,7 +36,6 @@
 				<button class="btn btn-danger pull-right"><a href="#/" class="color-fff">Отмена</a></button>
 			</div>
 		</div>
-
 	</div>
 	<div class="col-xs-4"></div>
 </div>

@@ -9,7 +9,7 @@
 			email: '',
 			login: '',
 			password: '',
-			group: null
+			group_id: null
 		};
 
 
@@ -27,7 +27,7 @@
 			DataRepository.setStudent($scope.newUser).then(function (response) {
 			console.log(response)
 		}, function (error) {
-			console.log(error);
+			console.log(error.data);
 		});
 		}
 
