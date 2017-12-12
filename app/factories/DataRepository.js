@@ -4,6 +4,7 @@
 	app.factory('DataRepository', ['$http', 'webApi', function ($http, webApi) {
 		return {
 			getGroupList: _getGroupList,
+			setStudent: _setStudent,
 			getUser: _getUser,
 			getNews: _getNews,
 			getData: _getData
@@ -11,6 +12,10 @@
 	
 		function _getGroupList() {
 			return $http.get(webApi.DOMAIN + '/api/v1/groups');
+		}
+
+		function _setStudent(data) {
+			return $http.post(webApi.DOMAIN + '/api/v1/students', data);
 		}
 
 		function _getUser() {
