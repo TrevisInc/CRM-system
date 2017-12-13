@@ -6,11 +6,11 @@
 			getGroupList: _getGroupList,
 			getUser: _getUser,
 			getNews: _getNews,
-			getData: _getData
+      getStudents: _getStudents
 		};
 	
 		function _getGroupList() {
-			return $http.get(webApi.DOMAIN + '/data/ListGroup.json');
+			return $http.get(webApi.DOMAIN + '/api/v1/groups');
 		}
 
 		function _getUser() {
@@ -20,8 +20,8 @@
 		function _getNews() {
 			return $http.get(webApi.DOMAIN + '/data/SomeNews.json');
 		}
-		function _getData() {
-			return $http.get(webApi.DOMAIN +  '/data/Angularjs.json');
+		function _getStudents() {
+			return $http.get(webApi.DOMAIN +  '/api/v1/students');
 		}
 	}]);
 })();

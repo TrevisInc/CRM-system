@@ -1,3 +1,3 @@
 app.constant('webApi', {
-  DOMAIN: 'http://127.0.0.1:8080'
+  DOMAIN: 'http://node1.fe.a-level.com.ua'
 });
