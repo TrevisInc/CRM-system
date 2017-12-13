@@ -19,7 +19,7 @@
 			$scope.someGroup = response.data;
 			console.log($scope.someGroup)
 		}, function (error) {
-			// console.log(error);
+			console.log(error);
 		});
 
 		$scope.dispatchForm = function() {
