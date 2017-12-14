@@ -22,9 +22,10 @@
 			return $http.get(webApi.DOMAIN + '/data/User.json');
 		}
 
-		function _getNews() {
-			return $http.get(webApi.DOMAIN + '/data/SomeNews.json');
+		function _getNews(data) {
+			return $http.get(webApi.DOMAIN + '/api/v1/news?count=3&page='+ data + '&orderBy=date_added&dir=' );
 		}
+
 		function _getData() {
 			return $http.get(webApi.DOMAIN +  '/data/Angularjs.json');
 		}

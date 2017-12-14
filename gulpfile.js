@@ -40,6 +40,7 @@ gulp.task('bjs', function() {
                 './bower_components/angular-route/angular-route.js',
                 './bower_components/jquery/dist/jquery.min.js',
                 './bower_components/bootstrap/dist/js/bootstrap.min.js',
+                './bower_components/angular-animate/angular-animate.min.js',
                 './bower_components/angular-bootstrap/ui-bootstrap.min.js',
                 './bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js'
         ]) // файлы, которые обрабатываем

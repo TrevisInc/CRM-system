@@ -6,12 +6,13 @@
 				<div class="pull-left">
 					<img src="img/admin-logo.png" class="img-rounded img-profile-size img-position-admin-logo" alt="">
 				</div>
-				<small class="pull-right"><em>{{item.data}}</em></small>
+				<small class="pull-right"><em>{{item.date_added | date: 'yyyy-MM-dd'}}</em></small>
 				<br>
-				<strong>{{item.description}}</strong>
-				<p>{{item.title}}</p>
+				<strong>{{item.title}}</strong>
+				<p>{{item.description}}</p>
 				<hr>
 			</div>
+			<ul uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>
 		</div>
 	</div>	
 </div>
