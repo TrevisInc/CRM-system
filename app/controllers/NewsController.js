@@ -12,7 +12,7 @@
 			console.log(error);
 		});
 
-		  $scope.pageChanged = function() {
+		$scope.pageChanged = function() {
     		DataRepository.getNews($scope.currentPage).then(function (response) {
     			$scope.someNews = response.data;
 		}, function (error) {
