@@ -7,7 +7,8 @@
 			setStudent: _setStudent,
 			getUser: _getUser,
 			getNews: _getNews,
-			getData: _getData
+			getData: _getData,
+      getStudents: _getStudents
 		};
 	
 		function _getGroupList() {
@@ -29,5 +30,9 @@
 		function _getData() {
 			return $http.get(webApi.DOMAIN +  '/data/Angularjs.json');
 		}
+		
+		function _getStudents() {
+      return $http.get(webApi.DOMAIN +  '/api/v1/students' );
+    }
 	}]);
 })();
