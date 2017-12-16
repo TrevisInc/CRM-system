@@ -8,6 +8,8 @@
 			password: ''
 		};
 
+		$scope.logVal = true;
+
 		$scope.enterOnSite = function() {
 			DataRepository.getUser($scope.newLogin).then(function(response) {
 				var user = response.data;
@@ -19,8 +21,11 @@
 				var userJson = JSON.stringify(user);  
 				localStorage.setItem('user', userJson);
 				localStorage.setItem('authToken', user.authToken);
+
+				$scope.logVal = true;
 			}, function (error) {
 				console.log(error);
+				$scope.logVal = false;
 			});
 		}
 		

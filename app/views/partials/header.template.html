@@ -5,10 +5,10 @@
 				<a class="navbar-brand logo" href="#/"><i class="fa fa-cogs" aria-hidden="true"></i></a>
 			</div>
 			<form name="FormEnter" novalidate class="navbar-form navbar-right" ng-submit="FormEnter.$valid && enterOnSite()">
-				<div class="form-group">
+				<div class="form-group" ng-class="{'has-error' : FormEnter.$submitted && logVal === false}">
 					<input type="text" class="form-control" name="login" placeholder="Логин" required ng-model="newLogin.login" autocomplete="off">
 				</div>
-				<div class="form-group">
+				<div class="form-group" ng-class="{'has-error' : FormEnter.$submitted && logVal === false}">
 					<input type="password" class="form-control" name="password" placeholder="Пароль" required ng-model="newLogin.password">
 				</div>
 				<button class="btn btn-default" id="FormEnter" ng-click="enterOnSite()"><span class="color-777">Вход</span></button>
