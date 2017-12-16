@@ -15,7 +15,7 @@
 				var user = response.data;
 				$http.defaults.headers.common.Authorization = 'Bearer ' + response.data.authToken;
 				if (user.role_id === 1) {
-					$location.path('/student');
+					$location.path('/student/' + user.id);
 				} else $location.path('/');
 
 				var userJson = JSON.stringify(user);  

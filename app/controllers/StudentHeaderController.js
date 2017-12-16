@@ -5,8 +5,7 @@
 
 		var user =  JSON.parse(localStorage.getItem('user'));
 		$scope.userName = user.firstname;
-		console.log(user.firstname);
-
+		
 		$scope.logOut = function() {
 			localStorage.clear();
 			$location.path('/');

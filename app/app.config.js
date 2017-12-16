@@ -10,15 +10,15 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 			templateUrl: 'app/views/registration.template.html',
 			controller: 'RegistrationController'
 		})
-		.when('/student', {
+		.when('/student/:studentId', {
 			templateUrl: 'app/views/student.home.template.html',
 			controller: 'StudentHomeController'
 		})
-		.when('/student/group',{
+		.when('/student/:studentId/group/:groupId',{
     		templateUrl: 'app/views/student.group.template.html',
     		controller: 'StudentGroupController'
     	})
-    	.when('/student/homework',{
+    	.when('/student/:studentId/homework/:homeworkId',{
     		templateUrl: 'app/views/student.homework.template.html',
     		controller: 'StudentHomeworkController'
     	})
