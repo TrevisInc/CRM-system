@@ -7,8 +7,8 @@
 			setStudent: _setStudent,
 			getUser: _getUser,
 			getNews: _getNews,
-			getData: _getData,
-      getStudents: _getStudents
+      getGroupsByStudent: _getGroupsByStudent,
+      getStudentsByGroup: _getStudentsByGroup
 		};
 	
 		function _getGroupList() {
@@ -26,13 +26,14 @@
 		function _getNews(data) {
 			return $http.get(webApi.DOMAIN + '/api/v1/news?count=3&page='+ data + '&orderBy=date_added&dir=' );
 		}
-
-		function _getData() {
-			return $http.get(webApi.DOMAIN +  '/data/Angularjs.json');
-		}
 		
-		function _getStudents() {
-      return $http.get(webApi.DOMAIN +  '/api/v1/students' );
+		function _getGroupsByStudent(studentId) {
+      return $http.get(webApi.DOMAIN + '/api/v1/groupsByStudent/'+ studentId); // Получение групп студента
     }
+    
+    function _getStudentsByGroup(groupId) {
+      return $http.get(webApi.DOMAIN + '/api/v1/studentsByGroup/'+ groupId); // Получение студентов группы студента
+    }
+		
 	}]);
 })();
