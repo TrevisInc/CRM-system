@@ -24,3 +24,7 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
     	})
 		.otherwise('/');
 }]);
+
+app.config(['$httpProvider', function($httpProvider) {
+    $httpProvider.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('authToken');
+}]);
