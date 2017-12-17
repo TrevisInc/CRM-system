@@ -22,7 +22,7 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
     		templateUrl: 'app/views/student.group.template.html',
     		controller: 'StudentGroupController'
     	})
-    	.when('/student/:studentId/homework/:homeworkId',{
+    	.when('/student/:studentId/homework',{
     		templateUrl: 'app/views/student.homework.template.html',
     		controller: 'StudentHomeworkController'
     	})

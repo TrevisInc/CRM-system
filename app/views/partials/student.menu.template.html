@@ -18,7 +18,7 @@
 					<small>Информация о домашних заданиях</small>
 				</a>
 				<ul>
-					<li ng-repeat="item in userGroup"><a href="#/student/homework"><i class="fa fa-sticky-note" aria-hidden="true"></i>{{item}}</a></li>
+					<li ng-repeat="item in groupsByStudent"><a href="#/student/{{student.id}}/homework"><i class="fa fa-sticky-note" aria-hidden="true"></i>{{item.title}}</a></li>
 				</ul>
 			</li>
 			<li>
