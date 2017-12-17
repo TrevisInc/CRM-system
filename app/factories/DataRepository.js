@@ -17,8 +17,8 @@
 			return $http.get(webApi.DOMAIN + '/api/v1/groups');
 			
 		}
-		function _setStudent(data) {    // регистрация
-			return $http.post(webApi.DOMAIN + '/api/v1/students', data);
+		function _setStudent(data) {
+			return $http.post(webApi.DOMAIN + '/api/v1/students', data); // регистрация
 		}
 
 		function _getUser(data) {
