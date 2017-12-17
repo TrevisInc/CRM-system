@@ -17,7 +17,8 @@ gulp.task('js', function() {
                 './app/controllers/StudentMenuController.js',
                 './app/controllers/NewsController.js',
                 './app/controllers/StudentGroupController.js',
-                './app/controllers/StudentHomeworkController.js'
+                './app/controllers/StudentHomeworkController.js',
+                './app/controllers/StudentEditProfileController.js'
         ]) // файлы, которые обрабатываем
         .pipe(concat('min.js')) // склеиваем все JS
         .pipe(uglify()) // получившуюся "портянку" минифицируем 
@@ -43,7 +44,8 @@ gulp.task('bjs', function() {
                 './bower_components/angular-animate/angular-animate.min.js',
                 './bower_components/angular-sanitize/angular-sanitize.min.js',
                 './bower_components/angular-bootstrap/ui-bootstrap.min.js',
-                './bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js'
+                './bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
+                './bower_components/angular-xeditable/dist/js/xeditable.min.js'
         ]) // файлы, которые обрабатываем
         .pipe(concat('b-min.js')) // склеиваем все JS
         .pipe(gulp.dest('./build/')) // результат пишем по указанному адресу

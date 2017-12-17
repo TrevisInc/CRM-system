@@ -14,6 +14,10 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 			templateUrl: 'app/views/student.home.template.html',
 			controller: 'StudentHomeController'
 		})
+		.when('/student/:studentId/editProfile', {
+			templateUrl: 'app/views/student.edit.profile.template.html',
+			controller: 'StudentEditProfileController'
+		})
 		.when('/student/:studentId/group/:groupId',{
     		templateUrl: 'app/views/student.group.template.html',
     		controller: 'StudentGroupController'
