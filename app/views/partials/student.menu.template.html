@@ -8,7 +8,7 @@
 					<small>Информация о составе групп</small>
 				</a>
 				<ul>
-					<li ng-repeat="item in userGroup"><a href="#/student/group"><i class="fa fa-users" aria-hidden="true"></i>{{item}}</a></li>
+					<li ng-repeat="item in groupsByStudent"><a href="#/student/{{studentId}}/group/{{item.id}}" ng-click="setGroupId(item.id)"><i class="fa fa-users" aria-hidden="true"></i>{{item.title}}</a></li>
 				</ul>
 			</li>
 			<li>

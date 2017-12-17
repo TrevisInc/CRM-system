@@ -3,11 +3,15 @@
 
 	app.controller('StudentMenuController', ['$scope', 'DataRepository', function ($scope, DataRepository) {
 		
-		// DataRepository.getUser().then(function (response) {	
-		// 	$scope.userGroup = response.data.group;
-		// }, function (error) {
-		// 	console.log(error);
-		// });
-
+		$scope.studentId = localStorage.getItem('id');
+		
+		DataRepository.getGroupsByStudent($scope.studentId).then(function (response) {
+			$scope.groupsByStudent = response.data;
+    }, function (error) {});
+		
+		$scope.setGroupId = function (id) {
+      localStorage.setItem('groupId', id);
+    };
+		
 	}]);
 })();
