@@ -30,19 +30,19 @@
 		}
 		
 		function _getGroupsByStudent(studentId) {
-      		return $http.get(webApi.DOMAIN + '/api/v1/groupsByStudent/'+ studentId); // Получение групп студента
+      		return $http.get(webApi.DOMAIN + '/api/v1/students/' + studentId + '/groups'); // Получение групп студента
 		}
 	    
 		function _getStudentsByGroup(groupId) {
-	      	return $http.get(webApi.DOMAIN + '/api/v1/studentsByGroup/'+ groupId); // Получение студентов группы студента
+	      	return $http.get(webApi.DOMAIN +'/api/v1/groups/' + groupId + '/students'); // Получение студентов группы студента
 		}
     
     function _getGroup(groupId) {
-      return $http.get(webApi.DOMAIN + '/api/v1/groups/'+ groupId); // Получение данных о группе
+      return $http.get(webApi.DOMAIN + '/api/v1/groups/' + groupId); // Получение данных о группе
     }
     
     function _getTeachersByGroup(groupId) {
-      return $http.get(webApi.DOMAIN + '/api/v1/teachersByGroup/'+ groupId); // Получениe преподавателей в  группе
+      return $http.get(webApi.DOMAIN + '/api/v1/groups/' + groupId + '/teachers'); // Получениe преподавателей в  группе
     }
 	}]);
 })();
