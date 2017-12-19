@@ -14,8 +14,11 @@
 			DataRepository.getUser($scope.newLogin).then(function(response) {
 				var user = response.data;
 				$http.defaults.headers.common.Authorization = 'Bearer ' + response.data.authToken;
+				
 				if (user.role_id === 1) {
 					$location.path('/student/' + user.id);
+				} else if (user.role_id === 2) {
+					$location.path('/teacher/' + user.id);
 				} else $location.path('/');
 
 				var userJson = JSON.stringify(user);  

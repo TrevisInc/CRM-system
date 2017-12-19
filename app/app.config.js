@@ -15,20 +15,28 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 			controller: 'StudentHomeController'
 		})
 		.when('/student/:studentId/editProfile', {
-			templateUrl: 'app/views/student.edit.profile.template.html',
-			controller: 'StudentEditProfileController'
+			templateUrl: 'app/views/user.edit.profile.template.html',
+			controller: 'UserEditProfileController'
 		})
 		.when('/student/:studentId/group/:groupId',{
-    		templateUrl: 'app/views/student.group.template.html',
-    		controller: 'StudentGroupController'
-    	})
-    	.when('/student/:studentId/homework',{
-    		templateUrl: 'app/views/student.homework.template.html',
-    		controller: 'StudentHomeworkController'
-    	})
+			templateUrl: 'app/views/student.group.template.html',
+			controller: 'StudentGroupController'
+		})
+		.when('/student/:studentId/homework',{
+			templateUrl: 'app/views/student.homework.template.html',
+			controller: 'StudentHomeworkController'
+		})
+		.when('/teacher/:teacherId',{
+			templateUrl: 'app/views/teacher.home.template.html',
+			controller: 'TeacherHomeController'
+		})
+		.when('/teacher/:teacherId/editProfile',{
+			templateUrl: 'app/views/user.edit.profile.template.html',
+			controller: 'UserEditProfileController'
+		})
 		.otherwise('/');
 }]);
 
 app.config(['$httpProvider', function($httpProvider) {
-    $httpProvider.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('authToken');
+	$httpProvider.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('authToken');
 }]);

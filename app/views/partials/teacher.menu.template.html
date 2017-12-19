@@ -1,0 +1,30 @@
+<div class="panel panel-default">
+	<nav ng-controller="TeacherMenuController">
+		<ul class="mcd-menu">
+			<li>
+				<a href="">
+					<i class="fa fa-users" aria-hidden="true"></i>
+					<strong>Мои группы</strong>
+					<small>Информация о составе групп, журнал посещения</small>
+				</a>
+				<ul>
+					<li ng-repeat="item in groupsByTeacher"><a href=""><i class="fa fa-users" aria-hidden="true"></i>{{item.title}}</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="">
+					<i class="fa fa-calendar" aria-hidden="true"></i>
+					<strong>Мое расписание</strong>
+					<small>Информация о расписании занятий</small>
+				</a>
+			</li>
+			<li>
+				<a href="">
+					<i class="fa fa-book" aria-hidden="true"></i></i>
+					<strong>Мой Журнал</strong>
+					<small>Проверка домашних заданий</small>
+				</a>
+			</li>
+		</ul>
+	</nav>
+</div>

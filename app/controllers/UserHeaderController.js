@@ -5,7 +5,8 @@
 
 		var user =  JSON.parse(localStorage.getItem('user'));
 		$scope.userName = user.firstname;
-		$scope.studentId = user.id;
+		$scope.userId = user.id;
+		$scope.role = user.role_id;
 		
 		$scope.logOut = function() {
 			localStorage.clear();

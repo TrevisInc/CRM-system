@@ -10,15 +10,17 @@ gulp.task('js', function() {
                 './app/constants/webApi.constant.js',
                 './app/factories/DataRepository.js',
                 './app/controllers/HomeController.js',
+                './app/controllers/NewsController.js',
                 './app/controllers/HeaderController.js',
                 './app/controllers/RegistrationController.js',
                 './app/controllers/StudentHomeController.js',
-                './app/controllers/StudentHeaderController.js',
+                './app/controllers/UserHeaderController.js',
                 './app/controllers/StudentMenuController.js',
-                './app/controllers/NewsController.js',
                 './app/controllers/StudentGroupController.js',
                 './app/controllers/StudentHomeworkController.js',
-                './app/controllers/StudentEditProfileController.js'
+                './app/controllers/UserEditProfileController.js',
+                './app/controllers/TeacherHomeController.js',
+                './app/controllers/TeacherMenuController.js'
         ]) // файлы, которые обрабатываем
         .pipe(concat('min.js')) // склеиваем все JS
         .pipe(uglify()) // получившуюся "портянку" минифицируем 
