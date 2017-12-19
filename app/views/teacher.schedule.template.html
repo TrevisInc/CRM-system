@@ -1,0 +1,46 @@
+<ng-include src="'app/views/partials/user.header.template.html'"></ng-include>
+<div class="row">
+	<div class="col-sm-3">
+		<ng-include src="'app/views/partials/teacher.menu.template.html'"></ng-include>
+	</div>
+	<div class="col-sm-6">
+		<section class="schedule">
+		<h1 class="text-center">Мое расписание</h1>
+			<ul>
+				<li ng-click="editLesson()">
+					<div class="date">01-12-2017</div>
+					<div class="time">19:00</div>
+					<span>Front-End Adv 1</span>
+				</li>
+				<li ng-click="editLesson()">
+					<div class="date">02-12-2017</div>
+					<div class="time">20:00</div>
+					<span>Front-End Adv 3</span>
+				</li>
+				<li ng-click="editLesson()">
+					<div class="date">03-12-2017</div>
+					<div class="time">19:00</div>
+					<span>PhP Adv 2</span>
+				</li>
+				<li ng-click="editLesson()">
+					<div class="date">04-12-2017</div>
+					<div class="time">21:00</div>
+					<span>Front-End Adv 2</span>
+				</li>
+				<li ng-click="editLesson()">
+					<div class="date">05-12-2017</div>
+					<div class="time">18:00</div>
+					<span>PhP Adv 5</span>
+				</li>
+				<li ng-click="editLesson()">
+					<div class="date">06-12-2017</div>
+					<div class="time">20:00</div>
+					<span>Front-End Adv 5</span>
+				</li>
+			</ul>
+		</section>
+	</div>
+	<div class="col-sm-3">
+		<ng-include src="'app/views/partials/news.template.html'"></ng-include>
+	</div>
+</div>

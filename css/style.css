@@ -53,14 +53,18 @@ a, a:hover {
   background: #eee;
 }
 
-.group ul {
+.schedule ul, .group ul {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
 }
+.schedule li {
+  text-align: center;
+  width: 30%;
+}
 
-.group li {
+.schedule li, .group li {
   background: #ec971f;
   padding: 16px;
   border-radius: 10px;

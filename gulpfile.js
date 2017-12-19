@@ -20,7 +20,9 @@ gulp.task('js', function() {
                 './app/controllers/StudentHomeworkController.js',
                 './app/controllers/UserEditProfileController.js',
                 './app/controllers/TeacherHomeController.js',
-                './app/controllers/TeacherMenuController.js'
+                './app/controllers/TeacherMenuController.js',
+                './app/controllers/TeacherScheduleController.js',
+                './app/modal/editLesson/EditLessonController.js'
         ]) // файлы, которые обрабатываем
         .pipe(concat('min.js')) // склеиваем все JS
         .pipe(uglify()) // получившуюся "портянку" минифицируем 

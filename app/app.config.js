@@ -34,6 +34,10 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 			templateUrl: 'app/views/user.edit.profile.template.html',
 			controller: 'UserEditProfileController'
 		})
+    .when('/teacher/:teacherId/schedule',{
+      templateUrl: 'app/views/teacher.schedule.template.html',
+      controller: 'TeacherScheduleController'
+    })
 		.otherwise('/');
 }]);
 
