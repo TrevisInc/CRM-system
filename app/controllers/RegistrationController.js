@@ -24,9 +24,9 @@
 		$scope.dispatchForm = function() {
 			console.log($scope.newUser);
 			DataRepository.setStudent($scope.newUser).then(function (response) {
-		}, function (error) {
+			}, function (error) {
 			console.log(error.data);
-		});
+			});
 		}
 
 	}]);

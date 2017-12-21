@@ -21,8 +21,8 @@
 					$location.path('/teacher/' + user.id);
 				} else $location.path('/');
 
-				var userJson = JSON.stringify(user);  
-				localStorage.setItem('user', userJson);
+				localStorage.setItem('role_id', user.role_id);
+				localStorage.setItem('id', user.id);
 				localStorage.setItem('authToken', user.authToken);
 
 				$scope.logVal = true;

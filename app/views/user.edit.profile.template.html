@@ -1,8 +1,8 @@
 <ng-include src="'app/views/partials/user.header.template.html'"></ng-include>
 <div class="row">
 	<div class="col-sm-3">
-		<ng-include ng-show="{{role === 1}}" src="'app/views/partials/student.menu.template.html'"></ng-include>
-		<ng-include ng-show="{{role === 2}}" src="'app/views/partials/teacher.menu.template.html'"></ng-include>
+		<ng-include ng-show="{{role == 1}}" src="'app/views/partials/student.menu.template.html'"></ng-include>
+		<ng-include ng-show="{{role == 2}}" src="'app/views/partials/teacher.menu.template.html'"></ng-include>
 	</div>
 	<div class="col-sm-6">
 		<div class="panel panel-default">
@@ -14,9 +14,11 @@
 					</div>
 					<div class="col-sm-9">
 						<div>
-							<span editable-text="user.firstname" buttons="no" e-form="textBtnForm">{{ user.firstname || 'empty' }}</span>
+							<span editable-text="user.firstname" buttons="no" e-form="textBtnForm">{{ user.firstname || 'empty' }}
+
 							<button class="btn btn-warning btn-xs" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible"><i class="glyphicon glyphicon-pencil"></i>
 							</button>
+							</span>
 							<span ng-hide="!textBtnForm.$visible">
 								<button type="submit" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-ok"></i></button>
 								<button type="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-minus"></i></button>

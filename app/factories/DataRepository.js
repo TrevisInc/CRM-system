@@ -11,7 +11,9 @@
 			getStudentsByGroup: _getStudentsByGroup,
 			getGroup: _getGroup,
 			getTeachersByGroup: _getTeachersByGroup,
-			getGroupsByTeacher: _getGroupsByTeacher
+			getGroupsByTeacher: _getGroupsByTeacher,
+			getStudentData: _getStudentData,
+			getTeacherData: _getTeacherData
 		};
 	
 		function _getGroupList() {
@@ -48,6 +50,14 @@
 
 		function _getGroupsByTeacher(data) {
 		  	return $http.get(webApi.DOMAIN + '/api/v1/teachers/' + data + '/groups'); // Получение групп преподавателя
+		}
+
+		function _getStudentData(data) {
+		  	return $http.get(webApi.DOMAIN + '/api/v1/students/' + data); // Получение данных о студенте
+		}
+
+		function _getTeacherData(data) {
+		  	return $http.get(webApi.DOMAIN + '/api/v1/teachers/' + data); // Получение данных о преподавателе
 		}
 	}]);
 })();

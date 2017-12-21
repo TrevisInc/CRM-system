@@ -3,10 +3,22 @@
 
 	app.controller('StudentHeaderController', ['$scope', 'DataRepository', '$location', function ($scope, DataRepository, $location) {
 
-		var user =  JSON.parse(localStorage.getItem('user'));
-		$scope.userName = user.firstname;
-		$scope.userId = user.id;
-		$scope.role = user.role_id;
+		$scope.role = localStorage.getItem('role_id');
+		$scope.userId = localStorage.getItem('id');
+
+		if ($scope.role == 1) {
+			DataRepository.getStudentData($scope.userId).then(function(response) {
+				$scope.userName = response.data.firstname;
+			}, function (error) {
+				console.log(error);
+			});
+		} else if ($scope.role == 2) {
+			DataRepository.getTeacherData($scope.userId).then(function(response) {
+				$scope.userName = response.data.firstname;
+			}, function (error) {
+				console.log(error);
+			});
+		}
 		
 		$scope.logOut = function() {
 			localStorage.clear();

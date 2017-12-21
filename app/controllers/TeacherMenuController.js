@@ -2,9 +2,10 @@
 	'use strict';
 
 	app.controller('TeacherMenuController', ['$scope', 'DataRepository', function ($scope, DataRepository) {
-		$scope.user =  JSON.parse(localStorage.getItem('user'));
+		
+		var user = localStorage.getItem('id');
 
-		DataRepository.getGroupsByTeacher($scope.user.id).then(function (response) {
+		DataRepository.getGroupsByTeacher(user).then(function (response) {
 			$scope.groupsByTeacher = response.data;
 		}, function (error) {
 			console.log(error);
