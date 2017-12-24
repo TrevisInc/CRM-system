@@ -1,13 +1,13 @@
 <ng-include src="'app/views/partials/user.header.template.html'"></ng-include>
 <div class="row">
 	<div class="col-sm-3">
-		<ng-include src="'app/views/partials/teacher.menu.template.html'"></ng-include>
+		<ng-include src="'app/views/partials/student.menu.template.html'"></ng-include>
 	</div>
 	<div class="col-sm-6">
 		<section>
 			<h1 class="text-center">Мое расписание</h1>
 			<ul class="schedule">
-				<li ng-repeat="item in schedule" ng-class="{'success' : controlDate(item.date)=== true}" ng-click="editLesson()">
+				<li ng-repeat="item in schedule" ng-class="{'success' : controlDate(item.date)=== true}">
 					<div>{{item.date | date: 'longDate'}}</div>
 					<div>{{item.time}}</div>
 					<div>{{item.theme || 'No theme'}}</div>

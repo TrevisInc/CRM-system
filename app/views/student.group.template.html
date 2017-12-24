@@ -6,13 +6,10 @@
 	<div class="col-sm-6">
 		<section class="group">
 				<h1 class="text-center">{{groupByStudent.title}}</h1>
-				<div class="circle">
-					<h1 class="text-center">{{teacherByGroup[0].firstname}}</h1>
-				</div>
 				<ul>
 					<li ng-repeat="student in studentsByGroup">
-						<h2>{{student.firstname}}</h2>
-						<h3>{{student.lastname}}</h3>
+						<img src="img/admin-logo.png" class="img-rounded img-profile-size img-position-admin-logo" alt="">
+						<h3>{{student.firstname}} {{student.lastname}}</h3>
 					</li>
 				</ul>
 		</section>

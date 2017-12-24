@@ -13,7 +13,10 @@
 			getTeachersByGroup: _getTeachersByGroup,
 			getGroupsByTeacher: _getGroupsByTeacher,
 			getStudentData: _getStudentData,
-			getTeacherData: _getTeacherData
+			getTeacherData: _getTeacherData,
+      getScheduleData: _getScheduleData,
+      getScheduleDataPage: _getScheduleDataPage,
+      putScheduleData: _putScheduleData
 		};
 	
 		function _getGroupList() {
@@ -59,5 +62,17 @@
 		function _getTeacherData(data) {
 		  	return $http.get(webApi.DOMAIN + '/api/v1/teachers/' + data); // Получение данных о преподавателе
 		}
+    
+    function _getScheduleData(groupId) {
+      return $http.get(webApi.DOMAIN + '/api/v1/groups/' + groupId +'/schedule'); // Получение расписания группы
+    }
+		
+    function _getScheduleDataPage(groupId, currentPage) {
+      return $http.get(webApi.DOMAIN + '/api/v1/groups/' + groupId +'/schedule?count=9&page='+ currentPage + '&dir=asc'); // Получение расписания группы определенной страницы
+    }
+    
+    function _putScheduleData(lessonId, data) {
+      return $http.put(webApi.DOMAIN + '/api/v1/groups/' + lessonId +'/schedule', data); // Изменение темы занятия
+    }
 	}]);
 })();

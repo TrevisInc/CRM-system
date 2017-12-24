@@ -44,24 +44,19 @@ a, a:hover {
 	margin-right: 10px;
 }
 
-.group .circle {
-  margin: 20px auto;
-  padding: 5px 10px;
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  background: #eee;
+.group ul li {
+  width: 30%;
 }
 
-.schedule ul, .group ul {
+.group ul {
+  text-align: center;
+}
+
+.schedule, .group ul {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-}
-.schedule li {
-  text-align: center;
-  width: 30%;
 }
 
 .schedule li, .group li {
@@ -72,3 +67,14 @@ a, a:hover {
   margin-bottom: 15px;
   list-style: none;
 }
+
+.schedule li {
+  text-align: center;
+  width: 30%;
+  background: #ff0202;
+}
+
+.schedule .success {
+  background: #389439;
+}
+
