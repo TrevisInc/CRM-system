@@ -9,10 +9,10 @@
     $scope.maxSize = 4;
   
     DataRepository.getScheduleData(1).then(function (response) {
-      $scope.allSchedule = response.data;
-      for( var i = 0; i < $scope.allSchedule.length; i++) {
+      var allSchedule = response.data;
+      for( var i = 0; i < allSchedule.length; i++) {
         var now = new Date();
-        var lessonDate = new Date($scope.allSchedule[i].date);
+        var lessonDate = new Date(allSchedule[i].date);
         if(lessonDate > now) {
           $scope.currentPage = Math.ceil(i / 9);
           break;
@@ -34,19 +34,29 @@
       var lessonDate = new Date(date);
     
       if(lessonDate > now) {
-        console.log('true');
         return true;
       } else {
-        console.log('false');
         return false;
       }
-    }
-    $scope.editLesson = function () {
+    };
+    $scope.editLesson = function (lessonId) {
+      sessionStorage.setItem('id_lesson', lessonId);
+      
       var modalInstance = $uibModal.open({
         templateUrl: 'app/modal/editLesson/template.html',
         controller: 'EditLessonController',
         size: 'md'
       });
+  
+      modalInstance.result.then(function (data) {
+        
+        DataRepository.putScheduleData(lessonId, data).then(function (response) {
+          console.log('ok');
+        }, function (error) {
+          console.log('error', error);
+        });
+      }, function (error) {});
+      
     };
   
   }]);

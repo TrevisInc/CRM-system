@@ -7,7 +7,7 @@
 		<section>
 			<h1 class="text-center">Мое расписание</h1>
 			<ul class="schedule">
-				<li ng-repeat="item in schedule" ng-class="{'success' : controlDate(item.date)=== true}" ng-click="editLesson()">
+				<li ng-repeat="item in schedule track by $index" ng-class="{'success' : controlDate(item.date)=== true}" ng-click="editLesson(item.id)">
 					<div>{{item.date | date: 'longDate'}}</div>
 					<div>{{item.time}}</div>
 					<div>{{item.theme || 'No theme'}}</div>

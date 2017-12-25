@@ -9,10 +9,10 @@
     $scope.maxSize = 4;
     
     DataRepository.getScheduleData(groupId).then(function (response) {
-      $scope.allSchedule = response.data;
-      for( var i = 0; i < $scope.allSchedule.length; i++) {
+      var allSchedule = response.data;
+      for( var i = 0; i < allSchedule.length; i++) {
         var now = new Date();
-        var lessonDate = new Date($scope.allSchedule[i].date);
+        var lessonDate = new Date(allSchedule[i].date);
         if(lessonDate > now) {
           $scope.currentPage = Math.ceil(i / 9);
           break;
