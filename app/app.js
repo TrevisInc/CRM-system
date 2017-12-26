@@ -3,5 +3,6 @@ var app = angular.module('application', [
   'ngAnimate',
   'ngSanitize',
   'ui.bootstrap',
-  'xeditable'
+  'xeditable',
+  'cgNotify'
 ]);

@@ -8,7 +8,11 @@
 					<small>Информация о составе групп</small>
 				</a>
 				<ul>
-					<li ng-repeat="item in groupsByStudent"><a href="#/student/{{student}}/group/{{item.id}}" ng-click="setGroupId(item.id)"><i class="fa fa-users" aria-hidden="true"></i>{{item.title}}</a></li>
+					<li ng-repeat="item in groupsByStudent">
+						<a href="#/student/{{student}}/group/{{item.id}}" ng-click="setGroupId(item.id)">
+							<i class="fa fa-users" aria-hidden="true"></i>{{item.title}}
+						</a>
+					</li>
 				</ul>
 			</li>
 			<li>
@@ -27,6 +31,13 @@
 					<strong>Мое расписание</strong>
 					<small>Информация о расписании занятий</small>
 				</a>
+				<ul>
+					<li ng-repeat="item in groupsByStudent">
+						<a href="#/student/{{student}}/schedule/{{item.id}}" ng-click="setGroupId(item.id)">
+							<i class="fa fa-users" aria-hidden="true"></i>{{item.title}}
+						</a>
+					</li>
+				</ul>
 			</li>
 			<li>
 				<a href="">

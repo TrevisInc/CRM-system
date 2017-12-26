@@ -5,7 +5,10 @@
 	</div>
 	<div class="col-sm-6">
 		<section>
-			<h1 class="text-center">Мое расписание</h1>
+			<div class="text-center">
+				<h1>Мое расписание</h1>
+				<h3>{{group.title}}</h3>
+			</div>
 			<ul class="schedule">
 				<li ng-repeat="item in schedule" ng-class="{'success' : controlDate(item.date)=== true}">
 					<div>{{item.date | date: 'longDate'}}</div>

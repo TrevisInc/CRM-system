@@ -9,7 +9,7 @@
     }, function (error) {});
 		
 		$scope.setGroupId = function (id) {
-      	localStorage.setItem('groupId', id);
+      	sessionStorage.setItem('groupId', id);
     };
 		
 	}]);

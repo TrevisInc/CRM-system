@@ -7,6 +7,7 @@ gulp.task('js', function() {
     gulp.src([
                 './app/app.js',
                 './app/app.config.js',
+                './app/factories/utils.js',
                 './app/constants/webApi.constant.js',
                 './app/factories/DataRepository.js',
                 './app/controllers/HomeController.js',
@@ -51,6 +52,7 @@ gulp.task('bjs', function() {
                 './bower_components/angular-sanitize/angular-sanitize.min.js',
                 './bower_components/angular-bootstrap/ui-bootstrap.min.js',
                 './bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
+                './bower_components/angular-notify/dist/angular-notify.min.js',
                 './bower_components/angular-xeditable/dist/js/xeditable.min.js'
         ]) // файлы, которые обрабатываем
         .pipe(concat('b-min.js')) // склеиваем все JS

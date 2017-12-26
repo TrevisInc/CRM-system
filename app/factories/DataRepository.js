@@ -67,8 +67,8 @@
       return $http.get(webApi.DOMAIN + '/api/v1/groups/' + groupId +'/schedule'); // Получение расписания группы
     }
 		
-    function _getScheduleDataPage(groupId, currentPage) {
-      return $http.get(webApi.DOMAIN + '/api/v1/groups/' + groupId +'/schedule?count=9&page='+ currentPage + '&dir=asc'); // Получение расписания группы определенной страницы
+    function _getScheduleDataPage(groupId, currentPage, count) {
+      return $http.get(webApi.DOMAIN + '/api/v1/groups/' + groupId +'/schedule?page=' + currentPage + '&count=' + count +'&dir=asc'); // Получение расписания группы определенной страницы
     }
     
     function _putScheduleData(lessonId, data) {
