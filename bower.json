@@ -19,6 +19,7 @@
     "angular-animate": "^1.6.7",
     "angular-sanitize": "^1.6.7",
     "angular-xeditable": "^0.8.1",
-    "angular-notify": "^2.5.1"
+    "angular-notify": "^2.5.1",
+    "angular-bootstrap-calendar": "^1.0.0"
   }
 }

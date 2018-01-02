@@ -9,7 +9,7 @@
       var defaults = {
         message: "",
         type: 'alert',
-        duration: 2000
+        duration: 1000
       };
       
       data = angular.extend(defaults,data);

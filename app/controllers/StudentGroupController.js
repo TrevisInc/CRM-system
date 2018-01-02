@@ -10,7 +10,6 @@
       
         DataRepository.getStudentsByGroup(groupId).then(function (response) {
           $scope.studentsByGroup = response.data;
-          sessionStorage.clear();
         }, function (error) {
           if(error.status === 404) {
             utils.notify({
@@ -18,7 +17,6 @@
               type: 'danger'
             });
           }
-          sessionStorage.clear();
         });
         
     }, function (error) {});
