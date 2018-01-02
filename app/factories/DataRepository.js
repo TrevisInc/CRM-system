@@ -16,7 +16,8 @@
 			getTeacherData: _getTeacherData,
       getScheduleData: _getScheduleData,
       getScheduleDataPage: _getScheduleDataPage,
-      putScheduleData: _putScheduleData
+      putScheduleData: _putScheduleData,
+      getScheduleTeacher: _getScheduleTeacher
 		};
 	
 		function _getGroupList() {
@@ -73,6 +74,10 @@
     
     function _putScheduleData(lessonId, data) {
       return $http.put(webApi.DOMAIN + '/api/v1/groups/' + lessonId +'/schedule', data); // Изменение темы занятия
+    }
+    
+    function _getScheduleTeacher(data) {
+      return $http.get(webApi.DOMAIN + '/api/v1/teachers/' + data +'/schedule'); // Получение расписания преподавателя
     }
 	}]);
 })();

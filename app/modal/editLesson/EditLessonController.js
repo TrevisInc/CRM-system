@@ -2,17 +2,20 @@
   
   app.controller('EditLessonController', EditLessonController);
   
-  function EditLessonController($scope, $uibModalInstance, DataRepository) {
+  function EditLessonController($scope, $uibModalInstance, DataRepository, utils) {
     var lessonId = sessionStorage.getItem('id_lesson');
     
-    DataRepository.getScheduleData(1).then(function (response) {
+    DataRepository.getScheduleTeacher(localStorage.getItem('id')).then(function (response) {
       response.data.forEach(function (item) {
         if(item.id == lessonId) {
           $scope.lesson = item;
         }
       });
     }, function (error) {
-      console.log('Ошибка getScheduleData');
+      utils.notify({
+        message: 'Произошла ошибка загрузки занятия, повторите ваш запрос позже',
+        type: 'danger'
+      });
     });
     
     $scope.cancel = function () {
@@ -27,7 +30,8 @@
   EditLessonController.$inject = [
     '$scope',
     '$uibModalInstance',
-    'DataRepository'
+    'DataRepository',
+    'utils'
   ];
   
 })();

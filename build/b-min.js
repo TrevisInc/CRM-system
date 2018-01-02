@@ -35594,11 +35594,8958 @@ Build date: 2017-11-14
 */
 angular.module("xeditable",[]).value("editableOptions",{theme:"default",icon_set:"default",buttons:"right",blurElem:"cancel",blurForm:"ignore",activate:"focus",isDisabled:!1,activationEvent:"click",submitButtonTitle:"Submit",submitButtonAriaLabel:"Submit",cancelButtonTitle:"Cancel",cancelButtonAriaLabel:"Cancel",clearButtonTitle:"Clear",clearButtonAriaLabel:"Clear",displayClearButton:!1}),angular.module("xeditable").directive("editableBsdate",["editableDirectiveFactory","$injector","$parse",function(a,b,c){uibDatepickerConfig=b.get("uibDatepickerConfig"),uibDatepickerPopupConfig=b.get("uibDatepickerPopupConfig");var d=[["eIsOpen","is-open"],["eDateDisabled","date-disabled"],["eDatepickerPopup","uib-datepicker-popup"],["eShowButtonBar","show-button-bar"],["eCurrentText","current-text"],["eClearText","clear-text"],["eCloseText","close-text"],["eCloseOnDateSelection","close-on-date-selection"],["eDatepickerAppendToBody","datepicker-append-to-body"],["eOnOpenFocus","on-open-focus"],["eName","name"],["eDateDisabled","date-disabled"],["eAltInputFormats","alt-input-formats"]],e=[["eFormatDay","formatDay"],["eFormatMonth","formatMonth"],["eFormatYear","formatYear"],["eFormatDayHeader","formatDayHeader"],["eFormatDayTitle","formatDayTitle"],["eFormatMonthTitle","formatMonthTitle"],["eMaxMode","maxMode"],["eMinMode","minMode"],["eDatepickerMode","datepickerMode"]];return a({directiveName:"editableBsdate",inputTpl:"<div></div>",render:function(){this.parent.render.call(this);var a=this.attrs,b=this.scope,f=angular.element('<input type="text" class="form-control" ng-model="$parent.$data"/>');f.attr("uib-datepicker-popup",a.eDatepickerPopupXEditable||uibDatepickerPopupConfig.datepickerPopup),f.attr("year-range",a.eYearRange||20),f.attr("ng-readonly",a.eReadonly||!1);for(var g=d.length-1;g>=0;g--){var h=a[d[g][0]];"undefined"!=typeof h&&f.attr(d[g][1],h)}a.eNgChange&&(f.attr("ng-change",a.eNgChange),this.inputEl.removeAttr("ng-change")),a.eStyle&&(f.attr("style",a.eStyle),this.inputEl.removeAttr("style"));var i={maxDate:b.$eval(a.eMaxDate)||uibDatepickerConfig.maxDate,minDate:b.$eval(a.eMinDate)||uibDatepickerConfig.minDate,showWeeks:a.eShowWeeks?"true"===a.eShowWeeks.toLowerCase():uibDatepickerConfig.showWeeks,startingDay:a.eStartingDay||0,initDate:b.$eval(a.eInitDate)||new Date};if(a.eDatepickerOptions){var j=c(a.eDatepickerOptions)(b);angular.extend(i,j)}for(var k=e.length-1;k>=0;k--){var l=a[e[k][0]];"undefined"!=typeof l&&(i[e[k][1]]=l)}b.dateOptions=i;var m=angular.isDefined(a.eShowCalendarButton)?a.eShowCalendarButton:"true";if("true"===m){var n=angular.element('<button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>'),o=angular.element('<span class="input-group-btn"></span>');n.attr("ng-click",a.eNgClick),o.append(n),this.inputEl.append(o)}else f.attr("ng-click",a.eNgClick);f.attr("datepicker-options","dateOptions"),this.inputEl.prepend(f),this.inputEl.removeAttr("class"),this.inputEl.removeAttr("ng-click"),this.inputEl.removeAttr("is-open"),this.inputEl.removeAttr("init-date"),this.inputEl.removeAttr("datepicker-popup"),this.inputEl.removeAttr("required"),this.inputEl.removeAttr("ng-model"),this.inputEl.removeAttr("date-picker-append-to-body"),this.inputEl.removeAttr("name"),this.inputEl.attr("class","input-group")},autosubmit:function(){var a=this;a.inputEl.bind("change",function(){setTimeout(function(){a.scope.$apply(function(){a.scope.$form.$submit()})},500)}),a.inputEl.bind("keydown",function(b){9===b.keyCode&&"submit"===a.editorEl.attr("blur")&&a.scope.$apply(function(){a.scope.$form.$submit()})})}})}]),angular.module("xeditable").directive("editableBstime",["editableDirectiveFactory",function(a){return a({directiveName:"editableBstime",inputTpl:"<div uib-timepicker></div>",render:function(){this.parent.render.call(this);var a=angular.element('<div class="well well-small" style="display:inline-block;"></div>');a.attr("ng-model",this.inputEl.attr("ng-model")),this.inputEl.removeAttr("ng-model"),this.attrs.eNgChange&&(a.attr("ng-change",this.inputEl.attr("ng-change")),this.inputEl.removeAttr("ng-change")),this.inputEl.wrap(a)}})}]),angular.module("xeditable").directive("editableCheckbox",["editableDirectiveFactory",function(a){return a({directiveName:"editableCheckbox",inputTpl:'<input type="checkbox">',render:function(){this.parent.render.call(this),this.inputEl.wrap("<label></label>"),this.attrs.eTitle&&this.inputEl.parent().append("<span>"+this.attrs.eTitle+"</span>")},autosubmit:function(){var a=this;a.inputEl.bind("change",function(){setTimeout(function(){a.scope.$apply(function(){a.scope.$form.$submit()})},500)})}})}]),angular.module("xeditable").directive("editableChecklist",["editableDirectiveFactory","editableNgOptionsParser",function(a,b){return a({directiveName:"editableChecklist",inputTpl:"<span></span>",useCopy:!0,render:function(){this.parent.render.call(this);var a=b(this.attrs.eNgOptions),c="",d="";this.attrs.eNgChange&&(c=' ng-change="'+this.attrs.eNgChange+'"'),this.attrs.eChecklistComparator&&(d=' checklist-comparator="'+this.attrs.eChecklistComparator+'"');var e='<label ng-repeat="'+a.ngRepeat+'"><input type="checkbox" checklist-model="$parent.$parent.$data" checklist-value="'+a.locals.valueFn+'"'+c+d+'><span ng-bind="'+a.locals.displayFn+'"></span></label>';this.inputEl.removeAttr("ng-model"),this.inputEl.removeAttr("ng-options"),this.inputEl.removeAttr("ng-change"),this.inputEl.removeAttr("checklist-comparator"),this.inputEl.html(e)}})}]),angular.module("xeditable").directive("editableCombodate",["editableDirectiveFactory","editableCombodate",function(a,b){return a({directiveName:"editableCombodate",inputTpl:'<input type="text">',render:function(){this.parent.render.call(this);var a={value:new Date(this.scope.$data)},c=this;angular.forEach(["format","template","minYear","maxYear","yearDescending","minuteStep","secondStep","firstItem","errorClass","customClass","roundTime","smartDays"],function(b){var d="e"+b.charAt(0).toUpperCase()+b.slice(1);d in c.attrs&&("minYear"==b||"maxYear"==b||"minuteStep"==b||"secondStep"==b?a[b]=parseInt(c.attrs[d],10):a[b]=c.attrs[d])});var d=b.getInstance(this.inputEl,a);d.$widget.find("select").bind("change",function(a){c.scope.$data=d.getValue()?new Date(d.getValue().replace(/-/g,"/")).toISOString():null}).change()}})}]),function(){var a=function(a){return a.toLowerCase().replace(/-(.)/g,function(a,b){return b.toUpperCase()})},b="text|password|email|tel|number|url|search|color|date|datetime|datetime-local|time|month|week|file".split("|");angular.forEach(b,function(b){var c=a("editable-"+b);angular.module("xeditable").directive(c,["editableDirectiveFactory",function(a){return a({directiveName:c,inputTpl:'<input type="'+b+'">',render:function(){if(this.parent.render.call(this),this.attrs.eInputgroupleft||this.attrs.eInputgroupright){if(this.inputEl.wrap('<div class="input-group"></div>'),this.attrs.eInputgroupleft){var a=angular.element('<span class="input-group-addon">'+this.attrs.eInputgroupleft+"</span>");this.inputEl.parent().prepend(a)}if(this.attrs.eInputgroupright){var b=angular.element('<span class="input-group-addon">'+this.attrs.eInputgroupright+"</span>");this.inputEl.parent().append(b)}}if(this.attrs.eLabel){var c=angular.element("<label>"+this.attrs.eLabel+"</label>");this.attrs.eInputgroupleft||this.attrs.eInputgroupright?this.inputEl.parent().parent().prepend(c):this.inputEl.parent().prepend(c)}this.attrs.eFormclass&&(this.editorEl.addClass(this.attrs.eFormclass),this.inputEl.removeAttr("formclass"))},autosubmit:function(){var a=this;a.inputEl.bind("keydown",function(b){9===b.keyCode&&"submit"===a.editorEl.attr("blur")&&a.scope.$apply(function(){a.scope.$form.$submit()})})}})}])}),angular.module("xeditable").directive("editableRange",["editableDirectiveFactory","$interpolate",function(a,b){return a({directiveName:"editableRange",inputTpl:'<input type="range" id="range" name="range">',render:function(){this.parent.render.call(this),this.inputEl.after("<output>"+b.startSymbol()+"$data"+b.endSymbol()+"</output>")}})}])}(),angular.module("xeditable").directive("editableTagsInput",["editableDirectiveFactory","editableUtils",function(a,b){var c=a({directiveName:"editableTagsInput",inputTpl:"<tags-input></tags-input>",useCopy:!0,render:function(){this.parent.render.call(this),this.inputEl.append(b.rename("auto-complete",this.attrs.$autoCompleteElement)),this.inputEl.removeAttr("ng-model"),this.inputEl.attr("ng-model","$parent.$data")}}),d=c.link;return c.link=function(a,b,c,e){var f=b.find("editable-tags-input-auto-complete");return c.$autoCompleteElement=f.clone(),f.remove(),d(a,b,c,e)},c}]),angular.module("xeditable").directive("editableRadiolist",["editableDirectiveFactory","editableNgOptionsParser","$interpolate",function(a,b,c){return a({directiveName:"editableRadiolist",inputTpl:"<span></span>",render:function(){this.parent.render.call(this);var a=b(this.attrs.eNgOptions),d="",e="";this.attrs.eNgChange&&(d=' ng-change="'+this.attrs.eNgChange+'"'),this.attrs.eName&&(e=' name="'+this.attrs.eName+'"');var f='<label data-ng-repeat="'+a.ngRepeat+'"><input type="radio" data-ng-disabled="::'+this.attrs.eNgDisabled+'" data-ng-model="$parent.$parent.$data" data-ng-value="'+c.startSymbol()+"::"+a.locals.valueFn+c.endSymbol()+'"'+d+e+'><span data-ng-bind="::'+a.locals.displayFn+'"></span></label>';this.inputEl.removeAttr("ng-model"),this.inputEl.removeAttr("ng-options"),this.inputEl.removeAttr("ng-change"),this.inputEl.html(f)},autosubmit:function(){var a=this;a.inputEl.bind("change",function(){setTimeout(function(){a.scope.$apply(function(){a.scope.$form.$submit()})},500)})}})}]),angular.module("xeditable").directive("editableSelect",["editableDirectiveFactory",function(a){return a({directiveName:"editableSelect",inputTpl:"<select></select>",render:function(){if(this.parent.render.call(this),this.attrs.ePlaceholder){var a=angular.element('<option value="">'+this.attrs.ePlaceholder+"</option>");this.inputEl.append(a)}},autosubmit:function(){var a=this;a.attrs.hasOwnProperty("eMultiple")||a.inputEl.bind("change",function(){a.scope.$apply(function(){a.scope.$form.$submit()})})}})}]),angular.module("xeditable").directive("editableTextarea",["editableDirectiveFactory",function(a){return a({directiveName:"editableTextarea",inputTpl:"<textarea></textarea>",render:function(){this.parent.render.call(this),this.attrs.eFormclass&&(this.editorEl.addClass(this.attrs.eFormclass),this.inputEl.removeAttr("formclass"))},addListeners:function(){var a=this;a.parent.addListeners.call(a),a.single&&"no"!==a.buttons&&a.autosubmit()},autosubmit:function(){var a=this;a.inputEl.bind("keydown",function(b){a.attrs.submitOnEnter?13!==b.keyCode||b.shiftKey||a.scope.$apply(function(){a.scope.$form.$submit()}):((b.ctrlKey||b.metaKey)&&13===b.keyCode||9===b.keyCode&&"submit"===a.editorEl.attr("blur"))&&a.scope.$apply(function(){a.scope.$form.$submit()})})}})}]),angular.module("xeditable").directive("editableUidate",["editableDirectiveFactory",function(a){return a({directiveName:"editableUidate",inputTpl:'<input class="form-control" />',render:function(){this.parent.render.call(this),this.inputEl.attr("ui-date",this.attrs.eUiDate),this.inputEl.attr("placeholder",this.attrs.ePlaceholder)}})}]),angular.module("xeditable").directive("editableUiSelect",["editableDirectiveFactory","editableUtils",function(a,b){var c=a({directiveName:"editableUiSelect",inputTpl:"<ui-select></ui-select>",render:function(){this.parent.render.call(this),this.inputEl.append(b.rename("ui-select-match",this.attrs.$matchElement)),this.inputEl.append(b.rename("ui-select-choices",this.attrs.$choicesElement)),this.inputEl.removeAttr("ng-model"),this.inputEl.attr("ng-model","$parent.$parent.$data")},autosubmit:function(){var a=this;a.inputEl.bind("change",function(){setTimeout(function(){a.scope.$apply(function(){a.scope.$form.$submit()})},500)}),a.inputEl.bind("keydown",function(b){9===b.keyCode&&"submit"===a.editorEl.attr("blur")&&a.scope.$apply(function(){a.scope.$form.$submit()})})}}),d=c.link;return c.link=function(a,b,c,e){var f=b.find("editable-ui-select-match"),g=b.find("editable-ui-select-choices");return c.$matchElement=f.clone(),c.$choicesElement=g.clone(),f.remove(),g.remove(),d(a,b,c,e)},c}]),angular.module("xeditable").factory("editableController",["$q","editableUtils",function(a,b){function c(a,c,d,e,f,g,h,i,j,k,l,m){var n,o,p=this;p.scope=a,p.elem=d,p.attrs=c,p.inputEl=null,p.editorEl=null,p.single=!0,p.error="",p.theme=f[c.editableTheme]||f[h.theme]||f["default"],p.parent={};var q=c.editableTheme||h.theme||"default",r=c.editableIconSet||h.icon_set;p.icon_set="default"===r?g["default"][q]:g.external[r],p.inputTpl="",p.directiveName="",p.useCopy=!1,p.single=null,p.buttons="right",p.popover=!1,p.init=function(b){if(p.single=b,p.name=c.eName||c[p.directiveName],!c[p.directiveName])throw"You should provide value for `"+p.directiveName+"` in editable element!";n=e(c[p.directiveName]),p.single?p.buttons=p.attrs.buttons||h.buttons:p.buttons="no",c.eName&&p.scope.$watch("$data",function(a){p.scope.$form.$data[c.eName]=a}),c.onshow&&(p.onshow=function(){return p.catchError(e(c.onshow)(a))}),c.onhide&&(p.onhide=function(){return e(c.onhide)(a)}),c.oncancel&&(p.oncancel=function(){return e(c.oncancel)(a)}),c.onbeforesave&&(p.onbeforesave=function(){return p.catchError(e(c.onbeforesave)(a))}),c.onaftersave&&(p.onaftersave=function(){return p.catchError(e(c.onaftersave)(a))}),c.popover&&(p.popover=p.attrs.popover),a.$parent.$watch(c[p.directiveName],function(a,b){p.setLocalValue(),p.handleEmpty()})},p.render=function(){var a=p.theme;p.inputEl=angular.element(p.inputTpl),p.controlsEl=angular.element(a.controlsTpl),p.controlsEl.append(p.inputEl),"no"!==p.buttons&&(p.buttonsEl=angular.element(a.buttonsTpl),p.submitEl=angular.element(a.submitTpl),p.resetEl=angular.element(a.resetTpl),p.cancelEl=angular.element(a.cancelTpl),p.submitEl.attr("title",h.submitButtonTitle),p.submitEl.attr("aria-label",h.submitButtonAriaLabel),p.cancelEl.attr("title",h.cancelButtonTitle),p.cancelEl.attr("aria-label",h.cancelButtonAriaLabel),p.resetEl.attr("title",h.clearButtonTitle),p.resetEl.attr("aria-label",h.clearButtonAriaLabel),p.icon_set&&(p.submitEl.find("span").addClass(p.icon_set.ok),p.cancelEl.find("span").addClass(p.icon_set.cancel),p.resetEl.find("span").addClass(p.icon_set.clear)),p.buttonsEl.append(p.submitEl).append(p.cancelEl),h.displayClearButton&&p.buttonsEl.append(p.resetEl),p.controlsEl.append(p.buttonsEl),p.inputEl.addClass("editable-has-buttons")),p.errorEl=angular.element(a.errorTpl),p.controlsEl.append(p.errorEl),p.editorEl=angular.element(p.single?a.formTpl:a.noformTpl),p.editorEl.append(p.controlsEl);for(var d in c.$attr)if(!(d.length<=1)){var e=!1,f=d.substring(1,2);if("e"===d.substring(0,1)&&f===f.toUpperCase()&&(e=d.substring(1),"Form"!==e&&"NgSubmit"!==e)){var g=e.substring(0,1),i=e.substring(1,2);e=i===i.toUpperCase()&&g===g.toUpperCase()?g.toLowerCase()+"-"+b.camelToDash(e.substring(1)):g.toLowerCase()+b.camelToDash(e.substring(1));var j="value"!==e&&""===c[d]?e:c[d];p.inputEl.attr(e,j)}}if(p.inputEl.addClass("editable-input"),p.inputEl.attr("ng-model","$parent.$data"),p.editorEl.addClass(b.camelToDash(p.directiveName)),p.single&&(p.editorEl.attr("editable-form","$form"),p.editorEl.attr("blur",p.attrs.blur||h.blurElem)),p.popover){var k=angular.element("<div></div>");k.append(p.editorEl),p.editorEl=k,m.put("popover.html",p.editorEl[0].outerHTML)}angular.isFunction(a.postrender)&&a.postrender.call(p)},p.setLocalValue=function(){p.scope.$data=p.useCopy?angular.copy(n(a.$parent)):n(a.$parent)};var s=null;p.show=function(){return p.setLocalValue(),p.render(),d.after(p.editorEl),s=a.$new(),j(p.editorEl)(s),p.addListeners(),d.addClass("editable-hide"),p.onshow()},p.hide=function(){return s.$destroy(),p.controlsEl.remove(),p.editorEl.remove(),d.removeClass("editable-hide"),p.popover&&m.remove("popover.html"),p.onhide()},p.cancel=function(){p.oncancel()},p.addListeners=function(){p.inputEl.bind("keyup",function(a){if(p.single)switch(a.keyCode){case 27:p.scope.$apply(function(){p.scope.$form.$cancel()})}}),p.single&&"no"===p.buttons&&p.autosubmit(),p.editorEl.bind("click",function(a){a.which&&1!==a.which||p.scope.$form.$visible&&(p.scope.$form._clicked=!0)})},p.setWaiting=function(a){a?(o=!p.inputEl.attr("disabled")&&!p.inputEl.attr("ng-disabled")&&!p.inputEl.attr("ng-enabled"),o&&(p.inputEl.attr("disabled","disabled"),p.buttonsEl&&p.buttonsEl.find("button").attr("disabled","disabled"))):o&&(p.inputEl.removeAttr("disabled"),p.buttonsEl&&p.buttonsEl.find("button").removeAttr("disabled"))},p.activate=function(a,b){setTimeout(function(){var c=p.inputEl[0];"focus"===h.activate&&c.focus?(void 0!==a&&""!==a&&c.setSelectionRange&&(b=b||a,c.onfocus=function(){setTimeout(function(){try{this.setSelectionRange(a,b)}catch(c){}}.bind(this))}),"editableRadiolist"==p.directiveName||"editableChecklist"==p.directiveName||"editableBsdate"==p.directiveName||"editableTagsInput"==p.directiveName?c.querySelector(".ng-pristine").focus():c.focus()):"select"===h.activate&&(c.select?c.select():c.focus&&c.focus())},0)},p.setError=function(b){angular.isObject(b)||(a.$error=l.trustAsHtml(b),p.error=b)},p.catchError=function(a,b){return angular.isObject(a)&&b!==!0?k.when(a).then(angular.bind(this,function(a){this.catchError(a,!0)}),angular.bind(this,function(a){this.catchError(a,!0)})):b&&angular.isObject(a)&&a.status&&200!==a.status&&a.data&&angular.isString(a.data)?(this.setError(a.data),a=a.data):angular.isString(a)&&this.setError(a),a},p.save=function(){n.assign(a.$parent,p.useCopy?angular.copy(p.scope.$data):p.scope.$data)},p.handleEmpty=function(){var b=n(a.$parent),c=null===b||void 0===b||""===b||angular.isArray(b)&&0===b.length;d.toggleClass("editable-empty",c)},p.autosubmit=angular.noop,p.onshow=angular.noop,p.onhide=angular.noop,p.oncancel=angular.noop,p.onbeforesave=angular.noop,p.onaftersave=angular.noop}return c.$inject=["$scope","$attrs","$element","$parse","editableThemes","editableIcons","editableOptions","$rootScope","$compile","$q","$sce","$templateCache"],c}]),angular.module("xeditable").factory("editableDirectiveFactory",["$parse","$compile","editableThemes","$rootScope","$document","editableController","editableFormController","editableOptions",function(a,b,c,d,e,f,g,h){return function(b){return{restrict:"A",scope:!0,require:[b.directiveName,"?^form"],controller:f,link:function(c,f,i,j){var k,l=j[0],m=!1;if(j[1])k=j[1],m=void 0===i.eSingle;else if(i.eForm){var n=a(i.eForm)(c);if(n)k=n,m=!0;else if(f&&"function"==typeof f.parents&&f.parents().last().find('form[name="'+i.eForm+'"]').length)k=null,m=!0;else for(var o=0;o<e[0].forms.length;o++)if(e[0].forms[o].name===i.eForm){k=null,m=!0;break}}angular.forEach(b,function(a,b){void 0!==l[b]&&(l.parent[b]=l[b])}),angular.extend(l,b);var p=function(){return angular.isDefined(i.editDisabled)?c.$eval(i.editDisabled):h.isDisabled};if(l.init(!m),c.$editable=l,f.addClass("editable"),m)if(k){if(c.$form=k,!c.$form.$addEditable)throw"Form with editable elements should have `editable-form` attribute.";c.$form.$addEditable(l)}else d.$$editableBuffer=d.$$editableBuffer||{},d.$$editableBuffer[i.eForm]=d.$$editableBuffer[i.eForm]||[],d.$$editableBuffer[i.eForm].push(l),c.$form=null;else c.$form=g(),c.$form.$addEditable(l),i.eForm&&(a(i.eForm).assign||angular.noop)(c.$parent,c.$form),(!i.eForm||i.eClickable)&&(f.addClass("editable-click"),f.bind(h.activationEvent,function(a){a.preventDefault(),a.editable=l,p()||c.$apply(function(){c.$form.$show()})}))}}}}]),angular.module("xeditable").factory("editableFormController",["$parse","$document","$rootScope","editablePromiseCollection","editableUtils",function(a,b,c,d,e){var f=[],g=function(a,b){if(b==a)return!0;for(var c=b.parentNode;null!==c;){if(c==a)return!0;c=c.parentNode}return!1},h=function(a,b){var c=!0,d=a.$editables;return angular.forEach(d,function(a){var d=a.editorEl[0];g(d,b.target)&&(c=!1)}),c};b.bind("click",function(a){if(!a.which||1===a.which){for(var b=[],d=[],e=0;e<f.length;e++)f[e]._clicked?f[e]._clicked=!1:f[e].$waiting||("cancel"===f[e]._blur&&h(f[e],a)&&b.push(f[e]),"submit"===f[e]._blur&&h(f[e],a)&&d.push(f[e]));(b.length||d.length)&&c.$apply(function(){angular.forEach(b,function(a){a.$cancel()}),angular.forEach(d,function(a){a.$submit()})})}}),c.$on("closeEdit",function(){for(var a=0;a<f.length;a++)f[a].$hide()});var i={$addEditable:function(a){this.$editables.push(a),a.elem.bind("$destroy",angular.bind(this,this.$removeEditable,a)),a.scope.$form||(a.scope.$form=this),this.$visible&&a.catchError(a.show()),a.catchError(a.setWaiting(this.$waiting))},$removeEditable:function(a){for(var b=0;b<this.$editables.length;b++)if(this.$editables[b]===a)return void this.$editables.splice(b,1)},$show:function(){if(!this.$visible){this.$visible=!0;var a=d();a.when(this.$onshow()),this.$setError(null,""),angular.forEach(this.$editables,function(b){a.when(b.show())}),a.then({onWait:angular.bind(this,this.$setWaiting),onTrue:angular.bind(this,this.$activate),onFalse:angular.bind(this,this.$activate),onString:angular.bind(this,this.$activate)}),setTimeout(angular.bind(this,function(){this._clicked=!1,-1===e.indexOf(f,this)&&f.push(this)}),0)}},$activate:function(a){var b,c,d;if(this.$editables.length){if(angular.isString(a))for(b=0;b<this.$editables.length;b++)if(this.$editables[b].name===a)return void this.$editables[b].activate();for(b=0;b<this.$editables.length;b++)if(this.$editables[b].error)return void this.$editables[b].activate();c=this.$editables[0].elem[0].selectionStart?this.$editables[0].elem[0].selectionStart:this.$editables[0].elem[0].text?this.$editables[0].elem[0].text.length:this.$editables[0].elem[0].innerHTML?this.$editables[0].elem[0].innerHTML.length:0,d=this.$editables[0].elem[0].selectionEnd?this.$editables[0].elem[0].selectionEnd:this.$editables[0].elem[0].text?this.$editables[0].elem[0].text.length:this.$editables[0].elem[0].innerHTML?this.$editables[0].elem[0].innerHTML.length:0,this.$editables[0].activate(c,d)}},$hide:function(){this.$visible&&(this.$visible=!1,this.$onhide(),angular.forEach(this.$editables,function(a){a.hide()}),e.arrayRemove(f,this))},$cancel:function(){this.$visible&&(this.$oncancel(),angular.forEach(this.$editables,function(a){a.cancel()}),this.$hide())},$setWaiting:function(a){this.$waiting=!!a,angular.forEach(this.$editables,function(b){b.setWaiting(!!a)})},$setError:function(a,b){angular.forEach(this.$editables,function(c){a&&c.name!==a||c.setError(b)})},$submit:function(){function a(a){var b=d();b.when(this.$onbeforesave()),b.then({onWait:angular.bind(this,this.$setWaiting),onTrue:a?angular.bind(this,this.$save):angular.bind(this,this.$hide),onFalse:angular.bind(this,this.$hide),onString:angular.bind(this,this.$activate)})}if(!this.$waiting){this.$setError(null,"");var b=d();angular.forEach(this.$editables,function(a){b.when(a.onbeforesave())}),b.then({onWait:angular.bind(this,this.$setWaiting),onTrue:angular.bind(this,a,!0),onFalse:angular.bind(this,a,!1),onString:angular.bind(this,this.$activate)})}},$save:function(){angular.forEach(this.$editables,function(a){a.save()});var a=d();a.when(this.$onaftersave()),angular.forEach(this.$editables,function(b){a.when(b.onaftersave())}),a.then({onWait:angular.bind(this,this.$setWaiting),onTrue:angular.bind(this,this.$hide),onFalse:angular.bind(this,this.$hide),onString:angular.bind(this,this.$activate)})},$onshow:angular.noop,$oncancel:angular.noop,$onhide:angular.noop,$onbeforesave:angular.noop,$onaftersave:angular.noop};return function(){return angular.extend({$editables:[],$visible:!1,$waiting:!1,$data:{},_clicked:!1,_blur:null},i)}}]),angular.module("xeditable").directive("editableForm",["$rootScope","$parse","editableFormController","editableOptions",function(a,b,c,d){return{restrict:"A",require:["form"],compile:function(){return{pre:function(b,d,e,f){var g,h=f[0];e.editableForm?b[e.editableForm]&&b[e.editableForm].$show?(g=b[e.editableForm],angular.extend(h,g)):(g=c(),b[e.editableForm]=g,angular.extend(g,h)):(g=c(),angular.extend(h,g));var i=a.$$editableBuffer,j=h.$name;j&&i&&i[j]&&(angular.forEach(i[j],function(a){g.$addEditable(a)}),delete i[j])},post:function(a,c,e,f){var g;g=e.editableForm&&a[e.editableForm]&&a[e.editableForm].$show?a[e.editableForm]:f[0],e.onshow&&(g.$onshow=angular.bind(g,b(e.onshow),a)),e.onhide&&(g.$onhide=angular.bind(g,b(e.onhide),a)),e.oncancel&&(g.$oncancel=angular.bind(g,b(e.oncancel),a)),e.shown&&b(e.shown)(a)&&g.$show(),g._blur=e.blur||d.blurForm,e.ngSubmit||e.submit||(e.onbeforesave&&(g.$onbeforesave=function(){return b(e.onbeforesave)(a,{$data:g.$data})}),e.onaftersave&&(g.$onaftersave=function(){return b(e.onaftersave)(a,{$data:g.$data})}),c.bind("submit",function(b){b.preventDefault(),a.$apply(function(){g.$submit()})})),c.bind("click",function(a){a.which&&1!==a.which||g.$visible&&(g._clicked=!0)})}}}}}]),angular.module("xeditable").factory("editablePromiseCollection",["$q",function(a){function b(){return{promises:[],hasFalse:!1,hasString:!1,when:function(b,c){if(b===!1)this.hasFalse=!0;else if(!c&&angular.isObject(b))this.promises.push(a.when(b));else{if(!angular.isString(b))return;this.hasString=!0}},then:function(b){function c(){h.hasString||h.hasFalse?!h.hasString&&h.hasFalse?e():f():d()}b=b||{};var d=b.onTrue||angular.noop,e=b.onFalse||angular.noop,f=b.onString||angular.noop,g=b.onWait||angular.noop,h=this;this.promises.length?(g(!0),a.all(this.promises).then(function(a){g(!1),angular.forEach(a,function(a){h.when(a,!0)}),c()},function(a){g(!1),f()})):c()}}}return b}]),angular.module("xeditable").factory("editableUtils",[function(){return{indexOf:function(a,b){if(a.indexOf)return a.indexOf(b);for(var c=0;c<a.length;c++)if(b===a[c])return c;return-1},arrayRemove:function(a,b){var c=this.indexOf(a,b);return c>=0&&a.splice(c,1),b},camelToDash:function(a){var b=/[A-Z]/g;return a.replace(b,function(a,b){return(b?"-":"")+a.toLowerCase()})},dashToCamel:function(a){var b=/([\:\-\_]+(.))/g,c=/^moz([A-Z])/;return a.replace(b,function(a,b,c,d){return d?c.toUpperCase():c}).replace(c,"Moz$1")},rename:function(a,b){if(b[0]&&b[0].attributes){var c=angular.element("<"+a+"/>");c.html(b.html());for(var d=b[0].attributes,e=0;e<d.length;++e)c.attr(d.item(e).nodeName,d.item(e).value);return c}}}}]),angular.module("xeditable").factory("editableNgOptionsParser",[function(){function a(a){var c;if(!(c=a.match(b)))throw"ng-options parse error";var d,e=c[2]||c[1],f=c[4]||c[6],g=c[5],h=(c[3]||"",c[2]?c[1]:f),i=c[7],j=c[8],k=j?c[8]:null;return void 0===g?(d=f+" in "+i,void 0!==j&&(d+=" track by "+k)):d="("+g+", "+f+") in "+i,{ngRepeat:d,locals:{valueName:f,keyName:g,valueFn:h,displayFn:e}}}var b=/^\s*(.*?)(?:\s+as\s+(.*?))?(?:\s+group\s+by\s+(.*))?\s+for\s+(?:([\$\w][\$\w]*)|(?:\(\s*([\$\w][\$\w]*)\s*,\s*([\$\w][\$\w]*)\s*\)))\s+in\s+(.*?)(?:\s+track\s+by\s+(.*?))?$/;return a}]),angular.module("xeditable").factory("editableCombodate",[function(){function a(a,b){if(this.$element=angular.element(a),"INPUT"!=this.$element[0].nodeName)throw"Combodate should be applied to INPUT element";var c=(new Date).getFullYear();this.defaults={format:"YYYY-MM-DD HH:mm",template:"D / MMM / YYYY   H : mm",value:null,minYear:1970,maxYear:c,yearDescending:!0,minuteStep:5,secondStep:1,firstItem:"empty",errorClass:null,customClass:"",roundTime:!0,smartDays:!0},this.options=angular.extend({},this.defaults,b),this.init()}return a.prototype={constructor:a,init:function(){if(this.map={day:["D","date"],month:["M","month"],year:["Y","year"],hour:["[Hh]","hours"],minute:["m","minutes"],second:["s","seconds"],ampm:["[Aa]",""]},this.$widget=angular.element('<span class="combodate"></span>').html(this.getTemplate()),this.initCombos(),this.options.smartDays){var a=this;this.$widget.find("select").bind("change",function(b){(angular.element(b.target).hasClass("month")||angular.element(b.target).hasClass("year"))&&a.fillCombo("day")})}this.$widget.find("select").css("width","auto"),this.$element.css("display","none").after(this.$widget),this.setValue(this.$element.val()||this.options.value)},getTemplate:function(){var a=this.options.template,b=this.options.customClass;return angular.forEach(this.map,function(b,c){b=b[0];var d=new RegExp(b+"+"),e=b.length>1?b.substring(1,2):b;a=a.replace(d,"{"+e+"}")}),a=a.replace(/ /g,"&nbsp;"),angular.forEach(this.map,function(c,d){c=c[0];var e=c.length>1?c.substring(1,2):c;a=a.replace("{"+e+"}",'<select class="'+d+" "+b+'"></select>')}),a},initCombos:function(){for(var a in this.map){var b=this.$widget[0].querySelectorAll("."+a);this["$"+a]=b.length?angular.element(b):null,this.fillCombo(a)}},fillCombo:function(a){var b=this["$"+a];if(b){var c="fill"+a.charAt(0).toUpperCase()+a.slice(1),d=this[c](),e=b.val();b.html("");for(var f=0;f<d.length;f++)b.append('<option value="'+d[f][0]+'">'+d[f][1]+"</option>");b.val(e)}},fillCommon:function(a){var b,c=[];if("name"===this.options.firstItem){b=moment.relativeTime||moment.langData()._relativeTime;var d="function"==typeof b[a]?b[a](1,!0,a,!1):b[a];d=d.split(" ").reverse()[0],c.push(["",d])}else"empty"===this.options.firstItem&&c.push(["",""]);return c},fillDay:function(){var a,b,c=this.fillCommon("d"),d=-1!==this.options.template.indexOf("DD"),e=31;if(this.options.smartDays&&this.$month&&this.$year){var f=parseInt(this.$month.val(),10),g=parseInt(this.$year.val(),10);isNaN(f)||isNaN(g)||(e=moment([g,f]).daysInMonth())}for(b=1;e>=b;b++)a=d?this.leadZero(b):b,c.push([b,a]);return c},fillMonth:function(){var a,b,c=this.fillCommon("M"),d=-1!==this.options.template.indexOf("MMMM"),e=-1!==this.options.template.indexOf("MMM"),f=-1!==this.options.template.indexOf("MM");for(b=0;11>=b;b++)a=d?moment().date(1).month(b).format("MMMM"):e?moment().date(1).month(b).format("MMM"):f?this.leadZero(b+1):b+1,c.push([b,a]);return c},fillYear:function(){var a,b,c=[],d=-1!==this.options.template.indexOf("YYYY");for(b=this.options.maxYear;b>=this.options.minYear;b--)a=d?b:(b+"").substring(2),c[this.options.yearDescending?"push":"unshift"]([b,a]);return c=this.fillCommon("y").concat(c)},fillHour:function(){var a,b,c=this.fillCommon("h"),d=-1!==this.options.template.indexOf("h"),e=(-1!==this.options.template.indexOf("H"),-1!==this.options.template.toLowerCase().indexOf("hh")),f=d?1:0,g=d?12:23;for(b=f;g>=b;b++)a=e?this.leadZero(b):b,c.push([b,a]);return c},fillMinute:function(){var a,b,c=this.fillCommon("m"),d=-1!==this.options.template.indexOf("mm");for(b=0;59>=b;b+=this.options.minuteStep)a=d?this.leadZero(b):b,c.push([b,a]);return c},fillSecond:function(){var a,b,c=this.fillCommon("s"),d=-1!==this.options.template.indexOf("ss");for(b=0;59>=b;b+=this.options.secondStep)a=d?this.leadZero(b):b,c.push([b,a]);return c},fillAmpm:function(){var a=-1!==this.options.template.indexOf("a"),b=(-1!==this.options.template.indexOf("A"),[["am",a?"am":"AM"],["pm",a?"pm":"PM"]]);return b},getValue:function(a){var b,c={},d=this,e=!1;return angular.forEach(this.map,function(a,b){if("ampm"!==b){var f="day"===b?1:0;return c[b]=d["$"+b]?parseInt(d["$"+b].val(),10):f,isNaN(c[b])?(e=!0,!1):void 0}}),e?"":(this.$ampm&&(12===c.hour?c.hour="am"===this.$ampm.val()?0:12:c.hour="am"===this.$ampm.val()?c.hour:c.hour+12),b=moment([c.year,c.month,c.day,c.hour,c.minute,c.second]),this.highlight(b),a=void 0===a?this.options.format:a,null===a?b.isValid()?b:null:b.isValid()?b.format(a):"")},setValue:function(a){function b(a,b){var c={};return angular.forEach(a.children("option"),function(a,d){var e=angular.element(a).attr("value");if(""!==e){var f=Math.abs(e-b);("undefined"==typeof c.distance||f<c.distance)&&(c={value:e,distance:f})}}),c.value}if(a){var c="string"==typeof a?moment(a,this.options.format,!0):moment(a),d=this,e={};c.isValid()&&(angular.forEach(this.map,function(a,b){"ampm"!==b&&(e[b]=c[a[1]]())}),this.$ampm&&(e.hour>=12?(e.ampm="pm",e.hour>12&&(e.hour-=12)):(e.ampm="am",0===e.hour&&(e.hour=12))),angular.forEach(e,function(a,c){d["$"+c]&&("minute"===c&&d.options.minuteStep>1&&d.options.roundTime&&(a=b(d["$"+c],a)),
 "second"===c&&d.options.secondStep>1&&d.options.roundTime&&(a=b(d["$"+c],a)),d["$"+c].val(a))}),this.options.smartDays&&this.fillCombo("day"),this.$element.val(c.format(this.options.format)).triggerHandler("change"))}},highlight:function(a){a.isValid()?this.options.errorClass?this.$widget.removeClass(this.options.errorClass):this.$widget.find("select").css("border-color",this.borderColor):this.options.errorClass?this.$widget.addClass(this.options.errorClass):(this.borderColor||(this.borderColor=this.$widget.find("select").css("border-color")),this.$widget.find("select").css("border-color","red"))},leadZero:function(a){return 9>=a?"0"+a:a},destroy:function(){this.$widget.remove(),this.$element.removeData("combodate").show()}},{getInstance:function(b,c){return new a(b,c)}}}]),angular.module("xeditable").factory("editableIcons",function(){var a={"default":{bs2:{ok:"icon-ok icon-white",cancel:"icon-remove",clear:"icon-trash"},bs3:{ok:"glyphicon glyphicon-ok",cancel:"glyphicon glyphicon-remove",clear:"glyphicon glyphicon-trash"}},external:{"font-awesome":{ok:"fa fa-check",cancel:"fa fa-times",clear:"fa fa-trash"}}};return a}),angular.module("xeditable").factory("editableThemes",function(){var a={"default":{formTpl:'<form class="editable-wrap"></form>',noformTpl:'<span class="editable-wrap"></span>',controlsTpl:'<span class="editable-controls"></span>',inputTpl:"",errorTpl:'<div class="editable-error" data-ng-if="$error" data-ng-bind-html="$error"></div>',buttonsTpl:'<span class="editable-buttons"></span>',submitTpl:'<button type="submit">save</button>',cancelTpl:'<button type="button" ng-click="$form.$cancel()">cancel</button>',resetTpl:'<button type="reset">clear</button>'},bs2:{formTpl:'<form class="form-inline editable-wrap" role="form"></form>',noformTpl:'<span class="editable-wrap"></span>',controlsTpl:'<div class="editable-controls controls control-group" ng-class="{\'error\': $error}"></div>',inputTpl:"",errorTpl:'<div class="editable-error help-block" data-ng-if="$error" data-ng-bind-html="$error"></div>',buttonsTpl:'<span class="editable-buttons"></span>',submitTpl:'<button type="submit" class="btn btn-primary"><span></span></button>',cancelTpl:'<button type="button" class="btn" ng-click="$form.$cancel()"><span></span></button>',resetTpl:'<button type="reset" class="btn btn-danger">clear</button>'},bs3:{formTpl:'<form class="form-inline editable-wrap" role="form"></form>',noformTpl:'<span class="editable-wrap"></span>',controlsTpl:'<div class="editable-controls form-group" ng-class="{\'has-error\': $error}"></div>',inputTpl:"",errorTpl:'<div class="editable-error help-block" data-ng-if="$error" data-ng-bind-html="$error"></div>',buttonsTpl:'<span class="editable-buttons"></span>',submitTpl:'<button type="submit" class="btn btn-primary"><span></span></button>',cancelTpl:'<button type="button" class="btn btn-default" ng-click="$form.$cancel()"><span></span></button>',resetTpl:'<button type="reset" class="btn btn-danger">clear</button>',buttonsClass:"",inputClass:"",postrender:function(){switch(this.directiveName){case"editableText":case"editableSelect":case"editableTextarea":case"editableEmail":case"editableTel":case"editableNumber":case"editableUrl":case"editableSearch":case"editableDate":case"editableDatetime":case"editableBsdate":case"editableTime":case"editableMonth":case"editableWeek":case"editablePassword":case"editableDatetimeLocal":if(this.inputEl.addClass("form-control"),this.theme.inputClass){if(this.inputEl.attr("multiple")&&("input-sm"===this.theme.inputClass||"input-lg"===this.theme.inputClass))break;this.inputEl.addClass(this.theme.inputClass)}break;case"editableCheckbox":this.editorEl.addClass("checkbox")}this.buttonsEl&&this.theme.buttonsClass&&this.buttonsEl.find("button").addClass(this.theme.buttonsClass)}},semantic:{formTpl:'<form class="editable-wrap ui form" ng-class="{\'error\': $error}" role="form"></form>',noformTpl:'<span class="editable-wrap"></span>',controlsTpl:'<div class="editable-controls ui fluid input" ng-class="{\'error\': $error}"></div>',inputTpl:"",errorTpl:'<div class="editable-error ui error message" data-ng-if="$error" data-ng-bind-html="$error"></div>',buttonsTpl:'<span class="mini ui buttons"></span>',submitTpl:'<button type="submit" class="ui primary button"><i class="ui check icon"></i></button>',cancelTpl:'<button type="button" class="ui button" ng-click="$form.$cancel()"><i class="ui cancel icon"></i></button>',resetTpl:'<button type="reset" class="ui button">clear</button>'}};return a});
+//! moment.js
+//! version : 2.20.1
+//! authors : Tim Wood, Iskren Chernev, Moment.js contributors
+//! license : MIT
+//! momentjs.com
+
+;(function (global, factory) {
+    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+    typeof define === 'function' && define.amd ? define(factory) :
+    global.moment = factory()
+}(this, (function () { 'use strict';
+
+var hookCallback;
+
+function hooks () {
+    return hookCallback.apply(null, arguments);
+}
+
+// This is done to register the method called with moment()
+// without creating circular dependencies.
+function setHookCallback (callback) {
+    hookCallback = callback;
+}
+
+function isArray(input) {
+    return input instanceof Array || Object.prototype.toString.call(input) === '[object Array]';
+}
+
+function isObject(input) {
+    // IE8 will treat undefined and null as object if it wasn't for
+    // input != null
+    return input != null && Object.prototype.toString.call(input) === '[object Object]';
+}
+
+function isObjectEmpty(obj) {
+    if (Object.getOwnPropertyNames) {
+        return (Object.getOwnPropertyNames(obj).length === 0);
+    } else {
+        var k;
+        for (k in obj) {
+            if (obj.hasOwnProperty(k)) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+function isUndefined(input) {
+    return input === void 0;
+}
+
+function isNumber(input) {
+    return typeof input === 'number' || Object.prototype.toString.call(input) === '[object Number]';
+}
+
+function isDate(input) {
+    return input instanceof Date || Object.prototype.toString.call(input) === '[object Date]';
+}
+
+function map(arr, fn) {
+    var res = [], i;
+    for (i = 0; i < arr.length; ++i) {
+        res.push(fn(arr[i], i));
+    }
+    return res;
+}
+
+function hasOwnProp(a, b) {
+    return Object.prototype.hasOwnProperty.call(a, b);
+}
+
+function extend(a, b) {
+    for (var i in b) {
+        if (hasOwnProp(b, i)) {
+            a[i] = b[i];
+        }
+    }
+
+    if (hasOwnProp(b, 'toString')) {
+        a.toString = b.toString;
+    }
+
+    if (hasOwnProp(b, 'valueOf')) {
+        a.valueOf = b.valueOf;
+    }
+
+    return a;
+}
+
+function createUTC (input, format, locale, strict) {
+    return createLocalOrUTC(input, format, locale, strict, true).utc();
+}
+
+function defaultParsingFlags() {
+    // We need to deep clone this object.
+    return {
+        empty           : false,
+        unusedTokens    : [],
+        unusedInput     : [],
+        overflow        : -2,
+        charsLeftOver   : 0,
+        nullInput       : false,
+        invalidMonth    : null,
+        invalidFormat   : false,
+        userInvalidated : false,
+        iso             : false,
+        parsedDateParts : [],
+        meridiem        : null,
+        rfc2822         : false,
+        weekdayMismatch : false
+    };
+}
+
+function getParsingFlags(m) {
+    if (m._pf == null) {
+        m._pf = defaultParsingFlags();
+    }
+    return m._pf;
+}
+
+var some;
+if (Array.prototype.some) {
+    some = Array.prototype.some;
+} else {
+    some = function (fun) {
+        var t = Object(this);
+        var len = t.length >>> 0;
+
+        for (var i = 0; i < len; i++) {
+            if (i in t && fun.call(this, t[i], i, t)) {
+                return true;
+            }
+        }
+
+        return false;
+    };
+}
+
+function isValid(m) {
+    if (m._isValid == null) {
+        var flags = getParsingFlags(m);
+        var parsedParts = some.call(flags.parsedDateParts, function (i) {
+            return i != null;
+        });
+        var isNowValid = !isNaN(m._d.getTime()) &&
+            flags.overflow < 0 &&
+            !flags.empty &&
+            !flags.invalidMonth &&
+            !flags.invalidWeekday &&
+            !flags.weekdayMismatch &&
+            !flags.nullInput &&
+            !flags.invalidFormat &&
+            !flags.userInvalidated &&
+            (!flags.meridiem || (flags.meridiem && parsedParts));
+
+        if (m._strict) {
+            isNowValid = isNowValid &&
+                flags.charsLeftOver === 0 &&
+                flags.unusedTokens.length === 0 &&
+                flags.bigHour === undefined;
+        }
+
+        if (Object.isFrozen == null || !Object.isFrozen(m)) {
+            m._isValid = isNowValid;
+        }
+        else {
+            return isNowValid;
+        }
+    }
+    return m._isValid;
+}
+
+function createInvalid (flags) {
+    var m = createUTC(NaN);
+    if (flags != null) {
+        extend(getParsingFlags(m), flags);
+    }
+    else {
+        getParsingFlags(m).userInvalidated = true;
+    }
+
+    return m;
+}
+
+// Plugins that add properties should also add the key here (null value),
+// so we can properly clone ourselves.
+var momentProperties = hooks.momentProperties = [];
+
+function copyConfig(to, from) {
+    var i, prop, val;
+
+    if (!isUndefined(from._isAMomentObject)) {
+        to._isAMomentObject = from._isAMomentObject;
+    }
+    if (!isUndefined(from._i)) {
+        to._i = from._i;
+    }
+    if (!isUndefined(from._f)) {
+        to._f = from._f;
+    }
+    if (!isUndefined(from._l)) {
+        to._l = from._l;
+    }
+    if (!isUndefined(from._strict)) {
+        to._strict = from._strict;
+    }
+    if (!isUndefined(from._tzm)) {
+        to._tzm = from._tzm;
+    }
+    if (!isUndefined(from._isUTC)) {
+        to._isUTC = from._isUTC;
+    }
+    if (!isUndefined(from._offset)) {
+        to._offset = from._offset;
+    }
+    if (!isUndefined(from._pf)) {
+        to._pf = getParsingFlags(from);
+    }
+    if (!isUndefined(from._locale)) {
+        to._locale = from._locale;
+    }
+
+    if (momentProperties.length > 0) {
+        for (i = 0; i < momentProperties.length; i++) {
+            prop = momentProperties[i];
+            val = from[prop];
+            if (!isUndefined(val)) {
+                to[prop] = val;
+            }
+        }
+    }
+
+    return to;
+}
+
+var updateInProgress = false;
+
+// Moment prototype object
+function Moment(config) {
+    copyConfig(this, config);
+    this._d = new Date(config._d != null ? config._d.getTime() : NaN);
+    if (!this.isValid()) {
+        this._d = new Date(NaN);
+    }
+    // Prevent infinite loop in case updateOffset creates new moment
+    // objects.
+    if (updateInProgress === false) {
+        updateInProgress = true;
+        hooks.updateOffset(this);
+        updateInProgress = false;
+    }
+}
+
+function isMoment (obj) {
+    return obj instanceof Moment || (obj != null && obj._isAMomentObject != null);
+}
+
+function absFloor (number) {
+    if (number < 0) {
+        // -0 -> 0
+        return Math.ceil(number) || 0;
+    } else {
+        return Math.floor(number);
+    }
+}
+
+function toInt(argumentForCoercion) {
+    var coercedNumber = +argumentForCoercion,
+        value = 0;
+
+    if (coercedNumber !== 0 && isFinite(coercedNumber)) {
+        value = absFloor(coercedNumber);
+    }
+
+    return value;
+}
+
+// compare two arrays, return the number of differences
+function compareArrays(array1, array2, dontConvert) {
+    var len = Math.min(array1.length, array2.length),
+        lengthDiff = Math.abs(array1.length - array2.length),
+        diffs = 0,
+        i;
+    for (i = 0; i < len; i++) {
+        if ((dontConvert && array1[i] !== array2[i]) ||
+            (!dontConvert && toInt(array1[i]) !== toInt(array2[i]))) {
+            diffs++;
+        }
+    }
+    return diffs + lengthDiff;
+}
+
+function warn(msg) {
+    if (hooks.suppressDeprecationWarnings === false &&
+            (typeof console !==  'undefined') && console.warn) {
+        console.warn('Deprecation warning: ' + msg);
+    }
+}
+
+function deprecate(msg, fn) {
+    var firstTime = true;
+
+    return extend(function () {
+        if (hooks.deprecationHandler != null) {
+            hooks.deprecationHandler(null, msg);
+        }
+        if (firstTime) {
+            var args = [];
+            var arg;
+            for (var i = 0; i < arguments.length; i++) {
+                arg = '';
+                if (typeof arguments[i] === 'object') {
+                    arg += '\n[' + i + '] ';
+                    for (var key in arguments[0]) {
+                        arg += key + ': ' + arguments[0][key] + ', ';
+                    }
+                    arg = arg.slice(0, -2); // Remove trailing comma and space
+                } else {
+                    arg = arguments[i];
+                }
+                args.push(arg);
+            }
+            warn(msg + '\nArguments: ' + Array.prototype.slice.call(args).join('') + '\n' + (new Error()).stack);
+            firstTime = false;
+        }
+        return fn.apply(this, arguments);
+    }, fn);
+}
+
+var deprecations = {};
+
+function deprecateSimple(name, msg) {
+    if (hooks.deprecationHandler != null) {
+        hooks.deprecationHandler(name, msg);
+    }
+    if (!deprecations[name]) {
+        warn(msg);
+        deprecations[name] = true;
+    }
+}
+
+hooks.suppressDeprecationWarnings = false;
+hooks.deprecationHandler = null;
+
+function isFunction(input) {
+    return input instanceof Function || Object.prototype.toString.call(input) === '[object Function]';
+}
+
+function set (config) {
+    var prop, i;
+    for (i in config) {
+        prop = config[i];
+        if (isFunction(prop)) {
+            this[i] = prop;
+        } else {
+            this['_' + i] = prop;
+        }
+    }
+    this._config = config;
+    // Lenient ordinal parsing accepts just a number in addition to
+    // number + (possibly) stuff coming from _dayOfMonthOrdinalParse.
+    // TODO: Remove "ordinalParse" fallback in next major release.
+    this._dayOfMonthOrdinalParseLenient = new RegExp(
+        (this._dayOfMonthOrdinalParse.source || this._ordinalParse.source) +
+            '|' + (/\d{1,2}/).source);
+}
+
+function mergeConfigs(parentConfig, childConfig) {
+    var res = extend({}, parentConfig), prop;
+    for (prop in childConfig) {
+        if (hasOwnProp(childConfig, prop)) {
+            if (isObject(parentConfig[prop]) && isObject(childConfig[prop])) {
+                res[prop] = {};
+                extend(res[prop], parentConfig[prop]);
+                extend(res[prop], childConfig[prop]);
+            } else if (childConfig[prop] != null) {
+                res[prop] = childConfig[prop];
+            } else {
+                delete res[prop];
+            }
+        }
+    }
+    for (prop in parentConfig) {
+        if (hasOwnProp(parentConfig, prop) &&
+                !hasOwnProp(childConfig, prop) &&
+                isObject(parentConfig[prop])) {
+            // make sure changes to properties don't modify parent config
+            res[prop] = extend({}, res[prop]);
+        }
+    }
+    return res;
+}
+
+function Locale(config) {
+    if (config != null) {
+        this.set(config);
+    }
+}
+
+var keys;
+
+if (Object.keys) {
+    keys = Object.keys;
+} else {
+    keys = function (obj) {
+        var i, res = [];
+        for (i in obj) {
+            if (hasOwnProp(obj, i)) {
+                res.push(i);
+            }
+        }
+        return res;
+    };
+}
+
+var defaultCalendar = {
+    sameDay : '[Today at] LT',
+    nextDay : '[Tomorrow at] LT',
+    nextWeek : 'dddd [at] LT',
+    lastDay : '[Yesterday at] LT',
+    lastWeek : '[Last] dddd [at] LT',
+    sameElse : 'L'
+};
+
+function calendar (key, mom, now) {
+    var output = this._calendar[key] || this._calendar['sameElse'];
+    return isFunction(output) ? output.call(mom, now) : output;
+}
+
+var defaultLongDateFormat = {
+    LTS  : 'h:mm:ss A',
+    LT   : 'h:mm A',
+    L    : 'MM/DD/YYYY',
+    LL   : 'MMMM D, YYYY',
+    LLL  : 'MMMM D, YYYY h:mm A',
+    LLLL : 'dddd, MMMM D, YYYY h:mm A'
+};
+
+function longDateFormat (key) {
+    var format = this._longDateFormat[key],
+        formatUpper = this._longDateFormat[key.toUpperCase()];
+
+    if (format || !formatUpper) {
+        return format;
+    }
+
+    this._longDateFormat[key] = formatUpper.replace(/MMMM|MM|DD|dddd/g, function (val) {
+        return val.slice(1);
+    });
+
+    return this._longDateFormat[key];
+}
+
+var defaultInvalidDate = 'Invalid date';
+
+function invalidDate () {
+    return this._invalidDate;
+}
+
+var defaultOrdinal = '%d';
+var defaultDayOfMonthOrdinalParse = /\d{1,2}/;
+
+function ordinal (number) {
+    return this._ordinal.replace('%d', number);
+}
+
+var defaultRelativeTime = {
+    future : 'in %s',
+    past   : '%s ago',
+    s  : 'a few seconds',
+    ss : '%d seconds',
+    m  : 'a minute',
+    mm : '%d minutes',
+    h  : 'an hour',
+    hh : '%d hours',
+    d  : 'a day',
+    dd : '%d days',
+    M  : 'a month',
+    MM : '%d months',
+    y  : 'a year',
+    yy : '%d years'
+};
+
+function relativeTime (number, withoutSuffix, string, isFuture) {
+    var output = this._relativeTime[string];
+    return (isFunction(output)) ?
+        output(number, withoutSuffix, string, isFuture) :
+        output.replace(/%d/i, number);
+}
+
+function pastFuture (diff, output) {
+    var format = this._relativeTime[diff > 0 ? 'future' : 'past'];
+    return isFunction(format) ? format(output) : format.replace(/%s/i, output);
+}
+
+var aliases = {};
+
+function addUnitAlias (unit, shorthand) {
+    var lowerCase = unit.toLowerCase();
+    aliases[lowerCase] = aliases[lowerCase + 's'] = aliases[shorthand] = unit;
+}
+
+function normalizeUnits(units) {
+    return typeof units === 'string' ? aliases[units] || aliases[units.toLowerCase()] : undefined;
+}
+
+function normalizeObjectUnits(inputObject) {
+    var normalizedInput = {},
+        normalizedProp,
+        prop;
+
+    for (prop in inputObject) {
+        if (hasOwnProp(inputObject, prop)) {
+            normalizedProp = normalizeUnits(prop);
+            if (normalizedProp) {
+                normalizedInput[normalizedProp] = inputObject[prop];
+            }
+        }
+    }
+
+    return normalizedInput;
+}
+
+var priorities = {};
+
+function addUnitPriority(unit, priority) {
+    priorities[unit] = priority;
+}
+
+function getPrioritizedUnits(unitsObj) {
+    var units = [];
+    for (var u in unitsObj) {
+        units.push({unit: u, priority: priorities[u]});
+    }
+    units.sort(function (a, b) {
+        return a.priority - b.priority;
+    });
+    return units;
+}
+
+function zeroFill(number, targetLength, forceSign) {
+    var absNumber = '' + Math.abs(number),
+        zerosToFill = targetLength - absNumber.length,
+        sign = number >= 0;
+    return (sign ? (forceSign ? '+' : '') : '-') +
+        Math.pow(10, Math.max(0, zerosToFill)).toString().substr(1) + absNumber;
+}
+
+var formattingTokens = /(\[[^\[]*\])|(\\)?([Hh]mm(ss)?|Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Qo?|YYYYYY|YYYYY|YYYY|YY|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|kk?|mm?|ss?|S{1,9}|x|X|zz?|ZZ?|.)/g;
+
+var localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g;
+
+var formatFunctions = {};
+
+var formatTokenFunctions = {};
+
+// token:    'M'
+// padded:   ['MM', 2]
+// ordinal:  'Mo'
+// callback: function () { this.month() + 1 }
+function addFormatToken (token, padded, ordinal, callback) {
+    var func = callback;
+    if (typeof callback === 'string') {
+        func = function () {
+            return this[callback]();
+        };
+    }
+    if (token) {
+        formatTokenFunctions[token] = func;
+    }
+    if (padded) {
+        formatTokenFunctions[padded[0]] = function () {
+            return zeroFill(func.apply(this, arguments), padded[1], padded[2]);
+        };
+    }
+    if (ordinal) {
+        formatTokenFunctions[ordinal] = function () {
+            return this.localeData().ordinal(func.apply(this, arguments), token);
+        };
+    }
+}
+
+function removeFormattingTokens(input) {
+    if (input.match(/\[[\s\S]/)) {
+        return input.replace(/^\[|\]$/g, '');
+    }
+    return input.replace(/\\/g, '');
+}
+
+function makeFormatFunction(format) {
+    var array = format.match(formattingTokens), i, length;
+
+    for (i = 0, length = array.length; i < length; i++) {
+        if (formatTokenFunctions[array[i]]) {
+            array[i] = formatTokenFunctions[array[i]];
+        } else {
+            array[i] = removeFormattingTokens(array[i]);
+        }
+    }
+
+    return function (mom) {
+        var output = '', i;
+        for (i = 0; i < length; i++) {
+            output += isFunction(array[i]) ? array[i].call(mom, format) : array[i];
+        }
+        return output;
+    };
+}
+
+// format date using native date object
+function formatMoment(m, format) {
+    if (!m.isValid()) {
+        return m.localeData().invalidDate();
+    }
+
+    format = expandFormat(format, m.localeData());
+    formatFunctions[format] = formatFunctions[format] || makeFormatFunction(format);
+
+    return formatFunctions[format](m);
+}
+
+function expandFormat(format, locale) {
+    var i = 5;
+
+    function replaceLongDateFormatTokens(input) {
+        return locale.longDateFormat(input) || input;
+    }
+
+    localFormattingTokens.lastIndex = 0;
+    while (i >= 0 && localFormattingTokens.test(format)) {
+        format = format.replace(localFormattingTokens, replaceLongDateFormatTokens);
+        localFormattingTokens.lastIndex = 0;
+        i -= 1;
+    }
+
+    return format;
+}
+
+var match1         = /\d/;            //       0 - 9
+var match2         = /\d\d/;          //      00 - 99
+var match3         = /\d{3}/;         //     000 - 999
+var match4         = /\d{4}/;         //    0000 - 9999
+var match6         = /[+-]?\d{6}/;    // -999999 - 999999
+var match1to2      = /\d\d?/;         //       0 - 99
+var match3to4      = /\d\d\d\d?/;     //     999 - 9999
+var match5to6      = /\d\d\d\d\d\d?/; //   99999 - 999999
+var match1to3      = /\d{1,3}/;       //       0 - 999
+var match1to4      = /\d{1,4}/;       //       0 - 9999
+var match1to6      = /[+-]?\d{1,6}/;  // -999999 - 999999
+
+var matchUnsigned  = /\d+/;           //       0 - inf
+var matchSigned    = /[+-]?\d+/;      //    -inf - inf
+
+var matchOffset    = /Z|[+-]\d\d:?\d\d/gi; // +00:00 -00:00 +0000 -0000 or Z
+var matchShortOffset = /Z|[+-]\d\d(?::?\d\d)?/gi; // +00 -00 +00:00 -00:00 +0000 -0000 or Z
+
+var matchTimestamp = /[+-]?\d+(\.\d{1,3})?/; // 123456789 123456789.123
+
+// any word (or two) characters or numbers including two/three word month in arabic.
+// includes scottish gaelic two word and hyphenated months
+var matchWord = /[0-9]{0,256}['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFF07\uFF10-\uFFEF]{1,256}|[\u0600-\u06FF\/]{1,256}(\s*?[\u0600-\u06FF]{1,256}){1,2}/i;
+
+
+var regexes = {};
+
+function addRegexToken (token, regex, strictRegex) {
+    regexes[token] = isFunction(regex) ? regex : function (isStrict, localeData) {
+        return (isStrict && strictRegex) ? strictRegex : regex;
+    };
+}
+
+function getParseRegexForToken (token, config) {
+    if (!hasOwnProp(regexes, token)) {
+        return new RegExp(unescapeFormat(token));
+    }
+
+    return regexes[token](config._strict, config._locale);
+}
+
+// Code from http://stackoverflow.com/questions/3561493/is-there-a-regexp-escape-function-in-javascript
+function unescapeFormat(s) {
+    return regexEscape(s.replace('\\', '').replace(/\\(\[)|\\(\])|\[([^\]\[]*)\]|\\(.)/g, function (matched, p1, p2, p3, p4) {
+        return p1 || p2 || p3 || p4;
+    }));
+}
+
+function regexEscape(s) {
+    return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+}
+
+var tokens = {};
+
+function addParseToken (token, callback) {
+    var i, func = callback;
+    if (typeof token === 'string') {
+        token = [token];
+    }
+    if (isNumber(callback)) {
+        func = function (input, array) {
+            array[callback] = toInt(input);
+        };
+    }
+    for (i = 0; i < token.length; i++) {
+        tokens[token[i]] = func;
+    }
+}
+
+function addWeekParseToken (token, callback) {
+    addParseToken(token, function (input, array, config, token) {
+        config._w = config._w || {};
+        callback(input, config._w, config, token);
+    });
+}
+
+function addTimeToArrayFromToken(token, input, config) {
+    if (input != null && hasOwnProp(tokens, token)) {
+        tokens[token](input, config._a, config, token);
+    }
+}
+
+var YEAR = 0;
+var MONTH = 1;
+var DATE = 2;
+var HOUR = 3;
+var MINUTE = 4;
+var SECOND = 5;
+var MILLISECOND = 6;
+var WEEK = 7;
+var WEEKDAY = 8;
+
+// FORMATTING
+
+addFormatToken('Y', 0, 0, function () {
+    var y = this.year();
+    return y <= 9999 ? '' + y : '+' + y;
+});
+
+addFormatToken(0, ['YY', 2], 0, function () {
+    return this.year() % 100;
+});
+
+addFormatToken(0, ['YYYY',   4],       0, 'year');
+addFormatToken(0, ['YYYYY',  5],       0, 'year');
+addFormatToken(0, ['YYYYYY', 6, true], 0, 'year');
+
+// ALIASES
+
+addUnitAlias('year', 'y');
+
+// PRIORITIES
+
+addUnitPriority('year', 1);
+
+// PARSING
+
+addRegexToken('Y',      matchSigned);
+addRegexToken('YY',     match1to2, match2);
+addRegexToken('YYYY',   match1to4, match4);
+addRegexToken('YYYYY',  match1to6, match6);
+addRegexToken('YYYYYY', match1to6, match6);
+
+addParseToken(['YYYYY', 'YYYYYY'], YEAR);
+addParseToken('YYYY', function (input, array) {
+    array[YEAR] = input.length === 2 ? hooks.parseTwoDigitYear(input) : toInt(input);
+});
+addParseToken('YY', function (input, array) {
+    array[YEAR] = hooks.parseTwoDigitYear(input);
+});
+addParseToken('Y', function (input, array) {
+    array[YEAR] = parseInt(input, 10);
+});
+
+// HELPERS
+
+function daysInYear(year) {
+    return isLeapYear(year) ? 366 : 365;
+}
+
+function isLeapYear(year) {
+    return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+}
+
+// HOOKS
+
+hooks.parseTwoDigitYear = function (input) {
+    return toInt(input) + (toInt(input) > 68 ? 1900 : 2000);
+};
+
+// MOMENTS
+
+var getSetYear = makeGetSet('FullYear', true);
+
+function getIsLeapYear () {
+    return isLeapYear(this.year());
+}
+
+function makeGetSet (unit, keepTime) {
+    return function (value) {
+        if (value != null) {
+            set$1(this, unit, value);
+            hooks.updateOffset(this, keepTime);
+            return this;
+        } else {
+            return get(this, unit);
+        }
+    };
+}
+
+function get (mom, unit) {
+    return mom.isValid() ?
+        mom._d['get' + (mom._isUTC ? 'UTC' : '') + unit]() : NaN;
+}
+
+function set$1 (mom, unit, value) {
+    if (mom.isValid() && !isNaN(value)) {
+        if (unit === 'FullYear' && isLeapYear(mom.year()) && mom.month() === 1 && mom.date() === 29) {
+            mom._d['set' + (mom._isUTC ? 'UTC' : '') + unit](value, mom.month(), daysInMonth(value, mom.month()));
+        }
+        else {
+            mom._d['set' + (mom._isUTC ? 'UTC' : '') + unit](value);
+        }
+    }
+}
+
+// MOMENTS
+
+function stringGet (units) {
+    units = normalizeUnits(units);
+    if (isFunction(this[units])) {
+        return this[units]();
+    }
+    return this;
+}
+
+
+function stringSet (units, value) {
+    if (typeof units === 'object') {
+        units = normalizeObjectUnits(units);
+        var prioritized = getPrioritizedUnits(units);
+        for (var i = 0; i < prioritized.length; i++) {
+            this[prioritized[i].unit](units[prioritized[i].unit]);
+        }
+    } else {
+        units = normalizeUnits(units);
+        if (isFunction(this[units])) {
+            return this[units](value);
+        }
+    }
+    return this;
+}
+
+function mod(n, x) {
+    return ((n % x) + x) % x;
+}
+
+var indexOf;
+
+if (Array.prototype.indexOf) {
+    indexOf = Array.prototype.indexOf;
+} else {
+    indexOf = function (o) {
+        // I know
+        var i;
+        for (i = 0; i < this.length; ++i) {
+            if (this[i] === o) {
+                return i;
+            }
+        }
+        return -1;
+    };
+}
+
+function daysInMonth(year, month) {
+    if (isNaN(year) || isNaN(month)) {
+        return NaN;
+    }
+    var modMonth = mod(month, 12);
+    year += (month - modMonth) / 12;
+    return modMonth === 1 ? (isLeapYear(year) ? 29 : 28) : (31 - modMonth % 7 % 2);
+}
+
+// FORMATTING
+
+addFormatToken('M', ['MM', 2], 'Mo', function () {
+    return this.month() + 1;
+});
+
+addFormatToken('MMM', 0, 0, function (format) {
+    return this.localeData().monthsShort(this, format);
+});
+
+addFormatToken('MMMM', 0, 0, function (format) {
+    return this.localeData().months(this, format);
+});
+
+// ALIASES
+
+addUnitAlias('month', 'M');
+
+// PRIORITY
+
+addUnitPriority('month', 8);
+
+// PARSING
+
+addRegexToken('M',    match1to2);
+addRegexToken('MM',   match1to2, match2);
+addRegexToken('MMM',  function (isStrict, locale) {
+    return locale.monthsShortRegex(isStrict);
+});
+addRegexToken('MMMM', function (isStrict, locale) {
+    return locale.monthsRegex(isStrict);
+});
+
+addParseToken(['M', 'MM'], function (input, array) {
+    array[MONTH] = toInt(input) - 1;
+});
+
+addParseToken(['MMM', 'MMMM'], function (input, array, config, token) {
+    var month = config._locale.monthsParse(input, token, config._strict);
+    // if we didn't find a month name, mark the date as invalid.
+    if (month != null) {
+        array[MONTH] = month;
+    } else {
+        getParsingFlags(config).invalidMonth = input;
+    }
+});
+
+// LOCALES
+
+var MONTHS_IN_FORMAT = /D[oD]?(\[[^\[\]]*\]|\s)+MMMM?/;
+var defaultLocaleMonths = 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_');
+function localeMonths (m, format) {
+    if (!m) {
+        return isArray(this._months) ? this._months :
+            this._months['standalone'];
+    }
+    return isArray(this._months) ? this._months[m.month()] :
+        this._months[(this._months.isFormat || MONTHS_IN_FORMAT).test(format) ? 'format' : 'standalone'][m.month()];
+}
+
+var defaultLocaleMonthsShort = 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_');
+function localeMonthsShort (m, format) {
+    if (!m) {
+        return isArray(this._monthsShort) ? this._monthsShort :
+            this._monthsShort['standalone'];
+    }
+    return isArray(this._monthsShort) ? this._monthsShort[m.month()] :
+        this._monthsShort[MONTHS_IN_FORMAT.test(format) ? 'format' : 'standalone'][m.month()];
+}
+
+function handleStrictParse(monthName, format, strict) {
+    var i, ii, mom, llc = monthName.toLocaleLowerCase();
+    if (!this._monthsParse) {
+        // this is not used
+        this._monthsParse = [];
+        this._longMonthsParse = [];
+        this._shortMonthsParse = [];
+        for (i = 0; i < 12; ++i) {
+            mom = createUTC([2000, i]);
+            this._shortMonthsParse[i] = this.monthsShort(mom, '').toLocaleLowerCase();
+            this._longMonthsParse[i] = this.months(mom, '').toLocaleLowerCase();
+        }
+    }
+
+    if (strict) {
+        if (format === 'MMM') {
+            ii = indexOf.call(this._shortMonthsParse, llc);
+            return ii !== -1 ? ii : null;
+        } else {
+            ii = indexOf.call(this._longMonthsParse, llc);
+            return ii !== -1 ? ii : null;
+        }
+    } else {
+        if (format === 'MMM') {
+            ii = indexOf.call(this._shortMonthsParse, llc);
+            if (ii !== -1) {
+                return ii;
+            }
+            ii = indexOf.call(this._longMonthsParse, llc);
+            return ii !== -1 ? ii : null;
+        } else {
+            ii = indexOf.call(this._longMonthsParse, llc);
+            if (ii !== -1) {
+                return ii;
+            }
+            ii = indexOf.call(this._shortMonthsParse, llc);
+            return ii !== -1 ? ii : null;
+        }
+    }
+}
+
+function localeMonthsParse (monthName, format, strict) {
+    var i, mom, regex;
+
+    if (this._monthsParseExact) {
+        return handleStrictParse.call(this, monthName, format, strict);
+    }
+
+    if (!this._monthsParse) {
+        this._monthsParse = [];
+        this._longMonthsParse = [];
+        this._shortMonthsParse = [];
+    }
+
+    // TODO: add sorting
+    // Sorting makes sure if one month (or abbr) is a prefix of another
+    // see sorting in computeMonthsParse
+    for (i = 0; i < 12; i++) {
+        // make the regex if we don't have it already
+        mom = createUTC([2000, i]);
+        if (strict && !this._longMonthsParse[i]) {
+            this._longMonthsParse[i] = new RegExp('^' + this.months(mom, '').replace('.', '') + '$', 'i');
+            this._shortMonthsParse[i] = new RegExp('^' + this.monthsShort(mom, '').replace('.', '') + '$', 'i');
+        }
+        if (!strict && !this._monthsParse[i]) {
+            regex = '^' + this.months(mom, '') + '|^' + this.monthsShort(mom, '');
+            this._monthsParse[i] = new RegExp(regex.replace('.', ''), 'i');
+        }
+        // test the regex
+        if (strict && format === 'MMMM' && this._longMonthsParse[i].test(monthName)) {
+            return i;
+        } else if (strict && format === 'MMM' && this._shortMonthsParse[i].test(monthName)) {
+            return i;
+        } else if (!strict && this._monthsParse[i].test(monthName)) {
+            return i;
+        }
+    }
+}
+
+// MOMENTS
+
+function setMonth (mom, value) {
+    var dayOfMonth;
+
+    if (!mom.isValid()) {
+        // No op
+        return mom;
+    }
+
+    if (typeof value === 'string') {
+        if (/^\d+$/.test(value)) {
+            value = toInt(value);
+        } else {
+            value = mom.localeData().monthsParse(value);
+            // TODO: Another silent failure?
+            if (!isNumber(value)) {
+                return mom;
+            }
+        }
+    }
+
+    dayOfMonth = Math.min(mom.date(), daysInMonth(mom.year(), value));
+    mom._d['set' + (mom._isUTC ? 'UTC' : '') + 'Month'](value, dayOfMonth);
+    return mom;
+}
+
+function getSetMonth (value) {
+    if (value != null) {
+        setMonth(this, value);
+        hooks.updateOffset(this, true);
+        return this;
+    } else {
+        return get(this, 'Month');
+    }
+}
+
+function getDaysInMonth () {
+    return daysInMonth(this.year(), this.month());
+}
+
+var defaultMonthsShortRegex = matchWord;
+function monthsShortRegex (isStrict) {
+    if (this._monthsParseExact) {
+        if (!hasOwnProp(this, '_monthsRegex')) {
+            computeMonthsParse.call(this);
+        }
+        if (isStrict) {
+            return this._monthsShortStrictRegex;
+        } else {
+            return this._monthsShortRegex;
+        }
+    } else {
+        if (!hasOwnProp(this, '_monthsShortRegex')) {
+            this._monthsShortRegex = defaultMonthsShortRegex;
+        }
+        return this._monthsShortStrictRegex && isStrict ?
+            this._monthsShortStrictRegex : this._monthsShortRegex;
+    }
+}
+
+var defaultMonthsRegex = matchWord;
+function monthsRegex (isStrict) {
+    if (this._monthsParseExact) {
+        if (!hasOwnProp(this, '_monthsRegex')) {
+            computeMonthsParse.call(this);
+        }
+        if (isStrict) {
+            return this._monthsStrictRegex;
+        } else {
+            return this._monthsRegex;
+        }
+    } else {
+        if (!hasOwnProp(this, '_monthsRegex')) {
+            this._monthsRegex = defaultMonthsRegex;
+        }
+        return this._monthsStrictRegex && isStrict ?
+            this._monthsStrictRegex : this._monthsRegex;
+    }
+}
+
+function computeMonthsParse () {
+    function cmpLenRev(a, b) {
+        return b.length - a.length;
+    }
+
+    var shortPieces = [], longPieces = [], mixedPieces = [],
+        i, mom;
+    for (i = 0; i < 12; i++) {
+        // make the regex if we don't have it already
+        mom = createUTC([2000, i]);
+        shortPieces.push(this.monthsShort(mom, ''));
+        longPieces.push(this.months(mom, ''));
+        mixedPieces.push(this.months(mom, ''));
+        mixedPieces.push(this.monthsShort(mom, ''));
+    }
+    // Sorting makes sure if one month (or abbr) is a prefix of another it
+    // will match the longer piece.
+    shortPieces.sort(cmpLenRev);
+    longPieces.sort(cmpLenRev);
+    mixedPieces.sort(cmpLenRev);
+    for (i = 0; i < 12; i++) {
+        shortPieces[i] = regexEscape(shortPieces[i]);
+        longPieces[i] = regexEscape(longPieces[i]);
+    }
+    for (i = 0; i < 24; i++) {
+        mixedPieces[i] = regexEscape(mixedPieces[i]);
+    }
+
+    this._monthsRegex = new RegExp('^(' + mixedPieces.join('|') + ')', 'i');
+    this._monthsShortRegex = this._monthsRegex;
+    this._monthsStrictRegex = new RegExp('^(' + longPieces.join('|') + ')', 'i');
+    this._monthsShortStrictRegex = new RegExp('^(' + shortPieces.join('|') + ')', 'i');
+}
+
+function createDate (y, m, d, h, M, s, ms) {
+    // can't just apply() to create a date:
+    // https://stackoverflow.com/q/181348
+    var date = new Date(y, m, d, h, M, s, ms);
+
+    // the date constructor remaps years 0-99 to 1900-1999
+    if (y < 100 && y >= 0 && isFinite(date.getFullYear())) {
+        date.setFullYear(y);
+    }
+    return date;
+}
+
+function createUTCDate (y) {
+    var date = new Date(Date.UTC.apply(null, arguments));
+
+    // the Date.UTC function remaps years 0-99 to 1900-1999
+    if (y < 100 && y >= 0 && isFinite(date.getUTCFullYear())) {
+        date.setUTCFullYear(y);
+    }
+    return date;
+}
+
+// start-of-first-week - start-of-year
+function firstWeekOffset(year, dow, doy) {
+    var // first-week day -- which january is always in the first week (4 for iso, 1 for other)
+        fwd = 7 + dow - doy,
+        // first-week day local weekday -- which local weekday is fwd
+        fwdlw = (7 + createUTCDate(year, 0, fwd).getUTCDay() - dow) % 7;
+
+    return -fwdlw + fwd - 1;
+}
+
+// https://en.wikipedia.org/wiki/ISO_week_date#Calculating_a_date_given_the_year.2C_week_number_and_weekday
+function dayOfYearFromWeeks(year, week, weekday, dow, doy) {
+    var localWeekday = (7 + weekday - dow) % 7,
+        weekOffset = firstWeekOffset(year, dow, doy),
+        dayOfYear = 1 + 7 * (week - 1) + localWeekday + weekOffset,
+        resYear, resDayOfYear;
+
+    if (dayOfYear <= 0) {
+        resYear = year - 1;
+        resDayOfYear = daysInYear(resYear) + dayOfYear;
+    } else if (dayOfYear > daysInYear(year)) {
+        resYear = year + 1;
+        resDayOfYear = dayOfYear - daysInYear(year);
+    } else {
+        resYear = year;
+        resDayOfYear = dayOfYear;
+    }
+
+    return {
+        year: resYear,
+        dayOfYear: resDayOfYear
+    };
+}
+
+function weekOfYear(mom, dow, doy) {
+    var weekOffset = firstWeekOffset(mom.year(), dow, doy),
+        week = Math.floor((mom.dayOfYear() - weekOffset - 1) / 7) + 1,
+        resWeek, resYear;
+
+    if (week < 1) {
+        resYear = mom.year() - 1;
+        resWeek = week + weeksInYear(resYear, dow, doy);
+    } else if (week > weeksInYear(mom.year(), dow, doy)) {
+        resWeek = week - weeksInYear(mom.year(), dow, doy);
+        resYear = mom.year() + 1;
+    } else {
+        resYear = mom.year();
+        resWeek = week;
+    }
+
+    return {
+        week: resWeek,
+        year: resYear
+    };
+}
+
+function weeksInYear(year, dow, doy) {
+    var weekOffset = firstWeekOffset(year, dow, doy),
+        weekOffsetNext = firstWeekOffset(year + 1, dow, doy);
+    return (daysInYear(year) - weekOffset + weekOffsetNext) / 7;
+}
+
+// FORMATTING
+
+addFormatToken('w', ['ww', 2], 'wo', 'week');
+addFormatToken('W', ['WW', 2], 'Wo', 'isoWeek');
+
+// ALIASES
+
+addUnitAlias('week', 'w');
+addUnitAlias('isoWeek', 'W');
+
+// PRIORITIES
+
+addUnitPriority('week', 5);
+addUnitPriority('isoWeek', 5);
+
+// PARSING
+
+addRegexToken('w',  match1to2);
+addRegexToken('ww', match1to2, match2);
+addRegexToken('W',  match1to2);
+addRegexToken('WW', match1to2, match2);
+
+addWeekParseToken(['w', 'ww', 'W', 'WW'], function (input, week, config, token) {
+    week[token.substr(0, 1)] = toInt(input);
+});
+
+// HELPERS
+
+// LOCALES
+
+function localeWeek (mom) {
+    return weekOfYear(mom, this._week.dow, this._week.doy).week;
+}
+
+var defaultLocaleWeek = {
+    dow : 0, // Sunday is the first day of the week.
+    doy : 6  // The week that contains Jan 1st is the first week of the year.
+};
+
+function localeFirstDayOfWeek () {
+    return this._week.dow;
+}
+
+function localeFirstDayOfYear () {
+    return this._week.doy;
+}
+
+// MOMENTS
+
+function getSetWeek (input) {
+    var week = this.localeData().week(this);
+    return input == null ? week : this.add((input - week) * 7, 'd');
+}
+
+function getSetISOWeek (input) {
+    var week = weekOfYear(this, 1, 4).week;
+    return input == null ? week : this.add((input - week) * 7, 'd');
+}
+
+// FORMATTING
+
+addFormatToken('d', 0, 'do', 'day');
+
+addFormatToken('dd', 0, 0, function (format) {
+    return this.localeData().weekdaysMin(this, format);
+});
+
+addFormatToken('ddd', 0, 0, function (format) {
+    return this.localeData().weekdaysShort(this, format);
+});
+
+addFormatToken('dddd', 0, 0, function (format) {
+    return this.localeData().weekdays(this, format);
+});
+
+addFormatToken('e', 0, 0, 'weekday');
+addFormatToken('E', 0, 0, 'isoWeekday');
+
+// ALIASES
+
+addUnitAlias('day', 'd');
+addUnitAlias('weekday', 'e');
+addUnitAlias('isoWeekday', 'E');
+
+// PRIORITY
+addUnitPriority('day', 11);
+addUnitPriority('weekday', 11);
+addUnitPriority('isoWeekday', 11);
+
+// PARSING
+
+addRegexToken('d',    match1to2);
+addRegexToken('e',    match1to2);
+addRegexToken('E',    match1to2);
+addRegexToken('dd',   function (isStrict, locale) {
+    return locale.weekdaysMinRegex(isStrict);
+});
+addRegexToken('ddd',   function (isStrict, locale) {
+    return locale.weekdaysShortRegex(isStrict);
+});
+addRegexToken('dddd',   function (isStrict, locale) {
+    return locale.weekdaysRegex(isStrict);
+});
+
+addWeekParseToken(['dd', 'ddd', 'dddd'], function (input, week, config, token) {
+    var weekday = config._locale.weekdaysParse(input, token, config._strict);
+    // if we didn't get a weekday name, mark the date as invalid
+    if (weekday != null) {
+        week.d = weekday;
+    } else {
+        getParsingFlags(config).invalidWeekday = input;
+    }
+});
+
+addWeekParseToken(['d', 'e', 'E'], function (input, week, config, token) {
+    week[token] = toInt(input);
+});
+
+// HELPERS
+
+function parseWeekday(input, locale) {
+    if (typeof input !== 'string') {
+        return input;
+    }
+
+    if (!isNaN(input)) {
+        return parseInt(input, 10);
+    }
+
+    input = locale.weekdaysParse(input);
+    if (typeof input === 'number') {
+        return input;
+    }
+
+    return null;
+}
+
+function parseIsoWeekday(input, locale) {
+    if (typeof input === 'string') {
+        return locale.weekdaysParse(input) % 7 || 7;
+    }
+    return isNaN(input) ? null : input;
+}
+
+// LOCALES
+
+var defaultLocaleWeekdays = 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_');
+function localeWeekdays (m, format) {
+    if (!m) {
+        return isArray(this._weekdays) ? this._weekdays :
+            this._weekdays['standalone'];
+    }
+    return isArray(this._weekdays) ? this._weekdays[m.day()] :
+        this._weekdays[this._weekdays.isFormat.test(format) ? 'format' : 'standalone'][m.day()];
+}
+
+var defaultLocaleWeekdaysShort = 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_');
+function localeWeekdaysShort (m) {
+    return (m) ? this._weekdaysShort[m.day()] : this._weekdaysShort;
+}
+
+var defaultLocaleWeekdaysMin = 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_');
+function localeWeekdaysMin (m) {
+    return (m) ? this._weekdaysMin[m.day()] : this._weekdaysMin;
+}
+
+function handleStrictParse$1(weekdayName, format, strict) {
+    var i, ii, mom, llc = weekdayName.toLocaleLowerCase();
+    if (!this._weekdaysParse) {
+        this._weekdaysParse = [];
+        this._shortWeekdaysParse = [];
+        this._minWeekdaysParse = [];
+
+        for (i = 0; i < 7; ++i) {
+            mom = createUTC([2000, 1]).day(i);
+            this._minWeekdaysParse[i] = this.weekdaysMin(mom, '').toLocaleLowerCase();
+            this._shortWeekdaysParse[i] = this.weekdaysShort(mom, '').toLocaleLowerCase();
+            this._weekdaysParse[i] = this.weekdays(mom, '').toLocaleLowerCase();
+        }
+    }
+
+    if (strict) {
+        if (format === 'dddd') {
+            ii = indexOf.call(this._weekdaysParse, llc);
+            return ii !== -1 ? ii : null;
+        } else if (format === 'ddd') {
+            ii = indexOf.call(this._shortWeekdaysParse, llc);
+            return ii !== -1 ? ii : null;
+        } else {
+            ii = indexOf.call(this._minWeekdaysParse, llc);
+            return ii !== -1 ? ii : null;
+        }
+    } else {
+        if (format === 'dddd') {
+            ii = indexOf.call(this._weekdaysParse, llc);
+            if (ii !== -1) {
+                return ii;
+            }
+            ii = indexOf.call(this._shortWeekdaysParse, llc);
+            if (ii !== -1) {
+                return ii;
+            }
+            ii = indexOf.call(this._minWeekdaysParse, llc);
+            return ii !== -1 ? ii : null;
+        } else if (format === 'ddd') {
+            ii = indexOf.call(this._shortWeekdaysParse, llc);
+            if (ii !== -1) {
+                return ii;
+            }
+            ii = indexOf.call(this._weekdaysParse, llc);
+            if (ii !== -1) {
+                return ii;
+            }
+            ii = indexOf.call(this._minWeekdaysParse, llc);
+            return ii !== -1 ? ii : null;
+        } else {
+            ii = indexOf.call(this._minWeekdaysParse, llc);
+            if (ii !== -1) {
+                return ii;
+            }
+            ii = indexOf.call(this._weekdaysParse, llc);
+            if (ii !== -1) {
+                return ii;
+            }
+            ii = indexOf.call(this._shortWeekdaysParse, llc);
+            return ii !== -1 ? ii : null;
+        }
+    }
+}
+
+function localeWeekdaysParse (weekdayName, format, strict) {
+    var i, mom, regex;
+
+    if (this._weekdaysParseExact) {
+        return handleStrictParse$1.call(this, weekdayName, format, strict);
+    }
+
+    if (!this._weekdaysParse) {
+        this._weekdaysParse = [];
+        this._minWeekdaysParse = [];
+        this._shortWeekdaysParse = [];
+        this._fullWeekdaysParse = [];
+    }
+
+    for (i = 0; i < 7; i++) {
+        // make the regex if we don't have it already
+
+        mom = createUTC([2000, 1]).day(i);
+        if (strict && !this._fullWeekdaysParse[i]) {
+            this._fullWeekdaysParse[i] = new RegExp('^' + this.weekdays(mom, '').replace('.', '\.?') + '$', 'i');
+            this._shortWeekdaysParse[i] = new RegExp('^' + this.weekdaysShort(mom, '').replace('.', '\.?') + '$', 'i');
+            this._minWeekdaysParse[i] = new RegExp('^' + this.weekdaysMin(mom, '').replace('.', '\.?') + '$', 'i');
+        }
+        if (!this._weekdaysParse[i]) {
+            regex = '^' + this.weekdays(mom, '') + '|^' + this.weekdaysShort(mom, '') + '|^' + this.weekdaysMin(mom, '');
+            this._weekdaysParse[i] = new RegExp(regex.replace('.', ''), 'i');
+        }
+        // test the regex
+        if (strict && format === 'dddd' && this._fullWeekdaysParse[i].test(weekdayName)) {
+            return i;
+        } else if (strict && format === 'ddd' && this._shortWeekdaysParse[i].test(weekdayName)) {
+            return i;
+        } else if (strict && format === 'dd' && this._minWeekdaysParse[i].test(weekdayName)) {
+            return i;
+        } else if (!strict && this._weekdaysParse[i].test(weekdayName)) {
+            return i;
+        }
+    }
+}
+
+// MOMENTS
+
+function getSetDayOfWeek (input) {
+    if (!this.isValid()) {
+        return input != null ? this : NaN;
+    }
+    var day = this._isUTC ? this._d.getUTCDay() : this._d.getDay();
+    if (input != null) {
+        input = parseWeekday(input, this.localeData());
+        return this.add(input - day, 'd');
+    } else {
+        return day;
+    }
+}
+
+function getSetLocaleDayOfWeek (input) {
+    if (!this.isValid()) {
+        return input != null ? this : NaN;
+    }
+    var weekday = (this.day() + 7 - this.localeData()._week.dow) % 7;
+    return input == null ? weekday : this.add(input - weekday, 'd');
+}
+
+function getSetISODayOfWeek (input) {
+    if (!this.isValid()) {
+        return input != null ? this : NaN;
+    }
+
+    // behaves the same as moment#day except
+    // as a getter, returns 7 instead of 0 (1-7 range instead of 0-6)
+    // as a setter, sunday should belong to the previous week.
+
+    if (input != null) {
+        var weekday = parseIsoWeekday(input, this.localeData());
+        return this.day(this.day() % 7 ? weekday : weekday - 7);
+    } else {
+        return this.day() || 7;
+    }
+}
+
+var defaultWeekdaysRegex = matchWord;
+function weekdaysRegex (isStrict) {
+    if (this._weekdaysParseExact) {
+        if (!hasOwnProp(this, '_weekdaysRegex')) {
+            computeWeekdaysParse.call(this);
+        }
+        if (isStrict) {
+            return this._weekdaysStrictRegex;
+        } else {
+            return this._weekdaysRegex;
+        }
+    } else {
+        if (!hasOwnProp(this, '_weekdaysRegex')) {
+            this._weekdaysRegex = defaultWeekdaysRegex;
+        }
+        return this._weekdaysStrictRegex && isStrict ?
+            this._weekdaysStrictRegex : this._weekdaysRegex;
+    }
+}
+
+var defaultWeekdaysShortRegex = matchWord;
+function weekdaysShortRegex (isStrict) {
+    if (this._weekdaysParseExact) {
+        if (!hasOwnProp(this, '_weekdaysRegex')) {
+            computeWeekdaysParse.call(this);
+        }
+        if (isStrict) {
+            return this._weekdaysShortStrictRegex;
+        } else {
+            return this._weekdaysShortRegex;
+        }
+    } else {
+        if (!hasOwnProp(this, '_weekdaysShortRegex')) {
+            this._weekdaysShortRegex = defaultWeekdaysShortRegex;
+        }
+        return this._weekdaysShortStrictRegex && isStrict ?
+            this._weekdaysShortStrictRegex : this._weekdaysShortRegex;
+    }
+}
+
+var defaultWeekdaysMinRegex = matchWord;
+function weekdaysMinRegex (isStrict) {
+    if (this._weekdaysParseExact) {
+        if (!hasOwnProp(this, '_weekdaysRegex')) {
+            computeWeekdaysParse.call(this);
+        }
+        if (isStrict) {
+            return this._weekdaysMinStrictRegex;
+        } else {
+            return this._weekdaysMinRegex;
+        }
+    } else {
+        if (!hasOwnProp(this, '_weekdaysMinRegex')) {
+            this._weekdaysMinRegex = defaultWeekdaysMinRegex;
+        }
+        return this._weekdaysMinStrictRegex && isStrict ?
+            this._weekdaysMinStrictRegex : this._weekdaysMinRegex;
+    }
+}
+
+
+function computeWeekdaysParse () {
+    function cmpLenRev(a, b) {
+        return b.length - a.length;
+    }
+
+    var minPieces = [], shortPieces = [], longPieces = [], mixedPieces = [],
+        i, mom, minp, shortp, longp;
+    for (i = 0; i < 7; i++) {
+        // make the regex if we don't have it already
+        mom = createUTC([2000, 1]).day(i);
+        minp = this.weekdaysMin(mom, '');
+        shortp = this.weekdaysShort(mom, '');
+        longp = this.weekdays(mom, '');
+        minPieces.push(minp);
+        shortPieces.push(shortp);
+        longPieces.push(longp);
+        mixedPieces.push(minp);
+        mixedPieces.push(shortp);
+        mixedPieces.push(longp);
+    }
+    // Sorting makes sure if one weekday (or abbr) is a prefix of another it
+    // will match the longer piece.
+    minPieces.sort(cmpLenRev);
+    shortPieces.sort(cmpLenRev);
+    longPieces.sort(cmpLenRev);
+    mixedPieces.sort(cmpLenRev);
+    for (i = 0; i < 7; i++) {
+        shortPieces[i] = regexEscape(shortPieces[i]);
+        longPieces[i] = regexEscape(longPieces[i]);
+        mixedPieces[i] = regexEscape(mixedPieces[i]);
+    }
+
+    this._weekdaysRegex = new RegExp('^(' + mixedPieces.join('|') + ')', 'i');
+    this._weekdaysShortRegex = this._weekdaysRegex;
+    this._weekdaysMinRegex = this._weekdaysRegex;
+
+    this._weekdaysStrictRegex = new RegExp('^(' + longPieces.join('|') + ')', 'i');
+    this._weekdaysShortStrictRegex = new RegExp('^(' + shortPieces.join('|') + ')', 'i');
+    this._weekdaysMinStrictRegex = new RegExp('^(' + minPieces.join('|') + ')', 'i');
+}
+
+// FORMATTING
+
+function hFormat() {
+    return this.hours() % 12 || 12;
+}
+
+function kFormat() {
+    return this.hours() || 24;
+}
+
+addFormatToken('H', ['HH', 2], 0, 'hour');
+addFormatToken('h', ['hh', 2], 0, hFormat);
+addFormatToken('k', ['kk', 2], 0, kFormat);
+
+addFormatToken('hmm', 0, 0, function () {
+    return '' + hFormat.apply(this) + zeroFill(this.minutes(), 2);
+});
+
+addFormatToken('hmmss', 0, 0, function () {
+    return '' + hFormat.apply(this) + zeroFill(this.minutes(), 2) +
+        zeroFill(this.seconds(), 2);
+});
+
+addFormatToken('Hmm', 0, 0, function () {
+    return '' + this.hours() + zeroFill(this.minutes(), 2);
+});
+
+addFormatToken('Hmmss', 0, 0, function () {
+    return '' + this.hours() + zeroFill(this.minutes(), 2) +
+        zeroFill(this.seconds(), 2);
+});
+
+function meridiem (token, lowercase) {
+    addFormatToken(token, 0, 0, function () {
+        return this.localeData().meridiem(this.hours(), this.minutes(), lowercase);
+    });
+}
+
+meridiem('a', true);
+meridiem('A', false);
+
+// ALIASES
+
+addUnitAlias('hour', 'h');
+
+// PRIORITY
+addUnitPriority('hour', 13);
+
+// PARSING
+
+function matchMeridiem (isStrict, locale) {
+    return locale._meridiemParse;
+}
+
+addRegexToken('a',  matchMeridiem);
+addRegexToken('A',  matchMeridiem);
+addRegexToken('H',  match1to2);
+addRegexToken('h',  match1to2);
+addRegexToken('k',  match1to2);
+addRegexToken('HH', match1to2, match2);
+addRegexToken('hh', match1to2, match2);
+addRegexToken('kk', match1to2, match2);
+
+addRegexToken('hmm', match3to4);
+addRegexToken('hmmss', match5to6);
+addRegexToken('Hmm', match3to4);
+addRegexToken('Hmmss', match5to6);
+
+addParseToken(['H', 'HH'], HOUR);
+addParseToken(['k', 'kk'], function (input, array, config) {
+    var kInput = toInt(input);
+    array[HOUR] = kInput === 24 ? 0 : kInput;
+});
+addParseToken(['a', 'A'], function (input, array, config) {
+    config._isPm = config._locale.isPM(input);
+    config._meridiem = input;
+});
+addParseToken(['h', 'hh'], function (input, array, config) {
+    array[HOUR] = toInt(input);
+    getParsingFlags(config).bigHour = true;
+});
+addParseToken('hmm', function (input, array, config) {
+    var pos = input.length - 2;
+    array[HOUR] = toInt(input.substr(0, pos));
+    array[MINUTE] = toInt(input.substr(pos));
+    getParsingFlags(config).bigHour = true;
+});
+addParseToken('hmmss', function (input, array, config) {
+    var pos1 = input.length - 4;
+    var pos2 = input.length - 2;
+    array[HOUR] = toInt(input.substr(0, pos1));
+    array[MINUTE] = toInt(input.substr(pos1, 2));
+    array[SECOND] = toInt(input.substr(pos2));
+    getParsingFlags(config).bigHour = true;
+});
+addParseToken('Hmm', function (input, array, config) {
+    var pos = input.length - 2;
+    array[HOUR] = toInt(input.substr(0, pos));
+    array[MINUTE] = toInt(input.substr(pos));
+});
+addParseToken('Hmmss', function (input, array, config) {
+    var pos1 = input.length - 4;
+    var pos2 = input.length - 2;
+    array[HOUR] = toInt(input.substr(0, pos1));
+    array[MINUTE] = toInt(input.substr(pos1, 2));
+    array[SECOND] = toInt(input.substr(pos2));
+});
+
+// LOCALES
+
+function localeIsPM (input) {
+    // IE8 Quirks Mode & IE7 Standards Mode do not allow accessing strings like arrays
+    // Using charAt should be more compatible.
+    return ((input + '').toLowerCase().charAt(0) === 'p');
+}
+
+var defaultLocaleMeridiemParse = /[ap]\.?m?\.?/i;
+function localeMeridiem (hours, minutes, isLower) {
+    if (hours > 11) {
+        return isLower ? 'pm' : 'PM';
+    } else {
+        return isLower ? 'am' : 'AM';
+    }
+}
+
+
+// MOMENTS
+
+// Setting the hour should keep the time, because the user explicitly
+// specified which hour he wants. So trying to maintain the same hour (in
+// a new timezone) makes sense. Adding/subtracting hours does not follow
+// this rule.
+var getSetHour = makeGetSet('Hours', true);
+
+// months
+// week
+// weekdays
+// meridiem
+var baseConfig = {
+    calendar: defaultCalendar,
+    longDateFormat: defaultLongDateFormat,
+    invalidDate: defaultInvalidDate,
+    ordinal: defaultOrdinal,
+    dayOfMonthOrdinalParse: defaultDayOfMonthOrdinalParse,
+    relativeTime: defaultRelativeTime,
+
+    months: defaultLocaleMonths,
+    monthsShort: defaultLocaleMonthsShort,
+
+    week: defaultLocaleWeek,
+
+    weekdays: defaultLocaleWeekdays,
+    weekdaysMin: defaultLocaleWeekdaysMin,
+    weekdaysShort: defaultLocaleWeekdaysShort,
+
+    meridiemParse: defaultLocaleMeridiemParse
+};
+
+// internal storage for locale config files
+var locales = {};
+var localeFamilies = {};
+var globalLocale;
+
+function normalizeLocale(key) {
+    return key ? key.toLowerCase().replace('_', '-') : key;
+}
+
+// pick the locale from the array
+// try ['en-au', 'en-gb'] as 'en-au', 'en-gb', 'en', as in move through the list trying each
+// substring from most specific to least, but move to the next array item if it's a more specific variant than the current root
+function chooseLocale(names) {
+    var i = 0, j, next, locale, split;
+
+    while (i < names.length) {
+        split = normalizeLocale(names[i]).split('-');
+        j = split.length;
+        next = normalizeLocale(names[i + 1]);
+        next = next ? next.split('-') : null;
+        while (j > 0) {
+            locale = loadLocale(split.slice(0, j).join('-'));
+            if (locale) {
+                return locale;
+            }
+            if (next && next.length >= j && compareArrays(split, next, true) >= j - 1) {
+                //the next array item is better than a shallower substring of this one
+                break;
+            }
+            j--;
+        }
+        i++;
+    }
+    return null;
+}
+
+function loadLocale(name) {
+    var oldLocale = null;
+    // TODO: Find a better way to register and load all the locales in Node
+    if (!locales[name] && (typeof module !== 'undefined') &&
+            module && module.exports) {
+        try {
+            oldLocale = globalLocale._abbr;
+            var aliasedRequire = require;
+            aliasedRequire('./locale/' + name);
+            getSetGlobalLocale(oldLocale);
+        } catch (e) {}
+    }
+    return locales[name];
+}
+
+// This function will load locale and then set the global locale.  If
+// no arguments are passed in, it will simply return the current global
+// locale key.
+function getSetGlobalLocale (key, values) {
+    var data;
+    if (key) {
+        if (isUndefined(values)) {
+            data = getLocale(key);
+        }
+        else {
+            data = defineLocale(key, values);
+        }
+
+        if (data) {
+            // moment.duration._locale = moment._locale = data;
+            globalLocale = data;
+        }
+    }
+
+    return globalLocale._abbr;
+}
+
+function defineLocale (name, config) {
+    if (config !== null) {
+        var parentConfig = baseConfig;
+        config.abbr = name;
+        if (locales[name] != null) {
+            deprecateSimple('defineLocaleOverride',
+                    'use moment.updateLocale(localeName, config) to change ' +
+                    'an existing locale. moment.defineLocale(localeName, ' +
+                    'config) should only be used for creating a new locale ' +
+                    'See http://momentjs.com/guides/#/warnings/define-locale/ for more info.');
+            parentConfig = locales[name]._config;
+        } else if (config.parentLocale != null) {
+            if (locales[config.parentLocale] != null) {
+                parentConfig = locales[config.parentLocale]._config;
+            } else {
+                if (!localeFamilies[config.parentLocale]) {
+                    localeFamilies[config.parentLocale] = [];
+                }
+                localeFamilies[config.parentLocale].push({
+                    name: name,
+                    config: config
+                });
+                return null;
+            }
+        }
+        locales[name] = new Locale(mergeConfigs(parentConfig, config));
+
+        if (localeFamilies[name]) {
+            localeFamilies[name].forEach(function (x) {
+                defineLocale(x.name, x.config);
+            });
+        }
+
+        // backwards compat for now: also set the locale
+        // make sure we set the locale AFTER all child locales have been
+        // created, so we won't end up with the child locale set.
+        getSetGlobalLocale(name);
+
+
+        return locales[name];
+    } else {
+        // useful for testing
+        delete locales[name];
+        return null;
+    }
+}
+
+function updateLocale(name, config) {
+    if (config != null) {
+        var locale, tmpLocale, parentConfig = baseConfig;
+        // MERGE
+        tmpLocale = loadLocale(name);
+        if (tmpLocale != null) {
+            parentConfig = tmpLocale._config;
+        }
+        config = mergeConfigs(parentConfig, config);
+        locale = new Locale(config);
+        locale.parentLocale = locales[name];
+        locales[name] = locale;
+
+        // backwards compat for now: also set the locale
+        getSetGlobalLocale(name);
+    } else {
+        // pass null for config to unupdate, useful for tests
+        if (locales[name] != null) {
+            if (locales[name].parentLocale != null) {
+                locales[name] = locales[name].parentLocale;
+            } else if (locales[name] != null) {
+                delete locales[name];
+            }
+        }
+    }
+    return locales[name];
+}
+
+// returns locale data
+function getLocale (key) {
+    var locale;
+
+    if (key && key._locale && key._locale._abbr) {
+        key = key._locale._abbr;
+    }
+
+    if (!key) {
+        return globalLocale;
+    }
+
+    if (!isArray(key)) {
+        //short-circuit everything else
+        locale = loadLocale(key);
+        if (locale) {
+            return locale;
+        }
+        key = [key];
+    }
+
+    return chooseLocale(key);
+}
+
+function listLocales() {
+    return keys(locales);
+}
+
+function checkOverflow (m) {
+    var overflow;
+    var a = m._a;
+
+    if (a && getParsingFlags(m).overflow === -2) {
+        overflow =
+            a[MONTH]       < 0 || a[MONTH]       > 11  ? MONTH :
+            a[DATE]        < 1 || a[DATE]        > daysInMonth(a[YEAR], a[MONTH]) ? DATE :
+            a[HOUR]        < 0 || a[HOUR]        > 24 || (a[HOUR] === 24 && (a[MINUTE] !== 0 || a[SECOND] !== 0 || a[MILLISECOND] !== 0)) ? HOUR :
+            a[MINUTE]      < 0 || a[MINUTE]      > 59  ? MINUTE :
+            a[SECOND]      < 0 || a[SECOND]      > 59  ? SECOND :
+            a[MILLISECOND] < 0 || a[MILLISECOND] > 999 ? MILLISECOND :
+            -1;
+
+        if (getParsingFlags(m)._overflowDayOfYear && (overflow < YEAR || overflow > DATE)) {
+            overflow = DATE;
+        }
+        if (getParsingFlags(m)._overflowWeeks && overflow === -1) {
+            overflow = WEEK;
+        }
+        if (getParsingFlags(m)._overflowWeekday && overflow === -1) {
+            overflow = WEEKDAY;
+        }
+
+        getParsingFlags(m).overflow = overflow;
+    }
+
+    return m;
+}
+
+// Pick the first defined of two or three arguments.
+function defaults(a, b, c) {
+    if (a != null) {
+        return a;
+    }
+    if (b != null) {
+        return b;
+    }
+    return c;
+}
+
+function currentDateArray(config) {
+    // hooks is actually the exported moment object
+    var nowValue = new Date(hooks.now());
+    if (config._useUTC) {
+        return [nowValue.getUTCFullYear(), nowValue.getUTCMonth(), nowValue.getUTCDate()];
+    }
+    return [nowValue.getFullYear(), nowValue.getMonth(), nowValue.getDate()];
+}
+
+// convert an array to a date.
+// the array should mirror the parameters below
+// note: all values past the year are optional and will default to the lowest possible value.
+// [year, month, day , hour, minute, second, millisecond]
+function configFromArray (config) {
+    var i, date, input = [], currentDate, expectedWeekday, yearToUse;
+
+    if (config._d) {
+        return;
+    }
+
+    currentDate = currentDateArray(config);
+
+    //compute day of the year from weeks and weekdays
+    if (config._w && config._a[DATE] == null && config._a[MONTH] == null) {
+        dayOfYearFromWeekInfo(config);
+    }
+
+    //if the day of the year is set, figure out what it is
+    if (config._dayOfYear != null) {
+        yearToUse = defaults(config._a[YEAR], currentDate[YEAR]);
+
+        if (config._dayOfYear > daysInYear(yearToUse) || config._dayOfYear === 0) {
+            getParsingFlags(config)._overflowDayOfYear = true;
+        }
+
+        date = createUTCDate(yearToUse, 0, config._dayOfYear);
+        config._a[MONTH] = date.getUTCMonth();
+        config._a[DATE] = date.getUTCDate();
+    }
+
+    // Default to current date.
+    // * if no year, month, day of month are given, default to today
+    // * if day of month is given, default month and year
+    // * if month is given, default only year
+    // * if year is given, don't default anything
+    for (i = 0; i < 3 && config._a[i] == null; ++i) {
+        config._a[i] = input[i] = currentDate[i];
+    }
+
+    // Zero out whatever was not defaulted, including time
+    for (; i < 7; i++) {
+        config._a[i] = input[i] = (config._a[i] == null) ? (i === 2 ? 1 : 0) : config._a[i];
+    }
+
+    // Check for 24:00:00.000
+    if (config._a[HOUR] === 24 &&
+            config._a[MINUTE] === 0 &&
+            config._a[SECOND] === 0 &&
+            config._a[MILLISECOND] === 0) {
+        config._nextDay = true;
+        config._a[HOUR] = 0;
+    }
+
+    config._d = (config._useUTC ? createUTCDate : createDate).apply(null, input);
+    expectedWeekday = config._useUTC ? config._d.getUTCDay() : config._d.getDay();
+
+    // Apply timezone offset from input. The actual utcOffset can be changed
+    // with parseZone.
+    if (config._tzm != null) {
+        config._d.setUTCMinutes(config._d.getUTCMinutes() - config._tzm);
+    }
+
+    if (config._nextDay) {
+        config._a[HOUR] = 24;
+    }
+
+    // check for mismatching day of week
+    if (config._w && typeof config._w.d !== 'undefined' && config._w.d !== expectedWeekday) {
+        getParsingFlags(config).weekdayMismatch = true;
+    }
+}
+
+function dayOfYearFromWeekInfo(config) {
+    var w, weekYear, week, weekday, dow, doy, temp, weekdayOverflow;
+
+    w = config._w;
+    if (w.GG != null || w.W != null || w.E != null) {
+        dow = 1;
+        doy = 4;
+
+        // TODO: We need to take the current isoWeekYear, but that depends on
+        // how we interpret now (local, utc, fixed offset). So create
+        // a now version of current config (take local/utc/offset flags, and
+        // create now).
+        weekYear = defaults(w.GG, config._a[YEAR], weekOfYear(createLocal(), 1, 4).year);
+        week = defaults(w.W, 1);
+        weekday = defaults(w.E, 1);
+        if (weekday < 1 || weekday > 7) {
+            weekdayOverflow = true;
+        }
+    } else {
+        dow = config._locale._week.dow;
+        doy = config._locale._week.doy;
+
+        var curWeek = weekOfYear(createLocal(), dow, doy);
+
+        weekYear = defaults(w.gg, config._a[YEAR], curWeek.year);
+
+        // Default to current week.
+        week = defaults(w.w, curWeek.week);
+
+        if (w.d != null) {
+            // weekday -- low day numbers are considered next week
+            weekday = w.d;
+            if (weekday < 0 || weekday > 6) {
+                weekdayOverflow = true;
+            }
+        } else if (w.e != null) {
+            // local weekday -- counting starts from begining of week
+            weekday = w.e + dow;
+            if (w.e < 0 || w.e > 6) {
+                weekdayOverflow = true;
+            }
+        } else {
+            // default to begining of week
+            weekday = dow;
+        }
+    }
+    if (week < 1 || week > weeksInYear(weekYear, dow, doy)) {
+        getParsingFlags(config)._overflowWeeks = true;
+    } else if (weekdayOverflow != null) {
+        getParsingFlags(config)._overflowWeekday = true;
+    } else {
+        temp = dayOfYearFromWeeks(weekYear, week, weekday, dow, doy);
+        config._a[YEAR] = temp.year;
+        config._dayOfYear = temp.dayOfYear;
+    }
+}
+
+// iso 8601 regex
+// 0000-00-00 0000-W00 or 0000-W00-0 + T + 00 or 00:00 or 00:00:00 or 00:00:00.000 + +00:00 or +0000 or +00)
+var extendedIsoRegex = /^\s*((?:[+-]\d{6}|\d{4})-(?:\d\d-\d\d|W\d\d-\d|W\d\d|\d\d\d|\d\d))(?:(T| )(\d\d(?::\d\d(?::\d\d(?:[.,]\d+)?)?)?)([\+\-]\d\d(?::?\d\d)?|\s*Z)?)?$/;
+var basicIsoRegex = /^\s*((?:[+-]\d{6}|\d{4})(?:\d\d\d\d|W\d\d\d|W\d\d|\d\d\d|\d\d))(?:(T| )(\d\d(?:\d\d(?:\d\d(?:[.,]\d+)?)?)?)([\+\-]\d\d(?::?\d\d)?|\s*Z)?)?$/;
+
+var tzRegex = /Z|[+-]\d\d(?::?\d\d)?/;
+
+var isoDates = [
+    ['YYYYYY-MM-DD', /[+-]\d{6}-\d\d-\d\d/],
+    ['YYYY-MM-DD', /\d{4}-\d\d-\d\d/],
+    ['GGGG-[W]WW-E', /\d{4}-W\d\d-\d/],
+    ['GGGG-[W]WW', /\d{4}-W\d\d/, false],
+    ['YYYY-DDD', /\d{4}-\d{3}/],
+    ['YYYY-MM', /\d{4}-\d\d/, false],
+    ['YYYYYYMMDD', /[+-]\d{10}/],
+    ['YYYYMMDD', /\d{8}/],
+    // YYYYMM is NOT allowed by the standard
+    ['GGGG[W]WWE', /\d{4}W\d{3}/],
+    ['GGGG[W]WW', /\d{4}W\d{2}/, false],
+    ['YYYYDDD', /\d{7}/]
+];
+
+// iso time formats and regexes
+var isoTimes = [
+    ['HH:mm:ss.SSSS', /\d\d:\d\d:\d\d\.\d+/],
+    ['HH:mm:ss,SSSS', /\d\d:\d\d:\d\d,\d+/],
+    ['HH:mm:ss', /\d\d:\d\d:\d\d/],
+    ['HH:mm', /\d\d:\d\d/],
+    ['HHmmss.SSSS', /\d\d\d\d\d\d\.\d+/],
+    ['HHmmss,SSSS', /\d\d\d\d\d\d,\d+/],
+    ['HHmmss', /\d\d\d\d\d\d/],
+    ['HHmm', /\d\d\d\d/],
+    ['HH', /\d\d/]
+];
+
+var aspNetJsonRegex = /^\/?Date\((\-?\d+)/i;
+
+// date from iso format
+function configFromISO(config) {
+    var i, l,
+        string = config._i,
+        match = extendedIsoRegex.exec(string) || basicIsoRegex.exec(string),
+        allowTime, dateFormat, timeFormat, tzFormat;
+
+    if (match) {
+        getParsingFlags(config).iso = true;
+
+        for (i = 0, l = isoDates.length; i < l; i++) {
+            if (isoDates[i][1].exec(match[1])) {
+                dateFormat = isoDates[i][0];
+                allowTime = isoDates[i][2] !== false;
+                break;
+            }
+        }
+        if (dateFormat == null) {
+            config._isValid = false;
+            return;
+        }
+        if (match[3]) {
+            for (i = 0, l = isoTimes.length; i < l; i++) {
+                if (isoTimes[i][1].exec(match[3])) {
+                    // match[2] should be 'T' or space
+                    timeFormat = (match[2] || ' ') + isoTimes[i][0];
+                    break;
+                }
+            }
+            if (timeFormat == null) {
+                config._isValid = false;
+                return;
+            }
+        }
+        if (!allowTime && timeFormat != null) {
+            config._isValid = false;
+            return;
+        }
+        if (match[4]) {
+            if (tzRegex.exec(match[4])) {
+                tzFormat = 'Z';
+            } else {
+                config._isValid = false;
+                return;
+            }
+        }
+        config._f = dateFormat + (timeFormat || '') + (tzFormat || '');
+        configFromStringAndFormat(config);
+    } else {
+        config._isValid = false;
+    }
+}
+
+// RFC 2822 regex: For details see https://tools.ietf.org/html/rfc2822#section-3.3
+var rfc2822 = /^(?:(Mon|Tue|Wed|Thu|Fri|Sat|Sun),?\s)?(\d{1,2})\s(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s(\d{2,4})\s(\d\d):(\d\d)(?::(\d\d))?\s(?:(UT|GMT|[ECMP][SD]T)|([Zz])|([+-]\d{4}))$/;
+
+function extractFromRFC2822Strings(yearStr, monthStr, dayStr, hourStr, minuteStr, secondStr) {
+    var result = [
+        untruncateYear(yearStr),
+        defaultLocaleMonthsShort.indexOf(monthStr),
+        parseInt(dayStr, 10),
+        parseInt(hourStr, 10),
+        parseInt(minuteStr, 10)
+    ];
+
+    if (secondStr) {
+        result.push(parseInt(secondStr, 10));
+    }
+
+    return result;
+}
+
+function untruncateYear(yearStr) {
+    var year = parseInt(yearStr, 10);
+    if (year <= 49) {
+        return 2000 + year;
+    } else if (year <= 999) {
+        return 1900 + year;
+    }
+    return year;
+}
+
+function preprocessRFC2822(s) {
+    // Remove comments and folding whitespace and replace multiple-spaces with a single space
+    return s.replace(/\([^)]*\)|[\n\t]/g, ' ').replace(/(\s\s+)/g, ' ').trim();
+}
+
+function checkWeekday(weekdayStr, parsedInput, config) {
+    if (weekdayStr) {
+        // TODO: Replace the vanilla JS Date object with an indepentent day-of-week check.
+        var weekdayProvided = defaultLocaleWeekdaysShort.indexOf(weekdayStr),
+            weekdayActual = new Date(parsedInput[0], parsedInput[1], parsedInput[2]).getDay();
+        if (weekdayProvided !== weekdayActual) {
+            getParsingFlags(config).weekdayMismatch = true;
+            config._isValid = false;
+            return false;
+        }
+    }
+    return true;
+}
+
+var obsOffsets = {
+    UT: 0,
+    GMT: 0,
+    EDT: -4 * 60,
+    EST: -5 * 60,
+    CDT: -5 * 60,
+    CST: -6 * 60,
+    MDT: -6 * 60,
+    MST: -7 * 60,
+    PDT: -7 * 60,
+    PST: -8 * 60
+};
+
+function calculateOffset(obsOffset, militaryOffset, numOffset) {
+    if (obsOffset) {
+        return obsOffsets[obsOffset];
+    } else if (militaryOffset) {
+        // the only allowed military tz is Z
+        return 0;
+    } else {
+        var hm = parseInt(numOffset, 10);
+        var m = hm % 100, h = (hm - m) / 100;
+        return h * 60 + m;
+    }
+}
+
+// date and time from ref 2822 format
+function configFromRFC2822(config) {
+    var match = rfc2822.exec(preprocessRFC2822(config._i));
+    if (match) {
+        var parsedArray = extractFromRFC2822Strings(match[4], match[3], match[2], match[5], match[6], match[7]);
+        if (!checkWeekday(match[1], parsedArray, config)) {
+            return;
+        }
+
+        config._a = parsedArray;
+        config._tzm = calculateOffset(match[8], match[9], match[10]);
+
+        config._d = createUTCDate.apply(null, config._a);
+        config._d.setUTCMinutes(config._d.getUTCMinutes() - config._tzm);
+
+        getParsingFlags(config).rfc2822 = true;
+    } else {
+        config._isValid = false;
+    }
+}
+
+// date from iso format or fallback
+function configFromString(config) {
+    var matched = aspNetJsonRegex.exec(config._i);
+
+    if (matched !== null) {
+        config._d = new Date(+matched[1]);
+        return;
+    }
+
+    configFromISO(config);
+    if (config._isValid === false) {
+        delete config._isValid;
+    } else {
+        return;
+    }
+
+    configFromRFC2822(config);
+    if (config._isValid === false) {
+        delete config._isValid;
+    } else {
+        return;
+    }
+
+    // Final attempt, use Input Fallback
+    hooks.createFromInputFallback(config);
+}
+
+hooks.createFromInputFallback = deprecate(
+    'value provided is not in a recognized RFC2822 or ISO format. moment construction falls back to js Date(), ' +
+    'which is not reliable across all browsers and versions. Non RFC2822/ISO date formats are ' +
+    'discouraged and will be removed in an upcoming major release. Please refer to ' +
+    'http://momentjs.com/guides/#/warnings/js-date/ for more info.',
+    function (config) {
+        config._d = new Date(config._i + (config._useUTC ? ' UTC' : ''));
+    }
+);
+
+// constant that refers to the ISO standard
+hooks.ISO_8601 = function () {};
+
+// constant that refers to the RFC 2822 form
+hooks.RFC_2822 = function () {};
+
+// date from string and format string
+function configFromStringAndFormat(config) {
+    // TODO: Move this to another part of the creation flow to prevent circular deps
+    if (config._f === hooks.ISO_8601) {
+        configFromISO(config);
+        return;
+    }
+    if (config._f === hooks.RFC_2822) {
+        configFromRFC2822(config);
+        return;
+    }
+    config._a = [];
+    getParsingFlags(config).empty = true;
+
+    // This array is used to make a Date, either with `new Date` or `Date.UTC`
+    var string = '' + config._i,
+        i, parsedInput, tokens, token, skipped,
+        stringLength = string.length,
+        totalParsedInputLength = 0;
+
+    tokens = expandFormat(config._f, config._locale).match(formattingTokens) || [];
+
+    for (i = 0; i < tokens.length; i++) {
+        token = tokens[i];
+        parsedInput = (string.match(getParseRegexForToken(token, config)) || [])[0];
+        // console.log('token', token, 'parsedInput', parsedInput,
+        //         'regex', getParseRegexForToken(token, config));
+        if (parsedInput) {
+            skipped = string.substr(0, string.indexOf(parsedInput));
+            if (skipped.length > 0) {
+                getParsingFlags(config).unusedInput.push(skipped);
+            }
+            string = string.slice(string.indexOf(parsedInput) + parsedInput.length);
+            totalParsedInputLength += parsedInput.length;
+        }
+        // don't parse if it's not a known token
+        if (formatTokenFunctions[token]) {
+            if (parsedInput) {
+                getParsingFlags(config).empty = false;
+            }
+            else {
+                getParsingFlags(config).unusedTokens.push(token);
+            }
+            addTimeToArrayFromToken(token, parsedInput, config);
+        }
+        else if (config._strict && !parsedInput) {
+            getParsingFlags(config).unusedTokens.push(token);
+        }
+    }
+
+    // add remaining unparsed input length to the string
+    getParsingFlags(config).charsLeftOver = stringLength - totalParsedInputLength;
+    if (string.length > 0) {
+        getParsingFlags(config).unusedInput.push(string);
+    }
+
+    // clear _12h flag if hour is <= 12
+    if (config._a[HOUR] <= 12 &&
+        getParsingFlags(config).bigHour === true &&
+        config._a[HOUR] > 0) {
+        getParsingFlags(config).bigHour = undefined;
+    }
+
+    getParsingFlags(config).parsedDateParts = config._a.slice(0);
+    getParsingFlags(config).meridiem = config._meridiem;
+    // handle meridiem
+    config._a[HOUR] = meridiemFixWrap(config._locale, config._a[HOUR], config._meridiem);
+
+    configFromArray(config);
+    checkOverflow(config);
+}
+
+
+function meridiemFixWrap (locale, hour, meridiem) {
+    var isPm;
+
+    if (meridiem == null) {
+        // nothing to do
+        return hour;
+    }
+    if (locale.meridiemHour != null) {
+        return locale.meridiemHour(hour, meridiem);
+    } else if (locale.isPM != null) {
+        // Fallback
+        isPm = locale.isPM(meridiem);
+        if (isPm && hour < 12) {
+            hour += 12;
+        }
+        if (!isPm && hour === 12) {
+            hour = 0;
+        }
+        return hour;
+    } else {
+        // this is not supposed to happen
+        return hour;
+    }
+}
+
+// date from string and array of format strings
+function configFromStringAndArray(config) {
+    var tempConfig,
+        bestMoment,
+
+        scoreToBeat,
+        i,
+        currentScore;
+
+    if (config._f.length === 0) {
+        getParsingFlags(config).invalidFormat = true;
+        config._d = new Date(NaN);
+        return;
+    }
+
+    for (i = 0; i < config._f.length; i++) {
+        currentScore = 0;
+        tempConfig = copyConfig({}, config);
+        if (config._useUTC != null) {
+            tempConfig._useUTC = config._useUTC;
+        }
+        tempConfig._f = config._f[i];
+        configFromStringAndFormat(tempConfig);
+
+        if (!isValid(tempConfig)) {
+            continue;
+        }
+
+        // if there is any input that was not parsed add a penalty for that format
+        currentScore += getParsingFlags(tempConfig).charsLeftOver;
+
+        //or tokens
+        currentScore += getParsingFlags(tempConfig).unusedTokens.length * 10;
+
+        getParsingFlags(tempConfig).score = currentScore;
+
+        if (scoreToBeat == null || currentScore < scoreToBeat) {
+            scoreToBeat = currentScore;
+            bestMoment = tempConfig;
+        }
+    }
+
+    extend(config, bestMoment || tempConfig);
+}
+
+function configFromObject(config) {
+    if (config._d) {
+        return;
+    }
+
+    var i = normalizeObjectUnits(config._i);
+    config._a = map([i.year, i.month, i.day || i.date, i.hour, i.minute, i.second, i.millisecond], function (obj) {
+        return obj && parseInt(obj, 10);
+    });
+
+    configFromArray(config);
+}
+
+function createFromConfig (config) {
+    var res = new Moment(checkOverflow(prepareConfig(config)));
+    if (res._nextDay) {
+        // Adding is smart enough around DST
+        res.add(1, 'd');
+        res._nextDay = undefined;
+    }
+
+    return res;
+}
+
+function prepareConfig (config) {
+    var input = config._i,
+        format = config._f;
+
+    config._locale = config._locale || getLocale(config._l);
+
+    if (input === null || (format === undefined && input === '')) {
+        return createInvalid({nullInput: true});
+    }
+
+    if (typeof input === 'string') {
+        config._i = input = config._locale.preparse(input);
+    }
+
+    if (isMoment(input)) {
+        return new Moment(checkOverflow(input));
+    } else if (isDate(input)) {
+        config._d = input;
+    } else if (isArray(format)) {
+        configFromStringAndArray(config);
+    } else if (format) {
+        configFromStringAndFormat(config);
+    }  else {
+        configFromInput(config);
+    }
+
+    if (!isValid(config)) {
+        config._d = null;
+    }
+
+    return config;
+}
+
+function configFromInput(config) {
+    var input = config._i;
+    if (isUndefined(input)) {
+        config._d = new Date(hooks.now());
+    } else if (isDate(input)) {
+        config._d = new Date(input.valueOf());
+    } else if (typeof input === 'string') {
+        configFromString(config);
+    } else if (isArray(input)) {
+        config._a = map(input.slice(0), function (obj) {
+            return parseInt(obj, 10);
+        });
+        configFromArray(config);
+    } else if (isObject(input)) {
+        configFromObject(config);
+    } else if (isNumber(input)) {
+        // from milliseconds
+        config._d = new Date(input);
+    } else {
+        hooks.createFromInputFallback(config);
+    }
+}
+
+function createLocalOrUTC (input, format, locale, strict, isUTC) {
+    var c = {};
+
+    if (locale === true || locale === false) {
+        strict = locale;
+        locale = undefined;
+    }
+
+    if ((isObject(input) && isObjectEmpty(input)) ||
+            (isArray(input) && input.length === 0)) {
+        input = undefined;
+    }
+    // object construction must be done this way.
+    // https://github.com/moment/moment/issues/1423
+    c._isAMomentObject = true;
+    c._useUTC = c._isUTC = isUTC;
+    c._l = locale;
+    c._i = input;
+    c._f = format;
+    c._strict = strict;
+
+    return createFromConfig(c);
+}
+
+function createLocal (input, format, locale, strict) {
+    return createLocalOrUTC(input, format, locale, strict, false);
+}
+
+var prototypeMin = deprecate(
+    'moment().min is deprecated, use moment.max instead. http://momentjs.com/guides/#/warnings/min-max/',
+    function () {
+        var other = createLocal.apply(null, arguments);
+        if (this.isValid() && other.isValid()) {
+            return other < this ? this : other;
+        } else {
+            return createInvalid();
+        }
+    }
+);
+
+var prototypeMax = deprecate(
+    'moment().max is deprecated, use moment.min instead. http://momentjs.com/guides/#/warnings/min-max/',
+    function () {
+        var other = createLocal.apply(null, arguments);
+        if (this.isValid() && other.isValid()) {
+            return other > this ? this : other;
+        } else {
+            return createInvalid();
+        }
+    }
+);
+
+// Pick a moment m from moments so that m[fn](other) is true for all
+// other. This relies on the function fn to be transitive.
+//
+// moments should either be an array of moment objects or an array, whose
+// first element is an array of moment objects.
+function pickBy(fn, moments) {
+    var res, i;
+    if (moments.length === 1 && isArray(moments[0])) {
+        moments = moments[0];
+    }
+    if (!moments.length) {
+        return createLocal();
+    }
+    res = moments[0];
+    for (i = 1; i < moments.length; ++i) {
+        if (!moments[i].isValid() || moments[i][fn](res)) {
+            res = moments[i];
+        }
+    }
+    return res;
+}
+
+// TODO: Use [].sort instead?
+function min () {
+    var args = [].slice.call(arguments, 0);
+
+    return pickBy('isBefore', args);
+}
+
+function max () {
+    var args = [].slice.call(arguments, 0);
+
+    return pickBy('isAfter', args);
+}
+
+var now = function () {
+    return Date.now ? Date.now() : +(new Date());
+};
+
+var ordering = ['year', 'quarter', 'month', 'week', 'day', 'hour', 'minute', 'second', 'millisecond'];
+
+function isDurationValid(m) {
+    for (var key in m) {
+        if (!(indexOf.call(ordering, key) !== -1 && (m[key] == null || !isNaN(m[key])))) {
+            return false;
+        }
+    }
+
+    var unitHasDecimal = false;
+    for (var i = 0; i < ordering.length; ++i) {
+        if (m[ordering[i]]) {
+            if (unitHasDecimal) {
+                return false; // only allow non-integers for smallest unit
+            }
+            if (parseFloat(m[ordering[i]]) !== toInt(m[ordering[i]])) {
+                unitHasDecimal = true;
+            }
+        }
+    }
+
+    return true;
+}
+
+function isValid$1() {
+    return this._isValid;
+}
+
+function createInvalid$1() {
+    return createDuration(NaN);
+}
+
+function Duration (duration) {
+    var normalizedInput = normalizeObjectUnits(duration),
+        years = normalizedInput.year || 0,
+        quarters = normalizedInput.quarter || 0,
+        months = normalizedInput.month || 0,
+        weeks = normalizedInput.week || 0,
+        days = normalizedInput.day || 0,
+        hours = normalizedInput.hour || 0,
+        minutes = normalizedInput.minute || 0,
+        seconds = normalizedInput.second || 0,
+        milliseconds = normalizedInput.millisecond || 0;
+
+    this._isValid = isDurationValid(normalizedInput);
+
+    // representation for dateAddRemove
+    this._milliseconds = +milliseconds +
+        seconds * 1e3 + // 1000
+        minutes * 6e4 + // 1000 * 60
+        hours * 1000 * 60 * 60; //using 1000 * 60 * 60 instead of 36e5 to avoid floating point rounding errors https://github.com/moment/moment/issues/2978
+    // Because of dateAddRemove treats 24 hours as different from a
+    // day when working around DST, we need to store them separately
+    this._days = +days +
+        weeks * 7;
+    // It is impossible to translate months into days without knowing
+    // which months you are are talking about, so we have to store
+    // it separately.
+    this._months = +months +
+        quarters * 3 +
+        years * 12;
+
+    this._data = {};
+
+    this._locale = getLocale();
+
+    this._bubble();
+}
+
+function isDuration (obj) {
+    return obj instanceof Duration;
+}
+
+function absRound (number) {
+    if (number < 0) {
+        return Math.round(-1 * number) * -1;
+    } else {
+        return Math.round(number);
+    }
+}
+
+// FORMATTING
+
+function offset (token, separator) {
+    addFormatToken(token, 0, 0, function () {
+        var offset = this.utcOffset();
+        var sign = '+';
+        if (offset < 0) {
+            offset = -offset;
+            sign = '-';
+        }
+        return sign + zeroFill(~~(offset / 60), 2) + separator + zeroFill(~~(offset) % 60, 2);
+    });
+}
+
+offset('Z', ':');
+offset('ZZ', '');
+
+// PARSING
+
+addRegexToken('Z',  matchShortOffset);
+addRegexToken('ZZ', matchShortOffset);
+addParseToken(['Z', 'ZZ'], function (input, array, config) {
+    config._useUTC = true;
+    config._tzm = offsetFromString(matchShortOffset, input);
+});
+
+// HELPERS
+
+// timezone chunker
+// '+10:00' > ['10',  '00']
+// '-1530'  > ['-15', '30']
+var chunkOffset = /([\+\-]|\d\d)/gi;
+
+function offsetFromString(matcher, string) {
+    var matches = (string || '').match(matcher);
+
+    if (matches === null) {
+        return null;
+    }
+
+    var chunk   = matches[matches.length - 1] || [];
+    var parts   = (chunk + '').match(chunkOffset) || ['-', 0, 0];
+    var minutes = +(parts[1] * 60) + toInt(parts[2]);
+
+    return minutes === 0 ?
+      0 :
+      parts[0] === '+' ? minutes : -minutes;
+}
+
+// Return a moment from input, that is local/utc/zone equivalent to model.
+function cloneWithOffset(input, model) {
+    var res, diff;
+    if (model._isUTC) {
+        res = model.clone();
+        diff = (isMoment(input) || isDate(input) ? input.valueOf() : createLocal(input).valueOf()) - res.valueOf();
+        // Use low-level api, because this fn is low-level api.
+        res._d.setTime(res._d.valueOf() + diff);
+        hooks.updateOffset(res, false);
+        return res;
+    } else {
+        return createLocal(input).local();
+    }
+}
+
+function getDateOffset (m) {
+    // On Firefox.24 Date#getTimezoneOffset returns a floating point.
+    // https://github.com/moment/moment/pull/1871
+    return -Math.round(m._d.getTimezoneOffset() / 15) * 15;
+}
+
+// HOOKS
+
+// This function will be called whenever a moment is mutated.
+// It is intended to keep the offset in sync with the timezone.
+hooks.updateOffset = function () {};
+
+// MOMENTS
+
+// keepLocalTime = true means only change the timezone, without
+// affecting the local hour. So 5:31:26 +0300 --[utcOffset(2, true)]-->
+// 5:31:26 +0200 It is possible that 5:31:26 doesn't exist with offset
+// +0200, so we adjust the time as needed, to be valid.
+//
+// Keeping the time actually adds/subtracts (one hour)
+// from the actual represented time. That is why we call updateOffset
+// a second time. In case it wants us to change the offset again
+// _changeInProgress == true case, then we have to adjust, because
+// there is no such time in the given timezone.
+function getSetOffset (input, keepLocalTime, keepMinutes) {
+    var offset = this._offset || 0,
+        localAdjust;
+    if (!this.isValid()) {
+        return input != null ? this : NaN;
+    }
+    if (input != null) {
+        if (typeof input === 'string') {
+            input = offsetFromString(matchShortOffset, input);
+            if (input === null) {
+                return this;
+            }
+        } else if (Math.abs(input) < 16 && !keepMinutes) {
+            input = input * 60;
+        }
+        if (!this._isUTC && keepLocalTime) {
+            localAdjust = getDateOffset(this);
+        }
+        this._offset = input;
+        this._isUTC = true;
+        if (localAdjust != null) {
+            this.add(localAdjust, 'm');
+        }
+        if (offset !== input) {
+            if (!keepLocalTime || this._changeInProgress) {
+                addSubtract(this, createDuration(input - offset, 'm'), 1, false);
+            } else if (!this._changeInProgress) {
+                this._changeInProgress = true;
+                hooks.updateOffset(this, true);
+                this._changeInProgress = null;
+            }
+        }
+        return this;
+    } else {
+        return this._isUTC ? offset : getDateOffset(this);
+    }
+}
+
+function getSetZone (input, keepLocalTime) {
+    if (input != null) {
+        if (typeof input !== 'string') {
+            input = -input;
+        }
+
+        this.utcOffset(input, keepLocalTime);
+
+        return this;
+    } else {
+        return -this.utcOffset();
+    }
+}
+
+function setOffsetToUTC (keepLocalTime) {
+    return this.utcOffset(0, keepLocalTime);
+}
+
+function setOffsetToLocal (keepLocalTime) {
+    if (this._isUTC) {
+        this.utcOffset(0, keepLocalTime);
+        this._isUTC = false;
+
+        if (keepLocalTime) {
+            this.subtract(getDateOffset(this), 'm');
+        }
+    }
+    return this;
+}
+
+function setOffsetToParsedOffset () {
+    if (this._tzm != null) {
+        this.utcOffset(this._tzm, false, true);
+    } else if (typeof this._i === 'string') {
+        var tZone = offsetFromString(matchOffset, this._i);
+        if (tZone != null) {
+            this.utcOffset(tZone);
+        }
+        else {
+            this.utcOffset(0, true);
+        }
+    }
+    return this;
+}
+
+function hasAlignedHourOffset (input) {
+    if (!this.isValid()) {
+        return false;
+    }
+    input = input ? createLocal(input).utcOffset() : 0;
+
+    return (this.utcOffset() - input) % 60 === 0;
+}
+
+function isDaylightSavingTime () {
+    return (
+        this.utcOffset() > this.clone().month(0).utcOffset() ||
+        this.utcOffset() > this.clone().month(5).utcOffset()
+    );
+}
+
+function isDaylightSavingTimeShifted () {
+    if (!isUndefined(this._isDSTShifted)) {
+        return this._isDSTShifted;
+    }
+
+    var c = {};
+
+    copyConfig(c, this);
+    c = prepareConfig(c);
+
+    if (c._a) {
+        var other = c._isUTC ? createUTC(c._a) : createLocal(c._a);
+        this._isDSTShifted = this.isValid() &&
+            compareArrays(c._a, other.toArray()) > 0;
+    } else {
+        this._isDSTShifted = false;
+    }
+
+    return this._isDSTShifted;
+}
+
+function isLocal () {
+    return this.isValid() ? !this._isUTC : false;
+}
+
+function isUtcOffset () {
+    return this.isValid() ? this._isUTC : false;
+}
+
+function isUtc () {
+    return this.isValid() ? this._isUTC && this._offset === 0 : false;
+}
+
+// ASP.NET json date format regex
+var aspNetRegex = /^(\-|\+)?(?:(\d*)[. ])?(\d+)\:(\d+)(?:\:(\d+)(\.\d*)?)?$/;
+
+// from http://docs.closure-library.googlecode.com/git/closure_goog_date_date.js.source.html
+// somewhat more in line with 4.4.3.2 2004 spec, but allows decimal anywhere
+// and further modified to allow for strings containing both week and day
+var isoRegex = /^(-|\+)?P(?:([-+]?[0-9,.]*)Y)?(?:([-+]?[0-9,.]*)M)?(?:([-+]?[0-9,.]*)W)?(?:([-+]?[0-9,.]*)D)?(?:T(?:([-+]?[0-9,.]*)H)?(?:([-+]?[0-9,.]*)M)?(?:([-+]?[0-9,.]*)S)?)?$/;
+
+function createDuration (input, key) {
+    var duration = input,
+        // matching against regexp is expensive, do it on demand
+        match = null,
+        sign,
+        ret,
+        diffRes;
+
+    if (isDuration(input)) {
+        duration = {
+            ms : input._milliseconds,
+            d  : input._days,
+            M  : input._months
+        };
+    } else if (isNumber(input)) {
+        duration = {};
+        if (key) {
+            duration[key] = input;
+        } else {
+            duration.milliseconds = input;
+        }
+    } else if (!!(match = aspNetRegex.exec(input))) {
+        sign = (match[1] === '-') ? -1 : 1;
+        duration = {
+            y  : 0,
+            d  : toInt(match[DATE])                         * sign,
+            h  : toInt(match[HOUR])                         * sign,
+            m  : toInt(match[MINUTE])                       * sign,
+            s  : toInt(match[SECOND])                       * sign,
+            ms : toInt(absRound(match[MILLISECOND] * 1000)) * sign // the millisecond decimal point is included in the match
+        };
+    } else if (!!(match = isoRegex.exec(input))) {
+        sign = (match[1] === '-') ? -1 : (match[1] === '+') ? 1 : 1;
+        duration = {
+            y : parseIso(match[2], sign),
+            M : parseIso(match[3], sign),
+            w : parseIso(match[4], sign),
+            d : parseIso(match[5], sign),
+            h : parseIso(match[6], sign),
+            m : parseIso(match[7], sign),
+            s : parseIso(match[8], sign)
+        };
+    } else if (duration == null) {// checks for null or undefined
+        duration = {};
+    } else if (typeof duration === 'object' && ('from' in duration || 'to' in duration)) {
+        diffRes = momentsDifference(createLocal(duration.from), createLocal(duration.to));
+
+        duration = {};
+        duration.ms = diffRes.milliseconds;
+        duration.M = diffRes.months;
+    }
+
+    ret = new Duration(duration);
+
+    if (isDuration(input) && hasOwnProp(input, '_locale')) {
+        ret._locale = input._locale;
+    }
+
+    return ret;
+}
+
+createDuration.fn = Duration.prototype;
+createDuration.invalid = createInvalid$1;
+
+function parseIso (inp, sign) {
+    // We'd normally use ~~inp for this, but unfortunately it also
+    // converts floats to ints.
+    // inp may be undefined, so careful calling replace on it.
+    var res = inp && parseFloat(inp.replace(',', '.'));
+    // apply sign while we're at it
+    return (isNaN(res) ? 0 : res) * sign;
+}
+
+function positiveMomentsDifference(base, other) {
+    var res = {milliseconds: 0, months: 0};
+
+    res.months = other.month() - base.month() +
+        (other.year() - base.year()) * 12;
+    if (base.clone().add(res.months, 'M').isAfter(other)) {
+        --res.months;
+    }
+
+    res.milliseconds = +other - +(base.clone().add(res.months, 'M'));
+
+    return res;
+}
+
+function momentsDifference(base, other) {
+    var res;
+    if (!(base.isValid() && other.isValid())) {
+        return {milliseconds: 0, months: 0};
+    }
+
+    other = cloneWithOffset(other, base);
+    if (base.isBefore(other)) {
+        res = positiveMomentsDifference(base, other);
+    } else {
+        res = positiveMomentsDifference(other, base);
+        res.milliseconds = -res.milliseconds;
+        res.months = -res.months;
+    }
+
+    return res;
+}
+
+// TODO: remove 'name' arg after deprecation is removed
+function createAdder(direction, name) {
+    return function (val, period) {
+        var dur, tmp;
+        //invert the arguments, but complain about it
+        if (period !== null && !isNaN(+period)) {
+            deprecateSimple(name, 'moment().' + name  + '(period, number) is deprecated. Please use moment().' + name + '(number, period). ' +
+            'See http://momentjs.com/guides/#/warnings/add-inverted-param/ for more info.');
+            tmp = val; val = period; period = tmp;
+        }
+
+        val = typeof val === 'string' ? +val : val;
+        dur = createDuration(val, period);
+        addSubtract(this, dur, direction);
+        return this;
+    };
+}
+
+function addSubtract (mom, duration, isAdding, updateOffset) {
+    var milliseconds = duration._milliseconds,
+        days = absRound(duration._days),
+        months = absRound(duration._months);
+
+    if (!mom.isValid()) {
+        // No op
+        return;
+    }
+
+    updateOffset = updateOffset == null ? true : updateOffset;
+
+    if (months) {
+        setMonth(mom, get(mom, 'Month') + months * isAdding);
+    }
+    if (days) {
+        set$1(mom, 'Date', get(mom, 'Date') + days * isAdding);
+    }
+    if (milliseconds) {
+        mom._d.setTime(mom._d.valueOf() + milliseconds * isAdding);
+    }
+    if (updateOffset) {
+        hooks.updateOffset(mom, days || months);
+    }
+}
+
+var add      = createAdder(1, 'add');
+var subtract = createAdder(-1, 'subtract');
+
+function getCalendarFormat(myMoment, now) {
+    var diff = myMoment.diff(now, 'days', true);
+    return diff < -6 ? 'sameElse' :
+            diff < -1 ? 'lastWeek' :
+            diff < 0 ? 'lastDay' :
+            diff < 1 ? 'sameDay' :
+            diff < 2 ? 'nextDay' :
+            diff < 7 ? 'nextWeek' : 'sameElse';
+}
+
+function calendar$1 (time, formats) {
+    // We want to compare the start of today, vs this.
+    // Getting start-of-today depends on whether we're local/utc/offset or not.
+    var now = time || createLocal(),
+        sod = cloneWithOffset(now, this).startOf('day'),
+        format = hooks.calendarFormat(this, sod) || 'sameElse';
+
+    var output = formats && (isFunction(formats[format]) ? formats[format].call(this, now) : formats[format]);
+
+    return this.format(output || this.localeData().calendar(format, this, createLocal(now)));
+}
+
+function clone () {
+    return new Moment(this);
+}
+
+function isAfter (input, units) {
+    var localInput = isMoment(input) ? input : createLocal(input);
+    if (!(this.isValid() && localInput.isValid())) {
+        return false;
+    }
+    units = normalizeUnits(!isUndefined(units) ? units : 'millisecond');
+    if (units === 'millisecond') {
+        return this.valueOf() > localInput.valueOf();
+    } else {
+        return localInput.valueOf() < this.clone().startOf(units).valueOf();
+    }
+}
+
+function isBefore (input, units) {
+    var localInput = isMoment(input) ? input : createLocal(input);
+    if (!(this.isValid() && localInput.isValid())) {
+        return false;
+    }
+    units = normalizeUnits(!isUndefined(units) ? units : 'millisecond');
+    if (units === 'millisecond') {
+        return this.valueOf() < localInput.valueOf();
+    } else {
+        return this.clone().endOf(units).valueOf() < localInput.valueOf();
+    }
+}
+
+function isBetween (from, to, units, inclusivity) {
+    inclusivity = inclusivity || '()';
+    return (inclusivity[0] === '(' ? this.isAfter(from, units) : !this.isBefore(from, units)) &&
+        (inclusivity[1] === ')' ? this.isBefore(to, units) : !this.isAfter(to, units));
+}
+
+function isSame (input, units) {
+    var localInput = isMoment(input) ? input : createLocal(input),
+        inputMs;
+    if (!(this.isValid() && localInput.isValid())) {
+        return false;
+    }
+    units = normalizeUnits(units || 'millisecond');
+    if (units === 'millisecond') {
+        return this.valueOf() === localInput.valueOf();
+    } else {
+        inputMs = localInput.valueOf();
+        return this.clone().startOf(units).valueOf() <= inputMs && inputMs <= this.clone().endOf(units).valueOf();
+    }
+}
+
+function isSameOrAfter (input, units) {
+    return this.isSame(input, units) || this.isAfter(input,units);
+}
+
+function isSameOrBefore (input, units) {
+    return this.isSame(input, units) || this.isBefore(input,units);
+}
+
+function diff (input, units, asFloat) {
+    var that,
+        zoneDelta,
+        delta, output;
+
+    if (!this.isValid()) {
+        return NaN;
+    }
+
+    that = cloneWithOffset(input, this);
+
+    if (!that.isValid()) {
+        return NaN;
+    }
+
+    zoneDelta = (that.utcOffset() - this.utcOffset()) * 6e4;
+
+    units = normalizeUnits(units);
+
+    switch (units) {
+        case 'year': output = monthDiff(this, that) / 12; break;
+        case 'month': output = monthDiff(this, that); break;
+        case 'quarter': output = monthDiff(this, that) / 3; break;
+        case 'second': output = (this - that) / 1e3; break; // 1000
+        case 'minute': output = (this - that) / 6e4; break; // 1000 * 60
+        case 'hour': output = (this - that) / 36e5; break; // 1000 * 60 * 60
+        case 'day': output = (this - that - zoneDelta) / 864e5; break; // 1000 * 60 * 60 * 24, negate dst
+        case 'week': output = (this - that - zoneDelta) / 6048e5; break; // 1000 * 60 * 60 * 24 * 7, negate dst
+        default: output = this - that;
+    }
+
+    return asFloat ? output : absFloor(output);
+}
+
+function monthDiff (a, b) {
+    // difference in months
+    var wholeMonthDiff = ((b.year() - a.year()) * 12) + (b.month() - a.month()),
+        // b is in (anchor - 1 month, anchor + 1 month)
+        anchor = a.clone().add(wholeMonthDiff, 'months'),
+        anchor2, adjust;
+
+    if (b - anchor < 0) {
+        anchor2 = a.clone().add(wholeMonthDiff - 1, 'months');
+        // linear across the month
+        adjust = (b - anchor) / (anchor - anchor2);
+    } else {
+        anchor2 = a.clone().add(wholeMonthDiff + 1, 'months');
+        // linear across the month
+        adjust = (b - anchor) / (anchor2 - anchor);
+    }
+
+    //check for negative zero, return zero if negative zero
+    return -(wholeMonthDiff + adjust) || 0;
+}
+
+hooks.defaultFormat = 'YYYY-MM-DDTHH:mm:ssZ';
+hooks.defaultFormatUtc = 'YYYY-MM-DDTHH:mm:ss[Z]';
+
+function toString () {
+    return this.clone().locale('en').format('ddd MMM DD YYYY HH:mm:ss [GMT]ZZ');
+}
+
+function toISOString(keepOffset) {
+    if (!this.isValid()) {
+        return null;
+    }
+    var utc = keepOffset !== true;
+    var m = utc ? this.clone().utc() : this;
+    if (m.year() < 0 || m.year() > 9999) {
+        return formatMoment(m, utc ? 'YYYYYY-MM-DD[T]HH:mm:ss.SSS[Z]' : 'YYYYYY-MM-DD[T]HH:mm:ss.SSSZ');
+    }
+    if (isFunction(Date.prototype.toISOString)) {
+        // native implementation is ~50x faster, use it when we can
+        if (utc) {
+            return this.toDate().toISOString();
+        } else {
+            return new Date(this._d.valueOf()).toISOString().replace('Z', formatMoment(m, 'Z'));
+        }
+    }
+    return formatMoment(m, utc ? 'YYYY-MM-DD[T]HH:mm:ss.SSS[Z]' : 'YYYY-MM-DD[T]HH:mm:ss.SSSZ');
+}
+
+/**
+ * Return a human readable representation of a moment that can
+ * also be evaluated to get a new moment which is the same
+ *
+ * @link https://nodejs.org/dist/latest/docs/api/util.html#util_custom_inspect_function_on_objects
+ */
+function inspect () {
+    if (!this.isValid()) {
+        return 'moment.invalid(/* ' + this._i + ' */)';
+    }
+    var func = 'moment';
+    var zone = '';
+    if (!this.isLocal()) {
+        func = this.utcOffset() === 0 ? 'moment.utc' : 'moment.parseZone';
+        zone = 'Z';
+    }
+    var prefix = '[' + func + '("]';
+    var year = (0 <= this.year() && this.year() <= 9999) ? 'YYYY' : 'YYYYYY';
+    var datetime = '-MM-DD[T]HH:mm:ss.SSS';
+    var suffix = zone + '[")]';
+
+    return this.format(prefix + year + datetime + suffix);
+}
+
+function format (inputString) {
+    if (!inputString) {
+        inputString = this.isUtc() ? hooks.defaultFormatUtc : hooks.defaultFormat;
+    }
+    var output = formatMoment(this, inputString);
+    return this.localeData().postformat(output);
+}
+
+function from (time, withoutSuffix) {
+    if (this.isValid() &&
+            ((isMoment(time) && time.isValid()) ||
+             createLocal(time).isValid())) {
+        return createDuration({to: this, from: time}).locale(this.locale()).humanize(!withoutSuffix);
+    } else {
+        return this.localeData().invalidDate();
+    }
+}
+
+function fromNow (withoutSuffix) {
+    return this.from(createLocal(), withoutSuffix);
+}
+
+function to (time, withoutSuffix) {
+    if (this.isValid() &&
+            ((isMoment(time) && time.isValid()) ||
+             createLocal(time).isValid())) {
+        return createDuration({from: this, to: time}).locale(this.locale()).humanize(!withoutSuffix);
+    } else {
+        return this.localeData().invalidDate();
+    }
+}
+
+function toNow (withoutSuffix) {
+    return this.to(createLocal(), withoutSuffix);
+}
+
+// If passed a locale key, it will set the locale for this
+// instance.  Otherwise, it will return the locale configuration
+// variables for this instance.
+function locale (key) {
+    var newLocaleData;
+
+    if (key === undefined) {
+        return this._locale._abbr;
+    } else {
+        newLocaleData = getLocale(key);
+        if (newLocaleData != null) {
+            this._locale = newLocaleData;
+        }
+        return this;
+    }
+}
+
+var lang = deprecate(
+    'moment().lang() is deprecated. Instead, use moment().localeData() to get the language configuration. Use moment().locale() to change languages.',
+    function (key) {
+        if (key === undefined) {
+            return this.localeData();
+        } else {
+            return this.locale(key);
+        }
+    }
+);
+
+function localeData () {
+    return this._locale;
+}
+
+function startOf (units) {
+    units = normalizeUnits(units);
+    // the following switch intentionally omits break keywords
+    // to utilize falling through the cases.
+    switch (units) {
+        case 'year':
+            this.month(0);
+            /* falls through */
+        case 'quarter':
+        case 'month':
+            this.date(1);
+            /* falls through */
+        case 'week':
+        case 'isoWeek':
+        case 'day':
+        case 'date':
+            this.hours(0);
+            /* falls through */
+        case 'hour':
+            this.minutes(0);
+            /* falls through */
+        case 'minute':
+            this.seconds(0);
+            /* falls through */
+        case 'second':
+            this.milliseconds(0);
+    }
+
+    // weeks are a special case
+    if (units === 'week') {
+        this.weekday(0);
+    }
+    if (units === 'isoWeek') {
+        this.isoWeekday(1);
+    }
+
+    // quarters are also special
+    if (units === 'quarter') {
+        this.month(Math.floor(this.month() / 3) * 3);
+    }
+
+    return this;
+}
+
+function endOf (units) {
+    units = normalizeUnits(units);
+    if (units === undefined || units === 'millisecond') {
+        return this;
+    }
+
+    // 'date' is an alias for 'day', so it should be considered as such.
+    if (units === 'date') {
+        units = 'day';
+    }
+
+    return this.startOf(units).add(1, (units === 'isoWeek' ? 'week' : units)).subtract(1, 'ms');
+}
+
+function valueOf () {
+    return this._d.valueOf() - ((this._offset || 0) * 60000);
+}
+
+function unix () {
+    return Math.floor(this.valueOf() / 1000);
+}
+
+function toDate () {
+    return new Date(this.valueOf());
+}
+
+function toArray () {
+    var m = this;
+    return [m.year(), m.month(), m.date(), m.hour(), m.minute(), m.second(), m.millisecond()];
+}
+
+function toObject () {
+    var m = this;
+    return {
+        years: m.year(),
+        months: m.month(),
+        date: m.date(),
+        hours: m.hours(),
+        minutes: m.minutes(),
+        seconds: m.seconds(),
+        milliseconds: m.milliseconds()
+    };
+}
+
+function toJSON () {
+    // new Date(NaN).toJSON() === null
+    return this.isValid() ? this.toISOString() : null;
+}
+
+function isValid$2 () {
+    return isValid(this);
+}
+
+function parsingFlags () {
+    return extend({}, getParsingFlags(this));
+}
+
+function invalidAt () {
+    return getParsingFlags(this).overflow;
+}
+
+function creationData() {
+    return {
+        input: this._i,
+        format: this._f,
+        locale: this._locale,
+        isUTC: this._isUTC,
+        strict: this._strict
+    };
+}
+
+// FORMATTING
+
+addFormatToken(0, ['gg', 2], 0, function () {
+    return this.weekYear() % 100;
+});
+
+addFormatToken(0, ['GG', 2], 0, function () {
+    return this.isoWeekYear() % 100;
+});
+
+function addWeekYearFormatToken (token, getter) {
+    addFormatToken(0, [token, token.length], 0, getter);
+}
+
+addWeekYearFormatToken('gggg',     'weekYear');
+addWeekYearFormatToken('ggggg',    'weekYear');
+addWeekYearFormatToken('GGGG',  'isoWeekYear');
+addWeekYearFormatToken('GGGGG', 'isoWeekYear');
+
+// ALIASES
+
+addUnitAlias('weekYear', 'gg');
+addUnitAlias('isoWeekYear', 'GG');
+
+// PRIORITY
+
+addUnitPriority('weekYear', 1);
+addUnitPriority('isoWeekYear', 1);
+
+
+// PARSING
+
+addRegexToken('G',      matchSigned);
+addRegexToken('g',      matchSigned);
+addRegexToken('GG',     match1to2, match2);
+addRegexToken('gg',     match1to2, match2);
+addRegexToken('GGGG',   match1to4, match4);
+addRegexToken('gggg',   match1to4, match4);
+addRegexToken('GGGGG',  match1to6, match6);
+addRegexToken('ggggg',  match1to6, match6);
+
+addWeekParseToken(['gggg', 'ggggg', 'GGGG', 'GGGGG'], function (input, week, config, token) {
+    week[token.substr(0, 2)] = toInt(input);
+});
+
+addWeekParseToken(['gg', 'GG'], function (input, week, config, token) {
+    week[token] = hooks.parseTwoDigitYear(input);
+});
+
+// MOMENTS
+
+function getSetWeekYear (input) {
+    return getSetWeekYearHelper.call(this,
+            input,
+            this.week(),
+            this.weekday(),
+            this.localeData()._week.dow,
+            this.localeData()._week.doy);
+}
+
+function getSetISOWeekYear (input) {
+    return getSetWeekYearHelper.call(this,
+            input, this.isoWeek(), this.isoWeekday(), 1, 4);
+}
+
+function getISOWeeksInYear () {
+    return weeksInYear(this.year(), 1, 4);
+}
+
+function getWeeksInYear () {
+    var weekInfo = this.localeData()._week;
+    return weeksInYear(this.year(), weekInfo.dow, weekInfo.doy);
+}
+
+function getSetWeekYearHelper(input, week, weekday, dow, doy) {
+    var weeksTarget;
+    if (input == null) {
+        return weekOfYear(this, dow, doy).year;
+    } else {
+        weeksTarget = weeksInYear(input, dow, doy);
+        if (week > weeksTarget) {
+            week = weeksTarget;
+        }
+        return setWeekAll.call(this, input, week, weekday, dow, doy);
+    }
+}
+
+function setWeekAll(weekYear, week, weekday, dow, doy) {
+    var dayOfYearData = dayOfYearFromWeeks(weekYear, week, weekday, dow, doy),
+        date = createUTCDate(dayOfYearData.year, 0, dayOfYearData.dayOfYear);
+
+    this.year(date.getUTCFullYear());
+    this.month(date.getUTCMonth());
+    this.date(date.getUTCDate());
+    return this;
+}
+
+// FORMATTING
+
+addFormatToken('Q', 0, 'Qo', 'quarter');
+
+// ALIASES
+
+addUnitAlias('quarter', 'Q');
+
+// PRIORITY
+
+addUnitPriority('quarter', 7);
+
+// PARSING
+
+addRegexToken('Q', match1);
+addParseToken('Q', function (input, array) {
+    array[MONTH] = (toInt(input) - 1) * 3;
+});
+
+// MOMENTS
+
+function getSetQuarter (input) {
+    return input == null ? Math.ceil((this.month() + 1) / 3) : this.month((input - 1) * 3 + this.month() % 3);
+}
+
+// FORMATTING
+
+addFormatToken('D', ['DD', 2], 'Do', 'date');
+
+// ALIASES
+
+addUnitAlias('date', 'D');
+
+// PRIOROITY
+addUnitPriority('date', 9);
+
+// PARSING
+
+addRegexToken('D',  match1to2);
+addRegexToken('DD', match1to2, match2);
+addRegexToken('Do', function (isStrict, locale) {
+    // TODO: Remove "ordinalParse" fallback in next major release.
+    return isStrict ?
+      (locale._dayOfMonthOrdinalParse || locale._ordinalParse) :
+      locale._dayOfMonthOrdinalParseLenient;
+});
+
+addParseToken(['D', 'DD'], DATE);
+addParseToken('Do', function (input, array) {
+    array[DATE] = toInt(input.match(match1to2)[0]);
+});
+
+// MOMENTS
+
+var getSetDayOfMonth = makeGetSet('Date', true);
+
+// FORMATTING
+
+addFormatToken('DDD', ['DDDD', 3], 'DDDo', 'dayOfYear');
+
+// ALIASES
+
+addUnitAlias('dayOfYear', 'DDD');
+
+// PRIORITY
+addUnitPriority('dayOfYear', 4);
+
+// PARSING
+
+addRegexToken('DDD',  match1to3);
+addRegexToken('DDDD', match3);
+addParseToken(['DDD', 'DDDD'], function (input, array, config) {
+    config._dayOfYear = toInt(input);
+});
+
+// HELPERS
+
+// MOMENTS
+
+function getSetDayOfYear (input) {
+    var dayOfYear = Math.round((this.clone().startOf('day') - this.clone().startOf('year')) / 864e5) + 1;
+    return input == null ? dayOfYear : this.add((input - dayOfYear), 'd');
+}
+
+// FORMATTING
+
+addFormatToken('m', ['mm', 2], 0, 'minute');
+
+// ALIASES
+
+addUnitAlias('minute', 'm');
+
+// PRIORITY
+
+addUnitPriority('minute', 14);
+
+// PARSING
+
+addRegexToken('m',  match1to2);
+addRegexToken('mm', match1to2, match2);
+addParseToken(['m', 'mm'], MINUTE);
+
+// MOMENTS
+
+var getSetMinute = makeGetSet('Minutes', false);
+
+// FORMATTING
+
+addFormatToken('s', ['ss', 2], 0, 'second');
+
+// ALIASES
+
+addUnitAlias('second', 's');
+
+// PRIORITY
+
+addUnitPriority('second', 15);
+
+// PARSING
+
+addRegexToken('s',  match1to2);
+addRegexToken('ss', match1to2, match2);
+addParseToken(['s', 'ss'], SECOND);
+
+// MOMENTS
+
+var getSetSecond = makeGetSet('Seconds', false);
+
+// FORMATTING
+
+addFormatToken('S', 0, 0, function () {
+    return ~~(this.millisecond() / 100);
+});
+
+addFormatToken(0, ['SS', 2], 0, function () {
+    return ~~(this.millisecond() / 10);
+});
+
+addFormatToken(0, ['SSS', 3], 0, 'millisecond');
+addFormatToken(0, ['SSSS', 4], 0, function () {
+    return this.millisecond() * 10;
+});
+addFormatToken(0, ['SSSSS', 5], 0, function () {
+    return this.millisecond() * 100;
+});
+addFormatToken(0, ['SSSSSS', 6], 0, function () {
+    return this.millisecond() * 1000;
+});
+addFormatToken(0, ['SSSSSSS', 7], 0, function () {
+    return this.millisecond() * 10000;
+});
+addFormatToken(0, ['SSSSSSSS', 8], 0, function () {
+    return this.millisecond() * 100000;
+});
+addFormatToken(0, ['SSSSSSSSS', 9], 0, function () {
+    return this.millisecond() * 1000000;
+});
+
+
+// ALIASES
+
+addUnitAlias('millisecond', 'ms');
+
+// PRIORITY
+
+addUnitPriority('millisecond', 16);
+
+// PARSING
+
+addRegexToken('S',    match1to3, match1);
+addRegexToken('SS',   match1to3, match2);
+addRegexToken('SSS',  match1to3, match3);
+
+var token;
+for (token = 'SSSS'; token.length <= 9; token += 'S') {
+    addRegexToken(token, matchUnsigned);
+}
+
+function parseMs(input, array) {
+    array[MILLISECOND] = toInt(('0.' + input) * 1000);
+}
+
+for (token = 'S'; token.length <= 9; token += 'S') {
+    addParseToken(token, parseMs);
+}
+// MOMENTS
+
+var getSetMillisecond = makeGetSet('Milliseconds', false);
+
+// FORMATTING
+
+addFormatToken('z',  0, 0, 'zoneAbbr');
+addFormatToken('zz', 0, 0, 'zoneName');
+
+// MOMENTS
+
+function getZoneAbbr () {
+    return this._isUTC ? 'UTC' : '';
+}
+
+function getZoneName () {
+    return this._isUTC ? 'Coordinated Universal Time' : '';
+}
+
+var proto = Moment.prototype;
+
+proto.add               = add;
+proto.calendar          = calendar$1;
+proto.clone             = clone;
+proto.diff              = diff;
+proto.endOf             = endOf;
+proto.format            = format;
+proto.from              = from;
+proto.fromNow           = fromNow;
+proto.to                = to;
+proto.toNow             = toNow;
+proto.get               = stringGet;
+proto.invalidAt         = invalidAt;
+proto.isAfter           = isAfter;
+proto.isBefore          = isBefore;
+proto.isBetween         = isBetween;
+proto.isSame            = isSame;
+proto.isSameOrAfter     = isSameOrAfter;
+proto.isSameOrBefore    = isSameOrBefore;
+proto.isValid           = isValid$2;
+proto.lang              = lang;
+proto.locale            = locale;
+proto.localeData        = localeData;
+proto.max               = prototypeMax;
+proto.min               = prototypeMin;
+proto.parsingFlags      = parsingFlags;
+proto.set               = stringSet;
+proto.startOf           = startOf;
+proto.subtract          = subtract;
+proto.toArray           = toArray;
+proto.toObject          = toObject;
+proto.toDate            = toDate;
+proto.toISOString       = toISOString;
+proto.inspect           = inspect;
+proto.toJSON            = toJSON;
+proto.toString          = toString;
+proto.unix              = unix;
+proto.valueOf           = valueOf;
+proto.creationData      = creationData;
+
+// Year
+proto.year       = getSetYear;
+proto.isLeapYear = getIsLeapYear;
+
+// Week Year
+proto.weekYear    = getSetWeekYear;
+proto.isoWeekYear = getSetISOWeekYear;
+
+// Quarter
+proto.quarter = proto.quarters = getSetQuarter;
+
+// Month
+proto.month       = getSetMonth;
+proto.daysInMonth = getDaysInMonth;
+
+// Week
+proto.week           = proto.weeks        = getSetWeek;
+proto.isoWeek        = proto.isoWeeks     = getSetISOWeek;
+proto.weeksInYear    = getWeeksInYear;
+proto.isoWeeksInYear = getISOWeeksInYear;
+
+// Day
+proto.date       = getSetDayOfMonth;
+proto.day        = proto.days             = getSetDayOfWeek;
+proto.weekday    = getSetLocaleDayOfWeek;
+proto.isoWeekday = getSetISODayOfWeek;
+proto.dayOfYear  = getSetDayOfYear;
+
+// Hour
+proto.hour = proto.hours = getSetHour;
+
+// Minute
+proto.minute = proto.minutes = getSetMinute;
+
+// Second
+proto.second = proto.seconds = getSetSecond;
+
+// Millisecond
+proto.millisecond = proto.milliseconds = getSetMillisecond;
+
+// Offset
+proto.utcOffset            = getSetOffset;
+proto.utc                  = setOffsetToUTC;
+proto.local                = setOffsetToLocal;
+proto.parseZone            = setOffsetToParsedOffset;
+proto.hasAlignedHourOffset = hasAlignedHourOffset;
+proto.isDST                = isDaylightSavingTime;
+proto.isLocal              = isLocal;
+proto.isUtcOffset          = isUtcOffset;
+proto.isUtc                = isUtc;
+proto.isUTC                = isUtc;
+
+// Timezone
+proto.zoneAbbr = getZoneAbbr;
+proto.zoneName = getZoneName;
+
+// Deprecations
+proto.dates  = deprecate('dates accessor is deprecated. Use date instead.', getSetDayOfMonth);
+proto.months = deprecate('months accessor is deprecated. Use month instead', getSetMonth);
+proto.years  = deprecate('years accessor is deprecated. Use year instead', getSetYear);
+proto.zone   = deprecate('moment().zone is deprecated, use moment().utcOffset instead. http://momentjs.com/guides/#/warnings/zone/', getSetZone);
+proto.isDSTShifted = deprecate('isDSTShifted is deprecated. See http://momentjs.com/guides/#/warnings/dst-shifted/ for more information', isDaylightSavingTimeShifted);
+
+function createUnix (input) {
+    return createLocal(input * 1000);
+}
+
+function createInZone () {
+    return createLocal.apply(null, arguments).parseZone();
+}
+
+function preParsePostFormat (string) {
+    return string;
+}
+
+var proto$1 = Locale.prototype;
+
+proto$1.calendar        = calendar;
+proto$1.longDateFormat  = longDateFormat;
+proto$1.invalidDate     = invalidDate;
+proto$1.ordinal         = ordinal;
+proto$1.preparse        = preParsePostFormat;
+proto$1.postformat      = preParsePostFormat;
+proto$1.relativeTime    = relativeTime;
+proto$1.pastFuture      = pastFuture;
+proto$1.set             = set;
+
+// Month
+proto$1.months            =        localeMonths;
+proto$1.monthsShort       =        localeMonthsShort;
+proto$1.monthsParse       =        localeMonthsParse;
+proto$1.monthsRegex       = monthsRegex;
+proto$1.monthsShortRegex  = monthsShortRegex;
+
+// Week
+proto$1.week = localeWeek;
+proto$1.firstDayOfYear = localeFirstDayOfYear;
+proto$1.firstDayOfWeek = localeFirstDayOfWeek;
+
+// Day of Week
+proto$1.weekdays       =        localeWeekdays;
+proto$1.weekdaysMin    =        localeWeekdaysMin;
+proto$1.weekdaysShort  =        localeWeekdaysShort;
+proto$1.weekdaysParse  =        localeWeekdaysParse;
+
+proto$1.weekdaysRegex       =        weekdaysRegex;
+proto$1.weekdaysShortRegex  =        weekdaysShortRegex;
+proto$1.weekdaysMinRegex    =        weekdaysMinRegex;
+
+// Hours
+proto$1.isPM = localeIsPM;
+proto$1.meridiem = localeMeridiem;
+
+function get$1 (format, index, field, setter) {
+    var locale = getLocale();
+    var utc = createUTC().set(setter, index);
+    return locale[field](utc, format);
+}
+
+function listMonthsImpl (format, index, field) {
+    if (isNumber(format)) {
+        index = format;
+        format = undefined;
+    }
+
+    format = format || '';
+
+    if (index != null) {
+        return get$1(format, index, field, 'month');
+    }
+
+    var i;
+    var out = [];
+    for (i = 0; i < 12; i++) {
+        out[i] = get$1(format, i, field, 'month');
+    }
+    return out;
+}
+
+// ()
+// (5)
+// (fmt, 5)
+// (fmt)
+// (true)
+// (true, 5)
+// (true, fmt, 5)
+// (true, fmt)
+function listWeekdaysImpl (localeSorted, format, index, field) {
+    if (typeof localeSorted === 'boolean') {
+        if (isNumber(format)) {
+            index = format;
+            format = undefined;
+        }
+
+        format = format || '';
+    } else {
+        format = localeSorted;
+        index = format;
+        localeSorted = false;
+
+        if (isNumber(format)) {
+            index = format;
+            format = undefined;
+        }
+
+        format = format || '';
+    }
+
+    var locale = getLocale(),
+        shift = localeSorted ? locale._week.dow : 0;
+
+    if (index != null) {
+        return get$1(format, (index + shift) % 7, field, 'day');
+    }
+
+    var i;
+    var out = [];
+    for (i = 0; i < 7; i++) {
+        out[i] = get$1(format, (i + shift) % 7, field, 'day');
+    }
+    return out;
+}
+
+function listMonths (format, index) {
+    return listMonthsImpl(format, index, 'months');
+}
+
+function listMonthsShort (format, index) {
+    return listMonthsImpl(format, index, 'monthsShort');
+}
+
+function listWeekdays (localeSorted, format, index) {
+    return listWeekdaysImpl(localeSorted, format, index, 'weekdays');
+}
+
+function listWeekdaysShort (localeSorted, format, index) {
+    return listWeekdaysImpl(localeSorted, format, index, 'weekdaysShort');
+}
+
+function listWeekdaysMin (localeSorted, format, index) {
+    return listWeekdaysImpl(localeSorted, format, index, 'weekdaysMin');
+}
+
+getSetGlobalLocale('en', {
+    dayOfMonthOrdinalParse: /\d{1,2}(th|st|nd|rd)/,
+    ordinal : function (number) {
+        var b = number % 10,
+            output = (toInt(number % 100 / 10) === 1) ? 'th' :
+            (b === 1) ? 'st' :
+            (b === 2) ? 'nd' :
+            (b === 3) ? 'rd' : 'th';
+        return number + output;
+    }
+});
+
+// Side effect imports
+hooks.lang = deprecate('moment.lang is deprecated. Use moment.locale instead.', getSetGlobalLocale);
+hooks.langData = deprecate('moment.langData is deprecated. Use moment.localeData instead.', getLocale);
+
+var mathAbs = Math.abs;
+
+function abs () {
+    var data           = this._data;
+
+    this._milliseconds = mathAbs(this._milliseconds);
+    this._days         = mathAbs(this._days);
+    this._months       = mathAbs(this._months);
+
+    data.milliseconds  = mathAbs(data.milliseconds);
+    data.seconds       = mathAbs(data.seconds);
+    data.minutes       = mathAbs(data.minutes);
+    data.hours         = mathAbs(data.hours);
+    data.months        = mathAbs(data.months);
+    data.years         = mathAbs(data.years);
+
+    return this;
+}
+
+function addSubtract$1 (duration, input, value, direction) {
+    var other = createDuration(input, value);
+
+    duration._milliseconds += direction * other._milliseconds;
+    duration._days         += direction * other._days;
+    duration._months       += direction * other._months;
+
+    return duration._bubble();
+}
+
+// supports only 2.0-style add(1, 's') or add(duration)
+function add$1 (input, value) {
+    return addSubtract$1(this, input, value, 1);
+}
+
+// supports only 2.0-style subtract(1, 's') or subtract(duration)
+function subtract$1 (input, value) {
+    return addSubtract$1(this, input, value, -1);
+}
+
+function absCeil (number) {
+    if (number < 0) {
+        return Math.floor(number);
+    } else {
+        return Math.ceil(number);
+    }
+}
+
+function bubble () {
+    var milliseconds = this._milliseconds;
+    var days         = this._days;
+    var months       = this._months;
+    var data         = this._data;
+    var seconds, minutes, hours, years, monthsFromDays;
+
+    // if we have a mix of positive and negative values, bubble down first
+    // check: https://github.com/moment/moment/issues/2166
+    if (!((milliseconds >= 0 && days >= 0 && months >= 0) ||
+            (milliseconds <= 0 && days <= 0 && months <= 0))) {
+        milliseconds += absCeil(monthsToDays(months) + days) * 864e5;
+        days = 0;
+        months = 0;
+    }
+
+    // The following code bubbles up values, see the tests for
+    // examples of what that means.
+    data.milliseconds = milliseconds % 1000;
+
+    seconds           = absFloor(milliseconds / 1000);
+    data.seconds      = seconds % 60;
+
+    minutes           = absFloor(seconds / 60);
+    data.minutes      = minutes % 60;
+
+    hours             = absFloor(minutes / 60);
+    data.hours        = hours % 24;
+
+    days += absFloor(hours / 24);
+
+    // convert days to months
+    monthsFromDays = absFloor(daysToMonths(days));
+    months += monthsFromDays;
+    days -= absCeil(monthsToDays(monthsFromDays));
+
+    // 12 months -> 1 year
+    years = absFloor(months / 12);
+    months %= 12;
+
+    data.days   = days;
+    data.months = months;
+    data.years  = years;
+
+    return this;
+}
+
+function daysToMonths (days) {
+    // 400 years have 146097 days (taking into account leap year rules)
+    // 400 years have 12 months === 4800
+    return days * 4800 / 146097;
+}
+
+function monthsToDays (months) {
+    // the reverse of daysToMonths
+    return months * 146097 / 4800;
+}
+
+function as (units) {
+    if (!this.isValid()) {
+        return NaN;
+    }
+    var days;
+    var months;
+    var milliseconds = this._milliseconds;
+
+    units = normalizeUnits(units);
+
+    if (units === 'month' || units === 'year') {
+        days   = this._days   + milliseconds / 864e5;
+        months = this._months + daysToMonths(days);
+        return units === 'month' ? months : months / 12;
+    } else {
+        // handle milliseconds separately because of floating point math errors (issue #1867)
+        days = this._days + Math.round(monthsToDays(this._months));
+        switch (units) {
+            case 'week'   : return days / 7     + milliseconds / 6048e5;
+            case 'day'    : return days         + milliseconds / 864e5;
+            case 'hour'   : return days * 24    + milliseconds / 36e5;
+            case 'minute' : return days * 1440  + milliseconds / 6e4;
+            case 'second' : return days * 86400 + milliseconds / 1000;
+            // Math.floor prevents floating point math errors here
+            case 'millisecond': return Math.floor(days * 864e5) + milliseconds;
+            default: throw new Error('Unknown unit ' + units);
+        }
+    }
+}
+
+// TODO: Use this.as('ms')?
+function valueOf$1 () {
+    if (!this.isValid()) {
+        return NaN;
+    }
+    return (
+        this._milliseconds +
+        this._days * 864e5 +
+        (this._months % 12) * 2592e6 +
+        toInt(this._months / 12) * 31536e6
+    );
+}
+
+function makeAs (alias) {
+    return function () {
+        return this.as(alias);
+    };
+}
+
+var asMilliseconds = makeAs('ms');
+var asSeconds      = makeAs('s');
+var asMinutes      = makeAs('m');
+var asHours        = makeAs('h');
+var asDays         = makeAs('d');
+var asWeeks        = makeAs('w');
+var asMonths       = makeAs('M');
+var asYears        = makeAs('y');
+
+function clone$1 () {
+    return createDuration(this);
+}
+
+function get$2 (units) {
+    units = normalizeUnits(units);
+    return this.isValid() ? this[units + 's']() : NaN;
+}
+
+function makeGetter(name) {
+    return function () {
+        return this.isValid() ? this._data[name] : NaN;
+    };
+}
+
+var milliseconds = makeGetter('milliseconds');
+var seconds      = makeGetter('seconds');
+var minutes      = makeGetter('minutes');
+var hours        = makeGetter('hours');
+var days         = makeGetter('days');
+var months       = makeGetter('months');
+var years        = makeGetter('years');
+
+function weeks () {
+    return absFloor(this.days() / 7);
+}
+
+var round = Math.round;
+var thresholds = {
+    ss: 44,         // a few seconds to seconds
+    s : 45,         // seconds to minute
+    m : 45,         // minutes to hour
+    h : 22,         // hours to day
+    d : 26,         // days to month
+    M : 11          // months to year
+};
+
+// helper function for moment.fn.from, moment.fn.fromNow, and moment.duration.fn.humanize
+function substituteTimeAgo(string, number, withoutSuffix, isFuture, locale) {
+    return locale.relativeTime(number || 1, !!withoutSuffix, string, isFuture);
+}
+
+function relativeTime$1 (posNegDuration, withoutSuffix, locale) {
+    var duration = createDuration(posNegDuration).abs();
+    var seconds  = round(duration.as('s'));
+    var minutes  = round(duration.as('m'));
+    var hours    = round(duration.as('h'));
+    var days     = round(duration.as('d'));
+    var months   = round(duration.as('M'));
+    var years    = round(duration.as('y'));
+
+    var a = seconds <= thresholds.ss && ['s', seconds]  ||
+            seconds < thresholds.s   && ['ss', seconds] ||
+            minutes <= 1             && ['m']           ||
+            minutes < thresholds.m   && ['mm', minutes] ||
+            hours   <= 1             && ['h']           ||
+            hours   < thresholds.h   && ['hh', hours]   ||
+            days    <= 1             && ['d']           ||
+            days    < thresholds.d   && ['dd', days]    ||
+            months  <= 1             && ['M']           ||
+            months  < thresholds.M   && ['MM', months]  ||
+            years   <= 1             && ['y']           || ['yy', years];
+
+    a[2] = withoutSuffix;
+    a[3] = +posNegDuration > 0;
+    a[4] = locale;
+    return substituteTimeAgo.apply(null, a);
+}
+
+// This function allows you to set the rounding function for relative time strings
+function getSetRelativeTimeRounding (roundingFunction) {
+    if (roundingFunction === undefined) {
+        return round;
+    }
+    if (typeof(roundingFunction) === 'function') {
+        round = roundingFunction;
+        return true;
+    }
+    return false;
+}
+
+// This function allows you to set a threshold for relative time strings
+function getSetRelativeTimeThreshold (threshold, limit) {
+    if (thresholds[threshold] === undefined) {
+        return false;
+    }
+    if (limit === undefined) {
+        return thresholds[threshold];
+    }
+    thresholds[threshold] = limit;
+    if (threshold === 's') {
+        thresholds.ss = limit - 1;
+    }
+    return true;
+}
+
+function humanize (withSuffix) {
+    if (!this.isValid()) {
+        return this.localeData().invalidDate();
+    }
+
+    var locale = this.localeData();
+    var output = relativeTime$1(this, !withSuffix, locale);
+
+    if (withSuffix) {
+        output = locale.pastFuture(+this, output);
+    }
+
+    return locale.postformat(output);
+}
+
+var abs$1 = Math.abs;
+
+function sign(x) {
+    return ((x > 0) - (x < 0)) || +x;
+}
+
+function toISOString$1() {
+    // for ISO strings we do not use the normal bubbling rules:
+    //  * milliseconds bubble up until they become hours
+    //  * days do not bubble at all
+    //  * months bubble up until they become years
+    // This is because there is no context-free conversion between hours and days
+    // (think of clock changes)
+    // and also not between days and months (28-31 days per month)
+    if (!this.isValid()) {
+        return this.localeData().invalidDate();
+    }
+
+    var seconds = abs$1(this._milliseconds) / 1000;
+    var days         = abs$1(this._days);
+    var months       = abs$1(this._months);
+    var minutes, hours, years;
+
+    // 3600 seconds -> 60 minutes -> 1 hour
+    minutes           = absFloor(seconds / 60);
+    hours             = absFloor(minutes / 60);
+    seconds %= 60;
+    minutes %= 60;
+
+    // 12 months -> 1 year
+    years  = absFloor(months / 12);
+    months %= 12;
+
+
+    // inspired by https://github.com/dordille/moment-isoduration/blob/master/moment.isoduration.js
+    var Y = years;
+    var M = months;
+    var D = days;
+    var h = hours;
+    var m = minutes;
+    var s = seconds ? seconds.toFixed(3).replace(/\.?0+$/, '') : '';
+    var total = this.asSeconds();
+
+    if (!total) {
+        // this is the same as C#'s (Noda) and python (isodate)...
+        // but not other JS (goog.date)
+        return 'P0D';
+    }
+
+    var totalSign = total < 0 ? '-' : '';
+    var ymSign = sign(this._months) !== sign(total) ? '-' : '';
+    var daysSign = sign(this._days) !== sign(total) ? '-' : '';
+    var hmsSign = sign(this._milliseconds) !== sign(total) ? '-' : '';
+
+    return totalSign + 'P' +
+        (Y ? ymSign + Y + 'Y' : '') +
+        (M ? ymSign + M + 'M' : '') +
+        (D ? daysSign + D + 'D' : '') +
+        ((h || m || s) ? 'T' : '') +
+        (h ? hmsSign + h + 'H' : '') +
+        (m ? hmsSign + m + 'M' : '') +
+        (s ? hmsSign + s + 'S' : '');
+}
+
+var proto$2 = Duration.prototype;
+
+proto$2.isValid        = isValid$1;
+proto$2.abs            = abs;
+proto$2.add            = add$1;
+proto$2.subtract       = subtract$1;
+proto$2.as             = as;
+proto$2.asMilliseconds = asMilliseconds;
+proto$2.asSeconds      = asSeconds;
+proto$2.asMinutes      = asMinutes;
+proto$2.asHours        = asHours;
+proto$2.asDays         = asDays;
+proto$2.asWeeks        = asWeeks;
+proto$2.asMonths       = asMonths;
+proto$2.asYears        = asYears;
+proto$2.valueOf        = valueOf$1;
+proto$2._bubble        = bubble;
+proto$2.clone          = clone$1;
+proto$2.get            = get$2;
+proto$2.milliseconds   = milliseconds;
+proto$2.seconds        = seconds;
+proto$2.minutes        = minutes;
+proto$2.hours          = hours;
+proto$2.days           = days;
+proto$2.weeks          = weeks;
+proto$2.months         = months;
+proto$2.years          = years;
+proto$2.humanize       = humanize;
+proto$2.toISOString    = toISOString$1;
+proto$2.toString       = toISOString$1;
+proto$2.toJSON         = toISOString$1;
+proto$2.locale         = locale;
+proto$2.localeData     = localeData;
+
+// Deprecations
+proto$2.toIsoString = deprecate('toIsoString() is deprecated. Please use toISOString() instead (notice the capitals)', toISOString$1);
+proto$2.lang = lang;
+
+// Side effect imports
+
+// FORMATTING
+
+addFormatToken('X', 0, 0, 'unix');
+addFormatToken('x', 0, 0, 'valueOf');
+
+// PARSING
+
+addRegexToken('x', matchSigned);
+addRegexToken('X', matchTimestamp);
+addParseToken('X', function (input, array, config) {
+    config._d = new Date(parseFloat(input, 10) * 1000);
+});
+addParseToken('x', function (input, array, config) {
+    config._d = new Date(toInt(input));
+});
+
+// Side effect imports
+
+
+hooks.version = '2.20.1';
+
+setHookCallback(createLocal);
+
+hooks.fn                    = proto;
+hooks.min                   = min;
+hooks.max                   = max;
+hooks.now                   = now;
+hooks.utc                   = createUTC;
+hooks.unix                  = createUnix;
+hooks.months                = listMonths;
+hooks.isDate                = isDate;
+hooks.locale                = getSetGlobalLocale;
+hooks.invalid               = createInvalid;
+hooks.duration              = createDuration;
+hooks.isMoment              = isMoment;
+hooks.weekdays              = listWeekdays;
+hooks.parseZone             = createInZone;
+hooks.localeData            = getLocale;
+hooks.isDuration            = isDuration;
+hooks.monthsShort           = listMonthsShort;
+hooks.weekdaysMin           = listWeekdaysMin;
+hooks.defineLocale          = defineLocale;
+hooks.updateLocale          = updateLocale;
+hooks.locales               = listLocales;
+hooks.weekdaysShort         = listWeekdaysShort;
+hooks.normalizeUnits        = normalizeUnits;
+hooks.relativeTimeRounding  = getSetRelativeTimeRounding;
+hooks.relativeTimeThreshold = getSetRelativeTimeThreshold;
+hooks.calendarFormat        = getCalendarFormat;
+hooks.prototype             = proto;
+
+// currently HTML5 input type only supports 24-hour formats
+hooks.HTML5_FMT = {
+    DATETIME_LOCAL: 'YYYY-MM-DDTHH:mm',             // <input type="datetime-local" />
+    DATETIME_LOCAL_SECONDS: 'YYYY-MM-DDTHH:mm:ss',  // <input type="datetime-local" step="1" />
+    DATETIME_LOCAL_MS: 'YYYY-MM-DDTHH:mm:ss.SSS',   // <input type="datetime-local" step="0.001" />
+    DATE: 'YYYY-MM-DD',                             // <input type="date" />
+    TIME: 'HH:mm',                                  // <input type="time" />
+    TIME_SECONDS: 'HH:mm:ss',                       // <input type="time" step="1" />
+    TIME_MS: 'HH:mm:ss.SSS',                        // <input type="time" step="0.001" />
+    WEEK: 'YYYY-[W]WW',                             // <input type="week" />
+    MONTH: 'YYYY-MM'                                // <input type="month" />
+};
+
+return hooks;
+
+})));
+
 /**
  * angular-bootstrap-calendar - A pure AngularJS bootstrap themed responsive calendar that can display events and has views for year, month, week and day
  * @version v1.0.0
  * @link https://github.com/mattlewis92/angular-bootstrap-calendar
  * @license MIT
  */
-!function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t(require("angular"),require("moment"),function(){try{return require("interactjs")}catch(e){}}()):"function"==typeof define&&define.amd?define(["angular","moment","interact"],t):"object"==typeof exports?exports.angularBootstrapCalendarModuleName=t(require("angular"),require("moment"),function(){try{return require("interactjs")}catch(e){}}()):e.angularBootstrapCalendarModuleName=t(e.angular,e.moment,e.interact)}("undefined"!=typeof self?self:this,function(e,t,n){return function(e){function t(a){if(n[a])return n[a].exports;var r=n[a]={i:a,l:!1,exports:{}};return e[a].call(r.exports,r,r.exports,t),r.l=!0,r.exports}var n={};return t.m=e,t.c=n,t.d=function(e,n,a){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:a})},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p="",t(t.s=7)}([function(t,n){t.exports=e},function(e,t,n){function a(e,t){if(c(e))return new Date(e.getTime());if("string"!=typeof e)return new Date(e);var n=t||{},a=n.additionalDigits;a=null==a?u:Number(a);var s=r(e),v=i(s.date,a),p=v.year,f=v.restDateString,w=l(f,p);if(w){var g,y=w.getTime(),h=0;return s.time&&(h=o(s.time)),s.timezone?g=d(s.timezone):(g=new Date(y+h).getTimezoneOffset(),g=new Date(y+h+g*m).getTimezoneOffset()),new Date(y+h+g*m)}return new Date(e)}function r(e){var t,n={},a=e.split(p);if(f.test(a[0])?(n.date=null,t=a[0]):(n.date=a[0],t=a[1]),t){var r=A.exec(t);r?(n.time=t.replace(r[1],""),n.timezone=r[1]):n.time=t}return n}function i(e,t){var n,a=g[t],r=h[t];if(n=y.exec(e)||r.exec(e)){var i=n[1];return{year:parseInt(i,10),restDateString:e.slice(i.length)}}if(n=w.exec(e)||a.exec(e)){var l=n[1];return{year:100*parseInt(l,10),restDateString:e.slice(l.length)}}return{year:null}}function l(e,t){if(null===t)return null;var n,a,r,i;if(0===e.length)return a=new Date(0),a.setUTCFullYear(t),a;if(n=D.exec(e))return a=new Date(0),r=parseInt(n[1],10)-1,a.setUTCFullYear(t,r),a;if(n=S.exec(e)){a=new Date(0);var l=parseInt(n[1],10);return a.setUTCFullYear(t,0,l),a}if(n=b.exec(e)){a=new Date(0),r=parseInt(n[1],10)-1;var o=parseInt(n[2],10);return a.setUTCFullYear(t,r,o),a}if(n=E.exec(e))return i=parseInt(n[1],10)-1,s(t,i);if(n=x.exec(e)){i=parseInt(n[1],10)-1;return s(t,i,parseInt(n[2],10)-1)}return null}function o(e){var t,n,a;if(t=C.exec(e))return(n=parseFloat(t[1].replace(",",".")))%24*v;if(t=k.exec(e))return n=parseInt(t[1],10),a=parseFloat(t[2].replace(",",".")),n%24*v+a*m;if(t=T.exec(e)){n=parseInt(t[1],10),a=parseInt(t[2],10);var r=parseFloat(t[3].replace(",","."));return n%24*v+a*m+1e3*r}return null}function d(e){var t,n;return(t=M.exec(e))?0:(t=V.exec(e))?(n=60*parseInt(t[2],10),"+"===t[1]?-n:n):(t=$.exec(e),t?(n=60*parseInt(t[2],10)+parseInt(t[3],10),"+"===t[1]?-n:n):0)}function s(e,t,n){t=t||0,n=n||0;var a=new Date(0);a.setUTCFullYear(e,0,4);var r=a.getUTCDay()||7,i=7*t+n+1-r;return a.setUTCDate(a.getUTCDate()+i),a}var c=n(5),v=36e5,m=6e4,u=2,p=/[T ]/,f=/:/,w=/^(\d{2})$/,g=[/^([+-]\d{2})$/,/^([+-]\d{3})$/,/^([+-]\d{4})$/],y=/^(\d{4})/,h=[/^([+-]\d{4})/,/^([+-]\d{5})/,/^([+-]\d{6})/],D=/^-(\d{2})$/,S=/^-?(\d{3})$/,b=/^-?(\d{2})-?(\d{2})$/,E=/^-?W(\d{2})$/,x=/^-?W(\d{2})-?(\d{1})$/,C=/^(\d{2}([.,]\d*)?)$/,k=/^(\d{2}):?(\d{2}([.,]\d*)?)$/,T=/^(\d{2}):?(\d{2}):?(\d{2}([.,]\d*)?)$/,A=/([Z+-].*)$/,M=/^(Z)$/,V=/^([+-])(\d{2})$/,$=/^([+-])(\d{2}):?(\d{2})$/;e.exports=a},function(e,t,n){function a(e,t){var n=r(e).getTime(),a=Number(t);return new Date(n+a)}var r=n(1);e.exports=a},function(e,t,n){function a(e){var t=r(e);return t.setHours(0,0,0,0),t}var r=n(1);e.exports=a},function(e,t,n){"use strict";function a(e){var t=e.startDate,n=e.seconds,a=e.excluded,i=e.precision,l=void 0===i?"days":i;if(a.length<1)return 0;for(var o=x()(t,n-1),d=H()(t),s=H()(x()(o,0)),c=0,v=t;v<o;)!function(){var e=H()(v);a.some(function(t){return t===e})&&(c+=r({dayStart:d,dayEnd:s,day:e,precision:l,startDate:t,endDate:o})),v=y()(v,1)}();return c}function r(e){var t=e.precision,n=e.day,a=e.dayStart,r=e.dayEnd,i=e.startDate,l=e.endDate;if("minutes"===t){if(n===a)return V()(O()(i),i)+1;if(n===r)return V()(l,ee()(l))+1}return ve}function i(e){var t=e.event,n=e.offset,r=e.startOfWeekDate,i=e.excluded,l=e.precision,o=void 0===l?"days":l,d=ve,s=_()(t.start,r);if(t.end)switch(o){case"minutes":d=V()(t.end,s);break;default:d=k()(y()(t.end,1),s)*ve}var c=n*ve;return c+d>me&&(d=me-c),(d-=a({startDate:s,seconds:d,excluded:i,precision:o}))/ve}function l(e){var t=e.event,n=e.startOfWeek,r=e.excluded,i=void 0===r?[]:r,l=e.precision,o=void 0===l?"days":l;if(t.start<n)return 0;var d=0;switch(o){case"days":d=k()(ee()(t.start),n)*ve;break;case"minutes":d=V()(t.start,n)}return(d-=a({startDate:n,seconds:d,excluded:i,precision:o}))/ve}function o(e){var t=e.event,n=e.periodStart,a=e.periodEnd,r=t.start,i=t.end||t.start;return r>n&&r<a||(i>n&&i<a||(r<n&&i>a||(!(!G()(r,n)&&!G()(r,a))||!(!G()(i,n)&&!G()(i,a)))))}function d(e){var t=e.events,n=e.periodStart,a=e.periodEnd;return t.filter(function(e){return o({event:e,periodStart:n,periodEnd:a})})}function s(e){var t=e.date,n=e.weekendDays,a=void 0===n?oe:n,r=ee()(new Date);return{date:t,isPast:t<r,isToday:U()(t,r),isFuture:t>r,isWeekend:a.indexOf(H()(t))>-1}}function c(e){for(var t=e.viewDate,n=e.weekStartsOn,a=e.excluded,r=void 0===a?[]:a,i=e.weekendDays,l=le()(t,{weekStartsOn:n}),o=[],d=0;d<de;d++)!function(e){var t=y()(l,e);r.some(function(e){return t.getDay()===e})||o.push(s({date:t,weekendDays:i}))}(d);return o}function v(e){var t=e.events,n=void 0===t?[]:t,a=e.viewDate,r=e.weekStartsOn,o=e.excluded,s=void 0===o?[]:o,c=e.precision,v=void 0===c?"days":c,m=e.absolutePositionedEvents,u=void 0!==m&&m;n||(n=[]);var p=le()(a,{weekStartsOn:r}),f=W()(a,{weekStartsOn:r}),w=de-s.length,g=d({events:n,periodStart:p,periodEnd:f}).map(function(e){var t=l({event:e,startOfWeek:p,excluded:s,precision:v});return{event:e,offset:t,span:i({event:e,offset:t,startOfWeekDate:p,excluded:s,precision:v})}}).filter(function(e){return e.offset<w}).filter(function(e){return e.span>0}).map(function(e){return{event:e.event,offset:e.offset,span:e.span,startsBeforeWeek:e.event.start<p,endsAfterWeek:(e.event.end||e.event.start)>f}}).sort(function(e,t){var n=V()(e.event.start,t.event.start);return 0===n?V()(t.event.end||t.event.start,e.event.end||e.event.start):n}),y=[],h=[];return g.forEach(function(e,t){if(-1===h.indexOf(e)){h.push(e);var n=e.span+e.offset,a=g.slice(t+1).filter(function(e){if(e.offset>=n&&n+e.span<=de&&-1===h.indexOf(e)){var t=e.offset-n;return u||(e.offset=t),n+=e.span+t,h.push(e),!0}});y.push({row:[e].concat(a)})}}),y}function m(e){var t=e.events,n=void 0===t?[]:t,a=e.viewDate,r=e.weekStartsOn,i=e.excluded,l=void 0===i?[]:i,o=e.viewStart,c=void 0===o?re()(a):o,v=e.viewEnd,m=void 0===v?I()(a):v,u=e.weekendDays;n||(n=[]);for(var p,f=le()(c,{weekStartsOn:r}),w=W()(m,{weekStartsOn:r}),g=d({events:n,periodStart:f,periodEnd:w}),y=[],h=0;h<k()(w,f)+1;h++)!function(e){var t;if(p?(t=ee()(D()(p,se)),p.getTime()===t.getTime()&&(t=ee()(D()(p,se+1))),p=t):t=p=f,!l.some(function(e){return t.getDay()===e})){var n=s({date:t,weekendDays:u}),r=d({events:g,periodStart:ee()(t),periodEnd:O()(t)});n.inMonth=P()(t,a),n.events=r,n.badgeTotal=r.length,y.push(n)}}();var S=[],b=de-l.length;if(b<de)for(var h=0;h<y.length;h+=b){var E=y.slice(h,h+b),x=E.some(function(e){return e.date.getMonth()===a.getMonth()});x&&(S=S.concat(E))}else S=y;for(var C=Math.floor(S.length/b),T=[],h=0;h<C;h++)T.push(h*b);return{rowOffsets:T,totalDaysVisibleInWeek:b,days:S}}function u(e){var t=e.events,n=void 0===t?[]:t,a=e.viewDate,r=e.hourSegments,i=e.dayStart,l=e.dayEnd,o=e.eventWidth,s=e.segmentHeight;n||(n=[]);var c=Q()(Z()(ee()(a),i.hour),i.minute),v=Q()(Z()(ne()(O()(a)),l.hour),l.minute),m=[],u=d({events:n.filter(function(e){return!e.allDay}),periodStart:c,periodEnd:v}).sort(function(e,t){return e.start.valueOf()-t.start.valueOf()}).map(function(e){var t=e.start,n=e.end||t,a=t<c,i=n>v,l=r*s/ce,d=0;t>c&&(d+=A()(t,c)),d*=l;var u=a?c:t,p=i?v:n,f=A()(p,u);e.end?f*=l:f=s;for(var w=d+f,g=m.filter(function(e){var t=e.top,n=e.top+e.height;return d<n&&n<w||t<=d&&w<=n}),y=0;g.some(function(e){return e.left===y});)y+=o;var h={event:e,height:f,width:o,top:d,left:y,startsBeforeDay:a,endsAfterDay:i};return f>0&&m.push(h),h}).filter(function(e){return e.height>0});return{events:u,width:Math.max.apply(Math,u.map(function(e){return e.left+e.width})),allDayEvents:d({events:n.filter(function(e){return e.allDay}),periodStart:ee()(c),periodEnd:O()(v)})}}function p(e){for(var t=e.viewDate,n=e.hourSegments,a=e.dayStart,r=e.dayEnd,i=[],l=Q()(Z()(ee()(t),a.hour),a.minute),o=Q()(Z()(ne()(O()(t)),r.hour),r.minute),d=ce/n,s=ee()(t),c=0;c<se;c++){for(var v=[],m=0;m<n;m++){var u=b()(D()(s,c),m*d);u>=l&&u<o&&v.push({date:u,isStart:0===m})}v.length>0&&i.push({segments:v})}return i}function f(e,t){function n(e,n){t(e,n),a=!1}var a=!0;return Array.isArray(e)?(e.forEach(function(e){e.start?z()(e.start)||n(ue.StartPropertyNotDate,e):n(ue.StartPropertyMissing,e),e.end&&(z()(e.end)||n(ue.EndPropertyNotDate,e),e.start>e.end&&n(ue.EndsBeforeStart,e))}),a):(t(ue.NotArray,e),!1)}Object.defineProperty(t,"__esModule",{value:!0}),n.d(t,"DAYS_OF_WEEK",function(){return w}),n.d(t,"SECONDS_IN_DAY",function(){return ve}),n.d(t,"SECONDS_IN_WEEK",function(){return me}),t.getWeekViewEventOffset=l,t.getEventsInPeriod=d,t.getWeekViewHeader=c,t.getWeekView=v,t.getMonthView=m,t.getDayView=u,t.getDayViewHourGrid=p,n.d(t,"EventValidationErrorMessage",function(){return ue}),t.validateEvents=f;var w,g=n(23),y=n.n(g),h=n(24),D=n.n(h),S=n(25),b=n.n(S),E=n(26),x=n.n(E),C=n(27),k=n.n(C),T=n(30),A=n.n(T),M=n(31),V=n.n(M),$=n(32),O=n.n($),R=n(33),I=n.n(R),N=n(34),W=n.n(N),j=n(35),H=n.n(j),F=n(5),z=n.n(F),Y=n(36),U=n.n(Y),B=n(37),P=n.n(B),L=n(38),G=n.n(L),q=n(40),_=n.n(q),K=n(41),Z=n.n(K),J=n(42),Q=n.n(J),X=n(3),ee=n.n(X),te=n(43),ne=n.n(te),ae=n(44),re=n.n(ae),ie=n(45),le=n.n(ie);!function(e){e[e.SUNDAY=0]="SUNDAY",e[e.MONDAY=1]="MONDAY",e[e.TUESDAY=2]="TUESDAY",e[e.WEDNESDAY=3]="WEDNESDAY",e[e.THURSDAY=4]="THURSDAY",e[e.FRIDAY=5]="FRIDAY",e[e.SATURDAY=6]="SATURDAY"}(w||(w={}));var oe=[w.SUNDAY,w.SATURDAY],de=7,se=24,ce=60,ve=86400,me=ve*de,ue={NotArray:"Events must be an array",StartPropertyMissing:"Event is missing the `start` property",StartPropertyNotDate:"Event `start` property should be a javascript date object. Do `new Date(event.start)` to fix it.",EndPropertyNotDate:"Event `end` property should be a javascript date object. Do `new Date(event.end)` to fix it.",EndsBeforeStart:"Event `start` property occurs after the `end`"}},function(e,t){function n(e){return e instanceof Date}e.exports=n},function(e,t,n){function a(e,t){var n=r(e),a=r(t);return n.getTime()-a.getTime()}var r=n(1);e.exports=a},function(e,t,n){"use strict";function a(e){e.keys().forEach(e)}n(8);var r=n(0),i={},l=n(9);l.keys().forEach(function(e){var t=e.replace("./",""),n="mwl/"+t,a=t.replace(".html","");i[a]={cacheTemplateName:n,template:l(e)}}),e.exports=r.module("mwl.calendar",[]).config(["calendarConfig",function(e){r.forEach(i,function(t,n){e.templates[n]||(e.templates[n]=t.cacheTemplateName)})}]).run(["$templateCache","$interpolate",function(e,t){r.forEach(i,function(n){if(!e.get(n.cacheTemplateName)){var a=n.template.replace("{{",t.startSymbol()).replace("}}",t.endSymbol());e.put(n.cacheTemplateName,a)}})}]).name,a(n(19)),a(n(58)),a(n(63))},function(e,t){},function(e,t,n){function a(e){return n(r(e))}function r(e){var t=i[e];if(!(t+1))throw new Error("Cannot find module '"+e+"'.");return t}var i={"./calendar.html":10,"./calendarDayView.html":11,"./calendarHourList.html":12,"./calendarMonthCell.html":13,"./calendarMonthCellEvents.html":14,"./calendarMonthView.html":15,"./calendarSlideBox.html":16,"./calendarWeekView.html":17,"./calendarYearView.html":18};a.keys=function(){return Object.keys(i)},a.resolve=r,e.exports=a,a.id=9},function(e,t){e.exports="<div class=cal-context ng-switch=vm.view ng-if=vm.templatesLoaded> <div class=\"alert alert-danger\" ng-switch-default>The value passed to the view attribute of the calendar is not set</div> <div class=\"alert alert-danger\" ng-hide=vm.viewDate>The value passed to view-date attribute of the calendar is not set</div> <mwl-calendar-year events=vm.events view-date=vm.viewDate on-event-click=vm.onEventClick on-event-times-changed=vm.onEventTimesChanged on-timespan-click=vm.onTimespanClick cell-is-open=vm.cellIsOpen cell-modifier=vm.cellModifier slide-box-disabled=vm.slideBoxDisabled custom-template-urls=vm.customTemplateUrls template-scope=vm.templateScope cell-auto-open-disabled=vm.cellAutoOpenDisabled ng-switch-when=year> </mwl-calendar-year> <mwl-calendar-month events=vm.events view-date=vm.viewDate excluded-days=vm.excludedDays on-event-click=vm.onEventClick on-event-times-changed=vm.onEventTimesChanged on-timespan-click=vm.onTimespanClick on-date-range-select=vm.onDateRangeSelect cell-is-open=vm.cellIsOpen cell-modifier=vm.cellModifier slide-box-disabled=vm.slideBoxDisabled custom-template-urls=vm.customTemplateUrls template-scope=vm.templateScope cell-auto-open-disabled=vm.cellAutoOpenDisabled draggable-auto-scroll=vm.draggableAutoScroll ng-switch-when=month> </mwl-calendar-month> <mwl-calendar-week events=vm.events view-date=vm.viewDate excluded-days=vm.excludedDays on-event-click=vm.onEventClick on-event-times-changed=vm.onEventTimesChanged day-view-start=vm.dayViewStart day-view-end=vm.dayViewEnd day-view-split=vm.dayViewSplit day-view-event-chunk-size=vm.dayViewEventChunkSize on-timespan-click=vm.onTimespanClick on-date-range-select=vm.onDateRangeSelect custom-template-urls=vm.customTemplateUrls cell-modifier=vm.cellModifier template-scope=vm.templateScope draggable-auto-scroll=vm.draggableAutoScroll ng-switch-when=week> </mwl-calendar-week> <mwl-calendar-day events=vm.events view-date=vm.viewDate on-event-click=vm.onEventClick on-event-times-changed=vm.onEventTimesChanged on-timespan-click=vm.onTimespanClick on-date-range-select=vm.onDateRangeSelect day-view-start=vm.dayViewStart day-view-end=vm.dayViewEnd day-view-split=vm.dayViewSplit day-view-event-chunk-size=vm.dayViewEventChunkSize day-view-segment-size=vm.dayViewSegmentSize day-view-event-width=vm.dayViewEventWidth custom-template-urls=vm.customTemplateUrls cell-modifier=vm.cellModifier template-scope=vm.templateScope day-view-time-position=\"vm.dayViewTimePosition || 'default'\" draggable-auto-scroll=vm.draggableAutoScroll ng-class=\"{\n      'time-on-side' : vm.dayViewTimePosition === 'side',\n      'time-hidden' : vm.dayViewTimePosition === 'hidden'\n    }\" ng-switch-when=day> </mwl-calendar-day> </div> "},function(e,t){e.exports='<div class="cal-week-box cal-all-day-events-box" ng-if="vm.allDayEvents.length > 0"> <div class="cal-day-panel clearfix"> <div class=row> <div class=col-xs-12> <div class=cal-row-fluid> <div class="cal-cell-6 day-highlight" ng-style="{backgroundColor: event.color.secondary}" data-event-class ng-repeat="event in vm.allDayEvents track by event.calendarEventId"> <strong> <span ng-bind="event.startsAt | calendarDate:\'datetime\':true"></span> <span ng-if=event.endsAt> - <span ng-bind="event.endsAt | calendarDate:\'datetime\':true"></span> </span> </strong> <a href=javascript:; class=event-item ng-click="vm.onEventClick({calendarEvent: event})" ng-bind-html="vm.calendarEventTitle.dayView(event) | calendarTrustAsHtml"> </a> </div> </div> </div> </div> </div> </div> <div class=cal-day-box> <div class="cal-day-panel clearfix" ng-style="{height: vm.dayViewHeight + \'px\', minWidth: vm.viewWidth + \'px\'}"> <mwl-calendar-hour-list day-view-start=vm.dayViewStart day-view-end=vm.dayViewEnd day-view-split=vm.dayViewSplit on-timespan-click=vm.onTimespanClick on-date-range-select=vm.onDateRangeSelect on-event-times-changed=vm.onEventTimesChanged view-date=vm.viewDate custom-template-urls=vm.customTemplateUrls template-scope=vm.templateScope cell-modifier=vm.cellModifier view=day> </mwl-calendar-hour-list> <div class="pull-left day-event day-highlight" ng-repeat="dayEvent in vm.nonAllDayEvents track by dayEvent.event.calendarEventId" ng-class=dayEvent.event.cssClass ng-style="{\n        top: dayEvent.top - 1 + \'px\',\n        left: dayEvent.left +  vm.dayViewTimePositionOffset + \'px\',\n        height: dayEvent.height + \'px\',\n        width: dayEvent.width + \'px\',\n        backgroundColor: dayEvent.event.color.secondary,\n        borderColor: dayEvent.event.color.primary\n      }" mwl-draggable="dayEvent.event.draggable === true" axis="\'xy\'" snap-grid="{y: vm.dayViewEventChunkSize || 30, x: 50}" on-drag="vm.eventDragged(dayEvent.event, y / (vm.dayViewSegmentSize || 30))" on-drag-end="vm.eventDragComplete(dayEvent.event, y / (vm.dayViewSegmentSize ||  30))" auto-scroll=vm.draggableAutoScroll mwl-resizable="dayEvent.event.resizable === true && dayEvent.event.endsAt" resize-edges="{top: true, bottom: true}" on-resize="vm.eventResized(dayEvent.event, edge, y / (vm.dayViewSegmentSize || 30))" on-resize-end="vm.eventResizeComplete(dayEvent.event, edge, y / (vm.dayViewSegmentSize || 30))" uib-tooltip-html="vm.calendarEventTitle.dayViewTooltip(dayEvent.event) | calendarTrustAsHtml" tooltip-append-to-body=true> <span class=cal-hours> <span ng-show="dayEvent.top == 0"><span ng-bind="(dayEvent.event.tempStartsAt || dayEvent.event.startsAt) | calendarDate:\'day\':true"></span>, </span> <span ng-bind="(dayEvent.event.tempStartsAt || dayEvent.event.startsAt) | calendarDate:\'time\':true"></span> </span> <a href=javascript:; class=event-item ng-click="vm.onEventClick({calendarEvent: dayEvent.event})"> <span ng-bind-html="vm.calendarEventTitle.dayView(dayEvent.event) | calendarTrustAsHtml"></span> </a> <a href=javascript:; class=event-item-action ng-repeat="action in dayEvent.event.actions track by $index" ng-class=action.cssClass ng-bind-html="action.label | calendarTrustAsHtml" ng-click="action.onClick({calendarEvent: dayEvent.event})"> </a> </div> </div> </div> '},function(e,t){e.exports='<div class=cal-day-panel-hour> <div class=cal-day-hour ng-repeat="hour in vm.hourGrid track by $index"> <div class=cal-day-hour-part ng-repeat="segment in hour.segments track by $index" ng-class="[{ \'cal-day-hour-part-selected\': vm.dateRangeSelect &&\n                vm.dateRangeSelect.startDate <= segment.date &&\n                segment.date < vm.dateRangeSelect.endDate }, segment.cssClass]" ng-click="vm.onTimespanClick({calendarDate: segment.date})" mwl-droppable on-drop="vm.eventDropped(dropData.event, segment.date)" mwl-drag-select=!!vm.onDateRangeSelect on-drag-select-start=vm.onDragSelectStart(segment.date) on-drag-select-move=vm.onDragSelectMove(segment.nextSegmentDate) on-drag-select-end=vm.onDragSelectEnd(segment.nextSegmentDate) ng-if=!vm.dayWidth> <div class=cal-day-hour-part-time> <strong ng-bind="segment.date | calendarDate:\'hour\':true" ng-show=segment.isStart></strong> </div> </div> <div class=cal-day-hour-part ng-repeat="segment in hour.segments track by $index" ng-if=vm.dayWidth> <div class=cal-day-hour-part-time> <strong ng-bind="segment.date | calendarDate:\'hour\':true" ng-show=segment.isStart></strong> &nbsp; </div> <div class=cal-day-hour-part-spacer ng-repeat="day in segment.days track by $index" ng-style="{width: (vm.dayWidth - ($last ? vm.scrollBarWidth : 0)) + \'px\'}" ng-class="[{ \'cal-day-hour-part-selected\': vm.dateRangeSelect &&\n                vm.dateRangeSelect.startDate <= day.date &&\n                day.date < vm.dateRangeSelect.endDate }, day.cssClass]" ng-click="vm.onTimespanClick({calendarDate: day.date})" mwl-droppable on-drop="vm.eventDropped(dropData.event, day.date)" mwl-drag-select=!!vm.onDateRangeSelect on-drag-select-start=vm.onDragSelectStart(day.date) on-drag-select-move=vm.onDragSelectMove(day.nextSegmentDate) on-drag-select-end=vm.onDragSelectEnd(day.nextSegmentDate)> </div> </div> </div> </div> '},function(e,t){e.exports='<div mwl-droppable on-drop="vm.handleEventDrop(dropData.event, day.date, dropData.draggedFromDate)" mwl-drag-select=!!vm.onDateRangeSelect on-drag-select-start=vm.onDragSelectStart(day) on-drag-select-move=vm.onDragSelectMove(day) on-drag-select-end=vm.onDragSelectEnd(day) class="cal-month-day {{ day.cssClass }}" ng-class="{\n    \'cal-day-outmonth\': !day.inMonth,\n    \'cal-day-inmonth\': day.inMonth,\n    \'cal-day-weekend\': day.isWeekend,\n    \'cal-day-past\': day.isPast,\n    \'cal-day-today\': day.isToday,\n    \'cal-day-future\': day.isFuture,\n    \'cal-day-selected\': vm.dateRangeSelect && vm.dateRangeSelect.startDate <= day.date && day.date <= vm.dateRangeSelect.endDate,\n    \'cal-day-open\': dayIndex === vm.openDayIndex\n  }"> <small class="cal-events-num badge badge-important pull-left" ng-show="day.badgeTotal > 0 && (vm.calendarConfig.displayAllMonthEvents || day.inMonth)" ng-bind=day.badgeTotal> </small> <span class=pull-right data-cal-date ng-click=vm.calendarCtrl.dateClicked(day.date) ng-bind=day.label> </span> <div class=cal-day-tick ng-show="dayIndex === vm.openDayIndex && (vm.cellAutoOpenDisabled || vm.view[vm.openDayIndex].events.length > 0) && !vm.slideBoxDisabled"> <i class="glyphicon glyphicon-chevron-up"></i> <i class="fa fa-chevron-up"></i> </div> <ng-include src="vm.customTemplateUrls.calendarMonthCellEvents || vm.calendarConfig.templates.calendarMonthCellEvents"></ng-include> <div class=cal-week-box-cell ng-if="$first && rowHovered"> <span ng-bind=vm.getWeekNumberLabel(day)></span> </div> </div> '},function(e,t){e.exports='<div class=events-list ng-show="day.events.length > 0"> <a ng-repeat="event in day.events | orderBy:\'startsAt\' track by event.calendarEventId" href=javascript:; ng-click="$event.stopPropagation(); vm.onEventClick({calendarEvent: event})" class="pull-left event" ng-class=event.cssClass ng-style="{backgroundColor: event.color.primary}" ng-mousedown=$event.stopPropagation() ng-mouseenter="vm.highlightEvent(event, true)" ng-mouseleave="vm.highlightEvent(event, false)" tooltip-append-to-body=true uib-tooltip-html="vm.calendarEventTitle.monthViewTooltip(event) | calendarTrustAsHtml" mwl-draggable="event.draggable === true" drop-data="{event: event, draggedFromDate: day.date.toDate()}" auto-scroll=vm.draggableAutoScroll> </a> </div> '},function(e,t){e.exports='<div class=cal-month-box ng-class="[\'cal-grid-\' + vm.weekDays.length]"> <div class="cal-row-fluid cal-row-head"> <div class=cal-cell1 ng-repeat="day in vm.weekDays track by $index" ng-bind=day></div> </div> <div ng-repeat="rowOffset in vm.monthOffsets track by rowOffset" ng-mouseenter="rowHovered = true" ng-mouseleave="rowHovered = false"> <div class="cal-row-fluid cal-before-eventlist"> <div ng-repeat="day in vm.view | calendarLimitTo:vm.weekDays.length:rowOffset track by $index" ng-init="dayIndex = vm.view.indexOf(day)" class="cal-cell1 cal-cell {{ day.highlightClass }}" ng-style="{backgroundColor: day.backgroundColor}" ng-click="vm.dayClicked(day, false, $event)" ng-class="{pointer: day.events.length > 0}"> <ng-include src="vm.customTemplateUrls.calendarMonthCell || vm.calendarConfig.templates.calendarMonthCell"></ng-include> </div> </div> <mwl-calendar-slide-box is-open="vm.openRowIndex === $index && (vm.cellAutoOpenDisabled || vm.view[vm.openDayIndex].events.length > 0) && !vm.slideBoxDisabled" events=vm.view[vm.openDayIndex].events on-event-click=vm.onEventClick cell=vm.view[vm.openDayIndex] custom-template-urls=vm.customTemplateUrls template-scope=vm.templateScope draggable-auto-scroll=vm.draggableAutoScroll> </mwl-calendar-slide-box> </div> </div> '},function(e,t){e.exports='<div class=cal-slide-box uib-collapse=vm.isCollapsed mwl-collapse-fallback=vm.isCollapsed> <div class="cal-slide-content cal-event-list"> <ul class="unstyled list-unstyled"> <li ng-repeat="event in vm.events | orderBy:\'startsAt\' track by event.calendarEventId" ng-class=event.cssClass ng-mousedown=$event.stopPropagation() mwl-draggable="event.draggable === true" drop-data="{event: event}" auto-scroll=vm.draggableAutoScroll> <span class="pull-left event" ng-style="{backgroundColor: event.color.primary}"></span> &nbsp; <a href=javascript:; class=event-item ng-click="vm.onEventClick({calendarEvent: event})"> <span ng-bind-html="isMonthView ? vm.calendarEventTitle.monthView(event) : vm.calendarEventTitle.yearView(event) | calendarTrustAsHtml"></span> </a> <a href=javascript:; class=event-item-action ng-class=action.cssClass ng-repeat="action in event.actions track by $index" ng-bind-html="action.label | calendarTrustAsHtml" ng-click="action.onClick({calendarEvent: event})"> </a> </li> </ul> </div> </div> '},function(e,t){e.exports='<div class=cal-week-box ng-class="[{\'cal-day-box\': vm.showTimes}, \'cal-grid-\' + vm.view.days.length]"> <div class="cal-row-fluid cal-row-head" mwl-element-dimensions=vm.dayColumnDimensions> <div class=cal-cell1 ng-repeat="day in vm.view.days track by $index" ng-class="{\n        \'cal-day-weekend\': day.isWeekend,\n        \'cal-day-past\': day.isPast,\n        \'cal-day-today\': day.isToday,\n        \'cal-day-future\': day.isFuture}" mwl-droppable on-drop="vm.eventDropped(dropData.event, day.date)"> <span ng-bind=day.weekDayLabel></span> <br> <small> <span data-cal-date ng-click=vm.calendarCtrl.dateClicked(day.date) class=pointer ng-bind=day.dayLabel> </span> </small> </div> </div> <div class="cal-day-panel clearfix" ng-style="{height: vm.showTimes ? (vm.dayViewHeight + \'px\') : \'auto\'}"> <mwl-calendar-hour-list day-view-start=vm.dayViewStart day-view-end=vm.dayViewEnd day-view-split=vm.dayViewSplit day-width="(vm.dayColumnDimensions.width - 60) / vm.view.days.length" view-date=vm.viewDate on-timespan-click=vm.onTimespanClick on-date-range-select=vm.onDateRangeSelect custom-template-urls=vm.customTemplateUrls cell-modifier=vm.cellModifier template-scope=vm.templateScope view=week ng-if=vm.showTimes> </mwl-calendar-hour-list> <div class=row ng-repeat="row in vm.view.eventRows track by $index"> <div class=col-xs-12> <div class=cal-row-fluid> <div ng-repeat="eventRow in row.row track by eventRow.event.calendarEventId" ng-class="\'cal-cell\' + (vm.showTimes ? 1 : eventRow.span) + (vm.showTimes ? \'\' : \' cal-offset\' + eventRow.offset)" ng-style="{\n              top: vm.showTimes ? ((eventRow.top) + \'px\') : \'auto\',\n              position: vm.showTimes ? \'absolute\' : \'inherit\',\n              width: vm.showTimes ? ((vm.dayColumnDimensions.width - 60) / vm.view.days.length + \'px\') : \'\',\n              left: vm.showTimes ? (((vm.dayColumnDimensions.width - 60) / vm.view.days.length) * eventRow.offset) + 15 + \'px\' : \'\'\n            }"> <div class=day-highlight ng-class="[eventRow.event.cssClass, !vm.showTimes && eventRow.startsBeforeWeek ? \'\' : \'border-left-rounded\', !vm.showTimes && eventRow.endsAfterWeek ? \'\' : \'border-right-rounded\']" ng-style="{backgroundColor: eventRow.event.color.secondary}" data-event-class mwl-draggable="eventRow.event.draggable === true" axis="vm.showTimes ? \'xy\' : \'x\'" snap-grid="vm.showTimes ? {x: (vm.dayColumnDimensions.width - 60) / vm.view.days.length, y: vm.dayViewEventChunkSize || 30} : {x: vm.dayColumnDimensions.width / vm.view.days.length}" auto-scroll=vm.draggableAutoScroll on-drag="vm.tempTimeChanged(eventRow.event, y / 30)" on-drag-end="vm.weekDragged(eventRow.event, x / ((vm.dayColumnDimensions.width - (vm.showTimes ? 60 : 0)) / vm.view.days.length), y / 30)" mwl-resizable="eventRow.event.resizable === true && eventRow.event.endsAt && !vm.showTimes" resize-edges="{left: true, right: true}" on-resize-end="vm.weekResized(eventRow.event, edge, x / ((vm.dayColumnDimensions.width - (vm.showTimes ? 60 : 0)) / vm.view.days.length))"> <strong ng-bind="(eventRow.event.tempStartsAt || eventRow.event.startsAt) | calendarDate:\'time\':true" ng-show=vm.showTimes></strong> <a href=javascript:; ng-click="vm.onEventClick({calendarEvent: eventRow.event})" class=event-item ng-bind-html="vm.calendarEventTitle.weekView(eventRow.event) | calendarTrustAsHtml" uib-tooltip-html="vm.calendarEventTitle.weekViewTooltip(eventRow.event) | calendarTrustAsHtml" tooltip-placement=left tooltip-append-to-body=true> </a> <a href=javascript:; class=event-item-action ng-class=action.cssClass ng-repeat="action in eventRow.event.actions track by $index" ng-bind-html="action.label | calendarTrustAsHtml" ng-click="action.onClick({calendarEvent: eventRow.event})"> </a> </div> </div> </div> </div> </div> </div> </div> '},function(e,t){e.exports='<div class=cal-year-box> <div ng-repeat="rowOffset in [0, 4, 8] track by rowOffset"> <div class="row cal-before-eventlist"> <div class="span3 col-md-3 col-xs-6 cal-cell {{ day.cssClass }}" ng-repeat="month in vm.view | calendarLimitTo:4:rowOffset track by $index" ng-init="monthIndex = vm.view.indexOf(month)" ng-click="vm.monthClicked(month, false, $event)" ng-class="{pointer: month.events.length > 0, \'cal-day-today\': month.isToday}" mwl-droppable on-drop="vm.handleEventDrop(dropData.event, month.date)"> <span class=pull-right data-cal-date ng-click=vm.calendarCtrl.dateClicked(month.date) ng-bind=month.label> </span> <small class="cal-events-num badge badge-important pull-left" ng-show="month.badgeTotal > 0" ng-bind=month.badgeTotal> </small> <div class=cal-day-tick ng-show="monthIndex === vm.openMonthIndex && (vm.cellAutoOpenDisabled || vm.view[vm.openMonthIndex].events.length > 0) && !vm.slideBoxDisabled"> <i class="glyphicon glyphicon-chevron-up"></i> <i class="fa fa-chevron-up"></i> </div> </div> </div> <mwl-calendar-slide-box is-open="vm.openRowIndex === $index && (vm.cellAutoOpenDisabled || vm.view[vm.openMonthIndex].events.length > 0) && !vm.slideBoxDisabled" events=vm.view[vm.openMonthIndex].events on-event-click=vm.onEventClick cell=vm.view[vm.openMonthIndex] custom-template-urls=vm.customTemplateUrls template-scope=vm.templateScope> </mwl-calendar-slide-box> </div> </div> '},function(e,t,n){function a(e){return n(r(e))}function r(e){var t=i[e];if(!(t+1))throw new Error("Cannot find module '"+e+"'.");return t}var i={"./mwlCalendar.js":20,"./mwlCalendarDay.js":21,"./mwlCalendarHourList.js":22,"./mwlCalendarMonth.js":46,"./mwlCalendarSlideBox.js":47,"./mwlCalendarWeek.js":48,"./mwlCalendarYear.js":49,"./mwlCollapseFallback.js":50,"./mwlDateModifier.js":51,"./mwlDragSelect.js":52,"./mwlDraggable.js":53,"./mwlDroppable.js":54,"./mwlDynamicDirectiveTemplate.js":55,"./mwlElementDimensions.js":56,"./mwlResizable.js":57};a.keys=function(){return Object.keys(i)},a.resolve=r,e.exports=a,a.id=19},function(e,t,n){"use strict";var a=n(0),r="Bootstrap calendar:";a.module("mwl.calendar").controller("MwlCalendarCtrl",["$scope","$log","$timeout","$attrs","$locale","moment","calendarTitle","calendarHelper",function(e,t,n,i,l,o,d,s){var c=this;c.changeView=function(e,t){c.view=e,c.viewDate=t},c.dateClicked=function(e){var t=o(e).toDate(),n={year:"month",month:"day",week:"day"};!1!==c.onViewChangeClick({calendarDate:t,calendarNextView:n[c.view]})&&c.changeView(n[c.view],t)},c.$onInit=function(){function v(e){e.startsAt?a.isDate(e.startsAt)||t.warn(r,"Event startsAt should be a javascript date object. Do `new Date(event.startsAt)` to fix it.",e):t.warn(r,"Event is missing the startsAt field",e),e.endsAt&&(a.isDate(e.endsAt)||t.warn(r,"Event endsAt should be a javascript date object. Do `new Date(event.endsAt)` to fix it.",e),o(e.startsAt).isAfter(o(e.endsAt))&&t.warn(r,"Event cannot start after it finishes",e))}function m(){d[c.view]&&a.isDefined(i.viewTitle)&&(c.viewTitle=d[c.view](c.viewDate)),c.events.forEach(function(e,t){v(e),e.calendarEventId=t});var t=o(c.viewDate),r=!0;u.clone().startOf(c.view).isSame(t.clone().startOf(c.view))&&!u.isSame(t)&&c.view===p&&(r=!1),u=t,p=c.view,r&&n(function(){e.$broadcast("calendar.refreshView")})}c.slideBoxDisabled&&t.warn(r,"The `slide-box-disabled` option is deprecated and will be removed in the next release. Instead set `cell-auto-open-disabled` to true"),c.events=c.events||[],c.excludedDays=c.excludedDays||[];var u=o(c.viewDate),p=c.view;s.loadTemplates().then(function(){c.templatesLoaded=!0;var t=!1;e.$watchGroup(["vm.viewDate","vm.view","vm.cellIsOpen",function(){return o.locale()+l.id}],function(){t?m():(t=!0,e.$watch("vm.events",m,!0))})}).catch(function(e){t.error("Could not load all calendar templates",e)})},a.version.minor<5&&c.$onInit()}]).directive("mwlCalendar",function(){return{template:'<div mwl-dynamic-directive-template name="calendar" overrides="vm.customTemplateUrls"></div>',restrict:"E",scope:{events:"=",view:"=",viewTitle:"=?",viewDate:"=",cellIsOpen:"=?",cellAutoOpenDisabled:"=?",excludedDays:"=?",slideBoxDisabled:"=?",customTemplateUrls:"=?",draggableAutoScroll:"=?",onEventClick:"&",onEventTimesChanged:"&",onTimespanClick:"&",onDateRangeSelect:"&?",onViewChangeClick:"&",cellModifier:"&",dayViewStart:"@",dayViewSegmentSize:"@",dayViewEnd:"@",dayViewSplit:"@",dayViewEventChunkSize:"@",dayViewEventWidth:"@",templateScope:"=?",dayViewTimePosition:"@"},controller:"MwlCalendarCtrl as vm",bindToController:!0}})},function(e,t,n){"use strict";n(0).module("mwl.calendar").controller("MwlCalendarDayCtrl",["$scope","moment","calendarHelper","calendarEventTitle",function(e,t,n,a){function r(){i.timeHidden="hidden"===i.dayViewTimePosition,i.dayViewTimePositionOffset="default"!==i.dayViewTimePosition?0:60,i.dayViewSplit=i.dayViewSplit||30,i.dayViewHeight=n.getDayViewHeight(i.dayViewStart,i.dayViewEnd,i.dayViewSplit,i.dayViewSegmentSize);var e=n.getDayView(i.events,i.viewDate,i.dayViewStart,i.dayViewEnd,i.dayViewSplit,i.dayViewEventWidth,i.dayViewSegmentSize);i.allDayEvents=e.allDayEvents,i.nonAllDayEvents=e.events,i.viewWidth=e.width+62}var i=this;i.calendarEventTitle=a,e.$on("calendar.refreshView",r),e.$watchGroup(["vm.dayViewStart","vm.dayViewEnd","vm.dayViewSplit"],r),i.eventDragComplete=function(e,n){var a=n*i.dayViewSplit,r=t(e.startsAt).add(a,"minutes"),l=t(e.endsAt).add(a,"minutes");delete e.tempStartsAt,i.onEventTimesChanged({calendarEvent:e,calendarNewEventStart:r.toDate(),calendarNewEventEnd:e.endsAt?l.toDate():null})},i.eventDragged=function(e,n){var a=n*i.dayViewSplit;e.tempStartsAt=t(e.startsAt).add(a,"minutes").toDate()},i.eventResizeComplete=function(e,n,a){var r=a*i.dayViewSplit,l=t(e.startsAt),o=t(e.endsAt);"start"===n?l.add(r,"minutes"):o.add(r,"minutes"),delete e.tempStartsAt,i.onEventTimesChanged({calendarEvent:e,calendarNewEventStart:l.toDate(),calendarNewEventEnd:o.toDate()})},i.eventResized=function(e,n,a){var r=a*i.dayViewSplit;"start"===n&&(e.tempStartsAt=t(e.startsAt).add(r,"minutes").toDate())}}]).directive("mwlCalendarDay",function(){return{template:'<div mwl-dynamic-directive-template name="calendarDayView" overrides="vm.customTemplateUrls"></div>',restrict:"E",require:"^mwlCalendar",scope:{events:"=",viewDate:"=",onEventClick:"=",onEventTimesChanged:"=",onTimespanClick:"=",onDateRangeSelect:"=",dayViewStart:"=",dayViewEnd:"=",dayViewSplit:"=",dayViewEventChunkSize:"=",dayViewSegmentSize:"=",dayViewEventWidth:"=",customTemplateUrls:"=?",cellModifier:"=",templateScope:"=",dayViewTimePosition:"=",draggableAutoScroll:"="},controller:"MwlCalendarDayCtrl as vm",bindToController:!0}})},function(e,t,n){"use strict";var a=n(0),r=n(4);a.module("mwl.calendar").controller("MwlCalendarHourListCtrl",["$scope","$document","moment","calendarHelper",function(e,t,n,a){function i(){l.dayViewSplit=parseInt(l.dayViewSplit);var e=(l.dayViewStart||"00:00").split(":"),t=(l.dayViewEnd||"23:59").split(":");l.hourGrid=r.getDayViewHourGrid({viewDate:"week"===l.view?n(l.viewDate).startOf("week").toDate():n(l.viewDate).toDate(),hourSegments:60/l.dayViewSplit,dayStart:{hour:e[0],minute:e[1]},dayEnd:{hour:t[0],minute:t[1]}}),l.hourGrid.forEach(function(e){e.segments.forEach(function(e){if(e.date=n(e.date),e.nextSegmentDate=e.date.clone().add(l.dayViewSplit,"minutes"),"week"===l.view){e.days=[];for(var t=0;t<7;t++){var a={date:n(e.date).add(t,"days")};a.nextSegmentDate=a.date.clone().add(l.dayViewSplit,"minutes"),l.cellModifier({calendarCell:a}),e.days.push(a)}}else l.cellModifier({calendarCell:e})})})}var l=this;l.scrollBarWidth=function(){var e=t[0].createElement("div");e.style.visibility="hidden",e.style.width="100px",e.style.msOverflowStyle="scrollbar",t[0].body.appendChild(e);var n=e.offsetWidth;e.style.overflow="scroll";var a=t[0].createElement("div");a.style.width="100%",e.appendChild(a);var r=a.offsetWidth;return e.parentNode.removeChild(e),n-r}();var o=n.locale();e.$on("calendar.refreshView",function(){o!==n.locale()&&(o=n.locale(),i())}),e.$watchGroup(["vm.dayViewStart","vm.dayViewEnd","vm.dayViewSplit","vm.viewDate"],function(){i()}),l.eventDropped=function(e,t){var r=n(t),i=a.adjustEndDateFromStartDiff(e.startsAt,r,e.endsAt);l.onEventTimesChanged({calendarEvent:e,calendarDate:t,calendarNewEventStart:r.toDate(),calendarNewEventEnd:i?i.toDate():null})},l.onDragSelectStart=function(e,t){l.dateRangeSelect||(l.dateRangeSelect={active:!0,startDate:e,endDate:e,dayIndex:t})},l.onDragSelectMove=function(e){l.dateRangeSelect&&(l.dateRangeSelect.endDate=e)},l.onDragSelectEnd=function(e){l.dateRangeSelect&&(l.dateRangeSelect.endDate=e,l.dateRangeSelect.endDate>l.dateRangeSelect.startDate&&l.onDateRangeSelect({calendarRangeStartDate:l.dateRangeSelect.startDate.toDate(),calendarRangeEndDate:l.dateRangeSelect.endDate.toDate()}),delete l.dateRangeSelect)}}]).directive("mwlCalendarHourList",function(){return{restrict:"E",template:'<div mwl-dynamic-directive-template name="calendarHourList" overrides="vm.customTemplateUrls"></div>',controller:"MwlCalendarHourListCtrl as vm",scope:{viewDate:"=",dayViewStart:"=",dayViewEnd:"=",dayViewSplit:"=",dayWidth:"=?",onTimespanClick:"=",onDateRangeSelect:"=",onEventTimesChanged:"=",customTemplateUrls:"=?",cellModifier:"=",templateScope:"=",view:"@"},bindToController:!0}})},function(e,t,n){function a(e,t){var n=r(e),a=Number(t);return n.setDate(n.getDate()+a),n}var r=n(1);e.exports=a},function(e,t,n){function a(e,t){var n=Number(t);return r(e,n*i)}var r=n(2),i=36e5;e.exports=a},function(e,t,n){function a(e,t){var n=Number(t);return r(e,n*i)}var r=n(2),i=6e4;e.exports=a},function(e,t,n){function a(e,t){var n=Number(t);return r(e,1e3*n)}var r=n(2);e.exports=a},function(e,t,n){function a(e,t){var n=r(e),a=r(t),o=l(n,a),d=Math.abs(i(n,a));return n.setDate(n.getDate()-o*d),o*(d-(l(n,a)===-o))}var r=n(1),i=n(28),l=n(29);e.exports=a},function(e,t,n){function a(e,t){var n=r(e),a=r(t),o=n.getTime()-n.getTimezoneOffset()*i,d=a.getTime()-a.getTimezoneOffset()*i;return Math.round((o-d)/l)}var r=n(3),i=6e4,l=864e5;e.exports=a},function(e,t,n){function a(e,t){var n=r(e),a=n.getTime(),i=r(t),l=i.getTime();return a<l?-1:a>l?1:0}var r=n(1);e.exports=a},function(e,t,n){function a(e,t){var n=r(e,t)/i;return n>0?Math.floor(n):Math.ceil(n)}var r=n(6),i=6e4;e.exports=a},function(e,t,n){function a(e,t){var n=r(e,t)/1e3;return n>0?Math.floor(n):Math.ceil(n)}var r=n(6);e.exports=a},function(e,t,n){function a(e){var t=r(e);return t.setHours(23,59,59,999),t}var r=n(1);e.exports=a},function(e,t,n){function a(e){var t=r(e),n=t.getMonth();return t.setFullYear(t.getFullYear(),n+1,0),t.setHours(23,59,59,999),t}var r=n(1);e.exports=a},function(e,t,n){function a(e,t){var n=t?Number(t.weekStartsOn)||0:0,a=r(e),i=a.getDay(),l=6+(i<n?-7:0)-(i-n);return a.setDate(a.getDate()+l),a.setHours(23,59,59,999),a}var r=n(1);e.exports=a},function(e,t,n){function a(e){return r(e).getDay()}var r=n(1);e.exports=a},function(e,t,n){function a(e,t){var n=r(e),a=r(t);return n.getTime()===a.getTime()}var r=n(3);e.exports=a},function(e,t,n){function a(e,t){var n=r(e),a=r(t);return n.getFullYear()===a.getFullYear()&&n.getMonth()===a.getMonth()}var r=n(1);e.exports=a},function(e,t,n){function a(e,t){var n=r(e),a=r(t);return n.getTime()===a.getTime()}var r=n(39);e.exports=a},function(e,t,n){function a(e){var t=r(e);return t.setMilliseconds(0),t}var r=n(1);e.exports=a},function(e,t,n){function a(){var e=Array.prototype.slice.call(arguments),t=e.map(function(e){return r(e)}),n=Math.max.apply(null,t);return new Date(n)}var r=n(1);e.exports=a},function(e,t,n){function a(e,t){var n=r(e),a=Number(t);return n.setHours(a),n}var r=n(1);e.exports=a},function(e,t,n){function a(e,t){var n=r(e),a=Number(t);return n.setMinutes(a),n}var r=n(1);e.exports=a},function(e,t,n){function a(e){var t=r(e);return t.setSeconds(0,0),t}var r=n(1);e.exports=a},function(e,t,n){function a(e){var t=r(e);return t.setDate(1),t.setHours(0,0,0,0),t}var r=n(1);e.exports=a},function(e,t,n){function a(e,t){var n=t?Number(t.weekStartsOn)||0:0,a=r(e),i=a.getDay(),l=(i<n?7:0)+i-n;return a.setDate(a.getDate()-l),a.setHours(0,0,0,0),a}var r=n(1);e.exports=a},function(e,t,n){"use strict";var a=n(0);a.module("mwl.calendar").controller("MwlCalendarMonthCtrl",["$scope","moment","calendarHelper","calendarConfig","calendarEventTitle",function(e,t,n,r,i){function l(){o.openRowIndex=null,o.openDayIndex=null,o.cellIsOpen&&o.view&&o.weekDays&&o.view.forEach(function(e,n){t(o.viewDate).startOf("day").isSame(e.date)&&(o.openDayIndex=n,o.openRowIndex=Math.floor(n/o.weekDays.length))})}var o=this;o.calendarConfig=r,o.calendarEventTitle=i,o.openRowIndex=null,e.$on("calendar.refreshView",function(){o.weekDays=n.getWeekDayNames(o.excludedDays);var e=n.getMonthView(o.events,o.viewDate,o.cellModifier,o.excludedDays);o.view=e.days,o.monthOffsets=e.rowOffsets,o.cellAutoOpenDisabled?l():!o.cellAutoOpenDisabled&&o.cellIsOpen&&null===o.openRowIndex&&(o.openDayIndex=null,o.view.forEach(function(e){e.inMonth&&t(o.viewDate).startOf("day").isSame(e.date)&&o.dayClicked(e,!0)}))}),o.dayClicked=function(e,t,n){if((t||(o.onTimespanClick({calendarDate:e.date.toDate(),calendarCell:e,$event:n}),!n||!n.defaultPrevented))&&!o.cellAutoOpenDisabled){o.openRowIndex=null;var a=o.view.indexOf(e);a===o.openDayIndex?(o.openDayIndex=null,o.cellIsOpen=!1):(o.openDayIndex=a,o.openRowIndex=Math.floor(a/o.weekDays.length),o.cellIsOpen=!0)}},o.highlightEvent=function(e,t){o.view.forEach(function(n){if(delete n.highlightClass,delete n.backgroundColor,t){n.events.indexOf(e)>-1&&(n.backgroundColor=e.color?e.color.secondary:"")}})},o.handleEventDrop=function(e,a,r){var i=t(e.startsAt).year(t(a).year()).month(t(a).month()).date(t(a).date()),l=n.adjustEndDateFromStartDiff(e.startsAt,i,e.endsAt);o.onEventTimesChanged({calendarEvent:e,calendarDate:a,calendarNewEventStart:i.toDate(),calendarNewEventEnd:l?l.toDate():null,calendarDraggedFromDate:r})},o.getWeekNumberLabel=function(e){var t=e.date.clone().add(1,"day").isoWeek();return"function"==typeof r.i18nStrings.weekNumber?r.i18nStrings.weekNumber({weekNumber:t}):r.i18nStrings.weekNumber.replace("{week}",t)},o.onDragSelectStart=function(e){o.dateRangeSelect||(o.dateRangeSelect={startDate:e.date,endDate:e.date})},o.onDragSelectMove=function(e){o.dateRangeSelect&&(o.dateRangeSelect.endDate=e.date)},o.onDragSelectEnd=function(e){o.dateRangeSelect&&(o.dateRangeSelect.endDate=e.date,o.dateRangeSelect.endDate>o.dateRangeSelect.startDate&&o.onDateRangeSelect({calendarRangeStartDate:o.dateRangeSelect.startDate.clone().startOf("day").toDate(),calendarRangeEndDate:o.dateRangeSelect.endDate.clone().endOf("day").toDate()}),delete o.dateRangeSelect)},o.$onInit=function(){o.cellAutoOpenDisabled&&e.$watchGroup(["vm.cellIsOpen","vm.viewDate"],l)},a.version.minor<5&&o.$onInit()}]).directive("mwlCalendarMonth",function(){return{template:'<div mwl-dynamic-directive-template name="calendarMonthView" overrides="vm.customTemplateUrls"></div>',restrict:"E",require:"^mwlCalendar",scope:{events:"=",viewDate:"=",excludedDays:"=",onEventClick:"=",onEventTimesChanged:"=",onDateRangeSelect:"=",cellIsOpen:"=",cellAutoOpenDisabled:"=",onTimespanClick:"=",cellModifier:"=",slideBoxDisabled:"=",customTemplateUrls:"=?",templateScope:"=",draggableAutoScroll:"="},controller:"MwlCalendarMonthCtrl as vm",link:function(e,t,n,a){e.vm.calendarCtrl=a},bindToController:!0}})},function(e,t,n){"use strict";n(0).module("mwl.calendar").controller("MwlCalendarSlideBoxCtrl",["$scope","$timeout","calendarConfig","calendarEventTitle",function(e,t,n,a){var r=this;r.calendarConfig=n,r.calendarEventTitle=a,r.isCollapsed=!0,e.$watch("vm.isOpen",function(e){t(function(){r.isCollapsed=!e})})}]).directive("mwlCalendarSlideBox",function(){return{restrict:"E",template:'<div mwl-dynamic-directive-template name="calendarSlideBox" overrides="vm.customTemplateUrls"></div>',replace:!0,controller:"MwlCalendarSlideBoxCtrl as vm",require:["^?mwlCalendarMonth","^?mwlCalendarYear"],link:function(e,t,n,a){e.isMonthView=!!a[0],e.isYearView=!!a[1]},scope:{isOpen:"=",events:"=",onEventClick:"=",cell:"=",customTemplateUrls:"=?",templateScope:"=",draggableAutoScroll:"="},bindToController:!0}})},function(e,t,n){"use strict";n(0).module("mwl.calendar").controller("MwlCalendarWeekCtrl",["$scope","moment","calendarHelper","calendarConfig","calendarEventTitle",function(e,t,n,a,r){var i=this;i.showTimes=a.showTimesOnWeekView,i.calendarEventTitle=r,e.$on("calendar.refreshView",function(){i.dayViewSplit=i.dayViewSplit||30,i.dayViewHeight=n.getDayViewHeight(i.dayViewStart,i.dayViewEnd,i.dayViewSplit),i.showTimes?i.view=n.getWeekViewWithTimes(i.events,i.viewDate,i.dayViewStart,i.dayViewEnd,i.dayViewSplit):i.view=n.getWeekView(i.events,i.viewDate,i.excludedDays)}),i.weekDragged=function(e,n,a){var r=t(e.startsAt).add(n,"days"),l=t(e.endsAt).add(n,"days");if(a){var o=a*i.dayViewSplit;r=r.add(o,"minutes"),l=l.add(o,"minutes")}delete e.tempStartsAt,i.onEventTimesChanged({calendarEvent:e,calendarNewEventStart:r.toDate(),calendarNewEventEnd:e.endsAt?l.toDate():null})},i.eventDropped=function(e,n){var a=t(n).diff(t(e.startsAt),"days");i.weekDragged(e,a)},i.weekResized=function(e,n,a){var r=t(e.startsAt),l=t(e.endsAt);"start"===n?r.add(a,"days"):l.add(a,"days"),i.onEventTimesChanged({calendarEvent:e,calendarNewEventStart:r.toDate(),calendarNewEventEnd:l.toDate()})},i.tempTimeChanged=function(e,n){var a=n*i.dayViewSplit;e.tempStartsAt=t(e.startsAt).add(a,"minutes").toDate()}}]).directive("mwlCalendarWeek",function(){return{template:'<div mwl-dynamic-directive-template name="calendarWeekView" overrides="vm.customTemplateUrls"></div>',restrict:"E",require:"^mwlCalendar",scope:{events:"=",viewDate:"=",excludedDays:"=",onEventClick:"=",onEventTimesChanged:"=",dayViewStart:"=",dayViewEnd:"=",dayViewSplit:"=",dayViewEventChunkSize:"=",onTimespanClick:"=",onDateRangeSelect:"=",customTemplateUrls:"=?",cellModifier:"=",templateScope:"=",draggableAutoScroll:"="},controller:"MwlCalendarWeekCtrl as vm",link:function(e,t,n,a){e.vm.calendarCtrl=a},bindToController:!0}})},function(e,t,n){"use strict";var a=n(0);a.module("mwl.calendar").controller("MwlCalendarYearCtrl",["$scope","moment","calendarHelper",function(e,t,n){function r(){i.openRowIndex=null,i.openMonthIndex=null,i.cellIsOpen&&i.view&&i.view.forEach(function(e,n){t(i.viewDate).startOf("month").isSame(e.date)&&(i.openMonthIndex=n,i.openRowIndex=Math.floor(n/4))})}var i=this;i.openMonthIndex=null,e.$on("calendar.refreshView",function(){i.view=n.getYearView(i.events,i.viewDate,i.cellModifier),i.cellAutoOpenDisabled?r():!i.cellAutoOpenDisabled&&i.cellIsOpen&&null===i.openMonthIndex&&(i.openMonthIndex=null,i.view.forEach(function(e){t(i.viewDate).startOf("month").isSame(e.date)&&i.monthClicked(e,!0)}))}),i.monthClicked=function(e,t,n){if((t||(i.onTimespanClick({calendarDate:e.date.toDate(),calendarCell:e,$event:n}),!n||!n.defaultPrevented))&&!i.cellAutoOpenDisabled){i.openRowIndex=null;var a=i.view.indexOf(e);a===i.openMonthIndex?(i.openMonthIndex=null,i.cellIsOpen=!1):(i.openMonthIndex=a,i.openRowIndex=Math.floor(a/4),i.cellIsOpen=!0)}},i.handleEventDrop=function(e,a){var r=t(e.startsAt).year(t(a).year()).month(t(a).month()),l=n.adjustEndDateFromStartDiff(e.startsAt,r,e.endsAt);i.onEventTimesChanged({calendarEvent:e,calendarDate:a,calendarNewEventStart:r.toDate(),calendarNewEventEnd:l?l.toDate():null})},i.$onInit=function(){i.cellAutoOpenDisabled&&e.$watchGroup(["vm.cellIsOpen","vm.viewDate"],r)},a.version.minor<5&&i.$onInit()}]).directive("mwlCalendarYear",function(){return{template:'<div mwl-dynamic-directive-template name="calendarYearView" overrides="vm.customTemplateUrls"></div>',restrict:"E",require:"^mwlCalendar",scope:{events:"=",viewDate:"=",onEventClick:"=",onEventTimesChanged:"=",cellIsOpen:"=",cellAutoOpenDisabled:"=",onTimespanClick:"=",cellModifier:"=",slideBoxDisabled:"=",customTemplateUrls:"=?",templateScope:"="},controller:"MwlCalendarYearCtrl as vm",link:function(e,t,n,a){e.vm.calendarCtrl=a},bindToController:!0}})},function(e,t,n){"use strict";n(0).module("mwl.calendar").controller("MwlCollapseFallbackCtrl",["$scope","$attrs","$element",function(e,t,n){e.$watch(t.mwlCollapseFallback,function(e){e?n.addClass("ng-hide"):n.removeClass("ng-hide")})}]).directive("mwlCollapseFallback",["$injector",function(e){return e.has("uibCollapseDirective")?{}:{restrict:"A",controller:"MwlCollapseFallbackCtrl"}}])},function(e,t,n){"use strict";var a=n(0);a.module("mwl.calendar").controller("MwlDateModifierCtrl",["$element","$attrs","$scope","moment",function(e,t,n,r){function i(){if(a.isDefined(t.setToToday))l.date=new Date;else if(a.isDefined(t.increment)){if(l.date=r(l.date).add(1,l.increment),l.excludedDays&&l.increment.indexOf("day")>-1)for(;l.excludedDays.indexOf(l.date.day())>-1;)l.date.add(1,l.increment);l.date=l.date.toDate()}else if(a.isDefined(t.decrement)){if(l.date=r(l.date).subtract(1,l.decrement),l.excludedDays&&l.decrement.indexOf("day")>-1)for(;l.excludedDays.indexOf(l.date.day())>-1;)l.date.subtract(1,l.decrement);l.date=l.date.toDate()}n.$apply()}var l=this;e.bind("click",i),n.$on("$destroy",function(){e.unbind("click",i)})}]).directive("mwlDateModifier",function(){return{restrict:"A",controller:"MwlDateModifierCtrl as vm",scope:{date:"=",increment:"=",decrement:"=",excludedDays:"=?"},bindToController:!0}})},function(e,t,n){"use strict";n(0).module("mwl.calendar").controller("MwlDragSelectCtrl",["$scope","$element","$parse","$attrs",function(e,t,n,a){function r(t){return function(a){t&&2!==a.button&&(n(t)(e),e.$apply()),a.preventDefault()}}function i(){t.on("mousedown",o),t.on("mousemove",d),t.on("mouseup",s)}function l(){t.off("mousedown",o),t.off("mousemove",d),t.off("mouseup",s)}var o=r(a.onDragSelectStart),d=r(a.onDragSelectMove),s=r(a.onDragSelectEnd);e.$watch(a.mwlDragSelect,function(e){e?i():l()}),e.$on("$destroy",function(){l()})}]).directive("mwlDragSelect",function(){return{restrict:"A",controller:"MwlDragSelectCtrl"}})},function(e,t,n){"use strict";var a=n(0);a.module("mwl.calendar").controller("MwlDraggableCtrl",["$element","$scope","$window","$parse","$attrs","$timeout","interact",function(e,t,n,r,i,l,o){function d(e,t){return e.css("-ms-transform",t).css("-webkit-transform",t).css("transform",t)}if(o){var s,c;i.snapGrid&&(c=r(i.snapGrid)(t),s={targets:[o.createSnapGrid(c)]});var v=r(i.autoScroll)(t);void 0===v&&(v=!0),o(e[0]).draggable({autoScroll:v,snap:s,onstart:function(e){a.element(e.target).addClass("dragging-active"),e.target.dropData=r(i.dropData)(t),e.target.style.pointerEvents="none",i.onDragStart&&(r(i.onDragStart)(t),t.$apply())},onmove:function(e){var l=a.element(e.target),o=(parseFloat(l.attr("data-x"))||0)+(e.dx||0),s=(parseFloat(l.attr("data-y"))||0)+(e.dy||0);switch(r(i.axis)(t)){case"x":s=0;break;case"y":o=0}"static"===n.getComputedStyle(l[0]).position&&l.css("position","relative"),d(l,"translate("+o+"px, "+s+"px)").css("z-index",50).attr("data-x",o).attr("data-y",s),i.onDrag&&(r(i.onDrag)(t,{x:o,y:s}),t.$apply())},onend:function(e){var n=a.element(e.target),o=n.attr("data-x"),s=n.attr("data-y");e.target.style.pointerEvents="auto",i.onDragEnd&&(r(i.onDragEnd)(t,{x:o,y:s}),t.$apply()),l(function(){d(n,"").css("z-index","auto").removeAttr("data-x").removeAttr("data-y").removeClass("dragging-active")})}}),t.$watch(i.mwlDraggable,function(t){o(e[0]).draggable({enabled:t})}),t.$on("$destroy",function(){o(e[0]).unset()})}}]).directive("mwlDraggable",function(){return{restrict:"A",controller:"MwlDraggableCtrl"}})},function(e,t,n){"use strict";var a=n(0);a.module("mwl.calendar").controller("MwlDroppableCtrl",["$element","$scope","$parse","$attrs","interact",function(e,t,n,r,i){if(i){var l=r.dropActiveClass||"drop-active",o=r.dropOverlap||"pointer";i(e[0]).dropzone({ondragenter:function(e){a.element(e.target).addClass(l)},ondragleave:function(e){a.element(e.target).removeClass(l)},ondropdeactivate:function(e){a.element(e.target).removeClass(l)},ondrop:function(e){e.relatedTarget.dropData&&(n(r.onDrop)(t,{dropData:e.relatedTarget.dropData}),t.$apply())},overlap:o}),t.$on("$destroy",function(){i(e[0]).unset()})}}]).directive("mwlDroppable",function(){return{restrict:"A",controller:"MwlDroppableCtrl"}})},function(e,t,n){"use strict";var a=n(0);a.module("mwl.calendar").controller("MwlDynamicDirectiveTemplateCtrl",["$compile","$scope","$attrs","$element","$templateCache","$log","calendarConfig",function(e,t,n,r,i,l,o){t.$watch(n.overrides,function(d){var s=o.templates[n.name];d&&a.isObject(d)&&d[n.name]&&(i.get(d[n.name])?s=d[n.name]:l.warn("Bootstrap Calendar","The custom template for "+d[n.name]+' was not found in the template cache. Please ensure it is pre-loaded via a script tag <script type="text/ng-template" id="'+d[n.name]+'">Custom template content<\/script> or via a tool such as https://www.npmjs.com/package/gulp-angular-templatecache'));var c=i.get(s);r.html(c),e(r.contents())(t)})}]).directive("mwlDynamicDirectiveTemplate",function(){return{restrict:"A",controller:"MwlDynamicDirectiveTemplateCtrl"}})},function(e,t,n){"use strict";var a=n(0);a.module("mwl.calendar").controller("MwlElementDimensionsCtrl",["$element","$scope","$parse","$attrs","$window",function(e,t,n,r,i){function l(){n(r.mwlElementDimensions).assign(t,{width:e[0].offsetWidth-1,height:e[0].offsetHeight}),t.$applyAsync()}var o=a.element(i);o.bind("resize",l),l(),t.$on("$destroy",function(){o.unbind("resize",l)})}]).directive("mwlElementDimensions",function(){return{restrict:"A",controller:"MwlElementDimensionsCtrl"}})},function(e,t,n){"use strict";var a=n(0);a.module("mwl.calendar").controller("MwlResizableCtrl",["$element","$scope","$parse","$attrs","$timeout","interact",function(e,t,n,r,i,l){function o(e,t){var n={};return n.edge=e,"start"===e?(n.x=t.data("x"),n.y=t.data("y")):"end"===e&&(n.x=parseFloat(t.css("width").replace("px",""))-v.width,n.y=parseFloat(t.css("height").replace("px",""))-v.height),n}if(l){var d,s;r.snapGrid&&(s=n(r.snapGrid)(t),d={targets:[l.createSnapGrid(s)]});var c,v={},m={};l(e[0]).resizable({edges:n(r.resizeEdges)(t),snap:d,onstart:function(e){c="end";var t=a.element(e.target);v.height=t[0].offsetHeight,v.width=t[0].offsetWidth,m.height=t.css("height"),m.width=t.css("width")},onmove:function(e){if(e.rect.width>0&&e.rect.height>0){var i=a.element(e.target),l=parseFloat(i.data("x")||0),d=parseFloat(i.data("y")||0);i.css({width:e.rect.width+"px",height:e.rect.height+"px"}),l+=e.deltaRect.left,d+=e.deltaRect.top,i.css("transform","translate("+l+"px,"+d+"px)"),i.data("x",l),i.data("y",d),0===e.deltaRect.left&&0===e.deltaRect.top||(c="start"),r.onResize&&(n(r.onResize)(t,o(c,i)),t.$apply())}},onend:function(e){var l=a.element(e.target),d=o(c,l);i(function(){l.data("x",null).data("y",null).css({transform:"",width:m.width,height:m.height})}),r.onResizeEnd&&(n(r.onResizeEnd)(t,d),t.$apply())}}),t.$watch(r.mwlResizable,function(t){l(e[0]).resizable({enabled:t})}),t.$on("$destroy",function(){l(e[0]).unset()})}}]).directive("mwlResizable",function(){return{restrict:"A",controller:"MwlResizableCtrl"}})},function(e,t,n){function a(e){return n(r(e))}function r(e){var t=i[e];if(!(t+1))throw new Error("Cannot find module '"+e+"'.");return t}var i={"./calendarDate.js":59,"./calendarLimitTo.js":60,"./calendarTruncateEventTitle.js":61,"./calendarTrustAsHtml.js":62};a.keys=function(){return Object.keys(i)},a.resolve=r,e.exports=a,a.id=58},function(e,t,n){"use strict";n(0).module("mwl.calendar").filter("calendarDate",["calendarHelper","calendarConfig",function(e,t){function n(n,a,r){return!0===r&&(a=t.dateFormats[a]),e.formatDate(n,a)}return n.$stateful=!0,n}])},function(e,t,n){"use strict";var a=n(0);a.module("mwl.calendar").filter("calendarLimitTo",["limitToFilter",function(e){return a.version.minor>=4?e:function(e,t,n){return t=Math.abs(Number(t))===1/0?Number(t):parseInt(t),isNaN(t)?e:(a.isNumber(e)&&(e=e.toString()),a.isArray(e)||a.isString(e)?(n=!n||isNaN(n)?0:parseInt(n),n=n<0&&n>=-e.length?e.length+n:n,t>=0?e.slice(n,n+t):0===n?e.slice(t,e.length):e.slice(Math.max(0,n+t),n)):e)}}])},function(e,t,n){"use strict";n(0).module("mwl.calendar").filter("calendarTruncateEventTitle",function(){return function(e,t,n){return e?e.length>=t&&e.length/20>n/30?e.substr(0,t)+"...":e:""}})},function(e,t,n){"use strict";n(0).module("mwl.calendar").filter("calendarTrustAsHtml",["$sce",function(e){return function(t){return e.trustAsHtml(t)}}])},function(e,t,n){function a(e){return n(r(e))}function r(e){var t=i[e];if(!(t+1))throw new Error("Cannot find module '"+e+"'.");return t}var i={"./calendarConfig.js":64,"./calendarEventTitle.js":65,"./calendarHelper.js":66,"./calendarTitle.js":67,"./interact.js":68,"./moment.js":70};a.keys=function(){return Object.keys(i)},a.resolve=r,e.exports=a,a.id=63},function(e,t,n){"use strict";n(0).module("mwl.calendar").constant("calendarConfig",{allDateFormats:{angular:{date:{hour:"ha",day:"d MMM",month:"MMMM",weekDay:"EEEE",time:"HH:mm",datetime:"MMM d, h:mm a"},title:{day:"EEEE d MMMM, yyyy",week:"Week {week} of {year}",month:"MMMM yyyy",year:"yyyy"}},moment:{date:{hour:"ha",day:"D MMM",month:"MMMM",weekDay:"dddd",time:"HH:mm",datetime:"MMM D, h:mm a"},title:{day:"dddd D MMMM, YYYY",week:"Week {week} of {year}",month:"MMMM YYYY",year:"YYYY"}}},get dateFormats(){return this.allDateFormats[this.dateFormatter].date},get titleFormats(){return this.allDateFormats[this.dateFormatter].title},dateFormatter:"angular",showTimesOnWeekView:!1,displayAllMonthEvents:!1,i18nStrings:{weekNumber:"Week {week}"},templates:{},colorTypes:{info:{primary:"#1e90ff",secondary:"#d1e8ff"},important:{primary:"#ad2121",secondary:"#fae3e3"},warning:{primary:"#e3bc08",secondary:"#fdf1ba"},inverse:{primary:"#1b1b1b",secondary:"#c1c1c1"},special:{primary:"#800080",secondary:"#ffe6ff"},success:{primary:"#006400",secondary:"#caffca"}}})},function(e,t,n){"use strict";n(0).module("mwl.calendar").factory("calendarEventTitle",["calendarDateFilter","calendarTruncateEventTitleFilter",function(e,t){function n(t){return t.title+" ("+e(t.startsAt,"datetime",!0)+")"}function a(t){return t.title+" ("+e(t.startsAt,"time",!0)+")"}function r(t){return e(t.startsAt,"time",!0)+" - "+t.title}function i(e){return e.title}function l(e){return e.title}function o(e){return e.allDay?e.title:t(e.title,20,e.height)}function d(e){return e.title}return{yearView:n,monthView:a,monthViewTooltip:r,weekView:i,weekViewTooltip:l,dayView:o,dayViewTooltip:d}}])},function(e,t,n){"use strict";var a=n(0),r=n(4);a.module("mwl.calendar").factory("calendarHelper",["$q","$templateRequest","dateFilter","moment","calendarConfig",function(e,t,n,a,i){function l(e,t){if("angular"===i.dateFormatter)return n(a(e).toDate(),t);if("moment"===i.dateFormatter)return a(e).format(t);throw new Error("Unknown date formatter: "+i.dateFormatter)}function o(e,t,n){if(!n)return n;var r=a(t).diff(a(e));return a(n).add(r)}function d(e,t,n){var r=a(e.start),i=a(e.end),l=a(n);if(t){switch(t){case"year":r.set({year:l.year()});break;case"month":r.set({year:l.year(),month:l.month()});break;default:throw new Error("Invalid value ("+t+") given for recurs on. Can only be year or month.")}i=o(e.start,r,i)}return{start:r,end:i}}function s(e,t,n){t=a(t),n=a(n);var r=d({start:e.startsAt,end:e.endsAt||e.startsAt},e.recursOn,t),i=r.start,l=r.end;return i.isAfter(t)&&i.isBefore(n)||l.isAfter(t)&&l.isBefore(n)||i.isBefore(t)&&l.isAfter(n)||i.isSame(t)||l.isSame(n)}function c(e,t,n){return e.filter(function(e){return s(e,t,n)})}function v(e,t,n){return c(n,a(e).startOf(t),a(e).endOf(t))}function m(e){return e.filter(function(e){return!1!==e.incrementsBadgeTotal}).length}function u(e){return[0,1,2,3,4,5,6].filter(function(t){return!(e||[]).some(function(e){return e===t})}).map(function(e){return l(a().weekday(e),i.dateFormats.weekDay)})}function p(e,t,n){for(var r=[],o=v(t,"year",e),d=a(t).startOf("year"),s=0;s<12;){var u=d.clone(),p=u.clone().endOf("month"),f=c(o,u,p),w={label:l(u,i.dateFormats.month),isToday:u.isSame(a().startOf("month")),events:f,date:u,badgeTotal:m(f)};n({calendarCell:w}),r.push(w),d.add(1,"month"),s++}return r}function f(e,t){return e.start=t.start.toDate(),e.endsAt&&(e.end=t.end.toDate()),e}function w(e,t,n,l){e.forEach(function(e){f(e,d({start:a(e.startsAt),end:a(e.endsAt||e.startsAt)},e.recursOn,a(t).startOf("month")))});var o=r.getMonthView({events:e,viewDate:t,excluded:l,weekStartsOn:a().startOf("week").day()});return o.days=o.days.map(function(e){return e.date=a(e.date),e.label=e.date.date(),e.badgeTotal=m(e.events),i.displayAllMonthEvents||e.inMonth||(e.events=[]),n({calendarCell:e}),e}),e.forEach(function(e){delete e.start,delete e.end}),o}function g(e,t,n){var o=r.getWeekViewHeader({viewDate:t,excluded:n,weekStartsOn:a().startOf("week").day()}).map(function(e){return e.date=a(e.date),e.weekDayLabel=l(e.date,i.dateFormats.weekDay),e.dayLabel=l(e.date,i.dateFormats.day),e}),s=a(t).startOf("week"),v=a(t).endOf("week");return{days:o,eventRows:r.getWeekView({viewDate:t,weekStartsOn:a().startOf("week").day(),excluded:n,events:c(e,s,v).map(function(e){var t=a(s).startOf("day"),n=d({start:a(e.startsAt),end:a(e.endsAt||e.startsAt)},e.recursOn,t),r={originalEvent:e,start:n.start.toDate()};return e.endsAt&&(r.end=n.end.toDate()),r})}).map(function(e){return e.row=e.row.map(function(e){return e.event=e.event.originalEvent,e}),e})}}function y(e,t,n,i,l,o,s){var c=(n||"00:00").split(":"),v=(i||"23:59").split(":"),m=r.getDayView({events:e.map(function(e){return f(e,d({start:a(e.startsAt),end:a(e.endsAt||e.startsAt)},e.recursOn,a(t).startOf("day")))}),viewDate:t,hourSegments:60/l,dayStart:{hour:c[0],minute:c[1]},dayEnd:{hour:v[0],minute:v[1]},eventWidth:o?+o:150,segmentHeight:s||30});return e.forEach(function(e){delete e.start,delete e.end}),m}function h(e,t,n,i,l){var o=g(e,t),d=[],s=[];return o.eventRows.forEach(function(e){e.row.forEach(function(e){s.push(e.event)})}),o.days.forEach(function(e){var t=s.filter(function(t){return a(t.startsAt).startOf("day").isSame(a(e.date).startOf("day"))}),r=y(t,e.date,n,i,l).events;d=d.concat(r)}),o.eventRows=[{row:d.map(function(e){var n=e.event;return{event:n,top:e.top,offset:r.getWeekViewEventOffset({event:{start:n.startsAt,end:n.endsAt},startOfWeek:a(t).startOf("week").toDate()})}})}],o}function D(e,t,n,r){var i=a(e||"00:00","HH:mm"),l=a(t||"23:59","HH:mm"),o=60/n*(r||30);return l.diff(i,"minutes")/60*o+3}function S(){var n=Object.keys(i.templates).map(function(e){var n=i.templates[e];return t(n)});return e.all(n)}return{getWeekDayNames:u,getYearView:p,getMonthView:w,getWeekView:g,getDayView:y,getWeekViewWithTimes:h,getDayViewHeight:D,adjustEndDateFromStartDiff:o,formatDate:l,loadTemplates:S,eventIsInPeriod:s}}])},function(e,t,n){"use strict";n(0).module("mwl.calendar").factory("calendarTitle",["moment","calendarConfig","calendarHelper",function(e,t,n){function a(e){return n.formatDate(e,t.titleFormats.day)}function r(n){return t.titleFormats.week.replace("{week}",e(n).isoWeek()).replace("{year}",e(n).startOf("isoweek").format("YYYY"))}function i(e){return n.formatDate(e,t.titleFormats.month)}function l(e){return n.formatDate(e,t.titleFormats.year)}return{day:a,week:r,month:i,year:l}}])},function(e,t,n){"use strict";var a,r=n(0);try{a=n(69)}catch(e){a=null}r.module("mwl.calendar").constant("interact",a)},function(e,t){if(void 0===n){var a=new Error('Cannot find module "undefined"');throw a.code="MODULE_NOT_FOUND",a}e.exports=n},function(e,t,n){"use strict";var a=n(0),r=n(71);a.module("mwl.calendar").constant("moment",r)},function(e,n){e.exports=t}])});
-//# sourceMappingURL=angular-bootstrap-calendar-tpls.min.js.map
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory(require("angular"), require("moment"), (function webpackLoadOptionalExternalModule() { try { return require("interactjs"); } catch(e) {} }()));
+	else if(typeof define === 'function' && define.amd)
+		define(["angular", "moment", "interact"], factory);
+	else if(typeof exports === 'object')
+		exports["angularBootstrapCalendarModuleName"] = factory(require("angular"), require("moment"), (function webpackLoadOptionalExternalModule() { try { return require("interactjs"); } catch(e) {} }()));
+	else
+		root["angularBootstrapCalendarModuleName"] = factory(root["angular"], root["moment"], root["interact"]);
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_71__, __WEBPACK_EXTERNAL_MODULE_69__) {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isDate = __webpack_require__(5)
+
+var MILLISECONDS_IN_HOUR = 3600000
+var MILLISECONDS_IN_MINUTE = 60000
+var DEFAULT_ADDITIONAL_DIGITS = 2
+
+var parseTokenDateTimeDelimeter = /[T ]/
+var parseTokenPlainTime = /:/
+
+// year tokens
+var parseTokenYY = /^(\d{2})$/
+var parseTokensYYY = [
+  /^([+-]\d{2})$/, // 0 additional digits
+  /^([+-]\d{3})$/, // 1 additional digit
+  /^([+-]\d{4})$/ // 2 additional digits
+]
+
+var parseTokenYYYY = /^(\d{4})/
+var parseTokensYYYYY = [
+  /^([+-]\d{4})/, // 0 additional digits
+  /^([+-]\d{5})/, // 1 additional digit
+  /^([+-]\d{6})/ // 2 additional digits
+]
+
+// date tokens
+var parseTokenMM = /^-(\d{2})$/
+var parseTokenDDD = /^-?(\d{3})$/
+var parseTokenMMDD = /^-?(\d{2})-?(\d{2})$/
+var parseTokenWww = /^-?W(\d{2})$/
+var parseTokenWwwD = /^-?W(\d{2})-?(\d{1})$/
+
+// time tokens
+var parseTokenHH = /^(\d{2}([.,]\d*)?)$/
+var parseTokenHHMM = /^(\d{2}):?(\d{2}([.,]\d*)?)$/
+var parseTokenHHMMSS = /^(\d{2}):?(\d{2}):?(\d{2}([.,]\d*)?)$/
+
+// timezone tokens
+var parseTokenTimezone = /([Z+-].*)$/
+var parseTokenTimezoneZ = /^(Z)$/
+var parseTokenTimezoneHH = /^([+-])(\d{2})$/
+var parseTokenTimezoneHHMM = /^([+-])(\d{2}):?(\d{2})$/
+
+/**
+ * @category Common Helpers
+ * @summary Convert the given argument to an instance of Date.
+ *
+ * @description
+ * Convert the given argument to an instance of Date.
+ *
+ * If the argument is an instance of Date, the function returns its clone.
+ *
+ * If the argument is a number, it is treated as a timestamp.
+ *
+ * If an argument is a string, the function tries to parse it.
+ * Function accepts complete ISO 8601 formats as well as partial implementations.
+ * ISO 8601: http://en.wikipedia.org/wiki/ISO_8601
+ *
+ * If all above fails, the function passes the given argument to Date constructor.
+ *
+ * @param {Date|String|Number} argument - the value to convert
+ * @param {Object} [options] - the object with options
+ * @param {0 | 1 | 2} [options.additionalDigits=2] - the additional number of digits in the extended year format
+ * @returns {Date} the parsed date in the local time zone
+ *
+ * @example
+ * // Convert string '2014-02-11T11:30:30' to date:
+ * var result = parse('2014-02-11T11:30:30')
+ * //=> Tue Feb 11 2014 11:30:30
+ *
+ * @example
+ * // Parse string '+02014101',
+ * // if the additional number of digits in the extended year format is 1:
+ * var result = parse('+02014101', {additionalDigits: 1})
+ * //=> Fri Apr 11 2014 00:00:00
+ */
+function parse (argument, dirtyOptions) {
+  if (isDate(argument)) {
+    // Prevent the date to lose the milliseconds when passed to new Date() in IE10
+    return new Date(argument.getTime())
+  } else if (typeof argument !== 'string') {
+    return new Date(argument)
+  }
+
+  var options = dirtyOptions || {}
+  var additionalDigits = options.additionalDigits
+  if (additionalDigits == null) {
+    additionalDigits = DEFAULT_ADDITIONAL_DIGITS
+  } else {
+    additionalDigits = Number(additionalDigits)
+  }
+
+  var dateStrings = splitDateString(argument)
+
+  var parseYearResult = parseYear(dateStrings.date, additionalDigits)
+  var year = parseYearResult.year
+  var restDateString = parseYearResult.restDateString
+
+  var date = parseDate(restDateString, year)
+
+  if (date) {
+    var timestamp = date.getTime()
+    var time = 0
+    var offset
+
+    if (dateStrings.time) {
+      time = parseTime(dateStrings.time)
+    }
+
+    if (dateStrings.timezone) {
+      offset = parseTimezone(dateStrings.timezone)
+    } else {
+      // get offset accurate to hour in timezones that change offset
+      offset = new Date(timestamp + time).getTimezoneOffset()
+      offset = new Date(timestamp + time + offset * MILLISECONDS_IN_MINUTE).getTimezoneOffset()
+    }
+
+    return new Date(timestamp + time + offset * MILLISECONDS_IN_MINUTE)
+  } else {
+    return new Date(argument)
+  }
+}
+
+function splitDateString (dateString) {
+  var dateStrings = {}
+  var array = dateString.split(parseTokenDateTimeDelimeter)
+  var timeString
+
+  if (parseTokenPlainTime.test(array[0])) {
+    dateStrings.date = null
+    timeString = array[0]
+  } else {
+    dateStrings.date = array[0]
+    timeString = array[1]
+  }
+
+  if (timeString) {
+    var token = parseTokenTimezone.exec(timeString)
+    if (token) {
+      dateStrings.time = timeString.replace(token[1], '')
+      dateStrings.timezone = token[1]
+    } else {
+      dateStrings.time = timeString
+    }
+  }
+
+  return dateStrings
+}
+
+function parseYear (dateString, additionalDigits) {
+  var parseTokenYYY = parseTokensYYY[additionalDigits]
+  var parseTokenYYYYY = parseTokensYYYYY[additionalDigits]
+
+  var token
+
+  // YYYY or ±YYYYY
+  token = parseTokenYYYY.exec(dateString) || parseTokenYYYYY.exec(dateString)
+  if (token) {
+    var yearString = token[1]
+    return {
+      year: parseInt(yearString, 10),
+      restDateString: dateString.slice(yearString.length)
+    }
+  }
+
+  // YY or ±YYY
+  token = parseTokenYY.exec(dateString) || parseTokenYYY.exec(dateString)
+  if (token) {
+    var centuryString = token[1]
+    return {
+      year: parseInt(centuryString, 10) * 100,
+      restDateString: dateString.slice(centuryString.length)
+    }
+  }
+
+  // Invalid ISO-formatted year
+  return {
+    year: null
+  }
+}
+
+function parseDate (dateString, year) {
+  // Invalid ISO-formatted year
+  if (year === null) {
+    return null
+  }
+
+  var token
+  var date
+  var month
+  var week
+
+  // YYYY
+  if (dateString.length === 0) {
+    date = new Date(0)
+    date.setUTCFullYear(year)
+    return date
+  }
+
+  // YYYY-MM
+  token = parseTokenMM.exec(dateString)
+  if (token) {
+    date = new Date(0)
+    month = parseInt(token[1], 10) - 1
+    date.setUTCFullYear(year, month)
+    return date
+  }
+
+  // YYYY-DDD or YYYYDDD
+  token = parseTokenDDD.exec(dateString)
+  if (token) {
+    date = new Date(0)
+    var dayOfYear = parseInt(token[1], 10)
+    date.setUTCFullYear(year, 0, dayOfYear)
+    return date
+  }
+
+  // YYYY-MM-DD or YYYYMMDD
+  token = parseTokenMMDD.exec(dateString)
+  if (token) {
+    date = new Date(0)
+    month = parseInt(token[1], 10) - 1
+    var day = parseInt(token[2], 10)
+    date.setUTCFullYear(year, month, day)
+    return date
+  }
+
+  // YYYY-Www or YYYYWww
+  token = parseTokenWww.exec(dateString)
+  if (token) {
+    week = parseInt(token[1], 10) - 1
+    return dayOfISOYear(year, week)
+  }
+
+  // YYYY-Www-D or YYYYWwwD
+  token = parseTokenWwwD.exec(dateString)
+  if (token) {
+    week = parseInt(token[1], 10) - 1
+    var dayOfWeek = parseInt(token[2], 10) - 1
+    return dayOfISOYear(year, week, dayOfWeek)
+  }
+
+  // Invalid ISO-formatted date
+  return null
+}
+
+function parseTime (timeString) {
+  var token
+  var hours
+  var minutes
+
+  // hh
+  token = parseTokenHH.exec(timeString)
+  if (token) {
+    hours = parseFloat(token[1].replace(',', '.'))
+    return (hours % 24) * MILLISECONDS_IN_HOUR
+  }
+
+  // hh:mm or hhmm
+  token = parseTokenHHMM.exec(timeString)
+  if (token) {
+    hours = parseInt(token[1], 10)
+    minutes = parseFloat(token[2].replace(',', '.'))
+    return (hours % 24) * MILLISECONDS_IN_HOUR +
+      minutes * MILLISECONDS_IN_MINUTE
+  }
+
+  // hh:mm:ss or hhmmss
+  token = parseTokenHHMMSS.exec(timeString)
+  if (token) {
+    hours = parseInt(token[1], 10)
+    minutes = parseInt(token[2], 10)
+    var seconds = parseFloat(token[3].replace(',', '.'))
+    return (hours % 24) * MILLISECONDS_IN_HOUR +
+      minutes * MILLISECONDS_IN_MINUTE +
+      seconds * 1000
+  }
+
+  // Invalid ISO-formatted time
+  return null
+}
+
+function parseTimezone (timezoneString) {
+  var token
+  var absoluteOffset
+
+  // Z
+  token = parseTokenTimezoneZ.exec(timezoneString)
+  if (token) {
+    return 0
+  }
+
+  // ±hh
+  token = parseTokenTimezoneHH.exec(timezoneString)
+  if (token) {
+    absoluteOffset = parseInt(token[2], 10) * 60
+    return (token[1] === '+') ? -absoluteOffset : absoluteOffset
+  }
+
+  // ±hh:mm or ±hhmm
+  token = parseTokenTimezoneHHMM.exec(timezoneString)
+  if (token) {
+    absoluteOffset = parseInt(token[2], 10) * 60 + parseInt(token[3], 10)
+    return (token[1] === '+') ? -absoluteOffset : absoluteOffset
+  }
+
+  return 0
+}
+
+function dayOfISOYear (isoYear, week, day) {
+  week = week || 0
+  day = day || 0
+  var date = new Date(0)
+  date.setUTCFullYear(isoYear, 0, 4)
+  var fourthOfJanuaryDay = date.getUTCDay() || 7
+  var diff = week * 7 + day + 1 - fourthOfJanuaryDay
+  date.setUTCDate(date.getUTCDate() + diff)
+  return date
+}
+
+module.exports = parse
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var parse = __webpack_require__(1)
+
+/**
+ * @category Millisecond Helpers
+ * @summary Add the specified number of milliseconds to the given date.
+ *
+ * @description
+ * Add the specified number of milliseconds to the given date.
+ *
+ * @param {Date|String|Number} date - the date to be changed
+ * @param {Number} amount - the amount of milliseconds to be added
+ * @returns {Date} the new date with the milliseconds added
+ *
+ * @example
+ * // Add 750 milliseconds to 10 July 2014 12:45:30.000:
+ * var result = addMilliseconds(new Date(2014, 6, 10, 12, 45, 30, 0), 750)
+ * //=> Thu Jul 10 2014 12:45:30.750
+ */
+function addMilliseconds (dirtyDate, dirtyAmount) {
+  var timestamp = parse(dirtyDate).getTime()
+  var amount = Number(dirtyAmount)
+  return new Date(timestamp + amount)
+}
+
+module.exports = addMilliseconds
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var parse = __webpack_require__(1)
+
+/**
+ * @category Day Helpers
+ * @summary Return the start of a day for the given date.
+ *
+ * @description
+ * Return the start of a day for the given date.
+ * The result will be in the local timezone.
+ *
+ * @param {Date|String|Number} date - the original date
+ * @returns {Date} the start of a day
+ *
+ * @example
+ * // The start of a day for 2 September 2014 11:55:00:
+ * var result = startOfDay(new Date(2014, 8, 2, 11, 55, 0))
+ * //=> Tue Sep 02 2014 00:00:00
+ */
+function startOfDay (dirtyDate) {
+  var date = parse(dirtyDate)
+  date.setHours(0, 0, 0, 0)
+  return date
+}
+
+module.exports = startOfDay
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DAYS_OF_WEEK", function() { return DAYS_OF_WEEK; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SECONDS_IN_DAY", function() { return SECONDS_IN_DAY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SECONDS_IN_WEEK", function() { return SECONDS_IN_WEEK; });
+/* harmony export (immutable) */ __webpack_exports__["getWeekViewEventOffset"] = getWeekViewEventOffset;
+/* harmony export (immutable) */ __webpack_exports__["getEventsInPeriod"] = getEventsInPeriod;
+/* harmony export (immutable) */ __webpack_exports__["getWeekViewHeader"] = getWeekViewHeader;
+/* harmony export (immutable) */ __webpack_exports__["getWeekView"] = getWeekView;
+/* harmony export (immutable) */ __webpack_exports__["getMonthView"] = getMonthView;
+/* harmony export (immutable) */ __webpack_exports__["getDayView"] = getDayView;
+/* harmony export (immutable) */ __webpack_exports__["getDayViewHourGrid"] = getDayViewHourGrid;
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EventValidationErrorMessage", function() { return EventValidationErrorMessage; });
+/* harmony export (immutable) */ __webpack_exports__["validateEvents"] = validateEvents;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_date_fns_add_days__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_date_fns_add_days___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_date_fns_add_days__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_date_fns_add_hours__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_date_fns_add_hours___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_date_fns_add_hours__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_date_fns_add_minutes__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_date_fns_add_minutes___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_date_fns_add_minutes__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_date_fns_add_seconds__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_date_fns_add_seconds___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_date_fns_add_seconds__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_date_fns_difference_in_days__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_date_fns_difference_in_days___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_date_fns_difference_in_days__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_date_fns_difference_in_minutes__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_date_fns_difference_in_minutes___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_date_fns_difference_in_minutes__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_date_fns_difference_in_seconds__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_date_fns_difference_in_seconds___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_date_fns_difference_in_seconds__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_date_fns_end_of_day__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_date_fns_end_of_day___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_date_fns_end_of_day__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_date_fns_end_of_month__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_date_fns_end_of_month___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_date_fns_end_of_month__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_date_fns_end_of_week__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_date_fns_end_of_week___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_date_fns_end_of_week__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_date_fns_get_day__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_date_fns_get_day___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_date_fns_get_day__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_date_fns_is_date__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_date_fns_is_date___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_date_fns_is_date__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_date_fns_is_same_day__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_date_fns_is_same_day___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_date_fns_is_same_day__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_date_fns_is_same_month__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_date_fns_is_same_month___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_date_fns_is_same_month__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_date_fns_is_same_second__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_date_fns_is_same_second___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_date_fns_is_same_second__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_date_fns_max__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_date_fns_max___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_date_fns_max__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_date_fns_set_hours__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_date_fns_set_hours___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16_date_fns_set_hours__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_date_fns_set_minutes__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_date_fns_set_minutes___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17_date_fns_set_minutes__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_date_fns_start_of_day__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_date_fns_start_of_day___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18_date_fns_start_of_day__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_date_fns_start_of_minute__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_date_fns_start_of_minute___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19_date_fns_start_of_minute__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_date_fns_start_of_month__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_date_fns_start_of_month___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20_date_fns_start_of_month__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_date_fns_start_of_week__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_date_fns_start_of_week___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_21_date_fns_start_of_week__);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var DAYS_OF_WEEK;
+(function (DAYS_OF_WEEK) {
+    DAYS_OF_WEEK[DAYS_OF_WEEK["SUNDAY"] = 0] = "SUNDAY";
+    DAYS_OF_WEEK[DAYS_OF_WEEK["MONDAY"] = 1] = "MONDAY";
+    DAYS_OF_WEEK[DAYS_OF_WEEK["TUESDAY"] = 2] = "TUESDAY";
+    DAYS_OF_WEEK[DAYS_OF_WEEK["WEDNESDAY"] = 3] = "WEDNESDAY";
+    DAYS_OF_WEEK[DAYS_OF_WEEK["THURSDAY"] = 4] = "THURSDAY";
+    DAYS_OF_WEEK[DAYS_OF_WEEK["FRIDAY"] = 5] = "FRIDAY";
+    DAYS_OF_WEEK[DAYS_OF_WEEK["SATURDAY"] = 6] = "SATURDAY";
+})(DAYS_OF_WEEK || (DAYS_OF_WEEK = {}));
+var DEFAULT_WEEKEND_DAYS = [
+    DAYS_OF_WEEK.SUNDAY,
+    DAYS_OF_WEEK.SATURDAY
+];
+var DAYS_IN_WEEK = 7;
+var HOURS_IN_DAY = 24;
+var MINUTES_IN_HOUR = 60;
+var SECONDS_IN_DAY = 60 * 60 * 24;
+var SECONDS_IN_WEEK = SECONDS_IN_DAY * DAYS_IN_WEEK;
+function getExcludedSeconds(_a) {
+    var startDate = _a.startDate, seconds = _a.seconds, excluded = _a.excluded, _b = _a.precision, precision = _b === void 0 ? 'days' : _b;
+    if (excluded.length < 1) {
+        return 0;
+    }
+    var endDate = __WEBPACK_IMPORTED_MODULE_3_date_fns_add_seconds___default()(startDate, seconds - 1);
+    var dayStart = __WEBPACK_IMPORTED_MODULE_10_date_fns_get_day___default()(startDate);
+    var dayEnd = __WEBPACK_IMPORTED_MODULE_10_date_fns_get_day___default()(__WEBPACK_IMPORTED_MODULE_3_date_fns_add_seconds___default()(endDate, 0));
+    var result = 0; // Calculated in seconds
+    var current = startDate;
+    var _loop_1 = function () {
+        var day = __WEBPACK_IMPORTED_MODULE_10_date_fns_get_day___default()(current);
+        if (excluded.some(function (excludedDay) { return excludedDay === day; })) {
+            result += calculateExcludedSeconds({
+                dayStart: dayStart,
+                dayEnd: dayEnd,
+                day: day,
+                precision: precision,
+                startDate: startDate,
+                endDate: endDate
+            });
+        }
+        current = __WEBPACK_IMPORTED_MODULE_0_date_fns_add_days___default()(current, 1);
+    };
+    while (current < endDate) {
+        _loop_1();
+    }
+    return result;
+}
+function calculateExcludedSeconds(_a) {
+    var precision = _a.precision, day = _a.day, dayStart = _a.dayStart, dayEnd = _a.dayEnd, startDate = _a.startDate, endDate = _a.endDate;
+    if (precision === 'minutes') {
+        if (day === dayStart) {
+            return __WEBPACK_IMPORTED_MODULE_6_date_fns_difference_in_seconds___default()(__WEBPACK_IMPORTED_MODULE_7_date_fns_end_of_day___default()(startDate), startDate) + 1;
+        }
+        else if (day === dayEnd) {
+            return __WEBPACK_IMPORTED_MODULE_6_date_fns_difference_in_seconds___default()(endDate, __WEBPACK_IMPORTED_MODULE_18_date_fns_start_of_day___default()(endDate)) + 1;
+        }
+    }
+    return SECONDS_IN_DAY;
+}
+function getWeekViewEventSpan(_a) {
+    var event = _a.event, offset = _a.offset, startOfWeekDate = _a.startOfWeekDate, excluded = _a.excluded, _b = _a.precision, precision = _b === void 0 ? 'days' : _b;
+    var span = SECONDS_IN_DAY;
+    var begin = __WEBPACK_IMPORTED_MODULE_15_date_fns_max___default()(event.start, startOfWeekDate);
+    if (event.end) {
+        switch (precision) {
+            case 'minutes':
+                span = __WEBPACK_IMPORTED_MODULE_6_date_fns_difference_in_seconds___default()(event.end, begin);
+                break;
+            default:
+                span = __WEBPACK_IMPORTED_MODULE_4_date_fns_difference_in_days___default()(__WEBPACK_IMPORTED_MODULE_0_date_fns_add_days___default()(event.end, 1), begin) * SECONDS_IN_DAY;
+                break;
+        }
+    }
+    var offsetSeconds = offset * SECONDS_IN_DAY;
+    var totalLength = offsetSeconds + span;
+    // the best way to detect if an event is outside the week-view
+    // is to check if the total span beginning (from startOfWeekDay or event start) exceeds 7days
+    if (totalLength > SECONDS_IN_WEEK) {
+        span = SECONDS_IN_WEEK - offsetSeconds;
+    }
+    span -= getExcludedSeconds({
+        startDate: begin,
+        seconds: span,
+        excluded: excluded,
+        precision: precision
+    });
+    return span / SECONDS_IN_DAY;
+}
+function getWeekViewEventOffset(_a) {
+    var event = _a.event, startOfWeekDate = _a.startOfWeek, _b = _a.excluded, excluded = _b === void 0 ? [] : _b, _c = _a.precision, precision = _c === void 0 ? 'days' : _c;
+    if (event.start < startOfWeekDate) {
+        return 0;
+    }
+    var offset = 0;
+    switch (precision) {
+        case 'days':
+            offset =
+                __WEBPACK_IMPORTED_MODULE_4_date_fns_difference_in_days___default()(__WEBPACK_IMPORTED_MODULE_18_date_fns_start_of_day___default()(event.start), startOfWeekDate) *
+                    SECONDS_IN_DAY;
+            break;
+        case 'minutes':
+            offset = __WEBPACK_IMPORTED_MODULE_6_date_fns_difference_in_seconds___default()(event.start, startOfWeekDate);
+            break;
+    }
+    offset -= getExcludedSeconds({
+        startDate: startOfWeekDate,
+        seconds: offset,
+        excluded: excluded,
+        precision: precision
+    });
+    return offset / SECONDS_IN_DAY;
+}
+function isEventIsPeriod(_a) {
+    var event = _a.event, periodStart = _a.periodStart, periodEnd = _a.periodEnd;
+    var eventStart = event.start;
+    var eventEnd = event.end || event.start;
+    if (eventStart > periodStart && eventStart < periodEnd) {
+        return true;
+    }
+    if (eventEnd > periodStart && eventEnd < periodEnd) {
+        return true;
+    }
+    if (eventStart < periodStart && eventEnd > periodEnd) {
+        return true;
+    }
+    if (__WEBPACK_IMPORTED_MODULE_14_date_fns_is_same_second___default()(eventStart, periodStart) ||
+        __WEBPACK_IMPORTED_MODULE_14_date_fns_is_same_second___default()(eventStart, periodEnd)) {
+        return true;
+    }
+    if (__WEBPACK_IMPORTED_MODULE_14_date_fns_is_same_second___default()(eventEnd, periodStart) ||
+        __WEBPACK_IMPORTED_MODULE_14_date_fns_is_same_second___default()(eventEnd, periodEnd)) {
+        return true;
+    }
+    return false;
+}
+function getEventsInPeriod(_a) {
+    var events = _a.events, periodStart = _a.periodStart, periodEnd = _a.periodEnd;
+    return events.filter(function (event) {
+        return isEventIsPeriod({ event: event, periodStart: periodStart, periodEnd: periodEnd });
+    });
+}
+function getWeekDay(_a) {
+    var date = _a.date, _b = _a.weekendDays, weekendDays = _b === void 0 ? DEFAULT_WEEKEND_DAYS : _b;
+    var today = __WEBPACK_IMPORTED_MODULE_18_date_fns_start_of_day___default()(new Date());
+    return {
+        date: date,
+        isPast: date < today,
+        isToday: __WEBPACK_IMPORTED_MODULE_12_date_fns_is_same_day___default()(date, today),
+        isFuture: date > today,
+        isWeekend: weekendDays.indexOf(__WEBPACK_IMPORTED_MODULE_10_date_fns_get_day___default()(date)) > -1
+    };
+}
+function getWeekViewHeader(_a) {
+    var viewDate = _a.viewDate, weekStartsOn = _a.weekStartsOn, _b = _a.excluded, excluded = _b === void 0 ? [] : _b, weekendDays = _a.weekendDays;
+    var start = __WEBPACK_IMPORTED_MODULE_21_date_fns_start_of_week___default()(viewDate, { weekStartsOn: weekStartsOn });
+    var days = [];
+    var _loop_2 = function (i) {
+        var date = __WEBPACK_IMPORTED_MODULE_0_date_fns_add_days___default()(start, i);
+        if (!excluded.some(function (e) { return date.getDay() === e; })) {
+            days.push(getWeekDay({ date: date, weekendDays: weekendDays }));
+        }
+    };
+    for (var i = 0; i < DAYS_IN_WEEK; i++) {
+        _loop_2(i);
+    }
+    return days;
+}
+function getWeekView(_a) {
+    var _b = _a.events, events = _b === void 0 ? [] : _b, viewDate = _a.viewDate, weekStartsOn = _a.weekStartsOn, _c = _a.excluded, excluded = _c === void 0 ? [] : _c, _d = _a.precision, precision = _d === void 0 ? 'days' : _d, _e = _a.absolutePositionedEvents, absolutePositionedEvents = _e === void 0 ? false : _e;
+    if (!events) {
+        events = [];
+    }
+    var startOfViewWeek = __WEBPACK_IMPORTED_MODULE_21_date_fns_start_of_week___default()(viewDate, { weekStartsOn: weekStartsOn });
+    var endOfViewWeek = __WEBPACK_IMPORTED_MODULE_9_date_fns_end_of_week___default()(viewDate, { weekStartsOn: weekStartsOn });
+    var maxRange = DAYS_IN_WEEK - excluded.length;
+    var eventsMapped = getEventsInPeriod({
+        events: events,
+        periodStart: startOfViewWeek,
+        periodEnd: endOfViewWeek
+    })
+        .map(function (event) {
+        var offset = getWeekViewEventOffset({
+            event: event,
+            startOfWeek: startOfViewWeek,
+            excluded: excluded,
+            precision: precision
+        });
+        var span = getWeekViewEventSpan({
+            event: event,
+            offset: offset,
+            startOfWeekDate: startOfViewWeek,
+            excluded: excluded,
+            precision: precision
+        });
+        return { event: event, offset: offset, span: span };
+    })
+        .filter(function (e) { return e.offset < maxRange; })
+        .filter(function (e) { return e.span > 0; })
+        .map(function (entry) { return ({
+        event: entry.event,
+        offset: entry.offset,
+        span: entry.span,
+        startsBeforeWeek: entry.event.start < startOfViewWeek,
+        endsAfterWeek: (entry.event.end || entry.event.start) > endOfViewWeek
+    }); })
+        .sort(function (itemA, itemB) {
+        var startSecondsDiff = __WEBPACK_IMPORTED_MODULE_6_date_fns_difference_in_seconds___default()(itemA.event.start, itemB.event.start);
+        if (startSecondsDiff === 0) {
+            return __WEBPACK_IMPORTED_MODULE_6_date_fns_difference_in_seconds___default()(itemB.event.end || itemB.event.start, itemA.event.end || itemA.event.start);
+        }
+        return startSecondsDiff;
+    });
+    var eventRows = [];
+    var allocatedEvents = [];
+    eventsMapped.forEach(function (event, index) {
+        if (allocatedEvents.indexOf(event) === -1) {
+            allocatedEvents.push(event);
+            var rowSpan_1 = event.span + event.offset;
+            var otherRowEvents = eventsMapped
+                .slice(index + 1)
+                .filter(function (nextEvent) {
+                if (nextEvent.offset >= rowSpan_1 &&
+                    rowSpan_1 + nextEvent.span <= DAYS_IN_WEEK &&
+                    allocatedEvents.indexOf(nextEvent) === -1) {
+                    var nextEventOffset = nextEvent.offset - rowSpan_1;
+                    if (!absolutePositionedEvents) {
+                        nextEvent.offset = nextEventOffset;
+                    }
+                    rowSpan_1 += nextEvent.span + nextEventOffset;
+                    allocatedEvents.push(nextEvent);
+                    return true;
+                }
+            });
+            eventRows.push({
+                row: [event].concat(otherRowEvents)
+            });
+        }
+    });
+    return eventRows;
+}
+function getMonthView(_a) {
+    var _b = _a.events, events = _b === void 0 ? [] : _b, viewDate = _a.viewDate, weekStartsOn = _a.weekStartsOn, _c = _a.excluded, excluded = _c === void 0 ? [] : _c, _d = _a.viewStart, viewStart = _d === void 0 ? __WEBPACK_IMPORTED_MODULE_20_date_fns_start_of_month___default()(viewDate) : _d, _e = _a.viewEnd, viewEnd = _e === void 0 ? __WEBPACK_IMPORTED_MODULE_8_date_fns_end_of_month___default()(viewDate) : _e, weekendDays = _a.weekendDays;
+    if (!events) {
+        events = [];
+    }
+    var start = __WEBPACK_IMPORTED_MODULE_21_date_fns_start_of_week___default()(viewStart, { weekStartsOn: weekStartsOn });
+    var end = __WEBPACK_IMPORTED_MODULE_9_date_fns_end_of_week___default()(viewEnd, { weekStartsOn: weekStartsOn });
+    var eventsInMonth = getEventsInPeriod({
+        events: events,
+        periodStart: start,
+        periodEnd: end
+    });
+    var initialViewDays = [];
+    var previousDate;
+    var _loop_3 = function (i) {
+        // hacky fix for https://github.com/mattlewis92/angular-calendar/issues/173
+        var date;
+        if (previousDate) {
+            date = __WEBPACK_IMPORTED_MODULE_18_date_fns_start_of_day___default()(__WEBPACK_IMPORTED_MODULE_1_date_fns_add_hours___default()(previousDate, HOURS_IN_DAY));
+            if (previousDate.getTime() === date.getTime()) {
+                // DST change, so need to add 25 hours
+                date = __WEBPACK_IMPORTED_MODULE_18_date_fns_start_of_day___default()(__WEBPACK_IMPORTED_MODULE_1_date_fns_add_hours___default()(previousDate, HOURS_IN_DAY + 1));
+            }
+            previousDate = date;
+        }
+        else {
+            date = previousDate = start;
+        }
+        if (!excluded.some(function (e) { return date.getDay() === e; })) {
+            var day = getWeekDay({
+                date: date,
+                weekendDays: weekendDays
+            });
+            var eventsInPeriod = getEventsInPeriod({
+                events: eventsInMonth,
+                periodStart: __WEBPACK_IMPORTED_MODULE_18_date_fns_start_of_day___default()(date),
+                periodEnd: __WEBPACK_IMPORTED_MODULE_7_date_fns_end_of_day___default()(date)
+            });
+            day.inMonth = __WEBPACK_IMPORTED_MODULE_13_date_fns_is_same_month___default()(date, viewDate);
+            day.events = eventsInPeriod;
+            day.badgeTotal = eventsInPeriod.length;
+            initialViewDays.push(day);
+        }
+    };
+    for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_4_date_fns_difference_in_days___default()(end, start) + 1; i++) {
+        _loop_3(i);
+    }
+    var days = [];
+    var totalDaysVisibleInWeek = DAYS_IN_WEEK - excluded.length;
+    if (totalDaysVisibleInWeek < DAYS_IN_WEEK) {
+        for (var i = 0; i < initialViewDays.length; i += totalDaysVisibleInWeek) {
+            var row = initialViewDays.slice(i, i + totalDaysVisibleInWeek);
+            var isRowInMonth = row.some(function (day) { return day.date.getMonth() === viewDate.getMonth(); });
+            if (isRowInMonth) {
+                days = days.concat(row);
+            }
+        }
+    }
+    else {
+        days = initialViewDays;
+    }
+    var rows = Math.floor(days.length / totalDaysVisibleInWeek);
+    var rowOffsets = [];
+    for (var i = 0; i < rows; i++) {
+        rowOffsets.push(i * totalDaysVisibleInWeek);
+    }
+    return {
+        rowOffsets: rowOffsets,
+        totalDaysVisibleInWeek: totalDaysVisibleInWeek,
+        days: days
+    };
+}
+function getDayView(_a) {
+    var _b = _a.events, events = _b === void 0 ? [] : _b, viewDate = _a.viewDate, hourSegments = _a.hourSegments, dayStart = _a.dayStart, dayEnd = _a.dayEnd, eventWidth = _a.eventWidth, segmentHeight = _a.segmentHeight;
+    if (!events) {
+        events = [];
+    }
+    var startOfView = __WEBPACK_IMPORTED_MODULE_17_date_fns_set_minutes___default()(__WEBPACK_IMPORTED_MODULE_16_date_fns_set_hours___default()(__WEBPACK_IMPORTED_MODULE_18_date_fns_start_of_day___default()(viewDate), dayStart.hour), dayStart.minute);
+    var endOfView = __WEBPACK_IMPORTED_MODULE_17_date_fns_set_minutes___default()(__WEBPACK_IMPORTED_MODULE_16_date_fns_set_hours___default()(__WEBPACK_IMPORTED_MODULE_19_date_fns_start_of_minute___default()(__WEBPACK_IMPORTED_MODULE_7_date_fns_end_of_day___default()(viewDate)), dayEnd.hour), dayEnd.minute);
+    var previousDayEvents = [];
+    var dayViewEvents = getEventsInPeriod({
+        events: events.filter(function (event) { return !event.allDay; }),
+        periodStart: startOfView,
+        periodEnd: endOfView
+    })
+        .sort(function (eventA, eventB) {
+        return eventA.start.valueOf() - eventB.start.valueOf();
+    })
+        .map(function (event) {
+        var eventStart = event.start;
+        var eventEnd = event.end || eventStart;
+        var startsBeforeDay = eventStart < startOfView;
+        var endsAfterDay = eventEnd > endOfView;
+        var hourHeightModifier = hourSegments * segmentHeight / MINUTES_IN_HOUR;
+        var top = 0;
+        if (eventStart > startOfView) {
+            top += __WEBPACK_IMPORTED_MODULE_5_date_fns_difference_in_minutes___default()(eventStart, startOfView);
+        }
+        top *= hourHeightModifier;
+        var startDate = startsBeforeDay ? startOfView : eventStart;
+        var endDate = endsAfterDay ? endOfView : eventEnd;
+        var height = __WEBPACK_IMPORTED_MODULE_5_date_fns_difference_in_minutes___default()(endDate, startDate);
+        if (!event.end) {
+            height = segmentHeight;
+        }
+        else {
+            height *= hourHeightModifier;
+        }
+        var bottom = top + height;
+        var overlappingPreviousEvents = previousDayEvents.filter(function (previousEvent) {
+            var previousEventTop = previousEvent.top;
+            var previousEventBottom = previousEvent.top + previousEvent.height;
+            if (top < previousEventBottom && previousEventBottom < bottom) {
+                return true;
+            }
+            else if (previousEventTop <= top && bottom <= previousEventBottom) {
+                return true;
+            }
+            return false;
+        });
+        var left = 0;
+        while (overlappingPreviousEvents.some(function (previousEvent) { return previousEvent.left === left; })) {
+            left += eventWidth;
+        }
+        var dayEvent = {
+            event: event,
+            height: height,
+            width: eventWidth,
+            top: top,
+            left: left,
+            startsBeforeDay: startsBeforeDay,
+            endsAfterDay: endsAfterDay
+        };
+        if (height > 0) {
+            previousDayEvents.push(dayEvent);
+        }
+        return dayEvent;
+    })
+        .filter(function (dayEvent) { return dayEvent.height > 0; });
+    var width = Math.max.apply(Math, dayViewEvents.map(function (event) { return event.left + event.width; }));
+    var allDayEvents = getEventsInPeriod({
+        events: events.filter(function (event) { return event.allDay; }),
+        periodStart: __WEBPACK_IMPORTED_MODULE_18_date_fns_start_of_day___default()(startOfView),
+        periodEnd: __WEBPACK_IMPORTED_MODULE_7_date_fns_end_of_day___default()(endOfView)
+    });
+    return {
+        events: dayViewEvents,
+        width: width,
+        allDayEvents: allDayEvents
+    };
+}
+function getDayViewHourGrid(_a) {
+    var viewDate = _a.viewDate, hourSegments = _a.hourSegments, dayStart = _a.dayStart, dayEnd = _a.dayEnd;
+    var hours = [];
+    var startOfView = __WEBPACK_IMPORTED_MODULE_17_date_fns_set_minutes___default()(__WEBPACK_IMPORTED_MODULE_16_date_fns_set_hours___default()(__WEBPACK_IMPORTED_MODULE_18_date_fns_start_of_day___default()(viewDate), dayStart.hour), dayStart.minute);
+    var endOfView = __WEBPACK_IMPORTED_MODULE_17_date_fns_set_minutes___default()(__WEBPACK_IMPORTED_MODULE_16_date_fns_set_hours___default()(__WEBPACK_IMPORTED_MODULE_19_date_fns_start_of_minute___default()(__WEBPACK_IMPORTED_MODULE_7_date_fns_end_of_day___default()(viewDate)), dayEnd.hour), dayEnd.minute);
+    var segmentDuration = MINUTES_IN_HOUR / hourSegments;
+    var startOfViewDay = __WEBPACK_IMPORTED_MODULE_18_date_fns_start_of_day___default()(viewDate);
+    for (var i = 0; i < HOURS_IN_DAY; i++) {
+        var segments = [];
+        for (var j = 0; j < hourSegments; j++) {
+            var date = __WEBPACK_IMPORTED_MODULE_2_date_fns_add_minutes___default()(__WEBPACK_IMPORTED_MODULE_1_date_fns_add_hours___default()(startOfViewDay, i), j * segmentDuration);
+            if (date >= startOfView && date < endOfView) {
+                segments.push({
+                    date: date,
+                    isStart: j === 0
+                });
+            }
+        }
+        if (segments.length > 0) {
+            hours.push({ segments: segments });
+        }
+    }
+    return hours;
+}
+var EventValidationErrorMessage = {
+    NotArray: 'Events must be an array',
+    StartPropertyMissing: 'Event is missing the `start` property',
+    StartPropertyNotDate: 'Event `start` property should be a javascript date object. Do `new Date(event.start)` to fix it.',
+    EndPropertyNotDate: 'Event `end` property should be a javascript date object. Do `new Date(event.end)` to fix it.',
+    EndsBeforeStart: 'Event `start` property occurs after the `end`'
+};
+function validateEvents(events, log) {
+    var isValid = true;
+    function isError(msg, event) {
+        log(msg, event);
+        isValid = false;
+    }
+    if (!Array.isArray(events)) {
+        log(EventValidationErrorMessage.NotArray, events);
+        return false;
+    }
+    events.forEach(function (event) {
+        if (!event.start) {
+            isError(EventValidationErrorMessage.StartPropertyMissing, event);
+        }
+        else if (!__WEBPACK_IMPORTED_MODULE_11_date_fns_is_date___default()(event.start)) {
+            isError(EventValidationErrorMessage.StartPropertyNotDate, event);
+        }
+        if (event.end) {
+            if (!__WEBPACK_IMPORTED_MODULE_11_date_fns_is_date___default()(event.end)) {
+                isError(EventValidationErrorMessage.EndPropertyNotDate, event);
+            }
+            if (event.start > event.end) {
+                isError(EventValidationErrorMessage.EndsBeforeStart, event);
+            }
+        }
+    });
+    return isValid;
+}
+//# sourceMappingURL=calendar-utils.js.map
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+/**
+ * @category Common Helpers
+ * @summary Is the given argument an instance of Date?
+ *
+ * @description
+ * Is the given argument an instance of Date?
+ *
+ * @param {*} argument - the argument to check
+ * @returns {Boolean} the given argument is an instance of Date
+ *
+ * @example
+ * // Is 'mayonnaise' a Date?
+ * var result = isDate('mayonnaise')
+ * //=> false
+ */
+function isDate (argument) {
+  return argument instanceof Date
+}
+
+module.exports = isDate
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var parse = __webpack_require__(1)
+
+/**
+ * @category Millisecond Helpers
+ * @summary Get the number of milliseconds between the given dates.
+ *
+ * @description
+ * Get the number of milliseconds between the given dates.
+ *
+ * @param {Date|String|Number} dateLeft - the later date
+ * @param {Date|String|Number} dateRight - the earlier date
+ * @returns {Number} the number of milliseconds
+ *
+ * @example
+ * // How many milliseconds are between
+ * // 2 July 2014 12:30:20.600 and 2 July 2014 12:30:21.700?
+ * var result = differenceInMilliseconds(
+ *   new Date(2014, 6, 2, 12, 30, 21, 700),
+ *   new Date(2014, 6, 2, 12, 30, 20, 600)
+ * )
+ * //=> 1100
+ */
+function differenceInMilliseconds (dirtyDateLeft, dirtyDateRight) {
+  var dateLeft = parse(dirtyDateLeft)
+  var dateRight = parse(dirtyDateRight)
+  return dateLeft.getTime() - dateRight.getTime()
+}
+
+module.exports = differenceInMilliseconds
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(8);
+
+var angular = __webpack_require__(0);
+
+function requireAll(r) {
+  r.keys().forEach(r);
+}
+
+var templates = {};
+
+if (true) {
+
+  var templatesContext = __webpack_require__(9);
+
+  templatesContext.keys().forEach(function(templateName) {
+    var templateNameWithoutPrefix = templateName.replace('./', '');
+    var cacheTemplateName = 'mwl/' + templateNameWithoutPrefix;
+    var configTemplateName = templateNameWithoutPrefix.replace('.html', '');
+    templates[configTemplateName] = {
+      cacheTemplateName: cacheTemplateName,
+      template: templatesContext(templateName)
+    };
+  });
+
+}
+
+module.exports = angular
+  .module('mwl.calendar', [])
+  .config(["calendarConfig", function(calendarConfig) {
+    angular.forEach(templates, function(template, templateName) {
+      if (!calendarConfig.templates[templateName]) {
+        calendarConfig.templates[templateName] = template.cacheTemplateName;
+      }
+    });
+  }])
+  .run(["$templateCache", "$interpolate", function($templateCache, $interpolate) {
+
+    angular.forEach(templates, function(template) {
+      if (!$templateCache.get(template.cacheTemplateName)) {
+        var templateContents = template.template
+          .replace('{{', $interpolate.startSymbol())
+          .replace('}}', $interpolate.endSymbol());
+        $templateCache.put(template.cacheTemplateName, templateContents);
+      }
+    });
+
+  }]).name;
+
+requireAll(__webpack_require__(19));
+requireAll(__webpack_require__(58));
+requireAll(__webpack_require__(63));
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./calendar.html": 10,
+	"./calendarDayView.html": 11,
+	"./calendarHourList.html": 12,
+	"./calendarMonthCell.html": 13,
+	"./calendarMonthCellEvents.html": 14,
+	"./calendarMonthView.html": 15,
+	"./calendarSlideBox.html": 16,
+	"./calendarWeekView.html": 17,
+	"./calendarYearView.html": 18
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 9;
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports) {
+
+module.exports = "<div\n  class=\"cal-context\"\n  ng-switch=\"vm.view\"\n  ng-if=\"vm.templatesLoaded\">\n\n  <div class=\"alert alert-danger\" ng-switch-default>The value passed to the view attribute of the calendar is not set</div>\n\n  <div class=\"alert alert-danger\" ng-hide=\"vm.viewDate\">The value passed to view-date attribute of the calendar is not set</div>\n\n  <mwl-calendar-year\n    events=\"vm.events\"\n    view-date=\"vm.viewDate\"\n    on-event-click=\"vm.onEventClick\"\n    on-event-times-changed=\"vm.onEventTimesChanged\"\n    on-timespan-click=\"vm.onTimespanClick\"\n    cell-is-open=\"vm.cellIsOpen\"\n    cell-modifier=\"vm.cellModifier\"\n    slide-box-disabled=\"vm.slideBoxDisabled\"\n    custom-template-urls=\"vm.customTemplateUrls\"\n    template-scope=\"vm.templateScope\"\n    cell-auto-open-disabled=\"vm.cellAutoOpenDisabled\"\n    ng-switch-when=\"year\">\n  </mwl-calendar-year>\n\n  <mwl-calendar-month\n    events=\"vm.events\"\n    view-date=\"vm.viewDate\"\n    excluded-days=\"vm.excludedDays\"\n    on-event-click=\"vm.onEventClick\"\n    on-event-times-changed=\"vm.onEventTimesChanged\"\n    on-timespan-click=\"vm.onTimespanClick\"\n    on-date-range-select=\"vm.onDateRangeSelect\"\n    cell-is-open=\"vm.cellIsOpen\"\n    cell-modifier=\"vm.cellModifier\"\n    slide-box-disabled=\"vm.slideBoxDisabled\"\n    custom-template-urls=\"vm.customTemplateUrls\"\n    template-scope=\"vm.templateScope\"\n    cell-auto-open-disabled=\"vm.cellAutoOpenDisabled\"\n    draggable-auto-scroll=\"vm.draggableAutoScroll\"\n    ng-switch-when=\"month\">\n  </mwl-calendar-month>\n\n  <mwl-calendar-week\n    events=\"vm.events\"\n    view-date=\"vm.viewDate\"\n    excluded-days=\"vm.excludedDays\"\n    on-event-click=\"vm.onEventClick\"\n    on-event-times-changed=\"vm.onEventTimesChanged\"\n    day-view-start=\"vm.dayViewStart\"\n    day-view-end=\"vm.dayViewEnd\"\n    day-view-split=\"vm.dayViewSplit\"\n    day-view-event-chunk-size=\"vm.dayViewEventChunkSize\"\n    on-timespan-click=\"vm.onTimespanClick\"\n    on-date-range-select=\"vm.onDateRangeSelect\"\n    custom-template-urls=\"vm.customTemplateUrls\"\n    cell-modifier=\"vm.cellModifier\"\n    template-scope=\"vm.templateScope\"\n    draggable-auto-scroll=\"vm.draggableAutoScroll\"\n    ng-switch-when=\"week\">\n  </mwl-calendar-week>\n\n  <mwl-calendar-day\n    events=\"vm.events\"\n    view-date=\"vm.viewDate\"\n    on-event-click=\"vm.onEventClick\"\n    on-event-times-changed=\"vm.onEventTimesChanged\"\n    on-timespan-click=\"vm.onTimespanClick\"\n    on-date-range-select=\"vm.onDateRangeSelect\"\n    day-view-start=\"vm.dayViewStart\"\n    day-view-end=\"vm.dayViewEnd\"\n    day-view-split=\"vm.dayViewSplit\"\n    day-view-event-chunk-size=\"vm.dayViewEventChunkSize\"\n    day-view-segment-size=\"vm.dayViewSegmentSize\"\n    day-view-event-width=\"vm.dayViewEventWidth\"\n    custom-template-urls=\"vm.customTemplateUrls\"\n    cell-modifier=\"vm.cellModifier\"\n    template-scope=\"vm.templateScope\"\n    day-view-time-position=\"vm.dayViewTimePosition || 'default'\"\n    draggable-auto-scroll=\"vm.draggableAutoScroll\"\n    ng-class=\"{\n      'time-on-side' : vm.dayViewTimePosition === 'side',\n      'time-hidden' : vm.dayViewTimePosition === 'hidden'\n    }\"\n    ng-switch-when=\"day\">\n  </mwl-calendar-day>\n</div>\n";
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"cal-week-box cal-all-day-events-box\" ng-if=\"vm.allDayEvents.length > 0\">\n  <div class=\"cal-day-panel clearfix\">\n    <div class=\"row\">\n      <div class=\"col-xs-12\">\n        <div class=\"cal-row-fluid\">\n          <div\n            class=\"cal-cell-6 day-highlight\"\n            ng-style=\"{backgroundColor: event.color.secondary}\"\n            data-event-class\n            ng-repeat=\"event in vm.allDayEvents track by event.calendarEventId\">\n            <strong>\n              <span ng-bind=\"event.startsAt | calendarDate:'datetime':true\"></span>\n              <span ng-if=\"event.endsAt\">\n                - <span ng-bind=\"event.endsAt | calendarDate:'datetime':true\"></span>\n              </span>\n            </strong>\n            <a\n              href=\"javascript:;\"\n              class=\"event-item\"\n              ng-click=\"vm.onEventClick({calendarEvent: event})\"\n              ng-bind-html=\"vm.calendarEventTitle.dayView(event) | calendarTrustAsHtml\">\n            </a>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n<div class=\"cal-day-box\">\n  <div class=\"cal-day-panel clearfix\" ng-style=\"{height: vm.dayViewHeight + 'px', minWidth: vm.viewWidth + 'px'}\">\n\n    <mwl-calendar-hour-list\n      day-view-start=\"vm.dayViewStart\"\n      day-view-end=\"vm.dayViewEnd\"\n      day-view-split=\"vm.dayViewSplit\"\n      on-timespan-click=\"vm.onTimespanClick\"\n      on-date-range-select=\"vm.onDateRangeSelect\"\n      on-event-times-changed=\"vm.onEventTimesChanged\"\n      view-date=\"vm.viewDate\"\n      custom-template-urls=\"vm.customTemplateUrls\"\n      template-scope=\"vm.templateScope\"\n      cell-modifier=\"vm.cellModifier\"\n      view=\"day\">\n    </mwl-calendar-hour-list>\n\n    <div\n      class=\"pull-left day-event day-highlight\"\n      ng-repeat=\"dayEvent in vm.nonAllDayEvents track by dayEvent.event.calendarEventId\"\n      ng-class=\"dayEvent.event.cssClass\"\n      ng-style=\"{\n        top: dayEvent.top - 1 + 'px',\n        left: dayEvent.left +  vm.dayViewTimePositionOffset + 'px',\n        height: dayEvent.height + 'px',\n        width: dayEvent.width + 'px',\n        backgroundColor: dayEvent.event.color.secondary,\n        borderColor: dayEvent.event.color.primary\n      }\"\n      mwl-draggable=\"dayEvent.event.draggable === true\"\n      axis=\"'xy'\"\n      snap-grid=\"{y: vm.dayViewEventChunkSize || 30, x: 50}\"\n      on-drag=\"vm.eventDragged(dayEvent.event, y / (vm.dayViewSegmentSize || 30))\"\n      on-drag-end=\"vm.eventDragComplete(dayEvent.event, y / (vm.dayViewSegmentSize ||  30))\"\n      auto-scroll=\"vm.draggableAutoScroll\"\n      mwl-resizable=\"dayEvent.event.resizable === true && dayEvent.event.endsAt\"\n      resize-edges=\"{top: true, bottom: true}\"\n      on-resize=\"vm.eventResized(dayEvent.event, edge, y / (vm.dayViewSegmentSize || 30))\"\n      on-resize-end=\"vm.eventResizeComplete(dayEvent.event, edge, y / (vm.dayViewSegmentSize || 30))\"\n      uib-tooltip-html=\"vm.calendarEventTitle.dayViewTooltip(dayEvent.event) | calendarTrustAsHtml\"\n      tooltip-append-to-body=\"true\">\n\n      <span class=\"cal-hours\">\n        <span ng-show=\"dayEvent.top == 0\"><span ng-bind=\"(dayEvent.event.tempStartsAt || dayEvent.event.startsAt) | calendarDate:'day':true\"></span>, </span>\n        <span ng-bind=\"(dayEvent.event.tempStartsAt || dayEvent.event.startsAt) | calendarDate:'time':true\"></span>\n      </span>\n      <a\n        href=\"javascript:;\"\n        class=\"event-item\"\n        ng-click=\"vm.onEventClick({calendarEvent: dayEvent.event})\">\n        <span ng-bind-html=\"vm.calendarEventTitle.dayView(dayEvent.event) | calendarTrustAsHtml\"></span>\n      </a>\n\n      <a\n        href=\"javascript:;\"\n        class=\"event-item-action\"\n        ng-repeat=\"action in dayEvent.event.actions track by $index\"\n        ng-class=\"action.cssClass\"\n        ng-bind-html=\"action.label | calendarTrustAsHtml\"\n        ng-click=\"action.onClick({calendarEvent: dayEvent.event})\">\n      </a>\n\n    </div>\n\n  </div>\n\n</div>\n";
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"cal-day-panel-hour\">\n\n  <div class=\"cal-day-hour\" ng-repeat=\"hour in vm.hourGrid track by $index\">\n\n    <div\n      class=\"cal-day-hour-part\"\n      ng-repeat=\"segment in hour.segments track by $index\"\n      ng-class=\"[{ 'cal-day-hour-part-selected': vm.dateRangeSelect &&\n                vm.dateRangeSelect.startDate <= segment.date &&\n                segment.date < vm.dateRangeSelect.endDate }, segment.cssClass]\"\n      ng-click=\"vm.onTimespanClick({calendarDate: segment.date})\"\n      mwl-droppable\n      on-drop=\"vm.eventDropped(dropData.event, segment.date)\"\n      mwl-drag-select=\"!!vm.onDateRangeSelect\"\n      on-drag-select-start=\"vm.onDragSelectStart(segment.date)\"\n      on-drag-select-move=\"vm.onDragSelectMove(segment.nextSegmentDate)\"\n      on-drag-select-end=\"vm.onDragSelectEnd(segment.nextSegmentDate)\"\n      ng-if=\"!vm.dayWidth\">\n      <div class=\"cal-day-hour-part-time\">\n        <strong ng-bind=\"segment.date | calendarDate:'hour':true\" ng-show=\"segment.isStart\"></strong>\n      </div>\n    </div>\n\n    <div\n      class=\"cal-day-hour-part\"\n      ng-repeat=\"segment in hour.segments track by $index\"\n      ng-if=\"vm.dayWidth\">\n      <div class=\"cal-day-hour-part-time\">\n        <strong ng-bind=\"segment.date | calendarDate:'hour':true\" ng-show=\"segment.isStart\"></strong>\n        &nbsp;\n      </div>\n      <div\n        class=\"cal-day-hour-part-spacer\"\n        ng-repeat=\"day in segment.days track by $index\"\n        ng-style=\"{width: (vm.dayWidth - ($last ? vm.scrollBarWidth : 0)) + 'px'}\"\n        ng-class=\"[{ 'cal-day-hour-part-selected': vm.dateRangeSelect &&\n                vm.dateRangeSelect.startDate <= day.date &&\n                day.date < vm.dateRangeSelect.endDate }, day.cssClass]\"\n        ng-click=\"vm.onTimespanClick({calendarDate: day.date})\"\n        mwl-droppable\n        on-drop=\"vm.eventDropped(dropData.event, day.date)\"\n        mwl-drag-select=\"!!vm.onDateRangeSelect\"\n        on-drag-select-start=\"vm.onDragSelectStart(day.date)\"\n        on-drag-select-move=\"vm.onDragSelectMove(day.nextSegmentDate)\"\n        on-drag-select-end=\"vm.onDragSelectEnd(day.nextSegmentDate)\">\n      </div>\n    </div>\n\n  </div>\n\n</div>\n";
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+module.exports = "<div\n  mwl-droppable\n  on-drop=\"vm.handleEventDrop(dropData.event, day.date, dropData.draggedFromDate)\"\n  mwl-drag-select=\"!!vm.onDateRangeSelect\"\n  on-drag-select-start=\"vm.onDragSelectStart(day)\"\n  on-drag-select-move=\"vm.onDragSelectMove(day)\"\n  on-drag-select-end=\"vm.onDragSelectEnd(day)\"\n  class=\"cal-month-day {{ day.cssClass }}\"\n  ng-class=\"{\n    'cal-day-outmonth': !day.inMonth,\n    'cal-day-inmonth': day.inMonth,\n    'cal-day-weekend': day.isWeekend,\n    'cal-day-past': day.isPast,\n    'cal-day-today': day.isToday,\n    'cal-day-future': day.isFuture,\n    'cal-day-selected': vm.dateRangeSelect && vm.dateRangeSelect.startDate <= day.date && day.date <= vm.dateRangeSelect.endDate,\n    'cal-day-open': dayIndex === vm.openDayIndex\n  }\">\n\n  <small\n    class=\"cal-events-num badge badge-important pull-left\"\n    ng-show=\"day.badgeTotal > 0 && (vm.calendarConfig.displayAllMonthEvents || day.inMonth)\"\n    ng-bind=\"day.badgeTotal\">\n  </small>\n\n  <span\n    class=\"pull-right\"\n    data-cal-date\n    ng-click=\"vm.calendarCtrl.dateClicked(day.date)\"\n    ng-bind=\"day.label\">\n  </span>\n\n  <div class=\"cal-day-tick\" ng-show=\"dayIndex === vm.openDayIndex && (vm.cellAutoOpenDisabled || vm.view[vm.openDayIndex].events.length > 0) && !vm.slideBoxDisabled\">\n    <i class=\"glyphicon glyphicon-chevron-up\"></i>\n    <i class=\"fa fa-chevron-up\"></i>\n  </div>\n\n  <ng-include src=\"vm.customTemplateUrls.calendarMonthCellEvents || vm.calendarConfig.templates.calendarMonthCellEvents\"></ng-include>\n\n  <div class=\"cal-week-box-cell\" ng-if=\"$first && rowHovered\">\n    <span ng-bind=\"vm.getWeekNumberLabel(day)\"></span>\n  </div>\n\n</div>\n";
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"events-list\" ng-show=\"day.events.length > 0\">\n  <a\n    ng-repeat=\"event in day.events | orderBy:'startsAt' track by event.calendarEventId\"\n    href=\"javascript:;\"\n    ng-click=\"$event.stopPropagation(); vm.onEventClick({calendarEvent: event})\"\n    class=\"pull-left event\"\n    ng-class=\"event.cssClass\"\n    ng-style=\"{backgroundColor: event.color.primary}\"\n    ng-mousedown=\"$event.stopPropagation()\"\n    ng-mouseenter=\"vm.highlightEvent(event, true)\"\n    ng-mouseleave=\"vm.highlightEvent(event, false)\"\n    tooltip-append-to-body=\"true\"\n    uib-tooltip-html=\"vm.calendarEventTitle.monthViewTooltip(event) | calendarTrustAsHtml\"\n    mwl-draggable=\"event.draggable === true\"\n    drop-data=\"{event: event, draggedFromDate: day.date.toDate()}\"\n    auto-scroll=\"vm.draggableAutoScroll\">\n  </a>\n</div>\n";
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"cal-month-box\" ng-class=\"['cal-grid-' + vm.weekDays.length]\">\n  <div class=\"cal-row-fluid cal-row-head\">\n    <div class=\"cal-cell1\" ng-repeat=\"day in vm.weekDays track by $index\" ng-bind=\"day\"></div>\n  </div>\n  <div\n    ng-repeat=\"rowOffset in vm.monthOffsets track by rowOffset\"\n    ng-mouseenter=\"rowHovered = true\"\n    ng-mouseleave=\"rowHovered = false\">\n    <div class=\"cal-row-fluid cal-before-eventlist\">\n      <div\n        ng-repeat=\"day in vm.view | calendarLimitTo:vm.weekDays.length:rowOffset track by $index\"\n        ng-init=\"dayIndex = vm.view.indexOf(day)\"\n        class=\"cal-cell1 cal-cell {{ day.highlightClass }}\"\n        ng-style=\"{backgroundColor: day.backgroundColor}\"\n        ng-click=\"vm.dayClicked(day, false, $event)\"\n        ng-class=\"{pointer: day.events.length > 0}\">\n        <ng-include src=\"vm.customTemplateUrls.calendarMonthCell || vm.calendarConfig.templates.calendarMonthCell\"></ng-include>\n      </div>\n    </div>\n\n    <mwl-calendar-slide-box\n      is-open=\"vm.openRowIndex === $index && (vm.cellAutoOpenDisabled || vm.view[vm.openDayIndex].events.length > 0) && !vm.slideBoxDisabled\"\n      events=\"vm.view[vm.openDayIndex].events\"\n      on-event-click=\"vm.onEventClick\"\n      cell=\"vm.view[vm.openDayIndex]\"\n      custom-template-urls=\"vm.customTemplateUrls\"\n      template-scope=\"vm.templateScope\"\n      draggable-auto-scroll=\"vm.draggableAutoScroll\">\n    </mwl-calendar-slide-box>\n\n  </div>\n\n</div>\n";
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"cal-slide-box\" uib-collapse=\"vm.isCollapsed\" mwl-collapse-fallback=\"vm.isCollapsed\">\n  <div class=\"cal-slide-content cal-event-list\">\n    <ul class=\"unstyled list-unstyled\">\n\n      <li\n        ng-repeat=\"event in vm.events | orderBy:'startsAt' track by event.calendarEventId\"\n        ng-class=\"event.cssClass\"\n        ng-mousedown=\"$event.stopPropagation()\"\n        mwl-draggable=\"event.draggable === true\"\n        drop-data=\"{event: event}\"\n        auto-scroll=\"vm.draggableAutoScroll\">\n        <span class=\"pull-left event\" ng-style=\"{backgroundColor: event.color.primary}\"></span>\n        &nbsp;\n        <a\n          href=\"javascript:;\"\n          class=\"event-item\"\n          ng-click=\"vm.onEventClick({calendarEvent: event})\">\n          <span ng-bind-html=\"isMonthView ? vm.calendarEventTitle.monthView(event) : vm.calendarEventTitle.yearView(event) | calendarTrustAsHtml\"></span>\n        </a>\n\n        <a\n          href=\"javascript:;\"\n          class=\"event-item-action\"\n          ng-class=\"action.cssClass\"\n          ng-repeat=\"action in event.actions track by $index\"\n          ng-bind-html=\"action.label | calendarTrustAsHtml\"\n          ng-click=\"action.onClick({calendarEvent: event})\">\n        </a>\n\n      </li>\n\n    </ul>\n  </div>\n</div>\n";
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"cal-week-box\" ng-class=\"[{'cal-day-box': vm.showTimes}, 'cal-grid-' + vm.view.days.length]\">\n  <div class=\"cal-row-fluid cal-row-head\"\n       mwl-element-dimensions=\"vm.dayColumnDimensions\">\n    <div\n      class=\"cal-cell1\"\n      ng-repeat=\"day in vm.view.days track by $index\"\n      ng-class=\"{\n        'cal-day-weekend': day.isWeekend,\n        'cal-day-past': day.isPast,\n        'cal-day-today': day.isToday,\n        'cal-day-future': day.isFuture}\"\n      mwl-droppable\n      on-drop=\"vm.eventDropped(dropData.event, day.date)\">\n\n      <span ng-bind=\"day.weekDayLabel\"></span>\n      <br>\n      <small>\n        <span\n          data-cal-date\n          ng-click=\"vm.calendarCtrl.dateClicked(day.date)\"\n          class=\"pointer\"\n          ng-bind=\"day.dayLabel\">\n        </span>\n      </small>\n\n    </div>\n\n  </div>\n\n  <div class=\"cal-day-panel clearfix\" ng-style=\"{height: vm.showTimes ? (vm.dayViewHeight + 'px') : 'auto'}\">\n\n    <mwl-calendar-hour-list\n      day-view-start=\"vm.dayViewStart\"\n      day-view-end=\"vm.dayViewEnd\"\n      day-view-split=\"vm.dayViewSplit\"\n      day-width=\"(vm.dayColumnDimensions.width - 60) / vm.view.days.length\"\n      view-date=\"vm.viewDate\"\n      on-timespan-click=\"vm.onTimespanClick\"\n      on-date-range-select=\"vm.onDateRangeSelect\"\n      custom-template-urls=\"vm.customTemplateUrls\"\n      cell-modifier=\"vm.cellModifier\"\n      template-scope=\"vm.templateScope\"\n      view=\"week\"\n      ng-if=\"vm.showTimes\">\n    </mwl-calendar-hour-list>\n\n    <div class=\"row\" ng-repeat=\"row in vm.view.eventRows track by $index\">\n      <div class=\"col-xs-12\">\n        <div class=\"cal-row-fluid\">\n          <div\n            ng-repeat=\"eventRow in row.row track by eventRow.event.calendarEventId\"\n            ng-class=\"'cal-cell' + (vm.showTimes ? 1 : eventRow.span) + (vm.showTimes ? '' : ' cal-offset' + eventRow.offset)\"\n            ng-style=\"{\n              top: vm.showTimes ? ((eventRow.top) + 'px') : 'auto',\n              position: vm.showTimes ? 'absolute' : 'inherit',\n              width: vm.showTimes ? ((vm.dayColumnDimensions.width - 60) / vm.view.days.length + 'px') : '',\n              left: vm.showTimes ? (((vm.dayColumnDimensions.width - 60) / vm.view.days.length) * eventRow.offset) + 15 + 'px' : ''\n            }\">\n            <div\n              class=\"day-highlight\"\n              ng-class=\"[eventRow.event.cssClass, !vm.showTimes && eventRow.startsBeforeWeek ? '' : 'border-left-rounded', !vm.showTimes && eventRow.endsAfterWeek ? '' : 'border-right-rounded']\"\n              ng-style=\"{backgroundColor: eventRow.event.color.secondary}\"\n              data-event-class\n              mwl-draggable=\"eventRow.event.draggable === true\"\n              axis=\"vm.showTimes ? 'xy' : 'x'\"\n              snap-grid=\"vm.showTimes ? {x: (vm.dayColumnDimensions.width - 60) / vm.view.days.length, y: vm.dayViewEventChunkSize || 30} : {x: vm.dayColumnDimensions.width / vm.view.days.length}\"\n              auto-scroll=\"vm.draggableAutoScroll\"\n              on-drag=\"vm.tempTimeChanged(eventRow.event, y / 30)\"\n              on-drag-end=\"vm.weekDragged(eventRow.event, x / ((vm.dayColumnDimensions.width - (vm.showTimes ? 60 : 0)) / vm.view.days.length), y / 30)\"\n              mwl-resizable=\"eventRow.event.resizable === true && eventRow.event.endsAt && !vm.showTimes\"\n              resize-edges=\"{left: true, right: true}\"\n              on-resize-end=\"vm.weekResized(eventRow.event, edge, x / ((vm.dayColumnDimensions.width - (vm.showTimes ? 60 : 0)) / vm.view.days.length))\">\n              <strong ng-bind=\"(eventRow.event.tempStartsAt || eventRow.event.startsAt) | calendarDate:'time':true\" ng-show=\"vm.showTimes\"></strong>\n              <a\n                href=\"javascript:;\"\n                ng-click=\"vm.onEventClick({calendarEvent: eventRow.event})\"\n                class=\"event-item\"\n                ng-bind-html=\"vm.calendarEventTitle.weekView(eventRow.event) | calendarTrustAsHtml\"\n                uib-tooltip-html=\"vm.calendarEventTitle.weekViewTooltip(eventRow.event) | calendarTrustAsHtml\"\n                tooltip-placement=\"left\"\n                tooltip-append-to-body=\"true\">\n              </a>\n              <a\n                href=\"javascript:;\"\n                class=\"event-item-action\"\n                ng-class=\"action.cssClass\"\n                ng-repeat=\"action in eventRow.event.actions track by $index\"\n                ng-bind-html=\"action.label | calendarTrustAsHtml\"\n                ng-click=\"action.onClick({calendarEvent: eventRow.event})\">\n              </a>\n            </div>\n          </div>\n        </div>\n      </div>\n\n    </div>\n\n  </div>\n</div>\n";
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"cal-year-box\">\n  <div ng-repeat=\"rowOffset in [0, 4, 8] track by rowOffset\">\n    <div class=\"row cal-before-eventlist\">\n      <div\n        class=\"span3 col-md-3 col-xs-6 cal-cell {{ day.cssClass }}\"\n        ng-repeat=\"month in vm.view | calendarLimitTo:4:rowOffset track by $index\"\n        ng-init=\"monthIndex = vm.view.indexOf(month)\"\n        ng-click=\"vm.monthClicked(month, false, $event)\"\n        ng-class=\"{pointer: month.events.length > 0, 'cal-day-today': month.isToday}\"\n        mwl-droppable\n        on-drop=\"vm.handleEventDrop(dropData.event, month.date)\">\n\n        <span\n          class=\"pull-right\"\n          data-cal-date\n          ng-click=\"vm.calendarCtrl.dateClicked(month.date)\"\n          ng-bind=\"month.label\">\n        </span>\n\n        <small\n          class=\"cal-events-num badge badge-important pull-left\"\n          ng-show=\"month.badgeTotal > 0\"\n          ng-bind=\"month.badgeTotal\">\n        </small>\n\n        <div\n          class=\"cal-day-tick\"\n          ng-show=\"monthIndex === vm.openMonthIndex && (vm.cellAutoOpenDisabled || vm.view[vm.openMonthIndex].events.length > 0) && !vm.slideBoxDisabled\">\n          <i class=\"glyphicon glyphicon-chevron-up\"></i>\n          <i class=\"fa fa-chevron-up\"></i>\n        </div>\n\n      </div>\n    </div>\n\n    <mwl-calendar-slide-box\n      is-open=\"vm.openRowIndex === $index && (vm.cellAutoOpenDisabled || vm.view[vm.openMonthIndex].events.length > 0) && !vm.slideBoxDisabled\"\n      events=\"vm.view[vm.openMonthIndex].events\"\n      on-event-click=\"vm.onEventClick\"\n      cell=\"vm.view[vm.openMonthIndex]\"\n      custom-template-urls=\"vm.customTemplateUrls\"\n      template-scope=\"vm.templateScope\">\n    </mwl-calendar-slide-box>\n\n  </div>\n\n</div>\n";
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./mwlCalendar.js": 20,
+	"./mwlCalendarDay.js": 21,
+	"./mwlCalendarHourList.js": 22,
+	"./mwlCalendarMonth.js": 46,
+	"./mwlCalendarSlideBox.js": 47,
+	"./mwlCalendarWeek.js": 48,
+	"./mwlCalendarYear.js": 49,
+	"./mwlCollapseFallback.js": 50,
+	"./mwlDateModifier.js": 51,
+	"./mwlDragSelect.js": 52,
+	"./mwlDraggable.js": 53,
+	"./mwlDroppable.js": 54,
+	"./mwlDynamicDirectiveTemplate.js": 55,
+	"./mwlElementDimensions.js": 56,
+	"./mwlResizable.js": 57
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 19;
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var angular = __webpack_require__(0);
+var LOG_PREFIX = 'Bootstrap calendar:';
+
+angular
+  .module('mwl.calendar')
+  .controller('MwlCalendarCtrl', ["$scope", "$log", "$timeout", "$attrs", "$locale", "moment", "calendarTitle", "calendarHelper", function($scope, $log, $timeout, $attrs, $locale, moment, calendarTitle, calendarHelper) {
+
+    var vm = this;
+
+    vm.changeView = function(view, newDay) {
+      vm.view = view;
+      vm.viewDate = newDay;
+    };
+
+    vm.dateClicked = function(date) {
+
+      var rawDate = moment(date).toDate();
+
+      var nextView = {
+        year: 'month',
+        month: 'day',
+        week: 'day'
+      };
+
+      if (vm.onViewChangeClick({calendarDate: rawDate, calendarNextView: nextView[vm.view]}) !== false) {
+        vm.changeView(nextView[vm.view], rawDate);
+      }
+
+    };
+
+    vm.$onInit = function() {
+
+      if (vm.slideBoxDisabled) {
+        $log.warn(LOG_PREFIX, 'The `slide-box-disabled` option is deprecated and will be removed in the next release. ' +
+          'Instead set `cell-auto-open-disabled` to true');
+      }
+
+      vm.events = vm.events || [];
+      vm.excludedDays = vm.excludedDays || [];
+
+      var previousDate = moment(vm.viewDate);
+      var previousView = vm.view;
+
+      function checkEventIsValid(event) {
+        if (!event.startsAt) {
+          $log.warn(LOG_PREFIX, 'Event is missing the startsAt field', event);
+        } else if (!angular.isDate(event.startsAt)) {
+          $log.warn(LOG_PREFIX, 'Event startsAt should be a javascript date object. Do `new Date(event.startsAt)` to fix it.', event);
+        }
+
+        if (event.endsAt) {
+          if (!angular.isDate(event.endsAt)) {
+            $log.warn(LOG_PREFIX, 'Event endsAt should be a javascript date object. Do `new Date(event.endsAt)` to fix it.', event);
+          }
+          if (moment(event.startsAt).isAfter(moment(event.endsAt))) {
+            $log.warn(LOG_PREFIX, 'Event cannot start after it finishes', event);
+          }
+        }
+      }
+
+      function refreshCalendar() {
+
+        if (calendarTitle[vm.view] && angular.isDefined($attrs.viewTitle)) {
+          vm.viewTitle = calendarTitle[vm.view](vm.viewDate);
+        }
+
+        vm.events.forEach(function(event, index) {
+          checkEventIsValid(event);
+          event.calendarEventId = index;
+        });
+
+        //if on-timespan-click="calendarDay = calendarDate" is set then don't update the view as nothing needs to change
+        var currentDate = moment(vm.viewDate);
+        var shouldUpdate = true;
+        if (
+          previousDate.clone().startOf(vm.view).isSame(currentDate.clone().startOf(vm.view)) &&
+          !previousDate.isSame(currentDate) &&
+          vm.view === previousView
+        ) {
+          shouldUpdate = false;
+        }
+        previousDate = currentDate;
+        previousView = vm.view;
+
+        if (shouldUpdate) {
+          // a $timeout is required as $broadcast is synchronous so if a new events array is set the calendar won't update
+          $timeout(function() {
+            $scope.$broadcast('calendar.refreshView');
+          });
+        }
+      }
+
+      calendarHelper.loadTemplates().then(function() {
+        vm.templatesLoaded = true;
+
+        var eventsWatched = false;
+
+        //Refresh the calendar when any of these variables change.
+        $scope.$watchGroup([
+          'vm.viewDate',
+          'vm.view',
+          'vm.cellIsOpen',
+          function() {
+            return moment.locale() + $locale.id; //Auto update the calendar when the locale changes
+          }
+        ], function() {
+          if (!eventsWatched) {
+            eventsWatched = true;
+            //need to deep watch events hence why it isn't included in the watch group
+            $scope.$watch('vm.events', refreshCalendar, true); //this will call refreshCalendar when the watcher starts (i.e. now)
+          } else {
+            refreshCalendar();
+          }
+        });
+
+      }).catch(function(err) {
+        $log.error('Could not load all calendar templates', err);
+      });
+
+    };
+
+    if (angular.version.minor < 5) {
+      vm.$onInit();
+    }
+
+  }])
+  .directive('mwlCalendar', function() {
+
+    return {
+      template: '<div mwl-dynamic-directive-template name="calendar" overrides="vm.customTemplateUrls"></div>',
+      restrict: 'E',
+      scope: {
+        events: '=',
+        view: '=',
+        viewTitle: '=?',
+        viewDate: '=',
+        cellIsOpen: '=?',
+        cellAutoOpenDisabled: '=?',
+        excludedDays: '=?',
+        slideBoxDisabled: '=?',
+        customTemplateUrls: '=?',
+        draggableAutoScroll: '=?',
+        onEventClick: '&',
+        onEventTimesChanged: '&',
+        onTimespanClick: '&',
+        onDateRangeSelect: '&?',
+        onViewChangeClick: '&',
+        cellModifier: '&',
+        dayViewStart: '@',
+        dayViewSegmentSize: '@',
+        dayViewEnd: '@',
+        dayViewSplit: '@',
+        dayViewEventChunkSize: '@',
+        dayViewEventWidth: '@',
+        templateScope: '=?',
+        dayViewTimePosition: '@'
+      },
+      controller: 'MwlCalendarCtrl as vm',
+      bindToController: true
+    };
+
+  });
+
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var angular = __webpack_require__(0);
+
+angular
+  .module('mwl.calendar')
+  .controller('MwlCalendarDayCtrl', ["$scope", "moment", "calendarHelper", "calendarEventTitle", function($scope, moment, calendarHelper, calendarEventTitle) {
+
+    var vm = this;
+
+    vm.calendarEventTitle = calendarEventTitle;
+
+    function refreshView() {
+
+      vm.timeHidden = vm.dayViewTimePosition === 'hidden';
+      vm.dayViewTimePositionOffset = vm.dayViewTimePosition !== 'default' ? 0 : 60;
+
+      vm.dayViewSplit = vm.dayViewSplit || 30;
+      vm.dayViewHeight = calendarHelper.getDayViewHeight(
+        vm.dayViewStart,
+        vm.dayViewEnd,
+        vm.dayViewSplit,
+        vm.dayViewSegmentSize
+      );
+
+      var view = calendarHelper.getDayView(
+        vm.events,
+        vm.viewDate,
+        vm.dayViewStart,
+        vm.dayViewEnd,
+        vm.dayViewSplit,
+        vm.dayViewEventWidth,
+        vm.dayViewSegmentSize
+      );
+
+      vm.allDayEvents = view.allDayEvents;
+      vm.nonAllDayEvents = view.events;
+      vm.viewWidth = view.width + 62;
+
+    }
+
+    $scope.$on('calendar.refreshView', refreshView);
+
+    $scope.$watchGroup([
+      'vm.dayViewStart',
+      'vm.dayViewEnd',
+      'vm.dayViewSplit'
+    ], refreshView);
+
+    vm.eventDragComplete = function(event, minuteChunksMoved) {
+      var minutesDiff = minuteChunksMoved * vm.dayViewSplit;
+      var newStart = moment(event.startsAt).add(minutesDiff, 'minutes');
+      var newEnd = moment(event.endsAt).add(minutesDiff, 'minutes');
+      delete event.tempStartsAt;
+
+      vm.onEventTimesChanged({
+        calendarEvent: event,
+        calendarNewEventStart: newStart.toDate(),
+        calendarNewEventEnd: event.endsAt ? newEnd.toDate() : null
+      });
+    };
+
+    vm.eventDragged = function(event, minuteChunksMoved) {
+      var minutesDiff = minuteChunksMoved * vm.dayViewSplit;
+      event.tempStartsAt = moment(event.startsAt).add(minutesDiff, 'minutes').toDate();
+    };
+
+    vm.eventResizeComplete = function(event, edge, minuteChunksMoved) {
+      var minutesDiff = minuteChunksMoved * vm.dayViewSplit;
+      var start = moment(event.startsAt);
+      var end = moment(event.endsAt);
+      if (edge === 'start') {
+        start.add(minutesDiff, 'minutes');
+      } else {
+        end.add(minutesDiff, 'minutes');
+      }
+      delete event.tempStartsAt;
+
+      vm.onEventTimesChanged({
+        calendarEvent: event,
+        calendarNewEventStart: start.toDate(),
+        calendarNewEventEnd: end.toDate()
+      });
+    };
+
+    vm.eventResized = function(event, edge, minuteChunksMoved) {
+      var minutesDiff = minuteChunksMoved * vm.dayViewSplit;
+      if (edge === 'start') {
+        event.tempStartsAt = moment(event.startsAt).add(minutesDiff, 'minutes').toDate();
+      }
+    };
+
+  }])
+  .directive('mwlCalendarDay', function() {
+
+    return {
+      template: '<div mwl-dynamic-directive-template name="calendarDayView" overrides="vm.customTemplateUrls"></div>',
+      restrict: 'E',
+      require: '^mwlCalendar',
+      scope: {
+        events: '=',
+        viewDate: '=',
+        onEventClick: '=',
+        onEventTimesChanged: '=',
+        onTimespanClick: '=',
+        onDateRangeSelect: '=',
+        dayViewStart: '=',
+        dayViewEnd: '=',
+        dayViewSplit: '=',
+        dayViewEventChunkSize: '=',
+        dayViewSegmentSize: '=',
+        dayViewEventWidth: '=',
+        customTemplateUrls: '=?',
+        cellModifier: '=',
+        templateScope: '=',
+        dayViewTimePosition: '=',
+        draggableAutoScroll: '='
+      },
+      controller: 'MwlCalendarDayCtrl as vm',
+      bindToController: true
+    };
+
+  });
+
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var angular = __webpack_require__(0);
+var calendarUtils = __webpack_require__(4);
+
+angular
+  .module('mwl.calendar')
+  .controller('MwlCalendarHourListCtrl', ["$scope", "$document", "moment", "calendarHelper", function($scope, $document, moment, calendarHelper) {
+    var vm = this;
+
+    // source: http://stackoverflow.com/questions/13382516/getting-scroll-bar-width-using-javascript
+    function getScrollbarWidth() {
+      var outer = $document[0].createElement('div');
+      outer.style.visibility = 'hidden';
+      outer.style.width = '100px';
+      outer.style.msOverflowStyle = 'scrollbar'; // needed for WinJS apps
+
+      $document[0].body.appendChild(outer);
+
+      var widthNoScroll = outer.offsetWidth;
+      // force scrollbars
+      outer.style.overflow = 'scroll';
+
+      // add innerdiv
+      var inner = $document[0].createElement('div');
+      inner.style.width = '100%';
+      outer.appendChild(inner);
+
+      var widthWithScroll = inner.offsetWidth;
+
+      // remove divs
+      outer.parentNode.removeChild(outer);
+
+      return widthNoScroll - widthWithScroll;
+    }
+
+    vm.scrollBarWidth = getScrollbarWidth();
+
+    function updateDays() {
+
+      vm.dayViewSplit = parseInt(vm.dayViewSplit);
+      var dayStart = (vm.dayViewStart || '00:00').split(':');
+      var dayEnd = (vm.dayViewEnd || '23:59').split(':');
+      vm.hourGrid = calendarUtils.getDayViewHourGrid({
+        viewDate: vm.view === 'week' ? moment(vm.viewDate).startOf('week').toDate() : moment(vm.viewDate).toDate(),
+        hourSegments: 60 / vm.dayViewSplit,
+        dayStart: {
+          hour: dayStart[0],
+          minute: dayStart[1]
+        },
+        dayEnd: {
+          hour: dayEnd[0],
+          minute: dayEnd[1]
+        }
+      });
+
+      vm.hourGrid.forEach(function(hour) {
+        hour.segments.forEach(function(segment) {
+
+          segment.date = moment(segment.date);
+          segment.nextSegmentDate = segment.date.clone().add(vm.dayViewSplit, 'minutes');
+
+          if (vm.view === 'week') {
+
+            segment.days = [];
+
+            for (var i = 0; i < 7; i++) {
+              var day = {
+                date: moment(segment.date).add(i, 'days')
+              };
+              day.nextSegmentDate = day.date.clone().add(vm.dayViewSplit, 'minutes');
+              vm.cellModifier({calendarCell: day});
+              segment.days.push(day);
+            }
+
+          } else {
+            vm.cellModifier({calendarCell: segment});
+          }
+
+        });
+      });
+
+    }
+
+    var originalLocale = moment.locale();
+
+    $scope.$on('calendar.refreshView', function() {
+
+      if (originalLocale !== moment.locale()) {
+        originalLocale = moment.locale();
+        updateDays();
+      }
+
+    });
+
+    $scope.$watchGroup([
+      'vm.dayViewStart',
+      'vm.dayViewEnd',
+      'vm.dayViewSplit',
+      'vm.viewDate'
+    ], function() {
+      updateDays();
+    });
+
+    vm.eventDropped = function(event, date) {
+      var newStart = moment(date);
+      var newEnd = calendarHelper.adjustEndDateFromStartDiff(event.startsAt, newStart, event.endsAt);
+
+      vm.onEventTimesChanged({
+        calendarEvent: event,
+        calendarDate: date,
+        calendarNewEventStart: newStart.toDate(),
+        calendarNewEventEnd: newEnd ? newEnd.toDate() : null
+      });
+    };
+
+    vm.onDragSelectStart = function(date, dayIndex) {
+      if (!vm.dateRangeSelect) {
+        vm.dateRangeSelect = {
+          active: true,
+          startDate: date,
+          endDate: date,
+          dayIndex: dayIndex
+        };
+      }
+    };
+
+    vm.onDragSelectMove = function(date) {
+      if (vm.dateRangeSelect) {
+        vm.dateRangeSelect.endDate = date;
+      }
+    };
+
+    vm.onDragSelectEnd = function(date) {
+      if (vm.dateRangeSelect) {
+        vm.dateRangeSelect.endDate = date;
+        if (vm.dateRangeSelect.endDate > vm.dateRangeSelect.startDate) {
+          vm.onDateRangeSelect({
+            calendarRangeStartDate: vm.dateRangeSelect.startDate.toDate(),
+            calendarRangeEndDate: vm.dateRangeSelect.endDate.toDate()
+          });
+        }
+        delete vm.dateRangeSelect;
+      }
+    };
+
+  }])
+  .directive('mwlCalendarHourList', function() {
+
+    return {
+      restrict: 'E',
+      template: '<div mwl-dynamic-directive-template name="calendarHourList" overrides="vm.customTemplateUrls"></div>',
+      controller: 'MwlCalendarHourListCtrl as vm',
+      scope: {
+        viewDate: '=',
+        dayViewStart: '=',
+        dayViewEnd: '=',
+        dayViewSplit: '=',
+        dayWidth: '=?',
+        onTimespanClick: '=',
+        onDateRangeSelect: '=',
+        onEventTimesChanged: '=',
+        customTemplateUrls: '=?',
+        cellModifier: '=',
+        templateScope: '=',
+        view: '@'
+      },
+      bindToController: true
+    };
+
+  });
+
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var parse = __webpack_require__(1)
+
+/**
+ * @category Day Helpers
+ * @summary Add the specified number of days to the given date.
+ *
+ * @description
+ * Add the specified number of days to the given date.
+ *
+ * @param {Date|String|Number} date - the date to be changed
+ * @param {Number} amount - the amount of days to be added
+ * @returns {Date} the new date with the days added
+ *
+ * @example
+ * // Add 10 days to 1 September 2014:
+ * var result = addDays(new Date(2014, 8, 1), 10)
+ * //=> Thu Sep 11 2014 00:00:00
+ */
+function addDays (dirtyDate, dirtyAmount) {
+  var date = parse(dirtyDate)
+  var amount = Number(dirtyAmount)
+  date.setDate(date.getDate() + amount)
+  return date
+}
+
+module.exports = addDays
+
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var addMilliseconds = __webpack_require__(2)
+
+var MILLISECONDS_IN_HOUR = 3600000
+
+/**
+ * @category Hour Helpers
+ * @summary Add the specified number of hours to the given date.
+ *
+ * @description
+ * Add the specified number of hours to the given date.
+ *
+ * @param {Date|String|Number} date - the date to be changed
+ * @param {Number} amount - the amount of hours to be added
+ * @returns {Date} the new date with the hours added
+ *
+ * @example
+ * // Add 2 hours to 10 July 2014 23:00:00:
+ * var result = addHours(new Date(2014, 6, 10, 23, 0), 2)
+ * //=> Fri Jul 11 2014 01:00:00
+ */
+function addHours (dirtyDate, dirtyAmount) {
+  var amount = Number(dirtyAmount)
+  return addMilliseconds(dirtyDate, amount * MILLISECONDS_IN_HOUR)
+}
+
+module.exports = addHours
+
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var addMilliseconds = __webpack_require__(2)
+
+var MILLISECONDS_IN_MINUTE = 60000
+
+/**
+ * @category Minute Helpers
+ * @summary Add the specified number of minutes to the given date.
+ *
+ * @description
+ * Add the specified number of minutes to the given date.
+ *
+ * @param {Date|String|Number} date - the date to be changed
+ * @param {Number} amount - the amount of minutes to be added
+ * @returns {Date} the new date with the minutes added
+ *
+ * @example
+ * // Add 30 minutes to 10 July 2014 12:00:00:
+ * var result = addMinutes(new Date(2014, 6, 10, 12, 0), 30)
+ * //=> Thu Jul 10 2014 12:30:00
+ */
+function addMinutes (dirtyDate, dirtyAmount) {
+  var amount = Number(dirtyAmount)
+  return addMilliseconds(dirtyDate, amount * MILLISECONDS_IN_MINUTE)
+}
+
+module.exports = addMinutes
+
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var addMilliseconds = __webpack_require__(2)
+
+/**
+ * @category Second Helpers
+ * @summary Add the specified number of seconds to the given date.
+ *
+ * @description
+ * Add the specified number of seconds to the given date.
+ *
+ * @param {Date|String|Number} date - the date to be changed
+ * @param {Number} amount - the amount of seconds to be added
+ * @returns {Date} the new date with the seconds added
+ *
+ * @example
+ * // Add 30 seconds to 10 July 2014 12:45:00:
+ * var result = addSeconds(new Date(2014, 6, 10, 12, 45, 0), 30)
+ * //=> Thu Jul 10 2014 12:45:30
+ */
+function addSeconds (dirtyDate, dirtyAmount) {
+  var amount = Number(dirtyAmount)
+  return addMilliseconds(dirtyDate, amount * 1000)
+}
+
+module.exports = addSeconds
+
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var parse = __webpack_require__(1)
+var differenceInCalendarDays = __webpack_require__(28)
+var compareAsc = __webpack_require__(29)
+
+/**
+ * @category Day Helpers
+ * @summary Get the number of full days between the given dates.
+ *
+ * @description
+ * Get the number of full days between the given dates.
+ *
+ * @param {Date|String|Number} dateLeft - the later date
+ * @param {Date|String|Number} dateRight - the earlier date
+ * @returns {Number} the number of full days
+ *
+ * @example
+ * // How many full days are between
+ * // 2 July 2011 23:00:00 and 2 July 2012 00:00:00?
+ * var result = differenceInDays(
+ *   new Date(2012, 6, 2, 0, 0),
+ *   new Date(2011, 6, 2, 23, 0)
+ * )
+ * //=> 365
+ */
+function differenceInDays (dirtyDateLeft, dirtyDateRight) {
+  var dateLeft = parse(dirtyDateLeft)
+  var dateRight = parse(dirtyDateRight)
+
+  var sign = compareAsc(dateLeft, dateRight)
+  var difference = Math.abs(differenceInCalendarDays(dateLeft, dateRight))
+  dateLeft.setDate(dateLeft.getDate() - sign * difference)
+
+  // Math.abs(diff in full days - diff in calendar days) === 1 if last calendar day is not full
+  // If so, result must be decreased by 1 in absolute value
+  var isLastDayNotFull = compareAsc(dateLeft, dateRight) === -sign
+  return sign * (difference - isLastDayNotFull)
+}
+
+module.exports = differenceInDays
+
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var startOfDay = __webpack_require__(3)
+
+var MILLISECONDS_IN_MINUTE = 60000
+var MILLISECONDS_IN_DAY = 86400000
+
+/**
+ * @category Day Helpers
+ * @summary Get the number of calendar days between the given dates.
+ *
+ * @description
+ * Get the number of calendar days between the given dates.
+ *
+ * @param {Date|String|Number} dateLeft - the later date
+ * @param {Date|String|Number} dateRight - the earlier date
+ * @returns {Number} the number of calendar days
+ *
+ * @example
+ * // How many calendar days are between
+ * // 2 July 2011 23:00:00 and 2 July 2012 00:00:00?
+ * var result = differenceInCalendarDays(
+ *   new Date(2012, 6, 2, 0, 0),
+ *   new Date(2011, 6, 2, 23, 0)
+ * )
+ * //=> 366
+ */
+function differenceInCalendarDays (dirtyDateLeft, dirtyDateRight) {
+  var startOfDayLeft = startOfDay(dirtyDateLeft)
+  var startOfDayRight = startOfDay(dirtyDateRight)
+
+  var timestampLeft = startOfDayLeft.getTime() -
+    startOfDayLeft.getTimezoneOffset() * MILLISECONDS_IN_MINUTE
+  var timestampRight = startOfDayRight.getTime() -
+    startOfDayRight.getTimezoneOffset() * MILLISECONDS_IN_MINUTE
+
+  // Round the number of days to the nearest integer
+  // because the number of milliseconds in a day is not constant
+  // (e.g. it's different in the day of the daylight saving time clock shift)
+  return Math.round((timestampLeft - timestampRight) / MILLISECONDS_IN_DAY)
+}
+
+module.exports = differenceInCalendarDays
+
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var parse = __webpack_require__(1)
+
+/**
+ * @category Common Helpers
+ * @summary Compare the two dates and return -1, 0 or 1.
+ *
+ * @description
+ * Compare the two dates and return 1 if the first date is after the second,
+ * -1 if the first date is before the second or 0 if dates are equal.
+ *
+ * @param {Date|String|Number} dateLeft - the first date to compare
+ * @param {Date|String|Number} dateRight - the second date to compare
+ * @returns {Number} the result of the comparison
+ *
+ * @example
+ * // Compare 11 February 1987 and 10 July 1989:
+ * var result = compareAsc(
+ *   new Date(1987, 1, 11),
+ *   new Date(1989, 6, 10)
+ * )
+ * //=> -1
+ *
+ * @example
+ * // Sort the array of dates:
+ * var result = [
+ *   new Date(1995, 6, 2),
+ *   new Date(1987, 1, 11),
+ *   new Date(1989, 6, 10)
+ * ].sort(compareAsc)
+ * //=> [
+ * //   Wed Feb 11 1987 00:00:00,
+ * //   Mon Jul 10 1989 00:00:00,
+ * //   Sun Jul 02 1995 00:00:00
+ * // ]
+ */
+function compareAsc (dirtyDateLeft, dirtyDateRight) {
+  var dateLeft = parse(dirtyDateLeft)
+  var timeLeft = dateLeft.getTime()
+  var dateRight = parse(dirtyDateRight)
+  var timeRight = dateRight.getTime()
+
+  if (timeLeft < timeRight) {
+    return -1
+  } else if (timeLeft > timeRight) {
+    return 1
+  } else {
+    return 0
+  }
+}
+
+module.exports = compareAsc
+
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var differenceInMilliseconds = __webpack_require__(6)
+
+var MILLISECONDS_IN_MINUTE = 60000
+
+/**
+ * @category Minute Helpers
+ * @summary Get the number of minutes between the given dates.
+ *
+ * @description
+ * Get the number of minutes between the given dates.
+ *
+ * @param {Date|String|Number} dateLeft - the later date
+ * @param {Date|String|Number} dateRight - the earlier date
+ * @returns {Number} the number of minutes
+ *
+ * @example
+ * // How many minutes are between 2 July 2014 12:07:59 and 2 July 2014 12:20:00?
+ * var result = differenceInMinutes(
+ *   new Date(2014, 6, 2, 12, 20, 0),
+ *   new Date(2014, 6, 2, 12, 7, 59)
+ * )
+ * //=> 12
+ */
+function differenceInMinutes (dirtyDateLeft, dirtyDateRight) {
+  var diff = differenceInMilliseconds(dirtyDateLeft, dirtyDateRight) / MILLISECONDS_IN_MINUTE
+  return diff > 0 ? Math.floor(diff) : Math.ceil(diff)
+}
+
+module.exports = differenceInMinutes
+
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var differenceInMilliseconds = __webpack_require__(6)
+
+/**
+ * @category Second Helpers
+ * @summary Get the number of seconds between the given dates.
+ *
+ * @description
+ * Get the number of seconds between the given dates.
+ *
+ * @param {Date|String|Number} dateLeft - the later date
+ * @param {Date|String|Number} dateRight - the earlier date
+ * @returns {Number} the number of seconds
+ *
+ * @example
+ * // How many seconds are between
+ * // 2 July 2014 12:30:07.999 and 2 July 2014 12:30:20.000?
+ * var result = differenceInSeconds(
+ *   new Date(2014, 6, 2, 12, 30, 20, 0),
+ *   new Date(2014, 6, 2, 12, 30, 7, 999)
+ * )
+ * //=> 12
+ */
+function differenceInSeconds (dirtyDateLeft, dirtyDateRight) {
+  var diff = differenceInMilliseconds(dirtyDateLeft, dirtyDateRight) / 1000
+  return diff > 0 ? Math.floor(diff) : Math.ceil(diff)
+}
+
+module.exports = differenceInSeconds
+
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var parse = __webpack_require__(1)
+
+/**
+ * @category Day Helpers
+ * @summary Return the end of a day for the given date.
+ *
+ * @description
+ * Return the end of a day for the given date.
+ * The result will be in the local timezone.
+ *
+ * @param {Date|String|Number} date - the original date
+ * @returns {Date} the end of a day
+ *
+ * @example
+ * // The end of a day for 2 September 2014 11:55:00:
+ * var result = endOfDay(new Date(2014, 8, 2, 11, 55, 0))
+ * //=> Tue Sep 02 2014 23:59:59.999
+ */
+function endOfDay (dirtyDate) {
+  var date = parse(dirtyDate)
+  date.setHours(23, 59, 59, 999)
+  return date
+}
+
+module.exports = endOfDay
+
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var parse = __webpack_require__(1)
+
+/**
+ * @category Month Helpers
+ * @summary Return the end of a month for the given date.
+ *
+ * @description
+ * Return the end of a month for the given date.
+ * The result will be in the local timezone.
+ *
+ * @param {Date|String|Number} date - the original date
+ * @returns {Date} the end of a month
+ *
+ * @example
+ * // The end of a month for 2 September 2014 11:55:00:
+ * var result = endOfMonth(new Date(2014, 8, 2, 11, 55, 0))
+ * //=> Tue Sep 30 2014 23:59:59.999
+ */
+function endOfMonth (dirtyDate) {
+  var date = parse(dirtyDate)
+  var month = date.getMonth()
+  date.setFullYear(date.getFullYear(), month + 1, 0)
+  date.setHours(23, 59, 59, 999)
+  return date
+}
+
+module.exports = endOfMonth
+
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var parse = __webpack_require__(1)
+
+/**
+ * @category Week Helpers
+ * @summary Return the end of a week for the given date.
+ *
+ * @description
+ * Return the end of a week for the given date.
+ * The result will be in the local timezone.
+ *
+ * @param {Date|String|Number} date - the original date
+ * @param {Object} [options] - the object with options
+ * @param {Number} [options.weekStartsOn=0] - the index of the first day of the week (0 - Sunday)
+ * @returns {Date} the end of a week
+ *
+ * @example
+ * // The end of a week for 2 September 2014 11:55:00:
+ * var result = endOfWeek(new Date(2014, 8, 2, 11, 55, 0))
+ * //=> Sat Sep 06 2014 23:59:59.999
+ *
+ * @example
+ * // If the week starts on Monday, the end of the week for 2 September 2014 11:55:00:
+ * var result = endOfWeek(new Date(2014, 8, 2, 11, 55, 0), {weekStartsOn: 1})
+ * //=> Sun Sep 07 2014 23:59:59.999
+ */
+function endOfWeek (dirtyDate, dirtyOptions) {
+  var weekStartsOn = dirtyOptions ? (Number(dirtyOptions.weekStartsOn) || 0) : 0
+
+  var date = parse(dirtyDate)
+  var day = date.getDay()
+  var diff = (day < weekStartsOn ? -7 : 0) + 6 - (day - weekStartsOn)
+
+  date.setDate(date.getDate() + diff)
+  date.setHours(23, 59, 59, 999)
+  return date
+}
+
+module.exports = endOfWeek
+
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var parse = __webpack_require__(1)
+
+/**
+ * @category Weekday Helpers
+ * @summary Get the day of the week of the given date.
+ *
+ * @description
+ * Get the day of the week of the given date.
+ *
+ * @param {Date|String|Number} date - the given date
+ * @returns {Number} the day of week
+ *
+ * @example
+ * // Which day of the week is 29 February 2012?
+ * var result = getDay(new Date(2012, 1, 29))
+ * //=> 3
+ */
+function getDay (dirtyDate) {
+  var date = parse(dirtyDate)
+  var day = date.getDay()
+  return day
+}
+
+module.exports = getDay
+
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var startOfDay = __webpack_require__(3)
+
+/**
+ * @category Day Helpers
+ * @summary Are the given dates in the same day?
+ *
+ * @description
+ * Are the given dates in the same day?
+ *
+ * @param {Date|String|Number} dateLeft - the first date to check
+ * @param {Date|String|Number} dateRight - the second date to check
+ * @returns {Boolean} the dates are in the same day
+ *
+ * @example
+ * // Are 4 September 06:00:00 and 4 September 18:00:00 in the same day?
+ * var result = isSameDay(
+ *   new Date(2014, 8, 4, 6, 0),
+ *   new Date(2014, 8, 4, 18, 0)
+ * )
+ * //=> true
+ */
+function isSameDay (dirtyDateLeft, dirtyDateRight) {
+  var dateLeftStartOfDay = startOfDay(dirtyDateLeft)
+  var dateRightStartOfDay = startOfDay(dirtyDateRight)
+
+  return dateLeftStartOfDay.getTime() === dateRightStartOfDay.getTime()
+}
+
+module.exports = isSameDay
+
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var parse = __webpack_require__(1)
+
+/**
+ * @category Month Helpers
+ * @summary Are the given dates in the same month?
+ *
+ * @description
+ * Are the given dates in the same month?
+ *
+ * @param {Date|String|Number} dateLeft - the first date to check
+ * @param {Date|String|Number} dateRight - the second date to check
+ * @returns {Boolean} the dates are in the same month
+ *
+ * @example
+ * // Are 2 September 2014 and 25 September 2014 in the same month?
+ * var result = isSameMonth(
+ *   new Date(2014, 8, 2),
+ *   new Date(2014, 8, 25)
+ * )
+ * //=> true
+ */
+function isSameMonth (dirtyDateLeft, dirtyDateRight) {
+  var dateLeft = parse(dirtyDateLeft)
+  var dateRight = parse(dirtyDateRight)
+  return dateLeft.getFullYear() === dateRight.getFullYear() &&
+    dateLeft.getMonth() === dateRight.getMonth()
+}
+
+module.exports = isSameMonth
+
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var startOfSecond = __webpack_require__(39)
+
+/**
+ * @category Second Helpers
+ * @summary Are the given dates in the same second?
+ *
+ * @description
+ * Are the given dates in the same second?
+ *
+ * @param {Date|String|Number} dateLeft - the first date to check
+ * @param {Date|String|Number} dateRight - the second date to check
+ * @returns {Boolean} the dates are in the same second
+ *
+ * @example
+ * // Are 4 September 2014 06:30:15.000 and 4 September 2014 06:30.15.500
+ * // in the same second?
+ * var result = isSameSecond(
+ *   new Date(2014, 8, 4, 6, 30, 15),
+ *   new Date(2014, 8, 4, 6, 30, 15, 500)
+ * )
+ * //=> true
+ */
+function isSameSecond (dirtyDateLeft, dirtyDateRight) {
+  var dateLeftStartOfSecond = startOfSecond(dirtyDateLeft)
+  var dateRightStartOfSecond = startOfSecond(dirtyDateRight)
+
+  return dateLeftStartOfSecond.getTime() === dateRightStartOfSecond.getTime()
+}
+
+module.exports = isSameSecond
+
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var parse = __webpack_require__(1)
+
+/**
+ * @category Second Helpers
+ * @summary Return the start of a second for the given date.
+ *
+ * @description
+ * Return the start of a second for the given date.
+ * The result will be in the local timezone.
+ *
+ * @param {Date|String|Number} date - the original date
+ * @returns {Date} the start of a second
+ *
+ * @example
+ * // The start of a second for 1 December 2014 22:15:45.400:
+ * var result = startOfSecond(new Date(2014, 11, 1, 22, 15, 45, 400))
+ * //=> Mon Dec 01 2014 22:15:45.000
+ */
+function startOfSecond (dirtyDate) {
+  var date = parse(dirtyDate)
+  date.setMilliseconds(0)
+  return date
+}
+
+module.exports = startOfSecond
+
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var parse = __webpack_require__(1)
+
+/**
+ * @category Common Helpers
+ * @summary Return the latest of the given dates.
+ *
+ * @description
+ * Return the latest of the given dates.
+ *
+ * @param {...(Date|String|Number)} dates - the dates to compare
+ * @returns {Date} the latest of the dates
+ *
+ * @example
+ * // Which of these dates is the latest?
+ * var result = max(
+ *   new Date(1989, 6, 10),
+ *   new Date(1987, 1, 11),
+ *   new Date(1995, 6, 2),
+ *   new Date(1990, 0, 1)
+ * )
+ * //=> Sun Jul 02 1995 00:00:00
+ */
+function max () {
+  var dirtyDates = Array.prototype.slice.call(arguments)
+  var dates = dirtyDates.map(function (dirtyDate) {
+    return parse(dirtyDate)
+  })
+  var latestTimestamp = Math.max.apply(null, dates)
+  return new Date(latestTimestamp)
+}
+
+module.exports = max
+
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var parse = __webpack_require__(1)
+
+/**
+ * @category Hour Helpers
+ * @summary Set the hours to the given date.
+ *
+ * @description
+ * Set the hours to the given date.
+ *
+ * @param {Date|String|Number} date - the date to be changed
+ * @param {Number} hours - the hours of the new date
+ * @returns {Date} the new date with the hours setted
+ *
+ * @example
+ * // Set 4 hours to 1 September 2014 11:30:00:
+ * var result = setHours(new Date(2014, 8, 1, 11, 30), 4)
+ * //=> Mon Sep 01 2014 04:30:00
+ */
+function setHours (dirtyDate, dirtyHours) {
+  var date = parse(dirtyDate)
+  var hours = Number(dirtyHours)
+  date.setHours(hours)
+  return date
+}
+
+module.exports = setHours
+
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var parse = __webpack_require__(1)
+
+/**
+ * @category Minute Helpers
+ * @summary Set the minutes to the given date.
+ *
+ * @description
+ * Set the minutes to the given date.
+ *
+ * @param {Date|String|Number} date - the date to be changed
+ * @param {Number} minutes - the minutes of the new date
+ * @returns {Date} the new date with the minutes setted
+ *
+ * @example
+ * // Set 45 minutes to 1 September 2014 11:30:40:
+ * var result = setMinutes(new Date(2014, 8, 1, 11, 30, 40), 45)
+ * //=> Mon Sep 01 2014 11:45:40
+ */
+function setMinutes (dirtyDate, dirtyMinutes) {
+  var date = parse(dirtyDate)
+  var minutes = Number(dirtyMinutes)
+  date.setMinutes(minutes)
+  return date
+}
+
+module.exports = setMinutes
+
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var parse = __webpack_require__(1)
+
+/**
+ * @category Minute Helpers
+ * @summary Return the start of a minute for the given date.
+ *
+ * @description
+ * Return the start of a minute for the given date.
+ * The result will be in the local timezone.
+ *
+ * @param {Date|String|Number} date - the original date
+ * @returns {Date} the start of a minute
+ *
+ * @example
+ * // The start of a minute for 1 December 2014 22:15:45.400:
+ * var result = startOfMinute(new Date(2014, 11, 1, 22, 15, 45, 400))
+ * //=> Mon Dec 01 2014 22:15:00
+ */
+function startOfMinute (dirtyDate) {
+  var date = parse(dirtyDate)
+  date.setSeconds(0, 0)
+  return date
+}
+
+module.exports = startOfMinute
+
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var parse = __webpack_require__(1)
+
+/**
+ * @category Month Helpers
+ * @summary Return the start of a month for the given date.
+ *
+ * @description
+ * Return the start of a month for the given date.
+ * The result will be in the local timezone.
+ *
+ * @param {Date|String|Number} date - the original date
+ * @returns {Date} the start of a month
+ *
+ * @example
+ * // The start of a month for 2 September 2014 11:55:00:
+ * var result = startOfMonth(new Date(2014, 8, 2, 11, 55, 0))
+ * //=> Mon Sep 01 2014 00:00:00
+ */
+function startOfMonth (dirtyDate) {
+  var date = parse(dirtyDate)
+  date.setDate(1)
+  date.setHours(0, 0, 0, 0)
+  return date
+}
+
+module.exports = startOfMonth
+
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var parse = __webpack_require__(1)
+
+/**
+ * @category Week Helpers
+ * @summary Return the start of a week for the given date.
+ *
+ * @description
+ * Return the start of a week for the given date.
+ * The result will be in the local timezone.
+ *
+ * @param {Date|String|Number} date - the original date
+ * @param {Object} [options] - the object with options
+ * @param {Number} [options.weekStartsOn=0] - the index of the first day of the week (0 - Sunday)
+ * @returns {Date} the start of a week
+ *
+ * @example
+ * // The start of a week for 2 September 2014 11:55:00:
+ * var result = startOfWeek(new Date(2014, 8, 2, 11, 55, 0))
+ * //=> Sun Aug 31 2014 00:00:00
+ *
+ * @example
+ * // If the week starts on Monday, the start of the week for 2 September 2014 11:55:00:
+ * var result = startOfWeek(new Date(2014, 8, 2, 11, 55, 0), {weekStartsOn: 1})
+ * //=> Mon Sep 01 2014 00:00:00
+ */
+function startOfWeek (dirtyDate, dirtyOptions) {
+  var weekStartsOn = dirtyOptions ? (Number(dirtyOptions.weekStartsOn) || 0) : 0
+
+  var date = parse(dirtyDate)
+  var day = date.getDay()
+  var diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn
+
+  date.setDate(date.getDate() - diff)
+  date.setHours(0, 0, 0, 0)
+  return date
+}
+
+module.exports = startOfWeek
+
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var angular = __webpack_require__(0);
+
+angular
+  .module('mwl.calendar')
+  .controller('MwlCalendarMonthCtrl', ["$scope", "moment", "calendarHelper", "calendarConfig", "calendarEventTitle", function($scope, moment, calendarHelper, calendarConfig, calendarEventTitle) {
+
+    var vm = this;
+    vm.calendarConfig = calendarConfig;
+    vm.calendarEventTitle = calendarEventTitle;
+    vm.openRowIndex = null;
+
+    function toggleCell() {
+      vm.openRowIndex = null;
+      vm.openDayIndex = null;
+
+      if (vm.cellIsOpen && vm.view && vm.weekDays) {
+        vm.view.forEach(function(day, dayIndex) {
+          if (moment(vm.viewDate).startOf('day').isSame(day.date)) {
+            vm.openDayIndex = dayIndex;
+            vm.openRowIndex = Math.floor(dayIndex / vm.weekDays.length);
+          }
+        });
+      }
+    }
+
+    $scope.$on('calendar.refreshView', function() {
+
+      vm.weekDays = calendarHelper.getWeekDayNames(vm.excludedDays);
+
+      var monthView = calendarHelper.getMonthView(vm.events, vm.viewDate, vm.cellModifier, vm.excludedDays);
+      vm.view = monthView.days;
+      vm.monthOffsets = monthView.rowOffsets;
+
+      if (vm.cellAutoOpenDisabled) {
+        toggleCell();
+      } else if (!vm.cellAutoOpenDisabled && vm.cellIsOpen && vm.openRowIndex === null) {
+        //Auto open the calendar to the current day if set
+        vm.openDayIndex = null;
+        vm.view.forEach(function(day) {
+          if (day.inMonth && moment(vm.viewDate).startOf('day').isSame(day.date)) {
+            vm.dayClicked(day, true);
+          }
+        });
+      }
+
+    });
+
+    vm.dayClicked = function(day, dayClickedFirstRun, $event) {
+
+      if (!dayClickedFirstRun) {
+        vm.onTimespanClick({
+          calendarDate: day.date.toDate(),
+          calendarCell: day,
+          $event: $event
+        });
+        if ($event && $event.defaultPrevented) {
+          return;
+        }
+      }
+
+      if (!vm.cellAutoOpenDisabled) {
+        vm.openRowIndex = null;
+        var dayIndex = vm.view.indexOf(day);
+        if (dayIndex === vm.openDayIndex) { //the day has been clicked and is already open
+          vm.openDayIndex = null; //close the open day
+          vm.cellIsOpen = false;
+        } else {
+          vm.openDayIndex = dayIndex;
+          vm.openRowIndex = Math.floor(dayIndex / vm.weekDays.length);
+          vm.cellIsOpen = true;
+        }
+      }
+
+    };
+
+    vm.highlightEvent = function(event, shouldAddClass) {
+
+      vm.view.forEach(function(day) {
+        delete day.highlightClass;
+        delete day.backgroundColor;
+        if (shouldAddClass) {
+          var dayContainsEvent = day.events.indexOf(event) > -1;
+          if (dayContainsEvent) {
+            day.backgroundColor = event.color ? event.color.secondary : '';
+          }
+        }
+      });
+
+    };
+
+    vm.handleEventDrop = function(event, newDayDate, draggedFromDate) {
+
+      var newStart = moment(event.startsAt)
+        .year(moment(newDayDate).year())
+        .month(moment(newDayDate).month())
+        .date(moment(newDayDate).date());
+
+      var newEnd = calendarHelper.adjustEndDateFromStartDiff(event.startsAt, newStart, event.endsAt);
+
+      vm.onEventTimesChanged({
+        calendarEvent: event,
+        calendarDate: newDayDate,
+        calendarNewEventStart: newStart.toDate(),
+        calendarNewEventEnd: newEnd ? newEnd.toDate() : null,
+        calendarDraggedFromDate: draggedFromDate
+      });
+    };
+
+    vm.getWeekNumberLabel = function(day) {
+      var weekNumber = day.date.clone().add(1, 'day').isoWeek();
+      if (typeof calendarConfig.i18nStrings.weekNumber === 'function') {
+        return calendarConfig.i18nStrings.weekNumber({weekNumber: weekNumber});
+      } else {
+        return calendarConfig.i18nStrings.weekNumber.replace('{week}', weekNumber);
+      }
+    };
+
+    vm.onDragSelectStart = function(day) {
+      if (!vm.dateRangeSelect) {
+        vm.dateRangeSelect = {
+          startDate: day.date,
+          endDate: day.date
+        };
+      }
+    };
+
+    vm.onDragSelectMove = function(day) {
+      if (vm.dateRangeSelect) {
+        vm.dateRangeSelect.endDate = day.date;
+      }
+    };
+
+    vm.onDragSelectEnd = function(day) {
+      if (vm.dateRangeSelect) {
+        vm.dateRangeSelect.endDate = day.date;
+        if (vm.dateRangeSelect.endDate > vm.dateRangeSelect.startDate) {
+          vm.onDateRangeSelect({
+            calendarRangeStartDate: vm.dateRangeSelect.startDate.clone().startOf('day').toDate(),
+            calendarRangeEndDate: vm.dateRangeSelect.endDate.clone().endOf('day').toDate()
+          });
+        }
+        delete vm.dateRangeSelect;
+      }
+    };
+
+    vm.$onInit = function() {
+
+      if (vm.cellAutoOpenDisabled) {
+        $scope.$watchGroup([
+          'vm.cellIsOpen',
+          'vm.viewDate'
+        ], toggleCell);
+      }
+
+    };
+
+    if (angular.version.minor < 5) {
+      vm.$onInit();
+    }
+
+  }])
+  .directive('mwlCalendarMonth', function() {
+
+    return {
+      template: '<div mwl-dynamic-directive-template name="calendarMonthView" overrides="vm.customTemplateUrls"></div>',
+      restrict: 'E',
+      require: '^mwlCalendar',
+      scope: {
+        events: '=',
+        viewDate: '=',
+        excludedDays: '=',
+        onEventClick: '=',
+        onEventTimesChanged: '=',
+        onDateRangeSelect: '=',
+        cellIsOpen: '=',
+        cellAutoOpenDisabled: '=',
+        onTimespanClick: '=',
+        cellModifier: '=',
+        slideBoxDisabled: '=',
+        customTemplateUrls: '=?',
+        templateScope: '=',
+        draggableAutoScroll: '='
+      },
+      controller: 'MwlCalendarMonthCtrl as vm',
+      link: function(scope, element, attrs, calendarCtrl) {
+        scope.vm.calendarCtrl = calendarCtrl;
+      },
+      bindToController: true
+    };
+
+  });
+
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var angular = __webpack_require__(0);
+
+angular
+  .module('mwl.calendar')
+  .controller('MwlCalendarSlideBoxCtrl', ["$scope", "$timeout", "calendarConfig", "calendarEventTitle", function($scope, $timeout, calendarConfig, calendarEventTitle) {
+
+    var vm = this;
+    vm.calendarConfig = calendarConfig;
+    vm.calendarEventTitle = calendarEventTitle;
+
+    vm.isCollapsed = true;
+    $scope.$watch('vm.isOpen', function(isOpen) {
+      //events must be populated first to set the element height before animation will work
+      $timeout(function() {
+        vm.isCollapsed = !isOpen;
+      });
+    });
+
+  }])
+  .directive('mwlCalendarSlideBox', function() {
+
+    return {
+      restrict: 'E',
+      template: '<div mwl-dynamic-directive-template name="calendarSlideBox" overrides="vm.customTemplateUrls"></div>',
+      replace: true,
+      controller: 'MwlCalendarSlideBoxCtrl as vm',
+      require: ['^?mwlCalendarMonth', '^?mwlCalendarYear'],
+      link: function(scope, elm, attrs, ctrls) {
+        scope.isMonthView = !!ctrls[0];
+        scope.isYearView = !!ctrls[1];
+      },
+      scope: {
+        isOpen: '=',
+        events: '=',
+        onEventClick: '=',
+        cell: '=',
+        customTemplateUrls: '=?',
+        templateScope: '=',
+        draggableAutoScroll: '='
+      },
+      bindToController: true
+    };
+
+  });
+
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var angular = __webpack_require__(0);
+
+angular
+  .module('mwl.calendar')
+  .controller('MwlCalendarWeekCtrl', ["$scope", "moment", "calendarHelper", "calendarConfig", "calendarEventTitle", function($scope, moment, calendarHelper, calendarConfig, calendarEventTitle) {
+
+    var vm = this;
+
+    vm.showTimes = calendarConfig.showTimesOnWeekView;
+    vm.calendarEventTitle = calendarEventTitle;
+
+    $scope.$on('calendar.refreshView', function() {
+      vm.dayViewSplit = vm.dayViewSplit || 30;
+      vm.dayViewHeight = calendarHelper.getDayViewHeight(
+        vm.dayViewStart,
+        vm.dayViewEnd,
+        vm.dayViewSplit
+      );
+      if (vm.showTimes) {
+        vm.view = calendarHelper.getWeekViewWithTimes(
+          vm.events,
+          vm.viewDate,
+          vm.dayViewStart,
+          vm.dayViewEnd,
+          vm.dayViewSplit
+        );
+      } else {
+        vm.view = calendarHelper.getWeekView(vm.events, vm.viewDate, vm.excludedDays);
+      }
+    });
+
+    vm.weekDragged = function(event, daysDiff, minuteChunksMoved) {
+
+      var newStart = moment(event.startsAt).add(daysDiff, 'days');
+      var newEnd = moment(event.endsAt).add(daysDiff, 'days');
+
+      if (minuteChunksMoved) {
+        var minutesDiff = minuteChunksMoved * vm.dayViewSplit;
+        newStart = newStart.add(minutesDiff, 'minutes');
+        newEnd = newEnd.add(minutesDiff, 'minutes');
+      }
+
+      delete event.tempStartsAt;
+
+      vm.onEventTimesChanged({
+        calendarEvent: event,
+        calendarNewEventStart: newStart.toDate(),
+        calendarNewEventEnd: event.endsAt ? newEnd.toDate() : null
+      });
+    };
+
+    vm.eventDropped = function(event, date) {
+      var daysDiff = moment(date).diff(moment(event.startsAt), 'days');
+      vm.weekDragged(event, daysDiff);
+    };
+
+    vm.weekResized = function(event, edge, daysDiff) {
+
+      var start = moment(event.startsAt);
+      var end = moment(event.endsAt);
+      if (edge === 'start') {
+        start.add(daysDiff, 'days');
+      } else {
+        end.add(daysDiff, 'days');
+      }
+
+      vm.onEventTimesChanged({
+        calendarEvent: event,
+        calendarNewEventStart: start.toDate(),
+        calendarNewEventEnd: end.toDate()
+      });
+
+    };
+
+    vm.tempTimeChanged = function(event, minuteChunksMoved) {
+      var minutesDiff = minuteChunksMoved * vm.dayViewSplit;
+      event.tempStartsAt = moment(event.startsAt).add(minutesDiff, 'minutes').toDate();
+    };
+
+  }])
+  .directive('mwlCalendarWeek', function() {
+
+    return {
+      template: '<div mwl-dynamic-directive-template name="calendarWeekView" overrides="vm.customTemplateUrls"></div>',
+      restrict: 'E',
+      require: '^mwlCalendar',
+      scope: {
+        events: '=',
+        viewDate: '=',
+        excludedDays: '=',
+        onEventClick: '=',
+        onEventTimesChanged: '=',
+        dayViewStart: '=',
+        dayViewEnd: '=',
+        dayViewSplit: '=',
+        dayViewEventChunkSize: '=',
+        onTimespanClick: '=',
+        onDateRangeSelect: '=',
+        customTemplateUrls: '=?',
+        cellModifier: '=',
+        templateScope: '=',
+        draggableAutoScroll: '='
+      },
+      controller: 'MwlCalendarWeekCtrl as vm',
+      link: function(scope, element, attrs, calendarCtrl) {
+        scope.vm.calendarCtrl = calendarCtrl;
+      },
+      bindToController: true
+    };
+
+  });
+
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var angular = __webpack_require__(0);
+
+angular
+  .module('mwl.calendar')
+  .controller('MwlCalendarYearCtrl', ["$scope", "moment", "calendarHelper", function($scope, moment, calendarHelper) {
+
+    var vm = this;
+    vm.openMonthIndex = null;
+
+    function toggleCell() {
+      vm.openRowIndex = null;
+      vm.openMonthIndex = null;
+
+      if (vm.cellIsOpen && vm.view) {
+        vm.view.forEach(function(month, monthIndex) {
+          if (moment(vm.viewDate).startOf('month').isSame(month.date)) {
+            vm.openMonthIndex = monthIndex;
+            vm.openRowIndex = Math.floor(monthIndex / 4);
+          }
+        });
+      }
+    }
+
+    $scope.$on('calendar.refreshView', function() {
+      vm.view = calendarHelper.getYearView(vm.events, vm.viewDate, vm.cellModifier);
+
+      if (vm.cellAutoOpenDisabled) {
+        toggleCell();
+      } else if (!vm.cellAutoOpenDisabled && vm.cellIsOpen && vm.openMonthIndex === null) {
+        //Auto open the calendar to the current day if set
+        vm.openMonthIndex = null;
+        vm.view.forEach(function(month) {
+          if (moment(vm.viewDate).startOf('month').isSame(month.date)) {
+            vm.monthClicked(month, true);
+          }
+        });
+      }
+
+    });
+
+    vm.monthClicked = function(month, monthClickedFirstRun, $event) {
+
+      if (!monthClickedFirstRun) {
+        vm.onTimespanClick({
+          calendarDate: month.date.toDate(),
+          calendarCell: month,
+          $event: $event
+        });
+        if ($event && $event.defaultPrevented) {
+          return;
+        }
+      }
+
+      if (!vm.cellAutoOpenDisabled) {
+        vm.openRowIndex = null;
+        var monthIndex = vm.view.indexOf(month);
+        if (monthIndex === vm.openMonthIndex) { //the month has been clicked and is already open
+          vm.openMonthIndex = null; //close the open month
+          vm.cellIsOpen = false;
+        } else {
+          vm.openMonthIndex = monthIndex;
+          vm.openRowIndex = Math.floor(monthIndex / 4);
+          vm.cellIsOpen = true;
+        }
+      }
+
+    };
+
+    vm.handleEventDrop = function(event, newMonthDate) {
+      var newStart = moment(event.startsAt)
+        .year(moment(newMonthDate).year())
+        .month(moment(newMonthDate).month());
+      var newEnd = calendarHelper.adjustEndDateFromStartDiff(event.startsAt, newStart, event.endsAt);
+
+      vm.onEventTimesChanged({
+        calendarEvent: event,
+        calendarDate: newMonthDate,
+        calendarNewEventStart: newStart.toDate(),
+        calendarNewEventEnd: newEnd ? newEnd.toDate() : null
+      });
+    };
+
+    vm.$onInit = function() {
+
+      if (vm.cellAutoOpenDisabled) {
+        $scope.$watchGroup([
+          'vm.cellIsOpen',
+          'vm.viewDate'
+        ], toggleCell);
+      }
+
+    };
+
+    if (angular.version.minor < 5) {
+      vm.$onInit();
+    }
+
+  }])
+  .directive('mwlCalendarYear', function() {
+
+    return {
+      template: '<div mwl-dynamic-directive-template name="calendarYearView" overrides="vm.customTemplateUrls"></div>',
+      restrict: 'E',
+      require: '^mwlCalendar',
+      scope: {
+        events: '=',
+        viewDate: '=',
+        onEventClick: '=',
+        onEventTimesChanged: '=',
+        cellIsOpen: '=',
+        cellAutoOpenDisabled: '=',
+        onTimespanClick: '=',
+        cellModifier: '=',
+        slideBoxDisabled: '=',
+        customTemplateUrls: '=?',
+        templateScope: '='
+      },
+      controller: 'MwlCalendarYearCtrl as vm',
+      link: function(scope, element, attrs, calendarCtrl) {
+        scope.vm.calendarCtrl = calendarCtrl;
+      },
+      bindToController: true
+    };
+
+  });
+
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var angular = __webpack_require__(0);
+
+angular
+  .module('mwl.calendar')
+  .controller('MwlCollapseFallbackCtrl', ["$scope", "$attrs", "$element", function($scope, $attrs, $element) {
+
+    $scope.$watch($attrs.mwlCollapseFallback, function(shouldCollapse) {
+      if (shouldCollapse) {
+        $element.addClass('ng-hide');
+      } else {
+        $element.removeClass('ng-hide');
+      }
+    });
+
+  }])
+  .directive('mwlCollapseFallback', ["$injector", function($injector) {
+
+    if ($injector.has('uibCollapseDirective')) {
+      return {};
+    }
+
+    return {
+      restrict: 'A',
+      controller: 'MwlCollapseFallbackCtrl'
+    };
+
+  }]);
+
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var angular = __webpack_require__(0);
+
+angular
+  .module('mwl.calendar')
+  .controller('MwlDateModifierCtrl', ["$element", "$attrs", "$scope", "moment", function($element, $attrs, $scope, moment) {
+
+    var vm = this;
+
+    function onClick() {
+      if (angular.isDefined($attrs.setToToday)) {
+        vm.date = new Date();
+      } else if (angular.isDefined($attrs.increment)) {
+        vm.date = moment(vm.date).add(1, vm.increment);
+        if (vm.excludedDays && vm.increment.indexOf('day') > -1) {
+          while (vm.excludedDays.indexOf(vm.date.day()) > -1) {
+            vm.date.add(1, vm.increment);
+          }
+        }
+        vm.date = vm.date.toDate();
+      } else if (angular.isDefined($attrs.decrement)) {
+        vm.date = moment(vm.date).subtract(1, vm.decrement);
+        if (vm.excludedDays && vm.decrement.indexOf('day') > -1) {
+          while (vm.excludedDays.indexOf(vm.date.day()) > -1) {
+            vm.date.subtract(1, vm.decrement);
+          }
+        }
+        vm.date = vm.date.toDate();
+      }
+      $scope.$apply();
+    }
+
+    $element.bind('click', onClick);
+
+    $scope.$on('$destroy', function() {
+      $element.unbind('click', onClick);
+    });
+
+  }])
+  .directive('mwlDateModifier', function() {
+
+    return {
+      restrict: 'A',
+      controller: 'MwlDateModifierCtrl as vm',
+      scope: {
+        date: '=',
+        increment: '=',
+        decrement: '=',
+        excludedDays: '=?'
+      },
+      bindToController: true
+    };
+
+  });
+
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var angular = __webpack_require__(0);
+
+angular
+  .module('mwl.calendar')
+  .controller('MwlDragSelectCtrl', ["$scope", "$element", "$parse", "$attrs", function($scope, $element, $parse, $attrs) {
+
+    function handleMouseEvent(callbackName) {
+      return function(event) {
+        if (callbackName && event.button !== 2) {
+          $parse(callbackName)($scope);
+          $scope.$apply();
+        }
+        event.preventDefault();
+      };
+    }
+
+    var onMouseDown = handleMouseEvent($attrs.onDragSelectStart);
+    var onMouseMove = handleMouseEvent($attrs.onDragSelectMove);
+    var onMouseUp = handleMouseEvent($attrs.onDragSelectEnd);
+
+    function enableMouseListeners() {
+      $element.on('mousedown', onMouseDown);
+      $element.on('mousemove', onMouseMove);
+      $element.on('mouseup', onMouseUp);
+    }
+
+    function disableMouseListeners() {
+      $element.off('mousedown', onMouseDown);
+      $element.off('mousemove', onMouseMove);
+      $element.off('mouseup', onMouseUp);
+    }
+
+    $scope.$watch($attrs.mwlDragSelect, function(isEnabled) {
+      if (isEnabled) {
+        enableMouseListeners();
+      } else {
+        disableMouseListeners();
+      }
+    });
+
+    $scope.$on('$destroy', function() {
+      disableMouseListeners();
+    });
+
+  }])
+  .directive('mwlDragSelect', function() {
+
+    return {
+      restrict: 'A',
+      controller: 'MwlDragSelectCtrl'
+    };
+
+  });
+
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var angular = __webpack_require__(0);
+
+angular
+  .module('mwl.calendar')
+  .controller('MwlDraggableCtrl', ["$element", "$scope", "$window", "$parse", "$attrs", "$timeout", "interact", function($element, $scope, $window, $parse, $attrs, $timeout, interact) {
+
+    if (!interact) {
+      return;
+    }
+
+    var snap, snapGridDimensions;
+    if ($attrs.snapGrid) {
+      snapGridDimensions = $parse($attrs.snapGrid)($scope);
+      snap = {
+        targets: [
+          interact.createSnapGrid(snapGridDimensions)
+        ]
+      };
+    }
+
+    function translateElement(elm, transformValue) {
+      return elm
+        .css('-ms-transform', transformValue)
+        .css('-webkit-transform', transformValue)
+        .css('transform', transformValue);
+    }
+
+    var autoScroll = $parse($attrs.autoScroll)($scope);
+    if (typeof autoScroll === 'undefined') {
+      autoScroll = true;
+    }
+
+    interact($element[0]).draggable({
+      autoScroll: autoScroll,
+      snap: snap,
+      onstart: function(event) {
+        angular.element(event.target).addClass('dragging-active');
+        event.target.dropData = $parse($attrs.dropData)($scope);
+        event.target.style.pointerEvents = 'none';
+        if ($attrs.onDragStart) {
+          $parse($attrs.onDragStart)($scope);
+          $scope.$apply();
+        }
+      },
+      onmove: function(event) {
+
+        var elm = angular.element(event.target);
+        var x = (parseFloat(elm.attr('data-x')) || 0) + (event.dx || 0);
+        var y = (parseFloat(elm.attr('data-y')) || 0) + (event.dy || 0);
+
+        switch ($parse($attrs.axis)($scope)) {
+          case 'x':
+            y = 0;
+            break;
+
+          case 'y':
+            x = 0;
+            break;
+
+          default:
+        }
+
+        if ($window.getComputedStyle(elm[0]).position === 'static') {
+          elm.css('position', 'relative');
+        }
+
+        translateElement(elm, 'translate(' + x + 'px, ' + y + 'px)')
+          .css('z-index', 50)
+          .attr('data-x', x)
+          .attr('data-y', y);
+
+        if ($attrs.onDrag) {
+          $parse($attrs.onDrag)($scope, {x: x, y: y});
+          $scope.$apply();
+        }
+
+      },
+      onend: function(event) {
+
+        var elm = angular.element(event.target);
+        var x = elm.attr('data-x');
+        var y = elm.attr('data-y');
+
+        event.target.style.pointerEvents = 'auto';
+        if ($attrs.onDragEnd) {
+          $parse($attrs.onDragEnd)($scope, {x: x, y: y});
+          $scope.$apply();
+        }
+
+        $timeout(function() {
+          translateElement(elm, '')
+            .css('z-index', 'auto')
+            .removeAttr('data-x')
+            .removeAttr('data-y')
+            .removeClass('dragging-active');
+        });
+
+      }
+    });
+
+    $scope.$watch($attrs.mwlDraggable, function(enabled) {
+      interact($element[0]).draggable({
+        enabled: enabled
+      });
+    });
+
+    $scope.$on('$destroy', function() {
+      interact($element[0]).unset();
+    });
+
+  }])
+  .directive('mwlDraggable', function() {
+
+    return {
+      restrict: 'A',
+      controller: 'MwlDraggableCtrl'
+    };
+
+  });
+
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var angular = __webpack_require__(0);
+
+angular
+  .module('mwl.calendar')
+  .controller('MwlDroppableCtrl', ["$element", "$scope", "$parse", "$attrs", "interact", function($element, $scope, $parse, $attrs, interact) {
+
+    if (!interact) {
+      return;
+    }
+
+    var DROP_ACTIVE_CLASS = $attrs.dropActiveClass || 'drop-active';
+    var INTERACT_OVERLAP_TYPE = $attrs.dropOverlap || 'pointer';
+
+    interact($element[0]).dropzone({
+      ondragenter: function(event) {
+        angular.element(event.target).addClass(DROP_ACTIVE_CLASS);
+      },
+      ondragleave: function(event) {
+        angular.element(event.target).removeClass(DROP_ACTIVE_CLASS);
+      },
+      ondropdeactivate: function(event) {
+        angular.element(event.target).removeClass(DROP_ACTIVE_CLASS);
+      },
+      ondrop: function(event) {
+        if (event.relatedTarget.dropData) {
+          $parse($attrs.onDrop)($scope, {dropData: event.relatedTarget.dropData});
+          $scope.$apply();
+        }
+      },
+      overlap: INTERACT_OVERLAP_TYPE
+    });
+
+    $scope.$on('$destroy', function() {
+      interact($element[0]).unset();
+    });
+
+  }])
+  .directive('mwlDroppable', function() {
+
+    return {
+      restrict: 'A',
+      controller: 'MwlDroppableCtrl'
+    };
+
+  });
+
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var angular = __webpack_require__(0);
+
+angular
+  .module('mwl.calendar')
+  .controller('MwlDynamicDirectiveTemplateCtrl', ["$compile", "$scope", "$attrs", "$element", "$templateCache", "$log", "calendarConfig", function($compile, $scope, $attrs, $element, $templateCache, $log, calendarConfig) {
+
+    $scope.$watch($attrs.overrides, function(overrides) {
+
+      var templateName = calendarConfig.templates[$attrs.name];
+      if (
+        overrides &&
+        angular.isObject(overrides) &&
+        overrides[$attrs.name]
+      ) {
+        if ($templateCache.get(overrides[$attrs.name])) {
+          templateName = overrides[$attrs.name];
+        } else {
+          $log.warn('Bootstrap Calendar', 'The custom template for ' + overrides[$attrs.name] +
+            ' was not found in the template cache. Please ensure it is pre-loaded via a script tag ' +
+            '<script type="text/ng-template" id="' + overrides[$attrs.name] + '">Custom template content</script> or ' +
+            'via a tool such as https://www.npmjs.com/package/gulp-angular-templatecache');
+        }
+      }
+      var template = $templateCache.get(templateName);
+      $element.html(template);
+      $compile($element.contents())($scope);
+
+    });
+
+  }])
+  .directive('mwlDynamicDirectiveTemplate', function() {
+
+    return {
+      restrict: 'A',
+      controller: 'MwlDynamicDirectiveTemplateCtrl'
+    };
+
+  });
+
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var angular = __webpack_require__(0);
+
+angular
+  .module('mwl.calendar')
+  .controller('MwlElementDimensionsCtrl', ["$element", "$scope", "$parse", "$attrs", "$window", function($element, $scope, $parse, $attrs, $window) {
+
+    function setDimensions() {
+      $parse($attrs.mwlElementDimensions).assign($scope, {
+        width: $element[0].offsetWidth - 1,
+        height: $element[0].offsetHeight
+      });
+      $scope.$applyAsync();
+    }
+
+    var win = angular.element($window);
+
+    win.bind('resize', setDimensions);
+
+    setDimensions();
+
+    $scope.$on('$destroy', function() {
+      win.unbind('resize', setDimensions);
+    });
+
+  }])
+  .directive('mwlElementDimensions', function() {
+
+    return {
+      restrict: 'A',
+      controller: 'MwlElementDimensionsCtrl'
+    };
+
+  });
+
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var angular = __webpack_require__(0);
+
+angular
+  .module('mwl.calendar')
+  .controller('MwlResizableCtrl', ["$element", "$scope", "$parse", "$attrs", "$timeout", "interact", function($element, $scope, $parse, $attrs, $timeout, interact) {
+
+    if (!interact) {
+      return;
+    }
+
+    var snap, snapGridDimensions;
+    if ($attrs.snapGrid) {
+      snapGridDimensions = $parse($attrs.snapGrid)($scope);
+      snap = {
+        targets: [
+          interact.createSnapGrid(snapGridDimensions)
+        ]
+      };
+    }
+
+    var originalDimensions = {};
+    var originalDimensionsStyle = {};
+    var resizeEdge;
+
+    function getUnitsResized(edge, elm) {
+      var unitsResized = {};
+      unitsResized.edge = edge;
+      if (edge === 'start') {
+        unitsResized.x = elm.data('x');
+        unitsResized.y = elm.data('y');
+      } else if (edge === 'end') {
+        unitsResized.x = parseFloat(elm.css('width').replace('px', '')) - originalDimensions.width;
+        unitsResized.y = parseFloat(elm.css('height').replace('px', '')) - originalDimensions.height;
+      }
+      return unitsResized;
+    }
+
+    interact($element[0]).resizable({
+      edges: $parse($attrs.resizeEdges)($scope),
+      snap: snap,
+      onstart: function(event) {
+
+        resizeEdge = 'end';
+        var elm = angular.element(event.target);
+        originalDimensions.height = elm[0].offsetHeight;
+        originalDimensions.width = elm[0].offsetWidth;
+        originalDimensionsStyle.height = elm.css('height');
+        originalDimensionsStyle.width = elm.css('width');
+
+      },
+      onmove: function(event) {
+
+        if (event.rect.width > 0 && event.rect.height > 0) {
+          var elm = angular.element(event.target);
+          var x = parseFloat(elm.data('x') || 0);
+          var y = parseFloat(elm.data('y') || 0);
+
+          elm.css({
+            width: event.rect.width + 'px',
+            height: event.rect.height + 'px'
+          });
+
+          // translate when resizing from top or left edges
+          x += event.deltaRect.left;
+          y += event.deltaRect.top;
+
+          elm.css('transform', 'translate(' + x + 'px,' + y + 'px)');
+
+          elm.data('x', x);
+          elm.data('y', y);
+
+          if (event.deltaRect.left !== 0 || event.deltaRect.top !== 0) {
+            resizeEdge = 'start';
+          }
+
+          if ($attrs.onResize) {
+            $parse($attrs.onResize)($scope, getUnitsResized(resizeEdge, elm));
+            $scope.$apply();
+          }
+
+        }
+
+      },
+      onend: function(event) {
+
+        var elm = angular.element(event.target);
+        var unitsResized = getUnitsResized(resizeEdge, elm);
+
+        $timeout(function() {
+          elm
+            .data('x', null)
+            .data('y', null)
+            .css({
+              transform: '',
+              width: originalDimensionsStyle.width,
+              height: originalDimensionsStyle.height
+            });
+        });
+
+        if ($attrs.onResizeEnd) {
+          $parse($attrs.onResizeEnd)($scope, unitsResized);
+          $scope.$apply();
+        }
+
+      }
+    });
+
+    $scope.$watch($attrs.mwlResizable, function(enabled) {
+      interact($element[0]).resizable({
+        enabled: enabled
+      });
+    });
+
+    $scope.$on('$destroy', function() {
+      interact($element[0]).unset();
+    });
+
+  }])
+  .directive('mwlResizable', function() {
+
+    return {
+      restrict: 'A',
+      controller: 'MwlResizableCtrl'
+    };
+
+  });
+
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./calendarDate.js": 59,
+	"./calendarLimitTo.js": 60,
+	"./calendarTruncateEventTitle.js": 61,
+	"./calendarTrustAsHtml.js": 62
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 58;
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var angular = __webpack_require__(0);
+
+angular
+  .module('mwl.calendar')
+  .filter('calendarDate', ["calendarHelper", "calendarConfig", function(calendarHelper, calendarConfig) {
+
+    function calendarDate(date, format, getFromConfig) {
+
+      if (getFromConfig === true) {
+        format = calendarConfig.dateFormats[format];
+      }
+
+      return calendarHelper.formatDate(date, format);
+
+    }
+
+    // This is stateful because the locale can change as well
+    // as calendarConfig.dateFormats which would change the value outside of this filter
+    calendarDate.$stateful = true;
+
+    return calendarDate;
+
+  }]);
+
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var angular = __webpack_require__(0);
+
+angular
+  .module('mwl.calendar')
+  .filter('calendarLimitTo', ["limitToFilter", function(limitToFilter) {
+
+    if (angular.version.minor >= 4) { //1.4+ supports the begin attribute
+      return limitToFilter;
+    }
+
+    //Copied from the angular source. Only 1.4 has the begin functionality.
+    return function(input, limit, begin) {
+      if (Math.abs(Number(limit)) === Infinity) {
+        limit = Number(limit);
+      } else {
+        limit = parseInt(limit);
+      }
+      if (isNaN(limit)) {
+        return input;
+      }
+
+      if (angular.isNumber(input)) {
+        input = input.toString();
+      }
+      if (!angular.isArray(input) && !angular.isString(input)) {
+        return input;
+      }
+
+      begin = (!begin || isNaN(begin)) ? 0 : parseInt(begin);
+      begin = (begin < 0 && begin >= -input.length) ? input.length + begin : begin;
+
+      if (limit >= 0) {
+        return input.slice(begin, begin + limit);
+      } else if (begin === 0) {
+        return input.slice(limit, input.length);
+      } else {
+        return input.slice(Math.max(0, begin + limit), begin);
+      }
+    };
+
+  }]);
+
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var angular = __webpack_require__(0);
+
+angular
+  .module('mwl.calendar')
+  .filter('calendarTruncateEventTitle', function() {
+
+    return function(string, length, boxHeight) {
+      if (!string) {
+        return '';
+      }
+
+      //Only truncate if if actually needs truncating
+      if (string.length >= length && string.length / 20 > boxHeight / 30) {
+        return string.substr(0, length) + '...';
+      } else {
+        return string;
+      }
+    };
+
+  });
+
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var angular = __webpack_require__(0);
+
+angular
+  .module('mwl.calendar')
+  .filter('calendarTrustAsHtml', ["$sce", function($sce) {
+
+    return function(text) {
+      return $sce.trustAsHtml(text);
+    };
+
+  }]);
+
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./calendarConfig.js": 64,
+	"./calendarEventTitle.js": 65,
+	"./calendarHelper.js": 66,
+	"./calendarTitle.js": 67,
+	"./interact.js": 68,
+	"./moment.js": 70
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 63;
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var angular = __webpack_require__(0);
+
+angular
+  .module('mwl.calendar')
+  .constant('calendarConfig', {
+    allDateFormats: {
+      angular: {
+        date: {
+          hour: 'ha',
+          day: 'd MMM',
+          month: 'MMMM',
+          weekDay: 'EEEE',
+          time: 'HH:mm',
+          datetime: 'MMM d, h:mm a'
+        },
+        title: {
+          day: 'EEEE d MMMM, yyyy',
+          week: 'Week {week} of {year}',
+          month: 'MMMM yyyy',
+          year: 'yyyy'
+        }
+      },
+      moment: {
+        date: {
+          hour: 'ha',
+          day: 'D MMM',
+          month: 'MMMM',
+          weekDay: 'dddd',
+          time: 'HH:mm',
+          datetime: 'MMM D, h:mm a'
+        },
+        title: {
+          day: 'dddd D MMMM, YYYY',
+          week: 'Week {week} of {year}',
+          month: 'MMMM YYYY',
+          year: 'YYYY'
+        }
+      }
+    },
+    get dateFormats() {
+      return this.allDateFormats[this.dateFormatter].date;
+    },
+    get titleFormats() {
+      return this.allDateFormats[this.dateFormatter].title;
+    },
+    dateFormatter: 'angular',
+    showTimesOnWeekView: false,
+    displayAllMonthEvents: false,
+    i18nStrings: {
+      weekNumber: 'Week {week}'
+    },
+    templates: {},
+    colorTypes: {
+      info: {
+        primary: '#1e90ff',
+        secondary: '#d1e8ff'
+      },
+      important: {
+        primary: '#ad2121',
+        secondary: '#fae3e3'
+      },
+      warning: {
+        primary: '#e3bc08',
+        secondary: '#fdf1ba'
+      },
+      inverse: {
+        primary: '#1b1b1b',
+        secondary: '#c1c1c1'
+      },
+      special: {
+        primary: '#800080',
+        secondary: '#ffe6ff'
+      },
+      success: {
+        primary: '#006400',
+        secondary: '#caffca'
+      }
+    }
+  });
+
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var angular = __webpack_require__(0);
+
+angular
+  .module('mwl.calendar')
+  .factory('calendarEventTitle', ["calendarDateFilter", "calendarTruncateEventTitleFilter", function(calendarDateFilter, calendarTruncateEventTitleFilter) {
+
+    function yearView(event) {
+      return event.title + ' (' + calendarDateFilter(event.startsAt, 'datetime', true) + ')';
+    }
+
+    function monthView(event) {
+      return event.title + ' (' + calendarDateFilter(event.startsAt, 'time', true) + ')';
+    }
+
+    function monthViewTooltip(event) {
+      return calendarDateFilter(event.startsAt, 'time', true) + ' - ' + event.title;
+    }
+
+    function weekView(event) {
+      return event.title;
+    }
+
+    function weekViewTooltip(event) {
+      return event.title;
+    }
+
+    function dayView(event) {
+      return event.allDay ? event.title : calendarTruncateEventTitleFilter(event.title, 20, event.height);
+    }
+
+    function dayViewTooltip(event) {
+      return event.title;
+    }
+
+    return {
+      yearView: yearView,
+      monthView: monthView,
+      monthViewTooltip: monthViewTooltip,
+      weekView: weekView,
+      weekViewTooltip: weekViewTooltip,
+      dayView: dayView,
+      dayViewTooltip: dayViewTooltip
+    };
+
+  }]);
+
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var angular = __webpack_require__(0);
+var calendarUtils = __webpack_require__(4);
+
+angular
+  .module('mwl.calendar')
+  .factory('calendarHelper', ["$q", "$templateRequest", "dateFilter", "moment", "calendarConfig", function($q, $templateRequest, dateFilter, moment, calendarConfig) {
+
+    function formatDate(date, format) {
+      if (calendarConfig.dateFormatter === 'angular') {
+        return dateFilter(moment(date).toDate(), format);
+      } else if (calendarConfig.dateFormatter === 'moment') {
+        return moment(date).format(format);
+      } else {
+        throw new Error('Unknown date formatter: ' + calendarConfig.dateFormatter);
+      }
+    }
+
+    function adjustEndDateFromStartDiff(oldStart, newStart, oldEnd) {
+      if (!oldEnd) {
+        return oldEnd;
+      }
+      var diffInSeconds = moment(newStart).diff(moment(oldStart));
+      return moment(oldEnd).add(diffInSeconds);
+    }
+
+    function getRecurringEventPeriod(eventPeriod, recursOn, containerPeriodStart) {
+
+      var eventStart = moment(eventPeriod.start);
+      var eventEnd = moment(eventPeriod.end);
+      var periodStart = moment(containerPeriodStart);
+
+      if (recursOn) {
+
+        switch (recursOn) {
+          case 'year':
+            eventStart.set({
+              year: periodStart.year()
+            });
+            break;
+
+          case 'month':
+            eventStart.set({
+              year: periodStart.year(),
+              month: periodStart.month()
+            });
+            break;
+
+          default:
+            throw new Error('Invalid value (' + recursOn + ') given for recurs on. Can only be year or month.');
+        }
+
+        eventEnd = adjustEndDateFromStartDiff(eventPeriod.start, eventStart, eventEnd);
+
+      }
+
+      return {start: eventStart, end: eventEnd};
+
+    }
+
+    function eventIsInPeriod(event, periodStart, periodEnd) {
+
+      periodStart = moment(periodStart);
+      periodEnd = moment(periodEnd);
+
+      var eventPeriod = getRecurringEventPeriod({start: event.startsAt, end: event.endsAt || event.startsAt}, event.recursOn, periodStart);
+      var eventStart = eventPeriod.start;
+      var eventEnd = eventPeriod.end;
+
+      return (eventStart.isAfter(periodStart) && eventStart.isBefore(periodEnd)) ||
+        (eventEnd.isAfter(periodStart) && eventEnd.isBefore(periodEnd)) ||
+        (eventStart.isBefore(periodStart) && eventEnd.isAfter(periodEnd)) ||
+        eventStart.isSame(periodStart) ||
+        eventEnd.isSame(periodEnd);
+
+    }
+
+    function filterEventsInPeriod(events, startPeriod, endPeriod) {
+      return events.filter(function(event) {
+        return eventIsInPeriod(event, startPeriod, endPeriod);
+      });
+    }
+
+    function getEventsInPeriod(calendarDate, period, allEvents) {
+      var startPeriod = moment(calendarDate).startOf(period);
+      var endPeriod = moment(calendarDate).endOf(period);
+      return filterEventsInPeriod(allEvents, startPeriod, endPeriod);
+    }
+
+    function getBadgeTotal(events) {
+      return events.filter(function(event) {
+        return event.incrementsBadgeTotal !== false;
+      }).length;
+    }
+
+    function getWeekDayNames(excluded) {
+      var weekdays = [0, 1, 2, 3, 4, 5, 6]
+      .filter(function(wd) {
+        return !(excluded || []).some(function(ex) {
+          return ex === wd;
+        });
+      })
+      .map(function(i) {
+        return formatDate(moment().weekday(i), calendarConfig.dateFormats.weekDay);
+      });
+
+      return weekdays;
+    }
+
+    function getYearView(events, viewDate, cellModifier) {
+
+      var view = [];
+      var eventsInPeriod = getEventsInPeriod(viewDate, 'year', events);
+      var month = moment(viewDate).startOf('year');
+      var count = 0;
+      while (count < 12) {
+        var startPeriod = month.clone();
+        var endPeriod = startPeriod.clone().endOf('month');
+        var periodEvents = filterEventsInPeriod(eventsInPeriod, startPeriod, endPeriod);
+        var cell = {
+          label: formatDate(startPeriod, calendarConfig.dateFormats.month),
+          isToday: startPeriod.isSame(moment().startOf('month')),
+          events: periodEvents,
+          date: startPeriod,
+          badgeTotal: getBadgeTotal(periodEvents)
+        };
+
+        cellModifier({calendarCell: cell});
+        view.push(cell);
+        month.add(1, 'month');
+        count++;
+      }
+
+      return view;
+
+    }
+
+    function updateEventForCalendarUtils(event, eventPeriod) {
+      event.start = eventPeriod.start.toDate();
+      if (event.endsAt) {
+        event.end = eventPeriod.end.toDate();
+      }
+      return event;
+    }
+
+    function getMonthView(events, viewDate, cellModifier, excluded) {
+
+      // hack required to work with the calendar-utils api
+      events.forEach(function(event) {
+        var eventPeriod = getRecurringEventPeriod({
+          start: moment(event.startsAt),
+          end: moment(event.endsAt || event.startsAt)
+        }, event.recursOn, moment(viewDate).startOf('month'));
+        updateEventForCalendarUtils(event, eventPeriod);
+      });
+
+      var view = calendarUtils.getMonthView({
+        events: events,
+        viewDate: viewDate,
+        excluded: excluded,
+        weekStartsOn: moment().startOf('week').day()
+      });
+
+      view.days = view.days.map(function(day) {
+        day.date = moment(day.date);
+        day.label = day.date.date();
+        day.badgeTotal = getBadgeTotal(day.events);
+        if (!calendarConfig.displayAllMonthEvents && !day.inMonth) {
+          day.events = [];
+        }
+        cellModifier({calendarCell: day});
+        return day;
+      });
+
+      // remove hack
+      events.forEach(function(event) {
+        delete event.start;
+        delete event.end;
+      });
+
+      return view;
+
+    }
+
+    function getWeekView(events, viewDate, excluded) {
+
+      var days = calendarUtils.getWeekViewHeader({
+        viewDate: viewDate,
+        excluded: excluded,
+        weekStartsOn: moment().startOf('week').day()
+      }).map(function(day) {
+        day.date = moment(day.date);
+        day.weekDayLabel = formatDate(day.date, calendarConfig.dateFormats.weekDay);
+        day.dayLabel = formatDate(day.date, calendarConfig.dateFormats.day);
+        return day;
+      });
+
+      var startOfWeek = moment(viewDate).startOf('week');
+      var endOfWeek = moment(viewDate).endOf('week');
+
+      var eventRows = calendarUtils.getWeekView({
+        viewDate: viewDate,
+        weekStartsOn: moment().startOf('week').day(),
+        excluded: excluded,
+        events: filterEventsInPeriod(events, startOfWeek, endOfWeek).map(function(event) {
+
+          var weekViewStart = moment(startOfWeek).startOf('day');
+
+          var eventPeriod = getRecurringEventPeriod({
+            start: moment(event.startsAt),
+            end: moment(event.endsAt || event.startsAt)
+          }, event.recursOn, weekViewStart);
+
+          var calendarUtilsEvent = {
+            originalEvent: event,
+            start: eventPeriod.start.toDate()
+          };
+
+          if (event.endsAt) {
+            calendarUtilsEvent.end = eventPeriod.end.toDate();
+          }
+
+          return calendarUtilsEvent;
+        })
+      }).map(function(eventRow) {
+
+        eventRow.row = eventRow.row.map(function(rowEvent) {
+          rowEvent.event = rowEvent.event.originalEvent;
+          return rowEvent;
+        });
+
+        return eventRow;
+
+      });
+
+      return {days: days, eventRows: eventRows};
+
+    }
+
+    function getDayView(events, viewDate, dayViewStart, dayViewEnd, dayViewSplit, dayViewEventWidth, dayViewSegmentSize) {
+
+      var dayStart = (dayViewStart || '00:00').split(':');
+      var dayEnd = (dayViewEnd || '23:59').split(':');
+
+      var view = calendarUtils.getDayView({
+        events: events.map(function(event) { // hack required to work with event API
+          var eventPeriod = getRecurringEventPeriod({
+            start: moment(event.startsAt),
+            end: moment(event.endsAt || event.startsAt)
+          }, event.recursOn, moment(viewDate).startOf('day'));
+          return updateEventForCalendarUtils(event, eventPeriod);
+        }),
+        viewDate: viewDate,
+        hourSegments: 60 / dayViewSplit,
+        dayStart: {
+          hour: dayStart[0],
+          minute: dayStart[1]
+        },
+        dayEnd: {
+          hour: dayEnd[0],
+          minute: dayEnd[1]
+        },
+        eventWidth: dayViewEventWidth ? +dayViewEventWidth : 150,
+        segmentHeight: dayViewSegmentSize || 30
+      });
+
+      // remove hack to work with new event API
+      events.forEach(function(event) {
+        delete event.start;
+        delete event.end;
+      });
+
+      return view;
+
+    }
+
+    function getWeekViewWithTimes(events, viewDate, dayViewStart, dayViewEnd, dayViewSplit) {
+      var weekView = getWeekView(events, viewDate);
+      var newEvents = [];
+      var flattenedEvents = [];
+      weekView.eventRows.forEach(function(row) {
+        row.row.forEach(function(eventRow) {
+          flattenedEvents.push(eventRow.event);
+        });
+      });
+      weekView.days.forEach(function(day) {
+        var dayEvents = flattenedEvents.filter(function(event) {
+          return moment(event.startsAt).startOf('day').isSame(moment(day.date).startOf('day'));
+        });
+        var newDayEvents = getDayView(
+          dayEvents,
+          day.date,
+          dayViewStart,
+          dayViewEnd,
+          dayViewSplit
+        ).events;
+        newEvents = newEvents.concat(newDayEvents);
+      });
+      weekView.eventRows = [{
+        row: newEvents.map(function(dayEvent) {
+          var event = dayEvent.event;
+          return {
+            event: event,
+            top: dayEvent.top,
+            offset: calendarUtils.getWeekViewEventOffset({
+              event: {
+                start: event.startsAt,
+                end: event.endsAt
+              },
+              startOfWeek: moment(viewDate).startOf('week').toDate()
+            })
+          };
+        })
+      }];
+      return weekView;
+    }
+
+    function getDayViewHeight(dayViewStart, dayViewEnd, dayViewSplit, dayViewSegmentSize) {
+      var dayViewStartM = moment(dayViewStart || '00:00', 'HH:mm');
+      var dayViewEndM = moment(dayViewEnd || '23:59', 'HH:mm');
+      var hourHeight = (60 / dayViewSplit) * (dayViewSegmentSize || 30);
+      return ((dayViewEndM.diff(dayViewStartM, 'minutes') / 60) * hourHeight) + 3;
+    }
+
+    function loadTemplates() {
+
+      var templatePromises = Object.keys(calendarConfig.templates).map(function(key) {
+        var templateUrl = calendarConfig.templates[key];
+        return $templateRequest(templateUrl);
+      });
+
+      return $q.all(templatePromises);
+
+    }
+
+    return {
+      getWeekDayNames: getWeekDayNames,
+      getYearView: getYearView,
+      getMonthView: getMonthView,
+      getWeekView: getWeekView,
+      getDayView: getDayView,
+      getWeekViewWithTimes: getWeekViewWithTimes,
+      getDayViewHeight: getDayViewHeight,
+      adjustEndDateFromStartDiff: adjustEndDateFromStartDiff,
+      formatDate: formatDate,
+      loadTemplates: loadTemplates,
+      eventIsInPeriod: eventIsInPeriod //expose for testing only
+    };
+
+  }]);
+
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var angular = __webpack_require__(0);
+
+angular
+  .module('mwl.calendar')
+  .factory('calendarTitle', ["moment", "calendarConfig", "calendarHelper", function(moment, calendarConfig, calendarHelper) {
+
+    function day(viewDate) {
+      return calendarHelper.formatDate(viewDate, calendarConfig.titleFormats.day);
+    }
+
+    function week(viewDate) {
+      return calendarConfig.titleFormats.week
+        .replace('{week}', moment(viewDate).isoWeek())
+        .replace('{year}', moment(viewDate).startOf('isoweek').format('YYYY'));
+    }
+
+    function month(viewDate) {
+      return calendarHelper.formatDate(viewDate, calendarConfig.titleFormats.month);
+    }
+
+    function year(viewDate) {
+      return calendarHelper.formatDate(viewDate, calendarConfig.titleFormats.year);
+    }
+
+    return {
+      day: day,
+      week: week,
+      month: month,
+      year: year
+    };
+
+  }]);
+
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var angular = __webpack_require__(0);
+var interact;
+try {
+  interact = __webpack_require__(69);
+} catch (e) {
+  /* istanbul ignore next */
+  interact = null;
+}
+
+angular
+  .module('mwl.calendar')
+  .constant('interact', interact);
+
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports) {
+
+if(typeof __WEBPACK_EXTERNAL_MODULE_69__ === 'undefined') {var e = new Error("Cannot find module \"undefined\""); e.code = 'MODULE_NOT_FOUND'; throw e;}
+module.exports = __WEBPACK_EXTERNAL_MODULE_69__;
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var angular = __webpack_require__(0);
+var moment = __webpack_require__(71);
+
+angular
+  .module('mwl.calendar')
+  .constant('moment', moment);
+
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_71__;
+
+/***/ })
+/******/ ]);
+});
