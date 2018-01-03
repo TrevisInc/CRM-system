@@ -32,9 +32,9 @@
 				// console.log(ressss);
 
 				$scope.someArr = response.data.filter(function(item){
-					console.log($filter('date')(item.date, 'dd-MM-yyyy') === $filter('date')($scope.dt, 'dd-MM-yyyy'));
+					// console.log('---- ', $filter('date')(item.date, 'dd-MM-yyyy') === $filter('date')($scope.dt, 'dd-MM-yyyy'), item);
 					// console.log($filter('date')($scope.dt, 'dd-MM-yyyy'));
-					return $filter('date')(item.date, 'dd-MM-yyyy') === $filter('date')($scope.dt, 'dd-MMMM-yyyy');
+					if ($filter('date')(item.date, 'dd-MM-yyyy') === $filter('date')($scope.dt, 'dd-MM-yyyy')) return item;
 				})[0];
 				console.log('arr', $scope.someArr)
 			}, function (error) {
