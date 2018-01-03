@@ -1,0 +1,37 @@
+<ng-include src="'app/views/partials/user.header.template.html'"></ng-include>
+<div class="row">
+	<div class="col-sm-3">
+		<ng-include src="'app/views/partials/teacher.menu.template.html'"></ng-include>
+	</div>
+	<div class="col-sm-6">
+		<p class="input-group">
+          	<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup.opened" ng-required="true" close-text="Close">
+          	<span class="input-group-btn">
+            	<button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+          	</span>
+         	<span class="input-group-btn">
+            	<button type="button" class="btn btn-default" ng-click="showtable()">Показать</button>
+          	</span>
+        </p>
+        <hr>
+		<table datatable="" class="row-border hover">
+		    <thead>
+			    <tr>
+			        <th>Имя</th>
+			        <th>Присутствует</th>
+			        <th>Отсутствует</th>
+			    </tr>
+		    </thead>
+		    <tbody>
+			    <tr>
+			        <td>1</td>
+			        <td>Foo</td>
+			        <td>Bar</td>
+			    </tr>
+		    </tbody>
+		</table>
+	</div>
+	<div class="col-sm-3">
+		<ng-include src="'app/views/partials/news.template.html'"></ng-include>
+	</div>
+</div>

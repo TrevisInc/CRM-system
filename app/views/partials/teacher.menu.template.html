@@ -8,7 +8,7 @@
 					<small>Информация о составе групп, журнал посещения</small>
 				</a>
 				<ul>
-					<li ng-repeat="item in groupsByTeacher"><a href=""><i class="fa fa-users" aria-hidden="true"></i>{{item.title}}</a></li>
+					<li ng-repeat="item in groupsByTeacher"><a href="#/teacher/{{item.id}}/journal" ng-click="setGroupId(item.id)"><i class="fa fa-users" aria-hidden="true"></i>{{item.title}}</a></li>
 				</ul>
 			</li>
 			<li>

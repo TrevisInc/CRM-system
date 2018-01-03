@@ -10,5 +10,9 @@
 		}, function (error) {
 			console.log(error);
 		});
+
+		$scope.setGroupId = function (id) {
+	      	sessionStorage.setItem('groupId', id);
+	    };
 	}]);
 })();
