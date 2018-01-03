@@ -78,3 +78,10 @@ a, a:hover {
   background: #389439;
 }
 
+.schedule-teacher a .glyphicon-pencil {
+  color: #ffb63f;
+}
+.schedule-teacher a .glyphicon-pencil:hover {
+  color: #349dfd;
+}
+

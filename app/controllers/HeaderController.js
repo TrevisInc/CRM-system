@@ -24,9 +24,15 @@
 				localStorage.setItem('role_id', user.role_id);
 				localStorage.setItem('id', user.id);
 				localStorage.setItem('authToken', user.authToken);
+        
+        utils.notify({
+          message: 'Добро пожаловать, ' + user.firstname + ' !',
+          type: 'success'
+        });
 
 				$scope.logVal = true;
 			}, function (error) {
+				console.log(error);
         if(error.status === -1) {
           utils.notify({
             message: 'Сервер с данными сейчас недоступен, попробуйте позже',
@@ -34,7 +40,7 @@
           });
         } else if(error.status === 401) {
 					
-        	if (error.config.data.login.length === 0 && error.config.data.password.length === 0 ) {
+        	if ((error.config.data.login === "" && error.config.data.password === "") || error.config.data.login === undefined || error.config.data.password === undefined) {
             utils.notify({
               message: 'Для входа в систему, авторизируйтесь пожалуйста',
               type: 'danger'
@@ -46,7 +52,6 @@
             });
 					}
         }
-				console.log(error);
 				$scope.logVal = false;
 			});
 		}
