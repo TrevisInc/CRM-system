@@ -10,11 +10,13 @@
 				<h3>{{group.title}}</h3>
 			</div>
 			<ul class="schedule">
-				<li ng-repeat="item in schedule" ng-class="{'success' : controlDate(item.date)=== true}">
-					<div>{{item.date | date: 'longDate'}}</div>
-					<div>{{item.time}}</div>
-					<div>{{item.theme || 'No theme'}}</div>
+				<li ng-repeat="item in schedule" ng-class="{'success' : controlDate(item.date) === true}">
+					<div>
+						<div>{{item.date | date: 'longDate'}}</div>
+						<div><i>{{item.date | date: 'HH:mm'}}</i></div>
+					</div>
 					<div>Room: {{item.room_id}}</div>
+					<div class="theme">{{item.theme || 'No theme'}}</div>
 				</li>
 			</ul>
 			<ul uib-pagination total-items="totalItems" max-size="maxSize" ng-model="currentPage" ng-change="pageChanged()"></ul>

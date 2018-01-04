@@ -44,15 +44,24 @@ a, a:hover {
 	margin-right: 10px;
 }
 
+.group .img-size {
+  max-height: 110px;
+}
+
 .group ul li {
   width: 30%;
+  overflow: hidden;
+  float: left;
+  margin-right: 15px;
+  background: rgba(173, 173, 173, 0.79);
+  color: #343434;
 }
 
 .group ul {
   text-align: center;
 }
 
-.schedule, .group ul {
+.schedule{
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -60,10 +69,8 @@ a, a:hover {
 }
 
 .schedule li, .group li {
-  background: #ec971f;
-  padding: 16px;
+  padding: 16px 16px 11px;
   border-radius: 10px;
-  color: #fff;
   margin-bottom: 15px;
   list-style: none;
 }
@@ -71,11 +78,20 @@ a, a:hover {
 .schedule li {
   text-align: center;
   width: 30%;
-  background: #ff0202;
+  background: #f24d49;
+  color: #fff;
+}
+
+.schedule li>div {
+  margin-bottom: 4px;
+}
+
+.schedule li .theme{
+  font-size: 16px;
 }
 
 .schedule .success {
-  background: #389439;
+  background: #48a446;
 }
 
 .schedule-teacher a .glyphicon-pencil {

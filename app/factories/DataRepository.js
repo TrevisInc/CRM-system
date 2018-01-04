@@ -17,7 +17,8 @@
       getScheduleData: _getScheduleData,
       getScheduleDataPage: _getScheduleDataPage,
       putScheduleData: _putScheduleData,
-      getScheduleTeacher: _getScheduleTeacher
+      getScheduleTeacher: _getScheduleTeacher,
+      getRooms: _getRooms
 		};
 	
 		function _getGroupList() {
@@ -79,5 +80,10 @@
     function _getScheduleTeacher(data) {
       return $http.get(webApi.DOMAIN + '/api/v1/teachers/' + data +'/schedule'); // Получение расписания преподавателя
     }
+    
+    function _getRooms() {
+      return $http.get(webApi.DOMAIN + '/api/v1/rooms'); // Получение аудиторий
+    }
+    
 	}]);
 })();

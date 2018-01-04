@@ -8,7 +8,7 @@
 				<h1 class="text-center">{{groupByStudent.title}}</h1>
 				<ul>
 					<li ng-repeat="student in studentsByGroup">
-						<img src="img/admin-logo.png" class="img-rounded img-profile-size img-position-admin-logo" alt="">
+						<img src="{{student.image || 'img/no_image_available_male.png'}}" class="img-rounded img-size" alt="">
 						<div>
 							<h4>{{student.firstname}}</h4>
 							<h4>{{student.lastname}}</h4>
