@@ -36,7 +36,7 @@
 				<tr ng-repeat="item in ArrForPrint">
 					<td>{{item.firstname}}  {{item.lastname}}</td>
 					<td>
-						<button ng-click="statusSuccess(item)" class="btn btn-xs pull-right" ng-class="item.status ? 'btn-success' : 'btn-danger'">{{item.status ? 'Присутствует' : 'Отсутствует'}}</button>
+						<button ng-click="statusSuccess(item)" class="btn btn-xs pull-right" ng-disabled="disableBtn === true ? 'disabled' : ''" ng-class="item.status ? 'btn-success' : 'btn-danger'">{{item.status ? 'Присутствует' : 'Отсутствует'}}</button>
 					</td>
 				</tr>
 			</tbody>

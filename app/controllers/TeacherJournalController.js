@@ -21,6 +21,7 @@
 		$scope.studentPresentCounter = null;
 		$scope.showResult = false;
 		$scope.showError = false;
+		$scope.disableBtn = false;
 		$scope.dt = null;
 		$scope.format = 'dd-MMMM-yyyy';
 		$scope.popup = {
@@ -35,6 +36,7 @@
 		$scope.showtable = function() {
 			$scope.studentPresentCounter = null;
 			$scope.showError = false;
+			$scope.disableBtn = false;
 
 			DataRepository.getJournalGroup(groupId).then(function(response) {
 				var now = new Date();
@@ -58,6 +60,7 @@
 						$scope.studentCounter = response.data[0].students.length;
 
 						if (now > today) {
+							$scope.disableBtn = true;
 							response.data[0].students.forEach(function(item) {
 								if (item.status === 1) {
 									$scope.studentPresentCounter++;
