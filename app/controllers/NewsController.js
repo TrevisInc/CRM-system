@@ -8,17 +8,17 @@
 		$scope.maxSize = 3;
 
 		DataRepository.getNews($scope.currentPage).then(function (response) {
-			$scope.someNews = response.data;
+			$scope.someNews = response.data.items;
 		}, function (error) {
 			console.log(error);
 		});
 
 		$scope.pageChanged = function() {
     		DataRepository.getNews($scope.currentPage).then(function (response) {
-    			$scope.someNews = response.data;
-		}, function (error) {
-			console.log(error);
-		});
+    			$scope.someNews = response.data.items;
+			}, function (error) {
+				console.log(error);
+			});
 		};
 	}]);
 })();

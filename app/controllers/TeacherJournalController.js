@@ -4,39 +4,88 @@
 	app.controller('TeacherJournalController', ['$scope', 'DataRepository', '$filter', function ($scope, DataRepository, $filter) {
 		
 		var groupId = sessionStorage.getItem('groupId');
-		console.log(groupId)
+
+		DataRepository.getGroup(groupId).then(function(response) {
+			$scope.groupName = response.data.title;
+		}, function (error) {
+			console.log(error);
+		});
+			
 		var someModel = {
 			student_id: null,
 			date_id: null,
-			status: null
+			status: 0
 		}
 
+		$scope.newStatus = angular.extend({}, someModel);
+		$scope.studentPresentCounter = null;
+		$scope.showResult = false;
+		$scope.showError = false;
 		$scope.dt = null;
 		$scope.format = 'dd-MMMM-yyyy';
-
 		$scope.popup = {
 			opened: false
 		};
 
 		$scope.open = function() {
 			$scope.popup.opened = true;
+			$scope.showError = false;
 		};
 
 		$scope.showtable = function() {
-			console.log($scope.dt)
+			$scope.studentPresentCounter = null;
+			$scope.showError = false;
 
 			DataRepository.getJournalGroup(groupId).then(function(response) {
-				// $scope.someArr = response.data;
-				// console.log($scope.someArr)
-				// var ressss = $filter('date')(response.data[24].date, 'dd-MMMM-yyyy');
-				// console.log(ressss);
+				var now = new Date();
+				var today = new Date($scope.dt);
 
-				$scope.someArr = response.data.filter(function(item){
-					// console.log('---- ', $filter('date')(item.date, 'dd-MM-yyyy') === $filter('date')($scope.dt, 'dd-MM-yyyy'), item);
-					// console.log($filter('date')($scope.dt, 'dd-MM-yyyy'));
-					if ($filter('date')(item.date, 'dd-MM-yyyy') === $filter('date')($scope.dt, 'dd-MM-yyyy')) return item;
+				var someArrr = response.data.filter(function(item){
+					if ($filter('date')(item.date, 'dd-MM-yyyy') === $filter('date')($scope.dt, 'dd-MM-yyyy')) {
+						return item;
+					}
 				})[0];
-				console.log('arr', $scope.someArr)
+
+				if (someArrr === undefined) {
+					$scope.showError = true;
+					$scope.showResult = false;
+				} else {
+					$scope.ArrForPrint = someArrr.students;
+					$scope.showResult = true;
+					$scope.newStatus.date_id = someArrr.id;
+
+					DataRepository.getJournalById(groupId, someArrr.id).then(function(response) {
+						$scope.studentCounter = response.data[0].students.length;
+
+						if (now > today) {
+							response.data[0].students.forEach(function(item) {
+								if (item.status === 1) {
+									$scope.studentPresentCounter++;
+								}
+							})	
+						}
+
+					}, function (error) {
+						console.log(error);
+					});
+				}
+				
+			}, function (error) {
+				console.log(error);
+			});
+		}
+
+		$scope.statusSuccess = function(student) {
+			$scope.newStatus.student_id = student.id;
+			student.status === 0 ? $scope.newStatus.status = 1 : $scope.newStatus.status = 0;
+			student.status = +!student.status;
+
+			DataRepository.putStatusInJournal($scope.newStatus).then(function(response) {
+
+				if (student.status === 1) {
+					$scope.studentPresentCounter++;
+				} else $scope.studentPresentCounter--;
+
 			}, function (error) {
 				console.log(error);
 			});

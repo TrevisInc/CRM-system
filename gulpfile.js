@@ -56,8 +56,7 @@ gulp.task('bjs', function() {
                 './bower_components/angular-notify/dist/angular-notify.min.js',
                 './bower_components/angular-xeditable/dist/js/xeditable.js',
                 './bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js',
-                './bower_components/datatables.net/js/jquery.dataTables.min.js',
-                './bower_components/angular-datatables/dist/angular-datatables.min.js'
+                './bower_components/angular-i18n/angular-locale_ru-ru.js'
         ]) // файлы, которые обрабатываем
         .pipe(concat('b-min.js')) // склеиваем все JS
         .pipe(gulp.dest('./build/')) // результат пишем по указанному адресу

@@ -4,6 +4,5 @@ var app = angular.module('application', [
   'ngSanitize',
   'ui.bootstrap',
   'xeditable',
-  'cgNotify',
-  'datatables'
+  'cgNotify'
 ]);

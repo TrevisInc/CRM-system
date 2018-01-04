@@ -17,7 +17,9 @@
 			getScheduleData: _getScheduleData,
 			getScheduleDataPage: _getScheduleDataPage,
 			putScheduleData: _putScheduleData,
-			getJournalGroup: _getJournalGroup
+			getJournalGroup: _getJournalGroup,
+			getJournalById: _getJournalById,
+			putStatusInJournal: _putStatusInJournal
 		};
 	
 		function _getGroupList() {
@@ -78,6 +80,14 @@
 
 		function _getJournalGroup(groupId) {
 		  	return $http.get(webApi.DOMAIN + '/api/v1/groups/' + groupId + '/journal'); // Получение журнала группы
+		}
+
+		function _getJournalById(groupId, dateId) {
+		  	return $http.get(webApi.DOMAIN + '/api/v1/groups/' + groupId + '/journal/' + dateId); // Получение даты из журнала группы
+		}
+
+		function _putStatusInJournal(data) {
+		  	return $http.put(webApi.DOMAIN + '/api/v1/journal', data); // Редактирование посещаемости в журнале
 		}
 	}]);
 })();
