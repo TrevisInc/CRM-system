@@ -17,7 +17,7 @@
 			getScheduleData: _getScheduleData,
 			getScheduleDataPage: _getScheduleDataPage,
 			putScheduleData: _putScheduleData,
-			getScheduleTeacher: _getScheduleTeacher
+			getScheduleTeacher: _getScheduleTeacher,
 			getJournalGroup: _getJournalGroup,
 			getJournalById: _getJournalById,
 			putStatusInJournal: _putStatusInJournal
