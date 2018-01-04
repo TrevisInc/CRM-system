@@ -1,0 +1,48 @@
+<ng-include src="'app/views/partials/user.header.template.html'"></ng-include>
+<div class="row">
+	<div class="col-sm-3">
+		<ng-include src="'app/views/partials/teacher.menu.template.html'"></ng-include>
+	</div>
+	<div class="col-sm-6">
+			<h1>{{groupName}}</h1>
+			<hr>
+		<p class="input-group">
+			<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup.opened" ng-required="true" close-text="Close" placeholder="Выберите дату занятия">
+			<span class="input-group-btn">
+				<button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+			</span>
+			<span class="input-group-btn">
+				<button type="button" class="btn btn-default" ng-click="showtable()">Показать</button>
+			</span>
+		</p>
+		<hr>
+		<div ng-if="showError">
+			В этот день - <em>{{dt | date:'fullDate' }}</em>, у группы нет занятий.
+		</div>
+		<table ng-if="showResult" class="table table-sm table-hover">
+			<thead>
+				<tr>
+					<th>Имя</th>
+					<th><span class="pull-right">Статус</span></th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<td><em>Всего студентов в данной группе : {{studentCounter}}</em></td>
+					<td><em class="pull-right">Из них присутствует : {{studentPresentCounter || 'Не отмечено'}}</em></td>
+				</tr>
+			</tfoot>
+			<tbody>
+				<tr ng-repeat="item in ArrForPrint">
+					<td>{{item.firstname}}  {{item.lastname}}</td>
+					<td>
+						<button ng-click="statusSuccess(item)" class="btn btn-xs pull-right" ng-class="item.status ? 'btn-success' : 'btn-danger'">{{item.status ? 'Присутствует' : 'Отсутствует'}}</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="col-sm-3">
+		<ng-include src="'app/views/partials/news.template.html'"></ng-include>
+	</div>
+</div>

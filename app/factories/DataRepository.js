@@ -14,10 +14,13 @@
 			getGroupsByTeacher: _getGroupsByTeacher,
 			getStudentData: _getStudentData,
 			getTeacherData: _getTeacherData,
-      getScheduleData: _getScheduleData,
-      getScheduleDataPage: _getScheduleDataPage,
-      putScheduleData: _putScheduleData,
-      getScheduleTeacher: _getScheduleTeacher
+			getScheduleData: _getScheduleData,
+			getScheduleDataPage: _getScheduleDataPage,
+			putScheduleData: _putScheduleData,
+			getScheduleTeacher: _getScheduleTeacher
+			getJournalGroup: _getJournalGroup,
+			getJournalById: _getJournalById,
+			putStatusInJournal: _putStatusInJournal
 		};
 	
 		function _getGroupList() {
@@ -45,39 +48,51 @@
 		}
 	
 		function _getGroup(groupId) {
-		  	return $http.get(webApi.DOMAIN + '/api/v1/groups/' + groupId); // Получение данных о группе
+			return $http.get(webApi.DOMAIN + '/api/v1/groups/' + groupId); // Получение данных о группе
 		}
 		
 		function _getTeachersByGroup(groupId) {
-		  	return $http.get(webApi.DOMAIN + '/api/v1/groups/' + groupId + '/teachers'); // Получениe преподавателей в  группе
+			return $http.get(webApi.DOMAIN + '/api/v1/groups/' + groupId + '/teachers'); // Получениe преподавателей в  группе
 		}
 
 		function _getGroupsByTeacher(data) {
-		  	return $http.get(webApi.DOMAIN + '/api/v1/teachers/' + data + '/groups'); // Получение групп преподавателя
+			return $http.get(webApi.DOMAIN + '/api/v1/teachers/' + data + '/groups'); // Получение групп преподавателя
 		}
 
 		function _getStudentData(data) {
-		  	return $http.get(webApi.DOMAIN + '/api/v1/students/' + data); // Получение данных о студенте
+			return $http.get(webApi.DOMAIN + '/api/v1/students/' + data); // Получение данных о студенте
 		}
 
 		function _getTeacherData(data) {
-		  	return $http.get(webApi.DOMAIN + '/api/v1/teachers/' + data); // Получение данных о преподавателе
+			return $http.get(webApi.DOMAIN + '/api/v1/teachers/' + data); // Получение данных о преподавателе
 		}
-    
-    function _getScheduleData(groupId) {
-      return $http.get(webApi.DOMAIN + '/api/v1/groups/' + groupId +'/schedule'); // Получение расписания группы
-    }
 		
-    function _getScheduleDataPage(groupId, currentPage, count) {
-      return $http.get(webApi.DOMAIN + '/api/v1/groups/' + groupId +'/schedule?page=' + currentPage + '&count=' + count +'&dir=asc'); // Получение расписания группы определенной страницы
-    }
-    
-    function _putScheduleData(lessonId, data) {
-      return $http.put(webApi.DOMAIN + '/api/v1/groups/' + lessonId +'/schedule', data); // Изменение темы занятия
-    }
-    
-    function _getScheduleTeacher(data) {
-      return $http.get(webApi.DOMAIN + '/api/v1/teachers/' + data +'/schedule'); // Получение расписания преподавателя
-    }
+		function _getScheduleDataPage(groupId, currentPage, count) {
+		  return $http.get(webApi.DOMAIN + '/api/v1/groups/' + groupId +'/schedule?page=' + currentPage + '&count=' + count +'&dir=asc'); // Получение расписания группы определенной страницы
+		}
+		
+		function _putScheduleData(lessonId, data) {
+		  return $http.put(webApi.DOMAIN + '/api/v1/groups/' + lessonId +'/schedule', data); // Изменение темы занятия
+		}
+		
+		function _getScheduleTeacher(data) {
+		  return $http.get(webApi.DOMAIN + '/api/v1/teachers/' + data +'/schedule'); // Получение расписания преподавателя
+		}
+
+		function _getScheduleData(groupId) {
+			return $http.get(webApi.DOMAIN + '/api/v1/groups/' + groupId +'/schedule'); // Получение расписания группы
+		}
+
+		function _getJournalGroup(groupId) {
+			return $http.get(webApi.DOMAIN + '/api/v1/groups/' + groupId + '/journal'); // Получение журнала группы
+		}
+
+		function _getJournalById(groupId, dateId) {
+			return $http.get(webApi.DOMAIN + '/api/v1/groups/' + groupId + '/journal/' + dateId); // Получение даты из журнала группы
+		}
+
+		function _putStatusInJournal(data) {
+			return $http.put(webApi.DOMAIN + '/api/v1/journal', data); // Редактирование посещаемости в журнале
+		}
 	}]);
 })();

@@ -26,10 +26,10 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 			templateUrl: 'app/views/student.homework.template.html',
 			controller: 'StudentHomeworkController'
 		})
-    .when('/student/:studentId/schedule/:groupId',{
-      templateUrl: 'app/views/student.schedule.template.html',
-      controller: 'StudentScheduleController'
-    })
+	    .when('/student/:studentId/schedule/:groupId',{
+	      templateUrl: 'app/views/student.schedule.template.html',
+	      controller: 'StudentScheduleController'
+	    })
 		.when('/teacher/:teacherId',{
 			templateUrl: 'app/views/teacher.home.template.html',
 			controller: 'TeacherHomeController'
@@ -38,13 +38,21 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 			templateUrl: 'app/views/user.edit.profile.template.html',
 			controller: 'UserEditProfileController'
 		})
-    .when('/teacher/:teacherId/schedule',{
-      templateUrl: 'app/views/teacher.schedule.template.html',
-      controller: 'TeacherScheduleController'
-    })
+	    .when('/teacher/:teacherId/schedule',{
+	      	templateUrl: 'app/views/teacher.schedule.template.html',
+	      	controller: 'TeacherScheduleController'
+	    })
+	    .when('/teacher/:groupId/journal',{
+	      	templateUrl: 'app/views/teacher.journal.template.html',
+	      	controller: 'TeacherJournalController'
+	    })
 		.otherwise('/');
 }]);
 
 app.config(['$httpProvider', function($httpProvider) {
 	$httpProvider.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('authToken');
+}]);
+
+app.run(['editableOptions', function(editableOptions) {
+	editableOptions.theme = 'bs3';
 }]);

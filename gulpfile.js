@@ -24,7 +24,8 @@ gulp.task('js', function() {
                 './app/controllers/TeacherMenuController.js',
                 './app/controllers/TeacherScheduleController.js',
                 './app/controllers/StudentScheduleController.js',
-                './app/modal/editLesson/EditLessonController.js'
+                './app/modal/editLesson/EditLessonController.js',
+                './app/controllers/TeacherJournalController.js'
 
         ]) // файлы, которые обрабатываем
         .pipe(concat('min.js')) // склеиваем все JS
@@ -44,9 +45,9 @@ gulp.task('css', function() {
 
 gulp.task('bjs', function() {
     gulp.src([
+                './bower_components/jquery/dist/jquery.min.js',
                 './bower_components/angular/angular.js',
                 './bower_components/angular-route/angular-route.js',
-                './bower_components/jquery/dist/jquery.min.js',
                 './bower_components/bootstrap/dist/js/bootstrap.min.js',
                 './bower_components/angular-animate/angular-animate.min.js',
                 './bower_components/angular-sanitize/angular-sanitize.min.js',
@@ -55,7 +56,10 @@ gulp.task('bjs', function() {
                 './bower_components/angular-notify/dist/angular-notify.min.js',
                 './bower_components/angular-xeditable/dist/js/xeditable.min.js',
                 './bower_components/moment/moment.js',
-                './bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.js'
+                './bower_components/angular-xeditable/dist/js/xeditable.js',
+                './bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js',
+                './bower_components/angular-i18n/angular-locale_ru-ru.js'
+
         ]) // файлы, которые обрабатываем
         .pipe(concat('b-min.js')) // склеиваем все JS
         .pipe(gulp.dest('./build/')) // результат пишем по указанному адресу
