@@ -20,7 +20,8 @@
 			getScheduleTeacher: _getScheduleTeacher,
 			getJournalGroup: _getJournalGroup,
 			getJournalById: _getJournalById,
-			putStatusInJournal: _putStatusInJournal
+			putStatusInJournal: _putStatusInJournal,
+      getRooms: _getRooms
 		};
 	
 		function _getGroupList() {
@@ -94,5 +95,10 @@
 		function _putStatusInJournal(data) {
 			return $http.put(webApi.DOMAIN + '/api/v1/journal', data); // Редактирование посещаемости в журнале
 		}
+    
+    function _getRooms() {
+      return $http.get(webApi.DOMAIN + '/api/v1/rooms'); // Получение аудиторий
+    }
+		
 	}]);
 })();
