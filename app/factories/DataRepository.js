@@ -21,7 +21,8 @@
 			getJournalGroup: _getJournalGroup,
 			getJournalById: _getJournalById,
 			putStatusInJournal: _putStatusInJournal,
-      getRooms: _getRooms
+	  		getRooms: _getRooms,
+			setTeacher: _setTeacher
 		};
 	
 		function _getGroupList() {
@@ -29,7 +30,7 @@
 		}
 
 		function _setStudent(data) {
-			return $http.post(webApi.DOMAIN + '/api/v1/students', data); // регистрация(нужно сделать под всех)
+			return $http.post(webApi.DOMAIN + '/api/v1/students', data); // регистрация нового студента
 		}
 
 		function _getUser(data) {
@@ -95,10 +96,14 @@
 		function _putStatusInJournal(data) {
 			return $http.put(webApi.DOMAIN + '/api/v1/journal', data); // Редактирование посещаемости в журнале
 		}
-    
-    function _getRooms() {
-      return $http.get(webApi.DOMAIN + '/api/v1/rooms'); // Получение аудиторий
-    }
-		
+	
+		function _getRooms() {
+		  return $http.get(webApi.DOMAIN + '/api/v1/rooms'); // Получение аудиторий
+		}
+
+		function _setTeacher(data) {
+			return $http.post(webApi.DOMAIN + '/api/v1/teachers', data); // регистрация нового преподавателя
+		}
+			
 	}]);
 })();

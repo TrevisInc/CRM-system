@@ -4,8 +4,12 @@
 	<div class="col-xs-4"></div>
 	<div class="col-xs-4">
 		<div class="panel panel-default">
-			<div class="panel-heading"><h4>Введите данные:</h4></div>
+			<div class="panel-heading">
+				<h5>Введите данные для регистрации нового студента</h5>
+			</div>
 			<div class="panel-body">
+
+
 				<form novalidate id="FormRegistration" name="FormRegistration" ng-submit="FormRegistration.$valid && dispatchForm()">
 				<small class="pull-right"><em>Все поля являются обязательными.</em></small>
 				<br>
@@ -24,7 +28,16 @@
 					<div class="form-group" ng-class="{'has-error' : FormRegistration.$submitted && FormRegistration.password.$invalid}">
 						<input type="password" class="form-control" required name="password" placeholder="Пароль" ng-model="newUser.password">
 					</div>
-					<div class="form-group">
+
+					<div class="btn-group" data-toggle="buttons">
+						<label class="btn btn-xs btn-default" ng-class="testOnTeacher === true ? 'active' : ''" ng-click="testOnTeacherClick()">
+							<input type="checkbox" autocomplete="off" ng-model="testOnTeacher">
+							<span class="glyphicon glyphicon-ok"></span>
+						</label><span class="mrg-for-lable">Я сотрудник</span>
+					</div>
+
+					<hr ng-if="!testOnTeacher">
+					<div ng-if="!testOnTeacher" class="form-group">
 						<select class="form-control" required ng-model="newUser.group_id" ng-options="item.id as item.title for item in someGroup">
 							<option value="" disabled>-- Выбери группу --</option> 
 						</select>

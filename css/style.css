@@ -101,3 +101,14 @@ a, a:hover {
   color: #349dfd;
 }
 
+/*-----------------------------for reg---------------------*/
+.btn span.glyphicon {         
+  opacity: 0;       
+}
+.btn.active span.glyphicon {        
+  opacity: 1;       
+}
+.mrg-for-lable {
+  margin-left: 10px;
+}
+/*----------------------------------------------------------*/
