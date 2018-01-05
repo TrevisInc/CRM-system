@@ -1,7 +1,7 @@
 (function () {
   'use strict';
   
-  app.controller('TeacherScheduleController', ['$scope', 'DataRepository', 'utils', '$uibModal', 'calendarConfig', function ($scope, DataRepository, utils, $uibModal, calendarConfig) {
+  app.controller('TeacherScheduleController', ['$scope', 'DataRepository', 'utils', '$uibModal','moment', function ($scope, DataRepository, utils, $uibModal, moment) {
     
     var idTeacher = localStorage.getItem('id');
     
@@ -43,9 +43,12 @@
       response.data.forEach(function (item) {
         $scope.events.push({
           title: 'Группа: ' + item.group_id + ' Тема: ' + item.theme,
-          color: calendarConfig.colorTypes.info,
-          startsAt: new Date(item.date.substr(0, 10) + ' ' + item.time),
-          endsAt: new Date(item.date.substr(0, 10) + ' 22:00:00'),
+          color: {
+            primary: '#1e90ff',
+            secondary: '#d1e8ff'
+          },
+          startsAt: new Date(item.date),
+          endsAt: new Date(item.date),
           draggable: true,
           resizable: true,
           actions: actions,
