@@ -20,7 +20,7 @@
 								date="viewDate"
 								decrement="calendarView"
 								ng-click="cellIsOpen = false">
-								Previous
+								Назад
 							</button>
 							<button
 								class="btn btn-default"
@@ -28,7 +28,7 @@
 								date="viewDate"
 								set-to-today
 								ng-click="cellIsOpen = false">
-								Today
+								Сегодня
 							</button>
 							<button
 								class="btn btn-primary"
@@ -36,7 +36,7 @@
 								date="viewDate"
 								increment="calendarView"
 								ng-click="cellIsOpen = false">
-								Next
+								Вперед
 							</button>
 						</div>
 					</div>
@@ -45,10 +45,10 @@
 					
 					<div class="col-md-6 text-center">
 						<div class="btn-group">
-							<label class="btn btn-primary" ng-model="calendarView" uib-btn-radio="'year'" ng-click="cellIsOpen = false">Year</label>
-							<label class="btn btn-primary" ng-model="calendarView" uib-btn-radio="'month'" ng-click="cellIsOpen = false">Month</label>
-							<label class="btn btn-primary" ng-model="calendarView" uib-btn-radio="'week'" ng-click="cellIsOpen = false">Week</label>
-							<label class="btn btn-primary" ng-model="calendarView" uib-btn-radio="'day'" ng-click="cellIsOpen = false">Day</label>
+							<label class="btn btn-primary" ng-model="calendarView" uib-btn-radio="'year'" ng-click="cellIsOpen = false">Год</label>
+							<label class="btn btn-primary" ng-model="calendarView" uib-btn-radio="'month'" ng-click="cellIsOpen = false">Месяц</label>
+							<label class="btn btn-primary" ng-model="calendarView" uib-btn-radio="'week'" ng-click="cellIsOpen = false">Неделя</label>
+							<label class="btn btn-primary" ng-model="calendarView" uib-btn-radio="'day'" ng-click="cellIsOpen = false">День</label>
 						</div>
 					</div>
 				
@@ -68,19 +68,10 @@
 					day-view-end="23:59"
 					day-view-split="30"
 					cell-modifier="modifyCell(calendarCell)"
-					cell-auto-open-disabled="true"
+					cell-auto-open-disabled="false"
 					on-timespan-click="timespanClicked(calendarDate, calendarCell)">
 				</mwl-calendar>
 			</div>
-			<!--<ul class="schedule">-->
-				<!--<li ng-repeat="item in schedule track by $index" ng-class="{'success' : controlDate(item.date)=== true}" ng-click="editLesson(item.id)">-->
-					<!--<div>{{item.date | date: 'longDate'}}</div>-->
-					<!--<div>{{item.time}}</div>-->
-					<!--<div>{{item.theme || 'No theme'}}</div>-->
-					<!--<div>Room: {{item.room_id}}</div>-->
-				<!--</li>-->
-			<!--</ul>-->
-			<!--<ul uib-pagination total-items="totalItems" max-size="maxSize" ng-model="currentPage" ng-change="pageChanged()"></ul>-->
 		</section>
 	</div>
 	<div class="col-sm-3">
