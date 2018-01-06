@@ -1,0 +1,34 @@
+<ng-include src="'app/views/partials/user.header.template.html'"></ng-include>
+<div class="row">
+	<div class="col-sm-3">
+		<ng-include src="'app/views/partials/student.menu.template.html'"></ng-include>
+	</div>
+	<div class="col-sm-6">
+		<section>
+			<h2 class="text-center">Моя полезная информация</h2>
+			<br>
+			<table class="table table-striped table-hover">
+				<thead>
+				<th>Название</th>
+				<th>Ссылка</th>
+				<th></th>
+				</thead>
+				<tr ng-repeat="item in info track by $index">
+					<td>{{item.title}}</td>
+					<td class="text-right">
+						<span>
+							<button ng-if="item.show" class="btn btn-info btn-xs">
+								<i class="glyphicon glyphicon-eye-open"></i> Читать
+								<pdfjs-viewer src="{{item.link}}"></pdfjs-viewer>
+							</button>
+							<a ng-if="item.show" href="{{item.link}}" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-download"></i> Скачать</a>
+						</span>
+					</td>
+				</tr>
+			</table>
+		</section>
+	</div>
+	<div class="col-sm-3">
+		<ng-include src="'app/views/partials/news.template.html'"></ng-include>
+	</div>
+</div>

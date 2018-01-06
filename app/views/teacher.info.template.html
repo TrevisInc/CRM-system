@@ -8,7 +8,7 @@
 			<h2 class="text-center">Полезная информация</h2>
 			<br>
 			<div class="form-group text-right">
-				<button class="btn btn-primary" ng-click="addInfo()"><i class="glyphicon glyphicon-plus"></i> Добавить материал
+				<button class="btn btn-primary" ng-click="addMaterial()"><i class="glyphicon glyphicon-plus"></i> Добавить материал
 				</button>
 			</div>
 			
@@ -19,37 +19,23 @@
 					<th></th>
 				</thead>
 				<tr ng-repeat="item in info track by $index">
-					<td>{{item.title}}</td>
+					<td><a href="" editable-text="item.title" e-form="editableForm" e-ng-model="item.title" e-name="title">{{item.title}}</a></td>
 					<td><a href="{{item.link}}"><i>Ссылка</i></a></td>
 					<td class="text-right">
-						<span ng-show="true">
-							<button class="btn btn-warning btn-xs" ng-click=""><i class="glyphicon glyphicon-pencil"></i></button>
+						<span ng-show="!editableForm.$visible">
+							<button class="btn btn-warning btn-xs" ng-click="editableForm.$show()"><i class="glyphicon glyphicon-pencil"></i></button>
 							<button class="btn btn-danger btn-xs" ng-click="deleteMaterial(item.id)"><i class="glyphicon glyphicon-remove"></i></button>
 						</span>
+						
+						<form editable-form name="editableForm" onaftersave="saveMaterial($data, item.id)" shown="inserted == item">
+    					<span ng-show="editableForm.$visible">
+     						<button type="submit" class="btn btn-primary btn-xs" ng-disabled="editableForm.$waiting"><i class="glyphicon glyphicon-ok"></i></button>
+     						<button type="button" class="btn btn-danger btn-xs" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel(); deleteFromArray(item)"><i class="glyphicon glyphicon-minus"></i></button>
+							</span>
+						</form>
 					</td>
 				</tr>
 			</table>
-			
-			
-			<!--<tr ng-repeat="author in authors track by $index">-->
-			<!--<td><a href="" editable-text="author.firstname" e-form="editableForm" e-ng-model="author.first" e-name="firstname">{{author.firstname || 'empty'}}</a></td>-->
-			<!--<td><a href="" editable-text="author.lastname" e-form="editableForm" e-ng-model="author.last" e-name="lastname">{{author.lastname || 'empty'}}</a></td>-->
-			<!--<td class="text-right">-->
-			<!--<span ng-show="!editableForm.$visible">-->
-			<!--<button class="btn btn-warning btn-xs" ng-click="editableForm.$show()"><i class="glyphicon glyphicon-pencil"></i></button>-->
-			<!--<button class="btn btn-danger btn-xs" ng-click="deleteAuthor(author.id)"><i class="glyphicon glyphicon-remove"></i></button>-->
-			<!--</span>-->
-			<!---->
-			<!--<form editable-form name="editableForm" onaftersave="saveAuthor($data, author.id)" shown="inserted == author">-->
-			<!--<span ng-show="editableForm.$visible">-->
-			<!--<button type="submit" class="btn btn-primary btn-xs" ng-disabled="editableForm.$waiting"><i class="glyphicon glyphicon-ok"></i></button>-->
-			<!--<button type="button" class="btn btn-danger btn-xs" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel(); deleteFromArray(author)"><i class="glyphicon glyphicon-minus"></i></button>-->
-			<!--</span>-->
-			<!--</form>-->
-			<!--</td>-->
-			<!--</tr>-->
-		
-		
 		</section>
 	</div>
 	<div class="col-sm-3">

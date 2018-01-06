@@ -30,6 +30,11 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
       templateUrl: 'app/views/student.schedule.template.html',
       controller: 'StudentScheduleController'
     })
+    .when('/student/:studentId/info', {
+      templateUrl: 'app/views/student.info.template.html',
+      controller: 'StudentInfoController'
+    })
+    
     .when('/teacher/:teacherId', {
       templateUrl: 'app/views/teacher.home.template.html',
       controller: 'TeacherHomeController'

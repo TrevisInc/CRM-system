@@ -24,7 +24,9 @@
 			getRooms: _getRooms,
 			setTeacher: _setTeacher,
       getInfoByGroup: _getInfoByGroup,
-      deleteInfo: _deleteInfo
+      deleteInfo: _deleteInfo,
+      setInfo: _setInfo,
+      editInfo: _editInfo
 		};
 	
 		function _getGroupList() {
@@ -113,6 +115,14 @@
     
     function _deleteInfo(materialId) {
       return $http.delete(webApi.DOMAIN + '/api/v1/info/' + materialId); // удаление материала
+    }
+    
+    function _setInfo(groupId, data) {
+      return $http.post(webApi.DOMAIN + '/api/v1/groups/' + groupId + '/info', data); // добавление материала
+    }
+    
+    function _editInfo(data, materialId) {
+      return $http.put(webApi.DOMAIN + '/api/v1/info/' + materialId, data); // редактирование материала
     }
     
 	}]);

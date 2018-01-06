@@ -1,0 +1,22 @@
+<div class="modal-header">
+	<h3 class="modal-title">Добавление нового материала</h3>
+</div>
+<div class="modal-body">
+	<form name="addMaterial">
+		<div class="form-group">
+			<input type="text" placeholder="Title" id="title" name="title" class="form-control" ng-model="newMaterial.title">
+		</div>
+		<div class="form-group">
+			<select class="form-control" ng-model="group_id" ng-options="groups.id as groups.title for groups in groups">
+				<option value="" disabled>-- Select group --</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<input type="file" name="file" file-model='newMaterial.file' placeholder="" accept="application/msword, application/pdf" class="form-control" ng-model="newMaterial.file">
+		</div>
+	</form>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-danger" ng-click="cancel()">Отмена</button>
+	<button class="btn btn-success" ng-click="ok()">Добавить</button>
+</div>
