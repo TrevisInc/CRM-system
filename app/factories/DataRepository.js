@@ -118,7 +118,13 @@
     }
     
     function _setInfo(groupId, data) {
-      return $http.post(webApi.DOMAIN + '/api/v1/groups/' + groupId + '/info', data); // добавление материала
+      return $http.post(webApi.DOMAIN + '/api/v1/groups/' + groupId + '/info',
+				data,
+				{
+        	transformRequest: angular.identity,
+        	headers: {'Content-Type': undefined}
+				}
+			); // добавление материала
     }
     
     function _editInfo(data, materialId) {
