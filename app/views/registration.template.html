@@ -29,12 +29,13 @@
 						<input type="password" class="form-control" required name="password" placeholder="Пароль" ng-model="newUser.password">
 					</div>
 
-					<div class="btn-group" data-toggle="buttons">
-						<label class="btn btn-xs btn-default" ng-class="testOnTeacher === true ? 'active' : ''" ng-click="testOnTeacherClick()">
-							<input type="checkbox" autocomplete="off" ng-model="testOnTeacher">
-							<span class="glyphicon glyphicon-ok"></span>
-						</label><span class="mrg-for-lable">Я сотрудник</span>
-					</div>
+						<div class="checkbox">
+					        <label id="for-lable" ng-click="testOnTeacherClick()">
+			            		<input type="checkbox" value="" autocomplete="off" ng-model="testOnTeacher">
+			            		<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+			           			Я сотрудник
+			          		</label>
+			        	</div>
 
 					<hr ng-if="!testOnTeacher">
 					<div ng-if="!testOnTeacher" class="form-group">

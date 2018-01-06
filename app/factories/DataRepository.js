@@ -22,7 +22,9 @@
 			getJournalById: _getJournalById,
 			putStatusInJournal: _putStatusInJournal,
 	  		getRooms: _getRooms,
-			setTeacher: _setTeacher
+			setTeacher: _setTeacher,
+			updateStudent: _updateStudent,
+			updateTeacher: _updateTeacher
 		};
 	
 		function _getGroupList() {
@@ -103,6 +105,14 @@
 
 		function _setTeacher(data) {
 			return $http.post(webApi.DOMAIN + '/api/v1/teachers', data); // регистрация нового преподавателя
+		}
+
+		function _updateStudent(studentId, data) {
+			return $http.put(webApi.DOMAIN + '/api/v1/students/' + studentId, data); // Редактирование профиля студента
+		}
+
+		function _updateTeacher(teacherId, data) {
+			return $http.put(webApi.DOMAIN + '/api/v1/teachers/' + teacherId, data); // Редактирование профила преподавателя
 		}
 			
 	}]);

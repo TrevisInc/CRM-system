@@ -85,10 +85,8 @@
       var lessonDate = new Date(date);
       
       if(lessonDate > now) {
-        console.log('true');
         return true;
       } else {
-        console.log('false');
         return false;
       }
     }

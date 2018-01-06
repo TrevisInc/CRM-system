@@ -2,9 +2,9 @@
 	'use strict';
 
 	app.controller('NewsController', ['$scope', 'DataRepository', function ($scope, DataRepository) {
-		
+
 		$scope.currentPage = 1;
-		$scope.totalItems = 500;
+		$scope.totalItems = 30;
 		$scope.maxSize = 3;
 
 		DataRepository.getNews($scope.currentPage).then(function (response) {
