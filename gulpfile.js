@@ -25,7 +25,9 @@ gulp.task('js', function() {
                 './app/controllers/TeacherScheduleController.js',
                 './app/controllers/StudentScheduleController.js',
                 './app/modal/editLesson/EditLessonController.js',
-                './app/controllers/TeacherJournalController.js'
+                './app/controllers/TeacherJournalController.js',
+                './app/controllers/TeacherInfoController.js',
+                './app/modal/confirm/ConfirmController.js'
 
         ]) // файлы, которые обрабатываем
         .pipe(concat('min.js')) // склеиваем все JS

@@ -21,8 +21,10 @@
 			getJournalGroup: _getJournalGroup,
 			getJournalById: _getJournalById,
 			putStatusInJournal: _putStatusInJournal,
-	  		getRooms: _getRooms,
-			setTeacher: _setTeacher
+			getRooms: _getRooms,
+			setTeacher: _setTeacher,
+      getInfoByGroup: _getInfoByGroup,
+      deleteInfo: _deleteInfo
 		};
 	
 		function _getGroupList() {
@@ -104,6 +106,14 @@
 		function _setTeacher(data) {
 			return $http.post(webApi.DOMAIN + '/api/v1/teachers', data); // регистрация нового преподавателя
 		}
-			
+    
+    function _getInfoByGroup(groupId) {
+      return $http.get(webApi.DOMAIN + '/api/v1/groups/' + groupId + '/info'); // получение материалов группы
+    }
+    
+    function _deleteInfo(materialId) {
+      return $http.delete(webApi.DOMAIN + '/api/v1/info/' + materialId); // удаление материала
+    }
+    
 	}]);
 })();

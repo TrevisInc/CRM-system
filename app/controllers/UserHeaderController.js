@@ -9,12 +9,14 @@
 		if ($scope.role == 1) {
 			DataRepository.getStudentData($scope.userId).then(function(response) {
 				$scope.userName = response.data.firstname;
+				$scope.userImage = response.data.image;
 			}, function (error) {
 				console.log(error);
 			});
 		} else if ($scope.role == 2) {
 			DataRepository.getTeacherData($scope.userId).then(function(response) {
 				$scope.userName = response.data.firstname;
+        $scope.userImage = response.data.image;
 			}, function (error) {
 				console.log(error);
 			});
