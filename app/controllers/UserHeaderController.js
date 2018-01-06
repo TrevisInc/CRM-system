@@ -17,6 +17,7 @@
 			DataRepository.getTeacherData($scope.userId).then(function(response) {
 				$scope.userName = response.data.firstname;
 				$scope.userImage = response.data.image;
+
 			}, function (error) {
 				console.log(error);
 			});

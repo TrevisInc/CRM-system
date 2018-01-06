@@ -5,5 +5,6 @@ var app = angular.module('application', [
   'mwl.calendar',
   'ui.bootstrap',
   'xeditable',
-  'cgNotify'
+  'cgNotify',
+  'file-model'
 ]);

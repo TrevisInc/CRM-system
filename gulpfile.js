@@ -25,7 +25,11 @@ gulp.task('js', function() {
                 './app/controllers/TeacherScheduleController.js',
                 './app/controllers/StudentScheduleController.js',
                 './app/modal/editLesson/EditLessonController.js',
-                './app/controllers/TeacherJournalController.js'
+                './app/controllers/TeacherJournalController.js',
+                './app/controllers/TeacherInfoController.js',
+                './app/modal/confirm/ConfirmController.js',
+                './app/modal/add-material/AddMaterialController.js',
+                './app/controllers/StudentInfoController.js'
 
         ]) // файлы, которые обрабатываем
         .pipe(concat('min.js')) // склеиваем все JS
@@ -58,7 +62,10 @@ gulp.task('bjs', function() {
                 './bower_components/moment/moment.js',
                 './bower_components/angular-xeditable/dist/js/xeditable.js',
                 './bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js',
-                './bower_components/angular-i18n/angular-locale_ru-ru.js'
+                './bower_components/angular-i18n/angular-locale_ru-ru.js',
+                './bower_components/pdf.js-viewer/pdf.js',
+                './bower_components/angular-pdfjs-viewer/dist/angular-pdfjs-viewer.js',
+                './bower_components/angular-file-model/angular-file-model.js'
 
         ]) // файлы, которые обрабатываем
         .pipe(concat('b-min.js')) // склеиваем все JS
