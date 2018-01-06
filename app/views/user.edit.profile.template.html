@@ -12,9 +12,14 @@
 					<div class="col-sm-3">
 						<img src="{{user.image || 'img/no-img.png' }}" class="img-rounded" alt="">
 						<hr>
-						<label class="import-file">
-    						<input type="file" onchange="angular.element(this).scope().fileNameChanged(this)">
-						</label>
+					<div class="form-group">
+						<label class="btn btn-default form-control" for="ex1">Загрузить</label>
+						<label class="btn btn-default form-control" ng-click="updateImage()">Обновить</label>
+						<div class="hide123">
+							<input type="file" name="file" file-model='newMaterial' id="ex1" accept="image/" class="form-control hide123" ng-model="newMaterial">
+						</div>
+						
+					</div>
 					</div>
 					<div class="col-sm-9">
 						<table class="table table-hover">

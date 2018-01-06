@@ -11,6 +11,8 @@
 		$scope.editPassword = false;
 		$scope.hasErrorStatus = false;
 
+		$scope.newMaterial = null;
+
 		$scope.newPass = {
 			new: null,
 			confirm: null
@@ -130,18 +132,18 @@
 			edit($scope.newData);
 		}
 		
-		$scope.fileNameChanged = function(ele) {
-		  	var files = ele.files;
-		  	var l = files.length;
-		  	var namesArr = [];
+		$scope.updateImage = function() {
+			console.log($scope.newMaterial)
+			var formData = new FormData();
+			formData.append("file", $scope.newMaterial);
+			console.log(formData.get('file'));
 
-		  	for (var i = 0; i < l; i++) {
-		    	namesArr.push(files[i].name);
-		  	}
-		  	console.log(namesArr[0])
-		  	console.log(files)
+			DataRepository.setImage($scope.newMaterial).then(function(response) {
+				console.log(response) 
+			}, function (error) {
+				console.log(error);
+			});
 		}
-
 
 	}]);
 })();

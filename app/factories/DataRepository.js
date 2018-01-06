@@ -25,10 +25,11 @@
 			setTeacher: _setTeacher,
 			updateStudent: _updateStudent,
 			updateTeacher: _updateTeacher,
-      getInfoByGroup: _getInfoByGroup,
-      deleteInfo: _deleteInfo,
-      setInfo: _setInfo,
-      editInfo: _editInfo
+		  	getInfoByGroup: _getInfoByGroup,
+		  	deleteInfo: _deleteInfo,
+		  	setInfo: _setInfo,
+		  	editInfo: _editInfo,
+		  	setImage: _setImage
 		};
 	
 		function _getGroupList() {
@@ -119,28 +120,34 @@
 			return $http.put(webApi.DOMAIN + '/api/v1/teachers/' + teacherId, data); // Редактирование профила преподавателя
 		}
 		
-    
-    function _getInfoByGroup(groupId) {
-      return $http.get(webApi.DOMAIN + '/api/v1/groups/' + groupId + '/info'); // получение материалов группы
-    }
-    
-    function _deleteInfo(materialId) {
-      return $http.delete(webApi.DOMAIN + '/api/v1/info/' + materialId); // удаление материала
-    }
-    
-    function _setInfo(groupId, data) {
-      return $http.post(webApi.DOMAIN + '/api/v1/groups/' + groupId + '/info',
-				data,
-				{
-        	transformRequest: angular.identity,
-        	headers: {'Content-Type': undefined}
+	
+		function _getInfoByGroup(groupId) {
+		  	return $http.get(webApi.DOMAIN + '/api/v1/groups/' + groupId + '/info'); // получение материалов группы
+		}
+	
+		function _deleteInfo(materialId) {
+		  	return $http.delete(webApi.DOMAIN + '/api/v1/info/' + materialId); // удаление материала
+		}
+	
+		function _setInfo(groupId, data) {
+		  	return $http.post(webApi.DOMAIN + '/api/v1/groups/' + groupId + '/info', data, { 
+		  		transformRequest: angular.identity,
+				headers: {'Content-Type': undefined}
 				}
 			); // добавление материала
-    }
-    
-    function _editInfo(data, materialId) {
-      return $http.put(webApi.DOMAIN + '/api/v1/info/' + materialId, data); // редактирование материала
-    }
+		}
+
+		function _setImage( data) {
+		  	return $http.post(webApi.DOMAIN + '/api/v1/users/upload', data, { 
+		  		transformRequest: angular.identity,
+				headers: {'Content-Type': undefined}
+				}
+			); // добавление материала
+		}
+
+		function _editInfo(data, materialId) {
+		  	return $http.put(webApi.DOMAIN + '/api/v1/info/' + materialId, data); // редактирование материала
+		}
 		
 	}]);
 })();
