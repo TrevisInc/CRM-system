@@ -63,8 +63,6 @@ gulp.task('bjs', function() {
                 './bower_components/angular-xeditable/dist/js/xeditable.js',
                 './bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js',
                 './bower_components/angular-i18n/angular-locale_ru-ru.js',
-                './bower_components/pdf.js-viewer/pdf.js',
-                './bower_components/angular-pdfjs-viewer/dist/angular-pdfjs-viewer.js',
                 './bower_components/angular-file-model/angular-file-model.js'
 
         ]) // файлы, которые обрабатываем
