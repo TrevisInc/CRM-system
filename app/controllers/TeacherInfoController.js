@@ -90,7 +90,7 @@
         }, function (error) {
           console.log(error);
           utils.notify({
-            message: 'Добавление материала не удалось, попробуйте позже',
+            message: 'Добавление материала не удалось',
             type: 'danger'
           });
         });

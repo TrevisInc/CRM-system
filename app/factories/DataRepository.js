@@ -142,7 +142,7 @@
 		  		transformRequest: angular.identity,
 				headers: {'Content-Type': undefined}
 				}
-			); // добавление материала
+			); // добавление аватарки
 		}
 
 		function _editInfo(data, materialId) {

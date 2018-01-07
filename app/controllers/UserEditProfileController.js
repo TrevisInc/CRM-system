@@ -12,6 +12,7 @@
 		$scope.hasErrorStatus = false;
 
 		$scope.newMaterial = null;
+    var server = 'http://crmsys.filonitta.fe.a-level.com.ua';
 
 		$scope.newPass = {
 			new: null,
@@ -133,15 +134,30 @@
 		}
 		
 		$scope.updateImage = function() {
-			console.log($scope.newMaterial)
-			var formData = new FormData();
-			formData.append("file", $scope.newMaterial);
-			console.log(formData.get('file'));
 
-			DataRepository.setImage($scope.newMaterial).then(function(response) {
-				console.log(response) 
+			var formData = new FormData();
+			formData.append("image", $scope.newMaterial);
+
+
+			DataRepository.setImage(formData).then(function(response) {
+
+        $scope.newData.image = server + response.data.image;
+        $scope.user.image = $scope.newData.image; // Для того, чтобы сразу обновилась картинка
+				edit($scope.newData);
 			}, function (error) {
 				console.log(error);
+				
+				if(error.data.message === 'No file data') {
+          utils.notify({
+            message: 'Картинка не выбрана',
+            type: 'danger'
+          });
+				} else {
+          utils.notify({
+            message: 'Выбрать картинку не удалось, повторите попытку позже',
+            type: 'danger'
+          });
+        }
 			});
 		}
 
