@@ -160,3 +160,7 @@ a, a:hover {
 .hide123 {
   display: none;
 }
+/*-------------student-info-------------------------*/
+.student-info i {
+  color: #000000;
+}

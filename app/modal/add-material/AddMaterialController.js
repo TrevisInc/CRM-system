@@ -29,7 +29,6 @@
       var formData = new FormData();
       formData.append("title", $scope.newMaterial.title);
       formData.append("file", $scope.newMaterial.file);
-      console.log(formData.get('file'));
       
       sessionStorage.setItem('id_group', $scope.group_id);
       $uibModalInstance.close(formData);

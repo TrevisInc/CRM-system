@@ -7,32 +7,34 @@
     var server = 'http://crmsys.filonitta.fe.a-level.com.ua';
     $scope.info = [];
     
+    function getInfo() {
+      //Получения массива информации всех групп в которых преподает
+      DataRepository.getGroupsByTeacher(idTeacher).then(function (response) {
+        var groups = response.data;
     
-    //Получения массива информации всех групп в которых преподает
-    DataRepository.getGroupsByTeacher(idTeacher).then(function (response) {
-      var groups = response.data;
-
-      groups.forEach(function (item) {
-
-        DataRepository.getInfoByGroup(item.id).then(function (response) {
-          response.data.forEach(function (item) {
-            item.link = server + item.link;
-            $scope.info.push(item);
-          });
-          console.log($scope.info);
-        }, function (error) {
-          utils.notify({
-            message: 'При загрузке материалов произошла ошибка, обновите страницу',
-            type: 'danger'
+        groups.forEach(function (item) {
+      
+          DataRepository.getInfoByGroup(item.id).then(function (response) {
+            response.data.forEach(function (item) {
+              item.link = server + item.link;
+              $scope.info.push(item);
+            });
+          }, function (error) {
+            utils.notify({
+              message: 'При загрузке материалов произошла ошибка, обновите страницу',
+              type: 'danger'
+            });
           });
         });
+      }, function (error) {
+        utils.notify({
+          message: 'При загрузке групп преподавателя произошла ошибка, обновите страницу',
+          type: 'danger'
+        });
       });
-    }, function (error) {
-      utils.notify({
-        message: 'При загрузке групп преподавателя произошла ошибка, обновите страницу',
-        type: 'danger'
-      });
-    });
+    }
+    
+    getInfo();
     
     //Удаление материала
     $scope.deleteMaterial = function (materialId) {
@@ -75,10 +77,10 @@
       });
   
       modalInstance.result.then(function (data) {
-        console.log(data);
         var idGroup = sessionStorage.getItem('id_group');
         DataRepository.setInfo(idGroup, data).then(function (result) {
-          $scope.info.push(result);
+          $scope.info = [];
+          getInfo();
 
           utils.notify({
             message: 'Материал успешно добавлен',
