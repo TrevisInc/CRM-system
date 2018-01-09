@@ -130,36 +130,34 @@
 		}
 		
 		$scope.updateImage = function() {
-
-			var formData = new FormData();
-			formData.append("image", $scope.newMaterial);
-
-			DataRepository.setImage(formData).then(function(response) {
-
-				$scope.newData.image = server + response.data.image;
-				$scope.user.image = $scope.newData.image; // Для того, чтобы сразу обновилась картинка
-				edit($scope.newData);
-			}, function (error) {
-				console.log(error);
-
-				if(error.data.message === 'No file data') {
-					utils.notify({
-						message: 'Картинка не выбрана',
-						type: 'danger'
-					});
-				} else {
-				  	utils.notify({
-						message: 'Выбрать картинку не удалось, повторите попытку позже',
-						type: 'danger'
-				  	});
-				}
-			});
-			$scope.showPicture = !$scope.showPicture;
-		}
-
-		$scope.changeImage = function() {
-			$scope.showPicture = !$scope.showPicture;
-		}
+      var image = document.getElementById('ex1');
+      var waiter = setInterval(function () {
+        if (image.files.length !== 0) {
+          var formData = new FormData();
+          formData.append("image", $scope.newMaterial);
+          clearInterval(waiter);
+          DataRepository.setImage(formData).then(function (response) {
+            $scope.newData.image = server + response.data.image;
+            $scope.user.image = $scope.newData.image; // Для того, чтобы сразу обновилась картинка
+            edit($scope.newData);
+          }, function (error) {
+            console.log(error);
+            
+            if (error.data.message === 'No file data') {
+              utils.notify({
+                message: 'Картинка не выбрана',
+                type: 'danger'
+              });
+            } else {
+              utils.notify({
+                message: 'Выбрать картинку не удалось, повторите попытку позже',
+                type: 'danger'
+              });
+            }
+          });
+        }
+      }, 1000);
+    }
 		
 	}]);
 })();

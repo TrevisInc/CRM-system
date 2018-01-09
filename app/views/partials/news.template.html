@@ -1,5 +1,5 @@
 <div ng-controller="NewsController">
-	<div class="panel panel-default" ng-controller="NewsController">
+	<div class="panel panel-info" ng-controller="NewsController">
 		<div class="panel-heading">Последние новости:</div>
 		<div class="panel-body">
 			<div ng-repeat="item in someNews">
@@ -12,7 +12,7 @@
 				<p>{{item.description}}</p>
 				<hr>
 			</div>
-			<ul uib-pagination total-items="totalItems" max-size="maxSize" ng-model="currentPage" ng-change="pageChanged()"></ul>
+			<ul uib-pagination previous-text="&lsaquo;" next-text="&rsaquo;" total-items="totalItems" max-size="maxSize" ng-model="currentPage" ng-change="pageChanged()"></ul>
 		</div>
 	</div>	
 </div>

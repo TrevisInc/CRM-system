@@ -5,7 +5,7 @@
 		<ng-include ng-show="{{role == 2}}" src="'app/views/partials/teacher.menu.template.html'"></ng-include>
 	</div>
 	<div class="col-sm-6">
-		<div class="panel panel-default">
+		<div class="panel panel-info">
 			<div class="panel-heading"><h4>Просмотр данных пользователя: {{user.firstname}} {{user.lastname}}</h4></div>
 			<div class="panel-body">
 				<div class="row">
@@ -14,8 +14,7 @@
 						<img ng-if="showPicture" src="img/no_image_available_male.png" class="img-rounded" alt="">
 						<hr>
 						<div class="form-group">
-							<label class="btn btn-default form-control" for="ex1" ng-click="changeImage()">Выбрать</label>
-							<label class="btn btn-default form-control" ng-click="updateImage()">Обновить</label>
+							<label class="btn btn-default form-control" for="ex1" ng-click="updateImage()">Выбрать</label>
 							<div class="hide123">
 								<input type="file" name="file" file-model='newMaterial' id="ex1" accept="image/" class="form-control hide123">
 							</div>

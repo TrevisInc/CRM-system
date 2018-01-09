@@ -165,3 +165,14 @@ a, a:hover {
 .hide123 {
   display: none;
 }
+
+.b-r-4{
+  border: 1px solid #bce8f1;
+  border-radius: 4px;
+}
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+  background-color: #54aeff;
+}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+  background-color: #54aeff;
+}
