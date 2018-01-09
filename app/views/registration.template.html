@@ -5,27 +5,26 @@
 	<div class="col-xs-4">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h5>Введите данные для регистрации нового студента</h5>
+				<h5>Введите данные для регистрации пользователя</h5>
 			</div>
 			<div class="panel-body">
-
 
 				<form novalidate id="FormRegistration" name="FormRegistration" ng-submit="FormRegistration.$valid && dispatchForm()">
 				<small class="pull-right"><em>Все поля являются обязательными.</em></small>
 				<br>
-					<div class="form-group" ng-class="{'has-error' : FormRegistration.$submitted && FormRegistration.firstname.$invalid}">
+					<div class="form-group" ng-class="{'has-error' : ( checkFirstName === false) || (FormRegistration.$submitted && FormRegistration.firstname.$invalid)}">
 						<input type="text" class="form-control" required autocomplete="off" name="firstname" placeholder="Имя" ng-model="newUser.firstname">
 					</div>
-					<div class="form-group" ng-class="{'has-error' : FormRegistration.$submitted && FormRegistration.lastname.$invalid}">
+					<div class="form-group" ng-class="{'has-error' : ( checkLastName === false) || (FormRegistration.$submitted && FormRegistration.lastname.$invalid)}">
 						<input type="text" class="form-control" required autocomplete="off" name="lastname" placeholder="Фамилия" ng-model="newUser.lastname">
 					</div>
 					<div class="form-group" ng-class="{'has-error' : FormRegistration.$submitted && FormRegistration.email.$invalid}">
 						<input type="email" class="form-control" required autocomplete="off" name="email" placeholder="E-mail" ng-model="newUser.email">
 					</div>
-					<div class="form-group" ng-class="{'has-error' : FormRegistration.$submitted && FormRegistration.login.$invalid}">
+					<div class="form-group" ng-class="{'has-error' : ( checkLogin === false) || (FormRegistration.$submitted && FormRegistration.login.$invalid)}">
 						<input type="text" class="form-control" required autocomplete="off"  name="login" placeholder="Логин" ng-model="newUser.login">
 					</div>
-					<div class="form-group" ng-class="{'has-error' : FormRegistration.$submitted && FormRegistration.password.$invalid}">
+					<div class="form-group" ng-class="{ 'has-error' : ( checkPassword === false) || (FormRegistration.$submitted && FormRegistration.password.$invalid)}">
 						<input type="password" class="form-control" required name="password" placeholder="Пароль" ng-model="newUser.password">
 					</div>
 

@@ -1,44 +1,46 @@
-<div class="panel panel-default">
-	<nav ng-controller="TeacherMenuController">
-		<ul class="mcd-menu">
-			<li>
-				<a href="">
-					<i class="fa fa-users" aria-hidden="true"></i>
-					<strong>Мои группы</strong>
-					<small>Информация о составе групп, журнал посещения</small>
-				</a>
-				<ul>
-					<li ng-repeat="item in groupsByTeacher"><a href="#/teacher/{{item.id}}/journal" ng-click="setGroupId(item.id)"><i class="fa fa-users" aria-hidden="true"></i>{{item.title}}</a></li>
-				</ul>
-			</li>
-			<li>
-				<a href="#/teacher/{{user}}/schedule">
-					<i class="fa fa-calendar" aria-hidden="true"></i>
-					<strong>Мое расписание</strong>
-					<small>Информация о расписании занятий</small>
-				</a>
-			</li>
-			<li>
-				<a href="">
-					<i class="fa fa-book" aria-hidden="true"></i>
-					<strong>Мой Журнал</strong>
-					<small>Проверка домашних заданий</small>
-				</a>
-			</li>
-			<li>
-				<a href="">
-					<i class="fa fa-tasks" aria-hidden="true"></i>
-					<strong>Мои Домашние задания</strong>
-					<small>Создание домашних заданий</small>
-				</a>
-			</li>
-			<li>
-				<a href="#/teacher/{{user}}/info">
-					<i class="fa fa-info" aria-hidden="true"></i>
-					<strong>Моя Полезная информация</strong>
-					<small>Добавление полезной информации</small>
-				</a>
-			</li>
-		</ul>
-	</nav>
-</div>
+<nav ng-controller="TeacherMenuController">
+	<div class="col-sm-3 col-md-2 affix-sidebar">
+		<div class="sidebar-nav">
+			<div class="navbar navbar-default" role="navigation">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+					  	<span class="sr-only">Toggle navigation</span>
+					  	<span class="icon-bar"></span>
+					</button>
+  					<span class="visible-xs navbar-brand">Sidebar menu</span>
+				</div>
+				<div class="navbar-collapse collapse sidebar-navbar-collapse">
+					<ul class="nav navbar-nav" id="sidenav01">
+						<li>
+						  	<a href="#/teacher/{{user}}"  data-toggle="collapse" data-target="#toggleDemo0" data-parent="#sidenav01" class="collapsed">
+						  	<h4>Главное меню</h4></a>
+						</li>
+						<li>
+						  	<a href="" data-toggle="collapse" data-target="#toggleDemo" data-parent="#sidenav01" class="collapsed">
+								<i class="fa fa-users" aria-hidden="true"></i>
+								<strong>Мои группы</strong><span class="caret pull-right"></span>
+						  	</a>
+						  <div class="collapse" id="toggleDemo" style="height: 0px;">
+							<ul class="nav nav-list">
+							  <li ng-repeat="item in groupsByTeacher"><a href="#/teacher/{{item.id}}/journal" ng-click="setGroupId(item.id)"><i class="fa fa-users" aria-hidden="true"></i> {{item.title}}</a></li>
+							</ul>
+						  </div>
+						</li>
+						<li>
+							<a href="#/teacher/{{user}}/schedule">
+								<i class="fa fa-calendar" aria-hidden="true"></i>
+								<strong>Мое расписание</strong>
+							</a>
+						</li>
+						<li>
+							<a href="#/teacher/{{user}}/info">
+								<i class="fa fa-info" aria-hidden="true"></i>
+								<strong>Моя Полезная информация</strong>
+							</a>
+						</li>
+				  	</ul>
+  				</div>
+			</div>
+			</div>
+	</div>
+</nav>

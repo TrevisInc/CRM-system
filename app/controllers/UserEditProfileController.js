@@ -10,9 +10,10 @@
 		$scope.testRole = false;
 		$scope.editPassword = false;
 		$scope.hasErrorStatus = false;
+		$scope.showPicture = false;
 
 		$scope.newMaterial = null;
-    var server = 'http://crmsys.filonitta.fe.a-level.com.ua';
+	var server = 'http://crmsys.filonitta.fe.a-level.com.ua';
 
 		$scope.newPass = {
 			new: null,
@@ -98,12 +99,6 @@
 			$scope.editPassword = !$scope.editPassword;
 		}
 
-		$scope.showGit = function(data) {
-			$scope.gitShow = !$scope.gitShow;
-			$scope.newData.git = data;
-			edit($scope.newData);
-		}
-
 		$scope.confirmPassword = function() {
 			console.log($scope.newPass)
 			if ($scope.newPass.new === $scope.newPass.confirm) {
@@ -128,8 +123,9 @@
 			$scope.passwordShow = !$scope.passwordShow;
 		}
 
-		$scope.changeGit = function(data) {
+		$scope.checkGit = function(data) {
 			$scope.newData.git = data;
+			$scope.gitShow = !$scope.gitShow;
 			edit($scope.newData);
 		}
 		
@@ -140,37 +136,30 @@
 
 			DataRepository.setImage(formData).then(function(response) {
 
-        $scope.newData.image = server + response.data.image;
-        $scope.user.image = $scope.newData.image; // Для того, чтобы сразу обновилась картинка
+				$scope.newData.image = server + response.data.image;
+				$scope.user.image = $scope.newData.image; // Для того, чтобы сразу обновилась картинка
 				edit($scope.newData);
 			}, function (error) {
 				console.log(error);
 
 				if(error.data.message === 'No file data') {
-          utils.notify({
-            message: 'Картинка не выбрана',
-            type: 'danger'
-          });
+					utils.notify({
+						message: 'Картинка не выбрана',
+						type: 'danger'
+					});
 				} else {
-          utils.notify({
-            message: 'Выбрать картинку не удалось, повторите попытку позже',
-            type: 'danger'
-          });
-        }
+				  	utils.notify({
+						message: 'Выбрать картинку не удалось, повторите попытку позже',
+						type: 'danger'
+				  	});
+				}
 			});
+			$scope.showPicture = !$scope.showPicture;
 		}
-    
-    // $scope.waitImage = function () {
-     //  console.log('true');
-     //  var input = document.getElementById("ex1");
-     //  return setInterval(function () {
-     //      if (input.files.length !== 0) {
-     //        return true;
-     //      } else {
-     //        return false;
-     //      }
-		// 	}, 500);
-		// }
+
+		$scope.changeImage = function() {
+			$scope.showPicture = !$scope.showPicture;
+		}
 		
 	}]);
 })();

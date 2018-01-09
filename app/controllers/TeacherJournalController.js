@@ -27,7 +27,7 @@
 		$scope.popup = {
 			opened: false
 		};
-
+		
 		$scope.open = function() {
 			$scope.popup.opened = true;
 			$scope.showError = false;

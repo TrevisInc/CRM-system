@@ -10,10 +10,11 @@
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-sm-3">
-						<img src="{{user.image || 'img/no_image_available_male.png' }}" class="img-rounded" alt="">
+						<img ng-if="!showPicture" src="{{user.image || 'img/no_image_available_male.png' }}" class="img-rounded" alt="">
+						<img ng-if="showPicture" src="img/no_image_available_male.png" class="img-rounded" alt="">
 						<hr>
 						<div class="form-group">
-							<label class="btn btn-default form-control" for="ex1">Выбрать</label>
+							<label class="btn btn-default form-control" for="ex1" ng-click="changeImage()">Выбрать</label>
 							<label class="btn btn-default form-control" ng-click="updateImage()">Обновить</label>
 							<div class="hide123">
 								<input type="file" name="file" file-model='newMaterial' id="ex1" accept="image/" class="form-control hide123">
@@ -28,7 +29,7 @@
 										<span editable-text="user.firstname" onbeforesave="checkFirstName($data)" e-form="changeFirstName"><em>Имя : </em> {{ user.firstname || 'empty' }}</span>
 									</th>
 									<th>
-										<button class="btn btn-warning btn-xs pull-right" ng-click="changeFirstName.$show()" ng-hide="changeFirstName.$visible">
+										<button class="btn btn-primary btn-xs pull-right" ng-click="changeFirstName.$show()" ng-hide="changeFirstName.$visible">
 											<i class="glyphicon glyphicon-pencil"></i>
 										</button>
 									</th>
@@ -38,7 +39,7 @@
 										<span editable-text="user.lastname" onbeforesave="checkLastName($data)" e-form="changeLastName"><em>Фамилия : </em> {{ user.lastname || 'empty' }}</span>
 									</th>
 									<th>
-										<button class="btn btn-warning btn-xs pull-right" ng-click="changeLastName.$show()" ng-hide="changeLastName.$visible">
+										<button class="btn btn-primary btn-xs pull-right" ng-click="changeLastName.$show()" ng-hide="changeLastName.$visible">
 											<i class="glyphicon glyphicon-pencil"></i>
 										</button>
 									</th>
@@ -48,7 +49,7 @@
 										<span editable-text="user.email" onbeforesave="checkEmail($data)" e-form="changeEmail"><em>E-mail : </em> {{ user.email || 'empty' }}</span>
 									</th>
 									<th>
-										<button class="btn btn-warning btn-xs pull-right" ng-click="changeEmail.$show()" ng-hide="changeEmail.$visible">
+										<button class="btn btn-primary btn-xs pull-right" ng-click="changeEmail.$show()" ng-hide="changeEmail.$visible">
 											<i class="glyphicon glyphicon-pencil"></i>
 										</button>
 									</th>
@@ -81,20 +82,26 @@
 										</div>
 									</th>
 									<th>
-										<button ng-if="!passwordShow" class="btn btn-warning btn-xs pull-right" ng-click="showPassword()">
+										<button ng-if="!passwordShow" class="btn btn-primary btn-xs pull-right" ng-click="showPassword()">
 											<i class="glyphicon glyphicon-eye-open"></i>
 										</button>
-										<button ng-if="passwordShow" class="btn btn-warning btn-xs pull-right" ng-click="changePassword()">
+										<button ng-if="passwordShow" class="btn btn-primary btn-xs pull-right" ng-click="changePassword()">
 											<i class="glyphicon glyphicon-pencil"></i>
 										</button>
 									</th>
 								</tr>
 								<tr ng-if="testRole">
 									<th>
-										<button ng-if="!gitShow" class="btn btn-primary btn-xs button-color" editable-text="user.git" onbeforesave="showGit($data)"> + Git</button>
-										<span ng-if="gitShow">Git : <em editable-text="user.git" onbeforesave="changeGit($data)"> {{user.git}}</em></span>
+										<span editable-text="user.git" onbeforesave="checkGit($data)" e-form="changeGit"><em>Git : </em>
+											<a ng-if="gitShow" href="{{user.git}}" target="_blank">{{ user.git || 'Не указано' }}</a>
+											<a ng-if="!gitShow">{{ user.git || 'Не указано' }}</a>
+										</span>
 									</th>
-									<th></th>
+									<th>
+										<button class="btn btn-primary btn-xs pull-right" ng-click="changeGit.$show()" ng-hide="changeGit.$visible">
+											<i class="glyphicon glyphicon-pencil"></i>
+										</button>
+									</th>
 								</tr>
 							</tbody>
 						</table>
