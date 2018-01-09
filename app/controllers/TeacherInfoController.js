@@ -112,7 +112,14 @@
         });
       });
     };
-    
+  
+    $scope.readModal = function (src) {
+      console.log('ld');
+      var link = src.split('.');
+      if(link[link.length - 1] === 'pdf') {
+        window.open(src);
+      }
+    };
     
     
   }]);

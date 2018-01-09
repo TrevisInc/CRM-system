@@ -19,8 +19,12 @@
 					<th></th>
 				</thead>
 				<tr ng-repeat="item in info track by $index">
-					<td><a href="" editable-text="item.title" e-form="editableForm" e-ng-model="item.title" e-name="title">{{item.title}}</a></td>
-					<td><a href="{{item.link}}"><i>Ссылка</i></a></td>
+					<td><span editable-text="item.title" e-form="editableForm" e-ng-model="item.title" e-name="title">{{item.title}}</span></td>
+					<td>
+						<button class="btn btn-info btn-xs" ng-click="readModal(item.link)">
+							<i class="glyphicon glyphicon-eye-open"></i>
+						</button>
+					</td>
 					<td class="text-right">
 						<span ng-show="!editableForm.$visible">
 							<button class="btn btn-warning btn-xs" ng-click="editableForm.$show()"><i class="glyphicon glyphicon-pencil"></i></button>

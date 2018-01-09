@@ -48,7 +48,7 @@ a, a:hover {
   max-height: 110px;
 }
 
-.group ul li {
+.group li {
   width: 30%;
   overflow: hidden;
   float: left;
@@ -59,6 +59,10 @@ a, a:hover {
 
 .group ul {
   text-align: center;
+}
+
+.group .userId {
+  background: #ecbc09;
 }
 
 .schedule{
@@ -78,8 +82,9 @@ a, a:hover {
 .schedule li {
   text-align: center;
   width: 30%;
-  background: #f24d49;
+  background: #aeaeae;
   color: #fff;
+  border: 1px solid #959595;
 }
 
 .schedule li>div {
@@ -159,8 +164,4 @@ a, a:hover {
 
 .hide123 {
   display: none;
-}
-/*-------------student-info-------------------------*/
-.student-info i {
-  color: #000000;
 }

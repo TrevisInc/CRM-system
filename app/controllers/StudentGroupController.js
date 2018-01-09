@@ -20,5 +20,17 @@
         });
         
     }, function (error) {});
+  
+  
+    $scope.controlUser = function (id) {
+      var user = +localStorage.getItem('id');
+      if(id === user) {
+        console.log('true');
+        return true;
+      } else {
+        console.log('false');
+        return false;
+      }
+    }
   }]);
 })();

@@ -138,7 +138,6 @@
 			var formData = new FormData();
 			formData.append("image", $scope.newMaterial);
 
-
 			DataRepository.setImage(formData).then(function(response) {
 
         $scope.newData.image = server + response.data.image;
@@ -146,7 +145,7 @@
 				edit($scope.newData);
 			}, function (error) {
 				console.log(error);
-				
+
 				if(error.data.message === 'No file data') {
           utils.notify({
             message: 'Картинка не выбрана',
@@ -160,6 +159,18 @@
         }
 			});
 		}
-
+    
+    // $scope.waitImage = function () {
+     //  console.log('true');
+     //  var input = document.getElementById("ex1");
+     //  return setInterval(function () {
+     //      if (input.files.length !== 0) {
+     //        return true;
+     //      } else {
+     //        return false;
+     //      }
+		// 	}, 500);
+		// }
+		
 	}]);
 })();

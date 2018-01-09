@@ -124,9 +124,17 @@
     // Изменение формата вывода времени во вкладке День
     var originalFormat = calendarConfig.dateFormats.hour;
     calendarConfig.dateFormats.hour = 'HH:mm';
+    
+    var originalFormatDays = calendarConfig.dateFormats.weekDay;
+    calendarConfig.dateFormats.weekDay = "EEE";
+    
+    var originFormatWeek = calendarConfig.i18nStrings.weekNumber;
+    calendarConfig.i18nStrings.weekNumber = 'Неделя {week}';
   
     $scope.$on('$destroy', function() {
       calendarConfig.dateFormats.hour = originalFormat; // reset for other demos
+      calendarConfig.dateFormats.weekDay = originalFormatDays;
+      calendarConfig.i18nStrings.weekNumber = originFormatWeek;
     });
     
     
