@@ -17,28 +17,28 @@
 						</li>
 						<li>
 						  	<a href="" data-toggle="collapse" data-target="#toggleDemo" data-parent="#sidenav01" class="collapsed">
-								<i class="fa fa-users" aria-hidden="true"></i>
+								<i class="glyphicon glyphicon-th-list"></i>
 								<strong>Мои группы</strong><span class="caret pull-right"></span>
 						  	</a>
 						  <div class="collapse" id="toggleDemo" style="height: 0px;">
 							<ul class="nav nav-list">
 							  	<li ng-repeat="item in groupsByStudent">
 									<a href="#/student/{{student}}/group/{{item.id}}" ng-click="setGroupId(item.id)">
-										<i class="fa fa-users" aria-hidden="true"></i> {{item.title}}</a>
+										<i class="glyphicon glyphicon-user"></i> {{item.title}}</a>
 								</li>
 							</ul>
 						  </div>
 						</li>
 						<li>
 						  	<a href="" data-toggle="collapse" data-target="#toggleDemo2" data-parent="#sidenav01" class="collapsed">
-						  		<i class="fa fa-calendar" aria-hidden="true"></i>
+						  		<i class="glyphicon glyphicon-calendar"></i>
 								<strong>Мое расписание</strong><span class="caret pull-right"></span>
 						  	</a>
 						  <div class="collapse" id="toggleDemo2" style="height: 0px;">
 							<ul class="nav nav-list">
 							  	<li ng-repeat="item in groupsByStudent">
 									<a href="#/student/{{student}}/schedule/{{item.id}}" ng-click="setGroupId(item.id)">
-										<i class="fa fa-users" aria-hidden="true"></i> {{item.title}}
+										<i class="glyphicon glyphicon-user"></i> {{item.title}}
 									</a>
 								</li>
 							</ul>
@@ -46,7 +46,7 @@
 						</li>
 						<li>
 							<a href="#/student/{{student}}/info">
-								<i class="fa fa-info" aria-hidden="true"></i>
+								<i class="glyphicon glyphicon-info-sign"></i>
 								<strong>Моя полезная информация</strong>
 							</a>
 						</li>

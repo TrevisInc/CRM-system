@@ -47,6 +47,17 @@ gulp.task('css', function() {
         .pipe(gulp.dest('./build/')) // результат пишем по указанному адресу
 });
 
+gulp.task('bcss', function() {
+    gulp.src([
+                './bower_components/angular-notify/dist/angular-notify.min.css',
+                './bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css',
+                './bower_components/bootstrap/dist/css/bootstrap.min.css',
+                './bower_components/angular-xeditable/dist/css/xeditable.min.css'
+        ]) // файлы, которые обрабатываем
+        .pipe(concat('b-min.css')) // склеиваем все CSS
+        .pipe(gulp.dest('./build/')) // результат пишем по указанному адресу
+});
+
 gulp.task('bjs', function() {
     gulp.src([
                 './bower_components/jquery/dist/jquery.min.js',
@@ -68,6 +79,11 @@ gulp.task('bjs', function() {
         ]) // файлы, которые обрабатываем
         .pipe(concat('b-min.js')) // склеиваем все JS
         .pipe(gulp.dest('./build/')) // результат пишем по указанному адресу
+});
+
+gulp.task('fonts', function() {
+  gulp.src('./bower_components/bootstrap/fonts/*{ttf,woff,woff2,svg,eot}')
+      .pipe(gulp.dest('./build/fonts/'))
 });
 
 gulp.task('watch', function () {

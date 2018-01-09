@@ -17,24 +17,24 @@
 						</li>
 						<li>
 						  	<a href="" data-toggle="collapse" data-target="#toggleDemo" data-parent="#sidenav01" class="collapsed">
-								<i class="fa fa-users" aria-hidden="true"></i>
+								<i class="glyphicon glyphicon-th-list""></i>
 								<strong>Мои группы</strong><span class="caret pull-right"></span>
 						  	</a>
 						  <div class="collapse" id="toggleDemo" style="height: 0px;">
 							<ul class="nav nav-list">
-							  <li ng-repeat="item in groupsByTeacher"><a href="#/teacher/{{item.id}}/journal" ng-click="setGroupId(item.id)"><i class="fa fa-users" aria-hidden="true"></i> {{item.title}}</a></li>
+							  <li ng-repeat="item in groupsByTeacher"><a href="#/teacher/{{item.id}}/journal" ng-click="setGroupId(item.id)"><i class="glyphicon glyphicon-user"></i> {{item.title}}</a></li>
 							</ul>
 						  </div>
 						</li>
 						<li>
 							<a href="#/teacher/{{user}}/schedule">
-								<i class="fa fa-calendar" aria-hidden="true"></i>
+								<i class="glyphicon glyphicon-calendar"></i>
 								<strong>Мое расписание</strong>
 							</a>
 						</li>
 						<li>
 							<a href="#/teacher/{{user}}/info">
-								<i class="fa fa-info" aria-hidden="true"></i>
+								<i class="glyphicon glyphicon-info-sign"></i>
 								<strong>Моя Полезная информация</strong>
 							</a>
 						</li>
