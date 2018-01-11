@@ -51,7 +51,12 @@
               type: 'danger'
             });
 					}
-        }
+        } else if (error.status === 452) {
+          utils.notify({
+            message: 'Сервер сейчас недоступен, попробуйте позже',
+            type: 'danger'
+          });
+				}
 				$scope.logVal = false;
 			});
 		}
