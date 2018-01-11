@@ -24,6 +24,7 @@
 		$scope.disableBtn = false;
 		$scope.dt = null;
 		$scope.format = 'dd-MMMM-yyyy';
+
 		$scope.popup = {
 			opened: false
 		};
